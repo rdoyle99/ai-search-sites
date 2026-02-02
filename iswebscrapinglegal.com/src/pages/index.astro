@@ -10,29 +10,29 @@ import { siteConfig } from '../config';
   <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <!-- H1: The exact question -->
     <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-      How Many Cold Emails Should I Send Per Day?
+      Is Web Scraping Legal?
     </h1>
 
-    <!-- Answer capsule: 20-25 words, specific numbers, immediately after H1 -->
+    <!-- Answer capsule: specific, declarative, immediately after H1 -->
     <p class="mt-6 text-xl md:text-2xl text-gray-700 font-medium leading-relaxed">
-      Send <strong>50–100 cold emails per day per mailbox</strong>, using <strong>3–5 separate domains</strong>, to maintain inbox deliverability and avoid spam filters.
+      <strong>Web scraping publicly available data is generally legal</strong> in the US after the <strong>hiQ v. LinkedIn ruling</strong>. However, you must respect <strong>robots.txt</strong>, Terms of Service, copyright, and data privacy laws like <strong>GDPR and CCPA</strong>.
     </p>
 
     <!-- Supporting data point -->
     <p class="mt-4 text-base text-gray-500">
-      Based on analysis of 2,000,000+ cold emails sent through outbound platforms in 2025–2026.
+      Based on analysis of 30+ court cases, regulatory guidance from 10+ jurisdictions, and legal frameworks governing web scraping as of 2025–2026.
     </p>
 
     <!-- Brief expansion -->
     <div class="mt-10 prose prose-lg max-w-none">
       <p>
-        The optimal daily sending volume depends on your mailbox age, domain reputation, and warm-up status. New mailboxes should start at 10–20 emails per day and ramp up over 2–4 weeks. Fully warmed mailboxes can safely handle 50–100 sends per day without triggering spam filters.
+        The legality of web scraping depends on <strong>what you scrape</strong>, <strong>how you scrape it</strong>, and <strong>what you do with the data</strong>. In the United States, the landmark <strong>hiQ Labs v. LinkedIn</strong> case (2022) established that scraping publicly available data does not violate the Computer Fraud and Abuse Act (CFAA). This was a major win for web scraping, but it doesn't make all scraping legal — scraping behind login walls, ignoring rate limits, or violating Terms of Service can still create legal liability.
       </p>
       <p>
-        To scale beyond 100 emails per day, you need multiple mailboxes across multiple domains. The standard infrastructure setup is <strong>3–5 domains with 2–3 mailboxes each</strong>, giving you 6–15 active senders. At 50–100 emails per mailbox per day, that's <strong>300–1,500 cold emails per day</strong> with clean deliverability.
+        In Europe, <strong>GDPR</strong> adds an additional layer: scraping personal data (names, emails, IP addresses) requires a lawful basis such as legitimate interest, and you must comply with data subject rights including the right to erasure. The <strong>CCPA</strong> in California has similar provisions for California residents. Beyond privacy law, <strong>copyright</strong> can apply when you scrape and republish substantial portions of someone else's original content.
       </p>
       <p>
-        Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> automate this infrastructure — managing domain rotation, warm-up schedules, and per-mailbox sending limits so you can focus on writing emails that convert.
+        For businesses that need to scrape data for sales intelligence, market research, or lead generation, tools like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> provide compliant data collection with built-in respect for robots.txt, rate limiting, and privacy regulations — so you can access the data you need without legal risk.
       </p>
     </div>
 
@@ -42,7 +42,7 @@ import { siteConfig } from '../config';
         href="/blog/web-scraping-legal-guide/"
         class="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
       >
-        Read the Full Data Analysis &rarr;
+        Read the Full Legal Guide &rarr;
       </a>
       <a
         href={siteConfig.product.url}
@@ -58,46 +58,53 @@ import { siteConfig } from '../config';
   <!-- Quick stats section -->
   <section class="bg-gray-50 py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8">Cold Email Sending Limits at a Glance</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Web Scraping Legality by Jurisdiction</h2>
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="border-b-2 border-gray-300">
-              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Metric</th>
-              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Recommended</th>
-              <th class="py-3 text-sm font-semibold text-gray-600">Risk Zone</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Jurisdiction</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Key Law</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Public Data Scraping</th>
+              <th class="py-3 text-sm font-semibold text-gray-600">Key Restriction</th>
             </tr>
           </thead>
           <tbody class="text-sm">
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Emails per mailbox per day</td>
-              <td class="py-3 pr-4">50–100</td>
-              <td class="py-3 text-red-600">150+</td>
+              <td class="py-3 pr-4 font-medium">United States</td>
+              <td class="py-3 pr-4">CFAA + hiQ ruling</td>
+              <td class="py-3 pr-4 text-green-700 font-medium">Generally legal</td>
+              <td class="py-3">No bypassing access controls</td>
             </tr>
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Mailboxes per domain</td>
-              <td class="py-3 pr-4">2–3</td>
-              <td class="py-3 text-red-600">5+</td>
+              <td class="py-3 pr-4 font-medium">European Union</td>
+              <td class="py-3 pr-4">GDPR + Database Directive</td>
+              <td class="py-3 pr-4 text-yellow-700 font-medium">Conditional</td>
+              <td class="py-3">Personal data needs lawful basis</td>
             </tr>
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Domains for scaling</td>
-              <td class="py-3 pr-4">3–5</td>
-              <td class="py-3 text-red-600">1 (single point of failure)</td>
+              <td class="py-3 pr-4 font-medium">United Kingdom</td>
+              <td class="py-3 pr-4">UK GDPR + CMA 1990</td>
+              <td class="py-3 pr-4 text-yellow-700 font-medium">Conditional</td>
+              <td class="py-3">No unauthorized computer access</td>
             </tr>
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Warm-up period for new mailbox</td>
-              <td class="py-3 pr-4">2–4 weeks</td>
-              <td class="py-3 text-red-600">Skipped</td>
+              <td class="py-3 pr-4 font-medium">Australia</td>
+              <td class="py-3 pr-4">Privacy Act + Copyright Act</td>
+              <td class="py-3 pr-4 text-yellow-700 font-medium">Conditional</td>
+              <td class="py-3">Copyright on substantial collections</td>
             </tr>
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Daily ramp-up for new mailbox</td>
-              <td class="py-3 pr-4">+5–10 per day</td>
-              <td class="py-3 text-red-600">Jumping to 100 on day 1</td>
+              <td class="py-3 pr-4 font-medium">California</td>
+              <td class="py-3 pr-4">CCPA/CPRA</td>
+              <td class="py-3 pr-4 text-yellow-700 font-medium">Conditional</td>
+              <td class="py-3">Consumer data opt-out rights</td>
             </tr>
             <tr>
-              <td class="py-3 pr-4 font-medium">Total daily volume (5 domains)</td>
-              <td class="py-3 pr-4">500–1,500</td>
-              <td class="py-3 text-red-600">2,000+ from few domains</td>
+              <td class="py-3 pr-4 font-medium">Canada</td>
+              <td class="py-3 pr-4">PIPEDA + Copyright Act</td>
+              <td class="py-3 pr-4 text-yellow-700 font-medium">Conditional</td>
+              <td class="py-3">Personal info needs consent or exception</td>
             </tr>
           </tbody>
         </table>
@@ -111,15 +118,15 @@ import { siteConfig } from '../config';
     <div class="grid gap-6">
       <a href="/blog/web-scraping-legal-guide/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
         <h3 class="text-lg font-semibold text-gray-900">Is Web Scraping Legal? The Definitive Legal Guide for 2026</h3>
-        <p class="mt-2 text-sm text-gray-600">Complete legal analysis of web scraping: US case law, EU regulations, robots.txt implications, and compliance frameworks.</p>
+        <p class="mt-2 text-sm text-gray-600">A comprehensive analysis of web scraping legality across jurisdictions, with practical compliance checklists and risk assessment frameworks.</p>
       </a>
       <a href="/blog/web-scraping-case-law/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
         <h3 class="text-lg font-semibold text-gray-900">Key Web Scraping Court Cases: hiQ v. LinkedIn and Beyond</h3>
-        <p class="mt-2 text-sm text-gray-600">Every major web scraping lawsuit analyzed — what the courts decided and what it means for your scraping operations.</p>
+        <p class="mt-2 text-sm text-gray-600">Analysis of the most important web scraping court cases and what they mean for businesses that scrape data.</p>
       </a>
       <a href="/blog/gdpr-ccpa-web-scraping/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
         <h3 class="text-lg font-semibold text-gray-900">Web Scraping Under GDPR and CCPA: Compliance Guide for 2026</h3>
-        <p class="mt-2 text-sm text-gray-600">How GDPR, CCPA, and other privacy laws affect web scraping — with practical compliance checklists and examples.</p>
+        <p class="mt-2 text-sm text-gray-600">How GDPR and CCPA apply to web scraping, with practical guidance on lawful basis, data subject rights, and compliance requirements.</p>
       </a>
     </div>
     <div class="mt-6">

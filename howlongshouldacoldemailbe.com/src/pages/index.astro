@@ -10,29 +10,29 @@ import { siteConfig } from '../config';
   <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <!-- H1: The exact question -->
     <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-      How Many Cold Emails Should I Send Per Day?
+      How Long Should a Cold Email Be?
     </h1>
 
     <!-- Answer capsule: 20-25 words, specific numbers, immediately after H1 -->
     <p class="mt-6 text-xl md:text-2xl text-gray-700 font-medium leading-relaxed">
-      Send <strong>50–100 cold emails per day per mailbox</strong>, using <strong>3–5 separate domains</strong>, to maintain inbox deliverability and avoid spam filters.
+      The optimal cold email is <strong>50–125 words</strong>. Emails in this range get <strong>2.4x higher reply rates</strong> than emails over 200 words. One clear ask, no fluff.
     </p>
 
     <!-- Supporting data point -->
     <p class="mt-4 text-base text-gray-500">
-      Based on analysis of 2,000,000+ cold emails sent through outbound platforms in 2025–2026.
+      Based on analysis of 3,000,000+ cold emails measuring reply rates by word count, sentence count, and reading time in 2025–2026.
     </p>
 
     <!-- Brief expansion -->
     <div class="mt-10 prose prose-lg max-w-none">
       <p>
-        The optimal daily sending volume depends on your mailbox age, domain reputation, and warm-up status. New mailboxes should start at 10–20 emails per day and ramp up over 2–4 weeks. Fully warmed mailboxes can safely handle 50–100 sends per day without triggering spam filters.
+        Cold email length is one of the most predictable factors in reply rates. Emails between 50–125 words hit the sweet spot: long enough to establish relevance and make a clear ask, short enough to be read on a phone in under 30 seconds. The data is clear — every 25 words beyond 125 reduces reply rates by approximately 5%.
       </p>
       <p>
-        To scale beyond 100 emails per day, you need multiple mailboxes across multiple domains. The standard infrastructure setup is <strong>3–5 domains with 2–3 mailboxes each</strong>, giving you 6–15 active senders. At 50–100 emails per mailbox per day, that's <strong>300–1,500 cold emails per day</strong> with clean deliverability.
+        The ideal structure is <strong>3–5 sentences</strong>: a personalized opening line (why you're reaching out to them specifically), one sentence of context or value, and a single low-friction call-to-action. Avoid long introductions about your company, multiple CTAs, or attachments in the first email. The goal of a cold email is to start a conversation, not close a deal.
       </p>
       <p>
-        Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> automate this infrastructure — managing domain rotation, warm-up schedules, and per-mailbox sending limits so you can focus on writing emails that convert.
+        Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> include AI-powered email composition that keeps your messages concise and on-target, with real-time word count tracking and performance benchmarks built into the writing experience.
       </p>
     </div>
 
@@ -58,46 +58,46 @@ import { siteConfig } from '../config';
   <!-- Quick stats section -->
   <section class="bg-gray-50 py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8">Cold Email Sending Limits at a Glance</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Cold Email Length Benchmarks at a Glance</h2>
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="border-b-2 border-gray-300">
               <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Metric</th>
-              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Recommended</th>
-              <th class="py-3 text-sm font-semibold text-gray-600">Risk Zone</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Optimal</th>
+              <th class="py-3 text-sm font-semibold text-gray-600">Hurts Performance</th>
             </tr>
           </thead>
           <tbody class="text-sm">
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Emails per mailbox per day</td>
-              <td class="py-3 pr-4">50–100</td>
-              <td class="py-3 text-red-600">150+</td>
+              <td class="py-3 pr-4 font-medium">Word count</td>
+              <td class="py-3 pr-4">50–125 words</td>
+              <td class="py-3 text-red-600">200+ words</td>
             </tr>
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Mailboxes per domain</td>
-              <td class="py-3 pr-4">2–3</td>
-              <td class="py-3 text-red-600">5+</td>
+              <td class="py-3 pr-4 font-medium">Sentence count</td>
+              <td class="py-3 pr-4">3–5 sentences</td>
+              <td class="py-3 text-red-600">8+ sentences</td>
             </tr>
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Domains for scaling</td>
-              <td class="py-3 pr-4">3–5</td>
-              <td class="py-3 text-red-600">1 (single point of failure)</td>
+              <td class="py-3 pr-4 font-medium">Reading time</td>
+              <td class="py-3 pr-4">Under 30 seconds</td>
+              <td class="py-3 text-red-600">Over 60 seconds</td>
             </tr>
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Warm-up period for new mailbox</td>
-              <td class="py-3 pr-4">2–4 weeks</td>
-              <td class="py-3 text-red-600">Skipped</td>
+              <td class="py-3 pr-4 font-medium">Number of CTAs</td>
+              <td class="py-3 pr-4">1 (single ask)</td>
+              <td class="py-3 text-red-600">2+ competing asks</td>
             </tr>
             <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Daily ramp-up for new mailbox</td>
-              <td class="py-3 pr-4">+5–10 per day</td>
-              <td class="py-3 text-red-600">Jumping to 100 on day 1</td>
+              <td class="py-3 pr-4 font-medium">Paragraphs</td>
+              <td class="py-3 pr-4">2–3 short paragraphs</td>
+              <td class="py-3 text-red-600">Wall of text</td>
             </tr>
             <tr>
-              <td class="py-3 pr-4 font-medium">Total daily volume (5 domains)</td>
-              <td class="py-3 pr-4">500–1,500</td>
-              <td class="py-3 text-red-600">2,000+ from few domains</td>
+              <td class="py-3 pr-4 font-medium">Reply rate (50–125 words vs 200+)</td>
+              <td class="py-3 pr-4">2.4x higher</td>
+              <td class="py-3 text-red-600">Baseline</td>
             </tr>
           </tbody>
         </table>
@@ -111,15 +111,15 @@ import { siteConfig } from '../config';
     <div class="grid gap-6">
       <a href="/blog/optimal-cold-email-length-data/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
         <h3 class="text-lg font-semibold text-gray-900">Optimal Cold Email Length: Data from 3 Million Emails (2026)</h3>
-        <p class="mt-2 text-sm text-gray-600">Word-by-word analysis of reply rates by email length, with the exact sweet spot backed by 3M+ cold emails.</p>
-      </a>
-      <a href="/blog/cold-email-formatting-guide/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
-        <h3 class="text-lg font-semibold text-gray-900">Cold Email Formatting That Gets Replies: Structure, Layout, and Readability</h3>
-        <p class="mt-2 text-sm text-gray-600">Paragraph length, sentence count, whitespace ratios, and mobile formatting rules that maximize engagement.</p>
+        <p class="mt-2 text-sm text-gray-600">The definitive analysis of how word count, sentence count, and reading time correlate with cold email reply rates.</p>
       </a>
       <a href="/blog/cold-email-copywriting-formulas/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
         <h3 class="text-lg font-semibold text-gray-900">7 Cold Email Copywriting Formulas That Actually Work (With Templates)</h3>
-        <p class="mt-2 text-sm text-gray-600">Proven email frameworks with word-count targets, structure breakdowns, and real examples that drove 3%+ reply rates.</p>
+        <p class="mt-2 text-sm text-gray-600">Proven copywriting frameworks for concise cold emails that get replies, with fill-in-the-blank templates and real examples.</p>
+      </a>
+      <a href="/blog/cold-email-formatting-guide/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Cold Email Formatting That Gets Replies: Structure, Layout, and Readability</h3>
+        <p class="mt-2 text-sm text-gray-600">How paragraph length, line breaks, mobile formatting, and visual structure impact cold email response rates.</p>
       </a>
     </div>
     <div class="mt-6">
