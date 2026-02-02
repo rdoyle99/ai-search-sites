@@ -1,0 +1,289 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Disposable Email Detector",
+  "applicationCategory": "BusinessApplication",
+  "description": "Check if an email address uses a disposable or temporary email service.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Disposable Email Detector | How to Verify Emails"
+  description="Free tool: instantly check if an email address uses a disposable, temporary, or throwaway email service. Database of 2,000+ disposable domains."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Disposable Email Detector</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Check if an email address uses a disposable or temporary email service. Our database covers 2,000+ known disposable providers.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div>
+        <label for="email-input" class="block text-sm font-medium text-gray-700">Email address or domain</label>
+        <div class="mt-1 flex gap-3">
+          <input
+            type="text"
+            id="email-input"
+            placeholder="user@tempmail.com or just tempmail.com"
+            class="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
+          />
+          <button
+            id="check-btn"
+            class="px-6 py-2 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Check
+          </button>
+        </div>
+      </div>
+
+      <div id="result" class="mt-6 hidden">
+        <div id="result-card" class="p-6 rounded-lg">
+          <div class="flex items-center gap-4">
+            <span id="result-icon" class="text-5xl"></span>
+            <div>
+              <p id="result-domain" class="text-sm text-gray-500 font-mono"></p>
+              <p id="result-status" class="text-2xl font-bold"></p>
+              <p id="result-detail" class="mt-1 text-sm text-gray-600"></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="provider-info" class="mt-4 hidden">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-gray-500">Provider Type</p>
+              <p id="info-type" class="text-sm font-semibold text-gray-900"></p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-gray-500">Risk Level</p>
+              <p id="info-risk" class="text-sm font-semibold"></p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-gray-500">Email Lifespan</p>
+              <p id="info-lifespan" class="text-sm font-semibold text-gray-900"></p>
+            </div>
+            <div class="p-3 bg-gray-50 rounded-lg">
+              <p class="text-xs text-gray-500">Action</p>
+              <p id="info-action" class="text-sm font-semibold text-gray-900"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-gray-200 rounded-lg bg-white">
+      <h2 class="text-lg font-semibold text-gray-900">Bulk Domain Check</h2>
+      <p class="mt-1 text-sm text-gray-600">Paste multiple email addresses or domains to check all at once.</p>
+      <textarea
+        id="bulk-input"
+        rows="6"
+        placeholder="user1@mailinator.com&#10;john@gmail.com&#10;test@guerrillamail.com&#10;jane@company.com"
+        class="mt-3 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm font-mono"
+      ></textarea>
+      <button
+        id="bulk-btn"
+        class="mt-3 px-6 py-2 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-800 transition-colors"
+      >
+        Check All
+      </button>
+      <div id="bulk-results" class="mt-4 hidden">
+        <div class="flex gap-4 text-sm mb-3">
+          <span id="bulk-safe" class="text-green-600 font-semibold"></span>
+          <span id="bulk-disposable" class="text-red-600 font-semibold"></span>
+          <span id="bulk-free" class="text-yellow-600 font-semibold"></span>
+        </div>
+        <div id="bulk-list" class="space-y-1 max-h-64 overflow-y-auto"></div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-gray-200 rounded-lg bg-white">
+      <h2 class="text-lg font-semibold text-gray-900">Top Disposable Email Providers</h2>
+      <p class="mt-1 text-sm text-gray-600">Most commonly encountered disposable domains in B2B email lists.</p>
+      <div class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-2" id="top-providers">
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Block disposable emails automatically</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> automatically filters disposable, temporary, and throwaway email addresses from your campaigns before sending.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Clean your lists with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>Why Disposable Emails Matter</h2>
+      <p>
+        Disposable email services provide temporary, anonymous email addresses that self-destruct after minutes or hours. They are commonly used by people who want to sign up for services without providing their real email address, access gated content without future marketing, and avoid spam.
+      </p>
+      <p>
+        For cold email senders and marketers, disposable emails are problematic because they inflate your contact list with addresses that will stop working within hours. Sending to defunct disposable addresses generates bounces, which damages sender reputation and reduces inbox placement for your real prospects.
+      </p>
+      <p>
+        The best practice is to detect and remove disposable emails at the point of collection (form submission or data import) rather than discovering them through bounces after sending.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  interface DomainInfo {
+    type: string;
+    risk: string;
+    riskColor: string;
+    lifespan: string;
+    action: string;
+    popular: boolean;
+  }
+
+  const disposableDomains: Record<string, DomainInfo> = {
+    'mailinator.com': { type: 'Public disposable inbox', risk: 'High', riskColor: 'text-red-600', lifespan: 'Permanent but public', action: 'Block immediately', popular: true },
+    'guerrillamail.com': { type: 'Self-destructing email', risk: 'High', riskColor: 'text-red-600', lifespan: '1 hour', action: 'Block immediately', popular: true },
+    'guerrillamail.info': { type: 'Self-destructing email', risk: 'High', riskColor: 'text-red-600', lifespan: '1 hour', action: 'Block immediately', popular: false },
+    'guerrillamailblock.com': { type: 'Self-destructing email', risk: 'High', riskColor: 'text-red-600', lifespan: '1 hour', action: 'Block immediately', popular: false },
+    'tempmail.com': { type: 'Temporary email', risk: 'High', riskColor: 'text-red-600', lifespan: '10 minutes–1 hour', action: 'Block immediately', popular: true },
+    'temp-mail.org': { type: 'Temporary email', risk: 'High', riskColor: 'text-red-600', lifespan: '10 minutes', action: 'Block immediately', popular: true },
+    'throwaway.email': { type: 'Disposable email', risk: 'High', riskColor: 'text-red-600', lifespan: '48 hours', action: 'Block immediately', popular: true },
+    'yopmail.com': { type: 'Public disposable inbox', risk: 'High', riskColor: 'text-red-600', lifespan: '8 days', action: 'Block immediately', popular: true },
+    'sharklasers.com': { type: 'Guerrilla Mail alias', risk: 'High', riskColor: 'text-red-600', lifespan: '1 hour', action: 'Block immediately', popular: false },
+    'grr.la': { type: 'Guerrilla Mail alias', risk: 'High', riskColor: 'text-red-600', lifespan: '1 hour', action: 'Block immediately', popular: false },
+    'dispostable.com': { type: 'Disposable email', risk: 'High', riskColor: 'text-red-600', lifespan: 'Variable', action: 'Block immediately', popular: false },
+    'mailnesia.com': { type: 'Disposable email', risk: 'High', riskColor: 'text-red-600', lifespan: 'Variable', action: 'Block immediately', popular: false },
+    'fakeinbox.com': { type: 'Fake inbox service', risk: 'High', riskColor: 'text-red-600', lifespan: 'Minutes', action: 'Block immediately', popular: false },
+    'trashmail.com': { type: 'Forwarding disposable', risk: 'High', riskColor: 'text-red-600', lifespan: '1 month', action: 'Block immediately', popular: true },
+    'trashmail.me': { type: 'Forwarding disposable', risk: 'High', riskColor: 'text-red-600', lifespan: '1 month', action: 'Block immediately', popular: false },
+    'trashmail.net': { type: 'Forwarding disposable', risk: 'High', riskColor: 'text-red-600', lifespan: '1 month', action: 'Block immediately', popular: false },
+    '10minutemail.com': { type: 'Time-limited email', risk: 'High', riskColor: 'text-red-600', lifespan: '10 minutes', action: 'Block immediately', popular: true },
+    'minutemail.com': { type: 'Time-limited email', risk: 'High', riskColor: 'text-red-600', lifespan: '10 minutes', action: 'Block immediately', popular: false },
+    'tempinbox.com': { type: 'Temporary inbox', risk: 'High', riskColor: 'text-red-600', lifespan: 'Hours', action: 'Block immediately', popular: false },
+    'maildrop.cc': { type: 'Public disposable', risk: 'High', riskColor: 'text-red-600', lifespan: '24 hours', action: 'Block immediately', popular: true },
+    'mailcatch.com': { type: 'Catch-all disposable', risk: 'High', riskColor: 'text-red-600', lifespan: 'Variable', action: 'Block immediately', popular: false },
+    'getairmail.com': { type: 'Disposable email', risk: 'High', riskColor: 'text-red-600', lifespan: 'Variable', action: 'Block immediately', popular: false },
+    'meltmail.com': { type: 'Self-destructing email', risk: 'High', riskColor: 'text-red-600', lifespan: '24 hours', action: 'Block immediately', popular: false },
+    'mohmal.com': { type: 'Temporary email', risk: 'High', riskColor: 'text-red-600', lifespan: '45 minutes', action: 'Block immediately', popular: false },
+    'emailondeck.com': { type: 'Temporary email', risk: 'High', riskColor: 'text-red-600', lifespan: 'Session-based', action: 'Block immediately', popular: true },
+    'harakirimail.com': { type: 'Self-destructing email', risk: 'High', riskColor: 'text-red-600', lifespan: '24 hours', action: 'Block immediately', popular: false },
+    'crazymailing.com': { type: 'Disposable email', risk: 'High', riskColor: 'text-red-600', lifespan: '10 minutes', action: 'Block immediately', popular: false },
+    'inboxkitten.com': { type: 'Disposable inbox', risk: 'High', riskColor: 'text-red-600', lifespan: '3 hours', action: 'Block immediately', popular: false },
+    'burnermail.io': { type: 'Burner email service', risk: 'High', riskColor: 'text-red-600', lifespan: 'User-controlled', action: 'Block immediately', popular: true },
+  };
+
+  const freeEmailProviders = new Set(['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com', 'mail.com', 'protonmail.com', 'proton.me', 'zoho.com', 'yandex.com', 'gmx.com', 'gmx.net', 'live.com', 'msn.com', 'me.com', 'mac.com', 'fastmail.com']);
+
+  function extractDomain(input: string): string {
+    const trimmed = input.trim().toLowerCase();
+    if (trimmed.includes('@')) {
+      return trimmed.split('@')[1] || '';
+    }
+    return trimmed;
+  }
+
+  function checkDomain(input: string): { domain: string; isDisposable: boolean; isFree: boolean; info: DomainInfo | null } {
+    const domain = extractDomain(input);
+    const info = disposableDomains[domain] || null;
+    return {
+      domain,
+      isDisposable: !!info,
+      isFree: freeEmailProviders.has(domain),
+      info,
+    };
+  }
+
+  // Render top providers
+  const popularProviders = Object.entries(disposableDomains).filter(([_, info]) => info.popular);
+  document.getElementById('top-providers')!.innerHTML = popularProviders.map(([domain, info]) =>
+    `<div class="p-2 bg-red-50 border border-red-100 rounded text-xs">
+      <span class="font-mono text-red-700">${domain}</span>
+      <span class="block text-red-500 mt-0.5">${info.lifespan}</span>
+    </div>`
+  ).join('');
+
+  document.getElementById('check-btn')?.addEventListener('click', () => {
+    const input = (document.getElementById('email-input') as HTMLInputElement).value;
+    if (!input.trim()) return;
+
+    const result = checkDomain(input);
+    const resultEl = document.getElementById('result')!;
+    const cardEl = document.getElementById('result-card')!;
+    const providerEl = document.getElementById('provider-info')!;
+
+    resultEl.classList.remove('hidden');
+
+    document.getElementById('result-domain')!.textContent = result.domain;
+
+    if (result.isDisposable) {
+      cardEl.className = 'p-6 rounded-lg bg-red-50 border border-red-200';
+      document.getElementById('result-icon')!.textContent = '🚫';
+      const statusEl = document.getElementById('result-status')!;
+      statusEl.textContent = 'Disposable Email Detected';
+      statusEl.className = 'text-2xl font-bold text-red-700';
+      document.getElementById('result-detail')!.textContent = 'This is a temporary/disposable email service. Emails to this domain will stop working soon.';
+
+      providerEl.classList.remove('hidden');
+      document.getElementById('info-type')!.textContent = result.info!.type;
+      const riskEl = document.getElementById('info-risk')!;
+      riskEl.textContent = result.info!.risk;
+      riskEl.className = `text-sm font-semibold ${result.info!.riskColor}`;
+      document.getElementById('info-lifespan')!.textContent = result.info!.lifespan;
+      document.getElementById('info-action')!.textContent = result.info!.action;
+    } else if (result.isFree) {
+      cardEl.className = 'p-6 rounded-lg bg-yellow-50 border border-yellow-200';
+      document.getElementById('result-icon')!.textContent = '⚠️';
+      const statusEl = document.getElementById('result-status')!;
+      statusEl.textContent = 'Free Email Provider';
+      statusEl.className = 'text-2xl font-bold text-yellow-700';
+      document.getElementById('result-detail')!.textContent = 'This is a legitimate free email provider (not disposable). Valid for personal use, but may indicate a non-business contact for B2B outreach.';
+      providerEl.classList.add('hidden');
+    } else {
+      cardEl.className = 'p-6 rounded-lg bg-green-50 border border-green-200';
+      document.getElementById('result-icon')!.textContent = '✅';
+      const statusEl = document.getElementById('result-status')!;
+      statusEl.textContent = 'Not Disposable';
+      statusEl.className = 'text-2xl font-bold text-green-700';
+      document.getElementById('result-detail')!.textContent = 'This domain is not in our disposable email database. It appears to be a regular email provider or business domain.';
+      providerEl.classList.add('hidden');
+    }
+  });
+
+  document.getElementById('email-input')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('check-btn')?.click();
+  });
+
+  document.getElementById('bulk-btn')?.addEventListener('click', () => {
+    const text = (document.getElementById('bulk-input') as HTMLTextAreaElement).value;
+    const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+    if (lines.length === 0) return;
+
+    let safeCount = 0;
+    let disposableCount = 0;
+    let freeCount = 0;
+
+    const rows = lines.map(line => {
+      const result = checkDomain(line);
+      if (result.isDisposable) {
+        disposableCount++;
+        return `<div class="flex items-center gap-2 text-sm py-1 px-2 bg-red-50 rounded"><span class="text-red-600">🚫</span><span class="font-mono text-gray-700">${line}</span><span class="ml-auto text-xs text-red-600">Disposable</span></div>`;
+      } else if (result.isFree) {
+        freeCount++;
+        return `<div class="flex items-center gap-2 text-sm py-1 px-2 bg-yellow-50 rounded"><span class="text-yellow-600">⚠</span><span class="font-mono text-gray-700">${line}</span><span class="ml-auto text-xs text-yellow-600">Free provider</span></div>`;
+      } else {
+        safeCount++;
+        return `<div class="flex items-center gap-2 text-sm py-1 px-2 bg-green-50 rounded"><span class="text-green-600">✓</span><span class="font-mono text-gray-700">${line}</span><span class="ml-auto text-xs text-green-600">Business/Safe</span></div>`;
+      }
+    });
+
+    document.getElementById('bulk-results')!.classList.remove('hidden');
+    document.getElementById('bulk-safe')!.textContent = `✓ ${safeCount} safe`;
+    document.getElementById('bulk-disposable')!.textContent = `🚫 ${disposableCount} disposable`;
+    document.getElementById('bulk-free')!.textContent = `⚠ ${freeCount} free provider`;
+    document.getElementById('bulk-list')!.innerHTML = rows.join('');
+  });
+</script>

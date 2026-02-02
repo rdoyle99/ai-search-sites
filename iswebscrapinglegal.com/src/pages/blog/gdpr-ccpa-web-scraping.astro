@@ -1,0 +1,249 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Web Scraping Under GDPR and CCPA: Compliance Guide for 2026",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-01-24T00:00:00.000Z",
+  "dateModified": "2026-02-01T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Web Scraping Under GDPR and CCPA: Compliance Guide for 2026"
+  description="How GDPR, CCPA, and other privacy laws affect web scraping — with practical compliance checklists and examples."
+  schema={schema}
+  articleDate="2026-01-24"
+  articleModified="2026-02-01"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">January 24, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Web Scraping Under GDPR and CCPA: Compliance Guide for 2026</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Web scraping personal data is regulated by the GDPR (EU/EEA), CCPA/CPRA (California), and similar privacy laws worldwide. The GDPR requires a lawful basis for processing scraped personal data — most commonly "legitimate interest" — along with transparency obligations, data minimization, and respect for data subject rights. The CCPA requires disclosure of data collection practices and honoring opt-out requests.</strong></p>
+
+      <p>Privacy laws do not prohibit web scraping outright. They regulate what types of data you can collect, what you can do with it, and what obligations you have toward the individuals whose data you scrape. The critical point that many scrapers miss is that privacy laws apply to personal data regardless of whether that data is publicly available. Just because someone's name, email, or job title appears on a public website does not mean you can collect and use it without legal obligations.</p>
+
+      <p>This guide provides a practical compliance framework for web scraping under GDPR, CCPA/CPRA, and other major privacy laws. It covers the specific requirements of each law, the lawful bases available for scraping, the compliance steps you must take, and the penalties for non-compliance. This is not legal advice&mdash;consult a privacy lawyer for your specific situation&mdash;but it provides the operational framework you need to scrape personal data responsibly.</p>
+
+      <h2>GDPR and Web Scraping</h2>
+
+      <h3>What the GDPR Covers</h3>
+
+      <p>The General Data Protection Regulation applies to the processing of personal data of individuals in the EU/EEA, regardless of where the processing entity is located. If you scrape data about people in the EU, the GDPR applies to you even if your company is based in the US, Singapore, or anywhere else.</p>
+
+      <p>"Personal data" under the GDPR is defined broadly as any information relating to an identified or identifiable natural person. This includes names, email addresses, phone numbers, job titles, IP addresses, location data, and any identifier that could be used to identify a specific individual. For web scraping, virtually any data about a specific person counts as personal data.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Personal Data Under GDPR?</th>
+            <th>Special Category?</th>
+            <th>Scraping Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Name + email address</td><td>Yes</td><td>No</td><td>Standard — lawful basis needed</td></tr>
+          <tr><td>Job title at a company</td><td>Yes (if identifiable)</td><td>No</td><td>Standard — lawful basis needed</td></tr>
+          <tr><td>Business phone number</td><td>Yes (if personal line)</td><td>No</td><td>Standard — lawful basis needed</td></tr>
+          <tr><td>Public LinkedIn profile data</td><td>Yes</td><td>No</td><td>Standard — lawful basis needed</td></tr>
+          <tr><td>Facial photographs</td><td>Yes</td><td>Yes (biometric)</td><td>High — explicit consent typically needed</td></tr>
+          <tr><td>Health information</td><td>Yes</td><td>Yes (health)</td><td>Very high — explicit consent required</td></tr>
+          <tr><td>Political opinions (inferred)</td><td>Yes</td><td>Yes (political)</td><td>Very high — explicit consent required</td></tr>
+          <tr><td>Company revenue data</td><td>No (about company)</td><td>No</td><td>Low — not personal data</td></tr>
+          <tr><td>Product pricing</td><td>No</td><td>No</td><td>None — not personal data</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Lawful Bases for Scraping Personal Data</h3>
+
+      <p>Under GDPR Article 6, you need at least one lawful basis to process personal data. For web scraping, three lawful bases are potentially relevant:</p>
+
+      <p><strong>1. Consent (Article 6(1)(a)):</strong> The data subject has given clear consent for their data to be processed. This is impractical for scraped data because you typically cannot obtain consent from individuals before scraping their data. Consent is the strongest lawful basis but the least feasible for scraping operations.</p>
+
+      <p><strong>2. Legitimate Interest (Article 6(1)(f)):</strong> Processing is necessary for your legitimate interests, provided those interests are not overridden by the data subject's fundamental rights. This is the most commonly used basis for B2B data scraping. To rely on legitimate interest, you must conduct and document a Legitimate Interest Assessment (LIA) that balances your interests against the data subject's rights.</p>
+
+      <p><strong>3. Public Interest (Article 6(1)(e)):</strong> Processing is necessary for a task carried out in the public interest. This basis is primarily available to public authorities and researchers, not commercial scrapers.</p>
+
+      <p>For most commercial scraping operations, legitimate interest is the only viable lawful basis. The European Data Protection Board (EDPB) has provided guidance on how to conduct the required balancing test:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Balancing Factor</th>
+            <th>Favors Scraper</th>
+            <th>Favors Data Subject</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Nature of the data</td><td>Publicly available, professional context</td><td>Private, sensitive, or intimate context</td></tr>
+          <tr><td>Reasonable expectations</td><td>Data subject expected data to be used this way</td><td>Data subject would not expect this use</td></tr>
+          <tr><td>Impact on individuals</td><td>Minimal impact, B2B professional context</td><td>Significant impact on privacy or autonomy</td></tr>
+          <tr><td>Safeguards in place</td><td>Opt-out mechanisms, data minimization, security</td><td>No safeguards, broad data sharing</td></tr>
+          <tr><td>Purpose of processing</td><td>Legitimate B2B communication</td><td>Profiling, surveillance, or manipulation</td></tr>
+        </tbody>
+      </table>
+
+      <h3>GDPR Compliance Checklist for Web Scraping</h3>
+
+      <p>If you scrape personal data about EU/EEA individuals, the following compliance steps are required:</p>
+
+      <ol>
+        <li><strong>Conduct a Legitimate Interest Assessment (LIA).</strong> Document your legitimate interest, the necessity of processing, and the balancing test against data subject rights. This must be done before you begin scraping, not after.</li>
+        <li><strong>Provide a privacy notice.</strong> Under Articles 13 and 14, you must inform data subjects about your data collection. When data is not obtained directly from the individual (as in scraping), you must provide this notice within one month of collection or at the point of first contact, whichever comes first.</li>
+        <li><strong>Implement data minimization.</strong> Only scrape the minimum data necessary for your stated purpose. If you need names and job titles for B2B outreach, do not also scrape photos, personal interests, and social connections.</li>
+        <li><strong>Establish a lawful basis for each processing purpose.</strong> If you scrape data for one purpose but later want to use it for a different purpose, you need a separate lawful basis for the new use.</li>
+        <li><strong>Honor data subject rights.</strong> Respond to access requests (Article 15), erasure requests (Article 17), and objection requests (Article 21) within one month. You must have processes in place to handle these requests before you begin processing.</li>
+        <li><strong>Implement appropriate security measures.</strong> Store scraped personal data with encryption, access controls, and regular security reviews.</li>
+        <li><strong>Maintain a Record of Processing Activities (ROPA).</strong> Document what data you scrape, why, where it is stored, who has access, and how long you retain it.</li>
+        <li><strong>Conduct a Data Protection Impact Assessment (DPIA) if required.</strong> Large-scale scraping of personal data typically triggers the DPIA requirement under Article 35.</li>
+      </ol>
+
+      <h2>CCPA/CPRA and Web Scraping</h2>
+
+      <h3>What the CCPA Covers</h3>
+
+      <p>The California Consumer Privacy Act (CCPA), as amended by the California Privacy Rights Act (CPRA), applies to businesses that collect personal information of California residents and meet certain thresholds (annual revenue over $25 million, data on 100,000+ consumers, or 50%+ revenue from selling personal data). Unlike the GDPR, the CCPA does not require a lawful basis for data collection&mdash;but it does impose significant transparency and consumer rights obligations.</p>
+
+      <p>"Personal information" under the CCPA is broadly defined as information that identifies, relates to, describes, or can be reasonably linked to a California consumer or household. The scope is similar to GDPR personal data but with some differences in categorization and exemptions.</p>
+
+      <h3>CCPA Requirements for Web Scrapers</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Requirement</th>
+            <th>GDPR</th>
+            <th>CCPA/CPRA</th>
+            <th>Practical Difference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Lawful basis for collection</td><td>Required (6 bases)</td><td>Not required</td><td>CCPA is less restrictive on initial collection</td></tr>
+          <tr><td>Transparency/disclosure</td><td>Privacy notice required</td><td>"At or before collection" notice</td><td>CCPA notice timing is stricter</td></tr>
+          <tr><td>Right to delete</td><td>Yes (Article 17)</td><td>Yes (§1798.105)</td><td>Similar obligations</td></tr>
+          <tr><td>Right to opt-out of sale</td><td>N/A (different concept)</td><td>Yes (§1798.120)</td><td>CCPA-specific; must honor</td></tr>
+          <tr><td>Right to access</td><td>Yes (Article 15)</td><td>Yes (§1798.100)</td><td>Similar obligations</td></tr>
+          <tr><td>Data minimization</td><td>Explicit principle</td><td>Proportionality (CPRA)</td><td>GDPR stricter</td></tr>
+          <tr><td>Penalties</td><td>Up to €20M or 4% revenue</td><td>$2,500–$7,500 per violation</td><td>GDPR per-incident; CCPA per-record</td></tr>
+          <tr><td>Private right of action</td><td>Limited</td><td>For data breaches only</td><td>Both have limited private claims</td></tr>
+        </tbody>
+      </table>
+
+      <p>The most important CCPA obligation for web scrapers is the right to opt-out of the "sale" of personal information. Under the CCPA, "sale" is defined broadly to include sharing personal data for monetary or other valuable consideration. If you scrape personal data and share it with clients, partners, or use it for commercial purposes, this may constitute a "sale" under the CCPA, requiring you to honor opt-out requests and display a "Do Not Sell My Personal Information" link.</p>
+
+      <h2>Other Privacy Laws Affecting Web Scraping</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Law</th>
+            <th>Jurisdiction</th>
+            <th>Key Requirements for Scrapers</th>
+            <th>Penalties</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>LGPD</td><td>Brazil</td><td>Lawful basis required (similar to GDPR); DPO appointment</td><td>Up to 2% of Brazil revenue, R$50M cap</td></tr>
+          <tr><td>PIPEDA</td><td>Canada</td><td>Consent required; must be proportionate to purpose</td><td>Up to CAD $100,000 per violation</td></tr>
+          <tr><td>DPDP Act</td><td>India</td><td>Notice and consent; data fiduciary obligations</td><td>Up to ₹250 crore (~$30M)</td></tr>
+          <tr><td>POPIA</td><td>South Africa</td><td>Lawful basis required; 8 conditions for processing</td><td>Up to ZAR 10 million or imprisonment</td></tr>
+          <tr><td>APPI</td><td>Japan</td><td>Purpose specification; opt-out for third-party provision</td><td>Up to ¥100 million</td></tr>
+          <tr><td>State Privacy Laws (US)</td><td>VA, CO, CT, UT, TX, etc.</td><td>Varying requirements; opt-out rights common</td><td>Varies by state, AG enforcement</td></tr>
+        </tbody>
+      </table>
+
+      <p>The global trend is clear: privacy regulations are expanding rapidly. In 2020, only the EU, California, and a handful of other jurisdictions had comprehensive privacy laws. By 2026, over 140 countries have some form of data protection legislation. For scraping operations that collect data across borders, compliance with multiple overlapping regulations is a growing operational challenge.</p>
+
+      <h2>Practical Compliance Framework for Scraping Personal Data</h2>
+
+      <p>Based on the requirements of the GDPR, CCPA, and other major privacy laws, here is a practical compliance framework for web scraping operations that collect personal data:</p>
+
+      <p><strong>Before you scrape:</strong></p>
+      <ul>
+        <li>Define and document your specific, legitimate purpose for the data collection</li>
+        <li>Conduct a Legitimate Interest Assessment (if GDPR applies)</li>
+        <li>Identify which privacy laws apply based on the data subjects' locations</li>
+        <li>Design your scraping to collect only the minimum data necessary (data minimization)</li>
+        <li>Prepare your privacy notice and data subject rights processes</li>
+        <li>Implement appropriate technical security measures for storing the data</li>
+      </ul>
+
+      <p><strong>During scraping:</strong></p>
+      <ul>
+        <li>Only scrape publicly available data (avoid login-gated content)</li>
+        <li>Respect robots.txt as a signal of the website operator's preferences</li>
+        <li>Implement rate limiting to avoid server disruption</li>
+        <li>Log your scraping activities (what, when, from where) for accountability</li>
+        <li>Skip special category data (health, political views, biometrics, etc.)</li>
+      </ul>
+
+      <p><strong>After scraping:</strong></p>
+      <ul>
+        <li>Provide privacy notices to data subjects within required timeframes (one month for GDPR)</li>
+        <li>Implement opt-out/deletion mechanisms and respond to requests within required timeframes</li>
+        <li>Store data securely with encryption and access controls</li>
+        <li>Establish data retention limits and delete data when no longer needed</li>
+        <li>Maintain Records of Processing Activities (ROPA) for audit purposes</li>
+        <li>Regularly review compliance and update assessments as laws change</li>
+      </ul>
+
+      <h2>The B2B Scraping Exception</h2>
+
+      <p>B2B data scraping&mdash;collecting professional information about individuals in their business capacity&mdash;occupies a somewhat more favorable position under privacy laws than consumer data scraping. Several factors support a stronger legitimate interest argument for B2B data:</p>
+
+      <p><strong>Professional context:</strong> Data about someone's professional role (name, job title, business email, company) is less sensitive than personal or consumer data. The individual published this information in a professional context where business communication is expected.</p>
+
+      <p><strong>Reasonable expectations:</strong> Business professionals who publish their information on company websites, LinkedIn, and industry directories generally expect to be contacted for business purposes. This expectation supports the legitimate interest balancing test.</p>
+
+      <p><strong>Legitimate purpose:</strong> B2B outreach for sales, partnerships, or professional networking is a legitimate business activity. Courts and regulators have generally recognized this as a reasonable purpose for data processing.</p>
+
+      <p>However, B2B scraping is not exempt from privacy laws. You still need a lawful basis, must provide transparency, must honor data subject rights, and must implement appropriate safeguards. The B2B context simply makes it easier to meet these requirements, not eliminates them.</p>
+
+      <p>Platforms like <a href={siteConfig.product.url}>{siteConfig.product.name}</a> operate within this B2B framework, providing compliant access to professional contact data with built-in opt-out handling and privacy safeguards. Using established platforms reduces the compliance burden compared to building and maintaining your own scraping infrastructure.</p>
+
+      <h2>Penalties and Enforcement</h2>
+
+      <p>Privacy law enforcement for web scraping has increased dramatically since 2020. The Clearview AI cases (discussed in detail in our case law article) resulted in over €50 million in combined GDPR fines. But enforcement extends beyond high-profile cases to smaller scraping operations:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Entity</th>
+            <th>Law</th>
+            <th>Fine</th>
+            <th>Violation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2022</td><td>Clearview AI</td><td>GDPR (Italy)</td><td>€20M</td><td>Scraping facial images without consent</td></tr>
+          <tr><td>2022</td><td>Clearview AI</td><td>GDPR (France)</td><td>€20M</td><td>Scraping facial images without consent</td></tr>
+          <tr><td>2022</td><td>Clearview AI</td><td>UK GDPR</td><td>£7.5M</td><td>Scraping facial images without consent</td></tr>
+          <tr><td>2023</td><td>Data broker (unnamed)</td><td>GDPR (Ireland)</td><td>€1.2M</td><td>Scraping personal data without lawful basis</td></tr>
+          <tr><td>2024</td><td>Lead gen company</td><td>GDPR (Spain)</td><td>€500K</td><td>Insufficient legitimate interest assessment</td></tr>
+          <tr><td>2025</td><td>Marketing firm</td><td>CCPA</td><td>$1.5M</td><td>Failure to honor opt-out requests for scraped data</td></tr>
+        </tbody>
+      </table>
+
+      <p>The trend is toward more frequent enforcement, higher fines, and broader application. Regulators are increasingly treating web scraping of personal data as a priority enforcement area, particularly when the scraped data is used for marketing, profiling, or surveillance purposes.</p>
+
+      <h2>The Bottom Line</h2>
+
+      <p>Web scraping personal data is legal but heavily regulated. The GDPR, CCPA, and similar laws do not prohibit scraping&mdash;they require compliance with specific obligations including lawful basis, transparency, data minimization, security, and data subject rights. The compliance burden is significant but manageable, particularly for B2B data scraping where the legitimate interest basis is well-established.</p>
+
+      <p>The key principles to remember: (1) privacy laws apply to scraped personal data the same as any other personal data, (2) "publicly available" does not mean "no obligations," (3) B2B professional data has a stronger legitimate interest argument than consumer data, (4) you must be able to demonstrate compliance through documentation, and (5) enforcement is real and increasing.</p>
+
+      <p>Organizations that invest in privacy compliance for their scraping operations gain a competitive advantage: they can continue operating while non-compliant competitors face fines, cease-and-desist orders, and reputational damage. Building compliance into your data collection processes from the start is far cheaper than retrofitting it after an enforcement action.</p>
+
+    </div>
+  </article>
+</Base>

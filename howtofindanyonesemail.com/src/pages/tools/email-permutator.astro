@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Email Permutator",
+  "applicationCategory": "BusinessApplication",
+  "description": "Generate all possible email combinations from a name and domain to find the right address.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Email Permutator | Find Anyone's Email"
+  description="Free tool: generate all possible email address combinations from a person's name and company domain."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Email Permutator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter a name and domain to generate every possible email variation. Copy the list and verify with an SMTP checker to find the real address.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
+          <input type="text" id="first-name" placeholder="Jane" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+        <div>
+          <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
+          <input type="text" id="last-name" placeholder="Doe" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+      </div>
+      <div class="mt-4">
+        <label for="domain" class="block text-sm font-medium text-gray-700">Company domain</label>
+        <input type="text" id="domain" placeholder="acmecorp.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+      </div>
+      <div class="mt-4 flex gap-3">
+        <button id="generate-btn" class="flex-1 px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+          Generate Permutations
+        </button>
+      </div>
+
+      <div id="results" class="mt-8 hidden">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold text-gray-900">
+            <span id="count">0</span> permutations generated
+          </h2>
+          <button id="copy-all" class="text-sm text-blue-600 hover:text-blue-800 font-medium">Copy all</button>
+        </div>
+        <div id="permutations" class="mt-4 max-h-96 overflow-y-auto space-y-1"></div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Skip the guessing — find verified emails instantly</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> finds the correct email address automatically using database lookups, pattern matching, and SMTP verification.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Find emails with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How Email Permutation Works</h2>
+      <p>
+        Email permutation generates every possible email address from a person's name and company domain. The most common patterns include first.last@, firstlast@, flast@, and first@. By generating all variations and then verifying them with an SMTP checker, you can find the correct address with 90%+ accuracy.
+      </p>
+      <p>
+        After generating permutations, use an email verification tool to check which address actually exists. This two-step process — permutation + verification — is one of the most reliable free methods for finding any professional's email address.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  function generatePermutations(first: string, last: string, domain: string): string[] {
+    const f = first.toLowerCase();
+    const l = last.toLowerCase();
+    const fi = f[0];
+    const li = l[0];
+    const d = domain.toLowerCase();
+
+    return [
+      `${f}.${l}@${d}`,
+      `${f}${l}@${d}`,
+      `${fi}${l}@${d}`,
+      `${f}@${d}`,
+      `${f}_${l}@${d}`,
+      `${f}${li}@${d}`,
+      `${fi}.${l}@${d}`,
+      `${l}.${f}@${d}`,
+      `${l}${f}@${d}`,
+      `${l}${fi}@${d}`,
+      `${l}@${d}`,
+      `${fi}${li}@${d}`,
+      `${f}-${l}@${d}`,
+      `${fi}-${l}@${d}`,
+      `${l}-${f}@${d}`,
+      `${f}.${li}@${d}`,
+      `${fi}_${l}@${d}`,
+      `${l}_${f}@${d}`,
+      `${f}${l}${fi}@${d}`,
+      `${fi}${f}@${d}`,
+    ];
+  }
+
+  document.getElementById('generate-btn')?.addEventListener('click', () => {
+    const first = (document.getElementById('first-name') as HTMLInputElement).value.trim();
+    const last = (document.getElementById('last-name') as HTMLInputElement).value.trim();
+    const domain = (document.getElementById('domain') as HTMLInputElement).value.trim().replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
+
+    if (!first || !last || !domain) return;
+
+    const perms = generatePermutations(first, last, domain);
+    const results = document.getElementById('results')!;
+    const permDiv = document.getElementById('permutations')!;
+    const countEl = document.getElementById('count')!;
+
+    results.classList.remove('hidden');
+    countEl.textContent = String(perms.length);
+
+    permDiv.innerHTML = perms.map((email, i) => `
+      <div class="flex items-center justify-between px-3 py-2 rounded ${i < 3 ? 'bg-green-50' : 'bg-gray-50'}">
+        <span class="font-mono text-sm">${email}</span>
+        <button onclick="navigator.clipboard.writeText('${email}').then(() => { this.textContent = '✓'; setTimeout(() => this.textContent = 'Copy', 1000); })" class="text-xs text-blue-600 hover:text-blue-800 cursor-pointer">Copy</button>
+      </div>
+    `).join('');
+
+    document.getElementById('copy-all')?.addEventListener('click', () => {
+      navigator.clipboard.writeText(perms.join('\n')).then(() => {
+        const btn = document.getElementById('copy-all')!;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy all', 2000);
+      });
+    });
+  });
+</script>

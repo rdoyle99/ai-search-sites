@@ -1,0 +1,190 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Open Rate Calculator",
+  "applicationCategory": "BusinessApplication",
+  "description": "Calculate your true open rate accounting for tracking pixel limitations and provider-specific inflation.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Open Rate Calculator | Cold Email Open Rate"
+  description="Free calculator: enter your campaign data and get your true open rate accounting for tracking pixel limitations and provider-specific inflation."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Open Rate Calculator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter your campaign data to calculate your true open rate, adjusted for tracking pixel inflation and provider-specific behavior.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-6">
+        <div>
+          <label for="emails-sent" class="block text-sm font-medium text-gray-700">Total emails sent</label>
+          <input
+            type="number"
+            id="emails-sent"
+            value="1000"
+            min="1"
+            max="1000000"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
+          />
+        </div>
+        <div>
+          <label for="emails-opened" class="block text-sm font-medium text-gray-700">Reported opens (from your platform)</label>
+          <input
+            type="number"
+            id="emails-opened"
+            value="450"
+            min="0"
+            max="1000000"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
+          />
+        </div>
+        <div>
+          <label for="bounced" class="block text-sm font-medium text-gray-700">Bounced emails</label>
+          <input
+            type="number"
+            id="bounced"
+            value="20"
+            min="0"
+            max="1000000"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
+          />
+        </div>
+        <div>
+          <label for="provider-mix" class="block text-sm font-medium text-gray-700">Primary recipient provider</label>
+          <select id="provider-mix" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="mixed">Mixed / Unknown</option>
+            <option value="google">Mostly Google Workspace / Gmail</option>
+            <option value="microsoft">Mostly Microsoft 365 / Outlook</option>
+            <option value="other">Other providers</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="results" class="mt-8 p-6 bg-gray-50 rounded-lg">
+        <h2 class="text-lg font-semibold text-gray-900">Your Open Rate Analysis</h2>
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          <div>
+            <p class="text-sm text-gray-500">Reported open rate</p>
+            <p id="reported-rate" class="text-3xl font-bold text-gray-900">45.0%</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Estimated true open rate</p>
+            <p id="true-rate" class="text-3xl font-bold text-blue-600">38.3%</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Inflation factor</p>
+            <p id="inflation" class="text-3xl font-bold text-gray-900">~15%</p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-500">Rating</p>
+            <p id="rating" class="text-3xl font-bold text-green-600">Good</p>
+          </div>
+        </div>
+        <div id="explanation" class="mt-4 p-4 bg-white rounded-md border border-gray-200">
+          <p class="text-sm text-gray-600"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Want more accurate open rate tracking?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> uses advanced tracking that filters out bot opens and auto-loads, giving you the most accurate open rate data possible.
+      </p>
+      <div class="mt-4 flex gap-3">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+          Track with {siteConfig.product.name} &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How This Calculator Works</h2>
+      <p>
+        Reported open rates from email platforms are almost always inflated. Apple Mail Privacy Protection (MPP) pre-loads tracking pixels for all emails, making every Apple Mail recipient appear as an "open." Microsoft's Outlook sometimes blocks tracking pixels entirely, causing under-reporting. Google Workspace has its own caching behavior that can inflate counts.
+      </p>
+      <p>
+        This calculator applies provider-specific deflation factors based on industry research: Apple MPP inflates opens by ~20–30%, Google caching adds ~10–15%, and Microsoft under-reports by ~5–10%. The "true open rate" estimate accounts for these biases to give you a more accurate picture of actual engagement.
+      </p>
+      <p>
+        A good cold email open rate is <strong>40–60%</strong> after adjustments. Below 30% typically signals deliverability problems, poor subject lines, or a low-quality list. Above 60% suggests exceptional targeting and messaging.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  function calculate() {
+    const sent = parseInt((document.getElementById('emails-sent') as HTMLInputElement).value) || 0;
+    const opened = parseInt((document.getElementById('emails-opened') as HTMLInputElement).value) || 0;
+    const bounced = parseInt((document.getElementById('bounced') as HTMLInputElement).value) || 0;
+    const provider = (document.getElementById('provider-mix') as HTMLSelectElement).value;
+
+    const delivered = sent - bounced;
+    if (delivered <= 0) return;
+
+    const reportedRate = (opened / delivered) * 100;
+
+    // Deflation factors based on provider
+    let deflationFactor: number;
+    let inflationLabel: string;
+    let explanation: string;
+
+    switch (provider) {
+      case 'google':
+        deflationFactor = 0.88;
+        inflationLabel = '~12%';
+        explanation = 'Google Workspace caches tracking pixels, inflating reported opens by approximately 12%. Your true open rate is likely slightly lower than reported.';
+        break;
+      case 'microsoft':
+        deflationFactor = 1.07;
+        inflationLabel = '~-7%';
+        explanation = 'Microsoft 365/Outlook often blocks tracking pixels, causing under-reporting. Your true open rate may be slightly higher than reported.';
+        break;
+      case 'other':
+        deflationFactor = 0.92;
+        inflationLabel = '~8%';
+        explanation = 'Smaller providers have varied tracking pixel handling. We estimate a moderate deflation of about 8% from reported numbers.';
+        break;
+      default:
+        deflationFactor = 0.85;
+        inflationLabel = '~15%';
+        explanation = 'With a mixed provider audience, Apple MPP and Google caching inflate reported opens by an estimated 15%. This is the most common scenario for B2B cold email.';
+    }
+
+    const trueRate = reportedRate * deflationFactor;
+
+    let rating: string;
+    let ratingColor: string;
+    if (trueRate >= 50) { rating = 'Excellent'; ratingColor = 'text-green-600'; }
+    else if (trueRate >= 40) { rating = 'Good'; ratingColor = 'text-green-600'; }
+    else if (trueRate >= 30) { rating = 'Average'; ratingColor = 'text-yellow-600'; }
+    else if (trueRate >= 20) { rating = 'Below Average'; ratingColor = 'text-orange-600'; }
+    else { rating = 'Poor'; ratingColor = 'text-red-600'; }
+
+    document.getElementById('reported-rate')!.textContent = reportedRate.toFixed(1) + '%';
+    document.getElementById('true-rate')!.textContent = trueRate.toFixed(1) + '%';
+    document.getElementById('inflation')!.textContent = inflationLabel;
+
+    const ratingEl = document.getElementById('rating')!;
+    ratingEl.textContent = rating;
+    ratingEl.className = `text-3xl font-bold ${ratingColor}`;
+
+    document.getElementById('explanation')!.innerHTML = `<p class="text-sm text-gray-600">${explanation}</p>`;
+  }
+
+  document.getElementById('emails-sent')?.addEventListener('input', calculate);
+  document.getElementById('emails-opened')?.addEventListener('input', calculate);
+  document.getElementById('bounced')?.addEventListener('input', calculate);
+  document.getElementById('provider-mix')?.addEventListener('change', calculate);
+  calculate();
+</script>

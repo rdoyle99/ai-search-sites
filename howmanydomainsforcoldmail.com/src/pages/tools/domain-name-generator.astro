@@ -1,0 +1,205 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Cold Email Domain Name Generator",
+  "applicationCategory": "BusinessApplication",
+  "description": "Generate brand-safe domain name variations for your cold email infrastructure.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Cold Email Domain Name Generator | How Many Domains for Cold Email"
+  description="Free tool: generate brand-safe domain name variations for your cold email infrastructure based on your company name."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Cold Email Domain Name Generator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter your company name and primary domain. We'll generate brand-safe domain variations for cold email outreach.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-6">
+        <div>
+          <label for="company-name" class="block text-sm font-medium text-gray-700">Company name</label>
+          <input type="text" id="company-name" placeholder="e.g. Acme" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
+        </div>
+        <div>
+          <label for="primary-domain" class="block text-sm font-medium text-gray-700">Primary domain (the one you protect)</label>
+          <input type="text" id="primary-domain" placeholder="e.g. acme.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
+        </div>
+        <div>
+          <label for="num-domains-needed" class="block text-sm font-medium text-gray-700">How many domain ideas?</label>
+          <select id="num-domains-needed" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="5">5 domains</option>
+            <option value="10" selected>10 domains</option>
+            <option value="15">15 domains</option>
+            <option value="20">20 domains</option>
+          </select>
+        </div>
+
+        <button id="generate-btn" class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+          Generate Domain Names
+        </button>
+      </div>
+
+      <div id="results" class="mt-8 hidden">
+        <h2 class="text-lg font-semibold text-gray-900">Generated Domain Names</h2>
+        <p class="mt-1 text-sm text-gray-500">Click any domain to copy it. Domains are sorted by recommendation level.</p>
+
+        <div id="domain-list" class="mt-4 space-y-2"></div>
+
+        <div class="mt-6 p-4 bg-yellow-50 rounded-md border border-yellow-200">
+          <p class="text-sm text-yellow-800">
+            <strong>Important:</strong> Always check domain availability before purchasing. These are suggestions based on common cold email naming patterns — availability is not guaranteed.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need help setting up your cold email domains?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> automates domain registration, DNS setup, warm-up, and rotation — get your infrastructure running in minutes.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Set up domains with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How to Choose Cold Email Domain Names</h2>
+      <p>
+        The most important rule for cold email domains: <strong>never send cold emails from your primary domain</strong>. If your primary domain gets flagged or blacklisted, it affects all your business email — including transactional emails, support, and internal communications.
+      </p>
+      <p>
+        Instead, use variations of your brand name on separate domains. The best cold email domain names are:
+      </p>
+      <ul>
+        <li><strong>Recognizably connected</strong> to your brand (so recipients feel the email is legitimate)</li>
+        <li><strong>Short and clean</strong> — avoid hyphens, numbers, and unusual TLDs that trigger spam filters</li>
+        <li><strong>Using trusted TLDs</strong> — .com is best, followed by .co, .io, and country-specific TLDs</li>
+        <li><strong>Not keyword-stuffed</strong> — "get-best-deals-acme.com" looks spammy</li>
+      </ul>
+      <h2>Recommended Naming Patterns</h2>
+      <p>
+        Based on deliverability data from thousands of cold email campaigns, these naming patterns perform best:
+      </p>
+      <ul>
+        <li><strong>Prefix patterns:</strong> tryacme.com, getacme.com, meetacme.com, hiacme.com</li>
+        <li><strong>Suffix patterns:</strong> acmehq.com, acmeteam.com, acmemail.com</li>
+        <li><strong>Word variations:</strong> acme.co, acme.io, useacme.com</li>
+      </ul>
+      <p>
+        Avoid patterns that look like phishing — "acme-secure.com" or "acme-login.com" will get flagged immediately.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const prefixes = ['try', 'get', 'meet', 'hi', 'use', 'with', 'go', 'run', 'join', 'hey'];
+  const suffixes = ['hq', 'team', 'mail', 'app', 'hub', 'now', 'labs', 'works', 'dev', 'biz'];
+  const tlds = ['.com', '.co', '.io', '.dev', '.app'];
+  const recommendedTlds = ['.com', '.co'];
+
+  function generateDomains() {
+    const companyName = (document.getElementById('company-name') as HTMLInputElement).value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    const primaryDomain = (document.getElementById('primary-domain') as HTMLInputElement).value.trim().toLowerCase();
+    const count = parseInt((document.getElementById('num-domains-needed') as HTMLSelectElement).value);
+
+    if (!companyName) return;
+
+    const results = document.getElementById('results')!;
+    const domainList = document.getElementById('domain-list')!;
+
+    const domains: { name: string; tier: string; reason: string }[] = [];
+
+    // Tier 1: Best patterns (.com prefix/suffix)
+    for (const prefix of prefixes) {
+      domains.push({
+        name: `${prefix}${companyName}.com`,
+        tier: 'Recommended',
+        reason: `Prefix "${prefix}" + .com — high deliverability, brand-recognizable`
+      });
+    }
+    for (const suffix of suffixes) {
+      domains.push({
+        name: `${companyName}${suffix}.com`,
+        tier: 'Recommended',
+        reason: `Suffix "${suffix}" + .com — professional, clear brand connection`
+      });
+    }
+
+    // Tier 2: Alt TLDs
+    for (const tld of ['.co', '.io']) {
+      domains.push({
+        name: `${companyName}${tld}`,
+        tier: 'Good',
+        reason: `Base name + ${tld} — clean and simple`
+      });
+      domains.push({
+        name: `get${companyName}${tld}`,
+        tier: 'Good',
+        reason: `Prefix "get" + ${tld} — good deliverability`
+      });
+    }
+
+    // Tier 3: Less common but viable
+    for (const tld of ['.dev', '.app']) {
+      domains.push({
+        name: `${companyName}${tld}`,
+        tier: 'Acceptable',
+        reason: `${tld} — less common for cold email, but legitimate`
+      });
+    }
+
+    // Deduplicate and remove primary domain
+    const primaryBase = primaryDomain.replace(/^www\./, '');
+    const seen = new Set<string>();
+    const unique = domains.filter(d => {
+      if (d.name === primaryBase || seen.has(d.name)) return false;
+      seen.add(d.name);
+      return true;
+    });
+
+    // Sort: Recommended first, then Good, then Acceptable
+    const tierOrder: Record<string, number> = { 'Recommended': 0, 'Good': 1, 'Acceptable': 2 };
+    unique.sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier]);
+
+    const selected = unique.slice(0, count);
+
+    const tierColors: Record<string, string> = {
+      'Recommended': 'bg-green-100 text-green-700',
+      'Good': 'bg-blue-100 text-blue-700',
+      'Acceptable': 'bg-gray-100 text-gray-600',
+    };
+
+    domainList.innerHTML = selected.map((d, i) => `
+      <div class="flex items-center justify-between p-3 border border-gray-200 rounded-md hover:bg-gray-50 cursor-pointer transition-colors" onclick="navigator.clipboard.writeText('${d.name}').then(() => { this.querySelector('.copy-msg').classList.remove('hidden'); setTimeout(() => this.querySelector('.copy-msg').classList.add('hidden'), 1500); })">
+        <div class="flex items-center gap-3">
+          <span class="text-sm text-gray-400 w-6">${i + 1}.</span>
+          <span class="font-mono text-sm font-semibold text-gray-900">${d.name}</span>
+          <span class="text-xs font-medium px-2 py-0.5 rounded-full ${tierColors[d.tier]}">${d.tier}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="copy-msg hidden text-xs text-green-600 font-medium">Copied!</span>
+          <span class="text-xs text-gray-400">Click to copy</span>
+        </div>
+      </div>
+      <p class="text-xs text-gray-400 ml-9 -mt-1 mb-1">${d.reason}</p>
+    `).join('');
+
+    results.classList.remove('hidden');
+  }
+
+  document.getElementById('generate-btn')?.addEventListener('click', generateDomains);
+  document.getElementById('company-name')?.addEventListener('keypress', (e) => {
+    if ((e as KeyboardEvent).key === 'Enter') generateDomains();
+  });
+</script>

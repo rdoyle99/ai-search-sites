@@ -1,0 +1,204 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Is Web Scraping Legal? The Definitive Legal Guide for 2026",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-01-28T00:00:00.000Z",
+  "dateModified": "2026-02-01T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Is Web Scraping Legal? The Definitive Legal Guide for 2026"
+  description="Complete legal analysis of web scraping: US case law, EU regulations, robots.txt implications, and compliance frameworks."
+  schema={schema}
+  articleDate="2026-01-28"
+  articleModified="2026-02-01"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">January 28, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Is Web Scraping Legal? The Definitive Legal Guide for 2026</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Web scraping publicly available data is generally legal in the United States, following the Ninth Circuit's 2022 ruling in hiQ Labs v. LinkedIn. However, legality depends on what you scrape, how you scrape it, and what you do with the data. Scraping behind login walls, copyrighted content, or personal data protected by GDPR/CCPA introduces significant legal risk.</strong></p>
+
+      <p>The legality of web scraping is one of the most frequently misunderstood topics in technology and data law. The confusion stems from the fact that there is no single "web scraping law." Instead, scraping legality is determined by the intersection of multiple legal frameworks: computer fraud statutes, copyright law, contract law (Terms of Service), privacy regulations, and trespass to chattels. Each framework applies differently depending on the specific scraping scenario, creating a complex matrix of legality that requires case-by-case analysis.</p>
+
+      <p>This guide provides a comprehensive legal analysis of web scraping in 2026, covering the major court decisions that have shaped the law, the key legal frameworks that apply, jurisdiction-specific rules, and practical compliance guidelines. It is not legal advice&mdash;consult an attorney for your specific situation&mdash;but it provides the factual foundation you need to understand the legal landscape.</p>
+
+      <h2>The Legal Frameworks That Apply to Web Scraping</h2>
+
+      <p>Web scraping does not exist in a single legal category. Five distinct legal frameworks can apply, and a scraping operation may be legal under one framework while violating another. Understanding each framework is essential for assessing the legality of any scraping activity.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Legal Framework</th>
+            <th>Key Law/Regulation</th>
+            <th>What It Covers</th>
+            <th>Risk Level for Scraping</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Computer Fraud</td><td>CFAA (US), CMA (UK)</td><td>Unauthorized access to computer systems</td><td>Medium — clarified by hiQ ruling</td></tr>
+          <tr><td>Copyright</td><td>US Copyright Act, EU Copyright Directive</td><td>Reproduction of copyrighted content</td><td>High — if scraping protected content</td></tr>
+          <tr><td>Contract Law</td><td>Terms of Service / Terms of Use</td><td>Breach of website agreements</td><td>Medium — enforceability varies</td></tr>
+          <tr><td>Data Privacy</td><td>GDPR, CCPA, LGPD</td><td>Collection and processing of personal data</td><td>High — strict requirements for personal data</td></tr>
+          <tr><td>Trespass to Chattels</td><td>Common law tort</td><td>Interference with computer systems</td><td>Low — requires actual damage</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Computer Fraud and Abuse Act (CFAA)</h3>
+
+      <p>The CFAA, enacted in 1986, prohibits accessing a computer "without authorization" or "exceeding authorized access." For decades, companies used the CFAA to argue that web scraping constituted unauthorized access to their servers. The critical question was whether accessing a publicly available website could ever be "without authorization."</p>
+
+      <p>The hiQ Labs v. LinkedIn case resolved this question for publicly available data. The Ninth Circuit ruled in 2022 that scraping publicly available data on the open internet does not violate the CFAA because there is no "authorization" requirement for data that anyone can access without credentials. The court reasoned that the CFAA was designed to prevent hacking into systems protected by authentication, not to prevent accessing data that is already public.</p>
+
+      <p>However, the CFAA still applies when scraping involves circumventing access controls. If a website requires a login, and you scrape data behind that login either without an account or in a way that violates the account's terms, the CFAA may be implicated. The key distinction is between public data (no authorization needed, scraping likely legal under CFAA) and restricted data (authorization required, scraping may violate CFAA).</p>
+
+      <h3>Copyright Law</h3>
+
+      <p>Copyright law protects original creative works from unauthorized reproduction. When you scrape a website, you are technically making copies of its content. If that content is copyrighted&mdash;articles, photographs, videos, creative writing, database structures&mdash;the reproduction may constitute copyright infringement.</p>
+
+      <p>The fair use doctrine provides some protection for scraping, particularly when the scraped data is used for transformative purposes such as research, analysis, or building new products that do not compete with the original content. However, fair use is a legal defense, not a license&mdash;it is determined by courts after the fact, based on four factors: (1) the purpose and character of the use, (2) the nature of the copyrighted work, (3) the amount copied, and (4) the effect on the market for the original work.</p>
+
+      <p>Factual data generally is not copyrightable. The Supreme Court's decision in Feist Publications v. Rural Telephone Service (1991) established that compilations of facts are only copyrightable if they involve creative selection, coordination, or arrangement. Raw factual data&mdash;names, addresses, prices, specifications&mdash;cannot be copyrighted. This distinction is critical for B2B data scraping: scraping factual business information (company names, employee titles, public financial data) carries lower copyright risk than scraping creative content (blog posts, product descriptions, images).</p>
+
+      <h3>Terms of Service</h3>
+
+      <p>Most websites include Terms of Service (ToS) that explicitly prohibit scraping, crawling, or automated data collection. The legal question is whether these Terms of Service are enforceable against scrapers who never explicitly agreed to them.</p>
+
+      <p>Courts have taken different positions on this question. "Clickwrap" agreements (where users must click "I agree" before accessing content) are generally enforceable. "Browsewrap" agreements (where terms are posted on the website but users are not required to acknowledge them) have weaker enforceability. Several courts have ruled that simply visiting a website does not constitute agreement to its ToS, particularly when the terms are not prominently displayed.</p>
+
+      <p>However, even if ToS are not technically enforceable, violating them creates legal risk. Companies can use ToS violations as evidence of bad faith in other legal claims (trespass, unfair business practices), and the mere threat of litigation can be costly to defend against regardless of the outcome.</p>
+
+      <h3>Data Privacy Regulations (GDPR, CCPA)</h3>
+
+      <p>Privacy regulations add a critical layer of complexity to scraping legality, particularly when the scraped data includes personal information. The GDPR (EU), CCPA (California), LGPD (Brazil), and similar laws regulate the collection, processing, and storage of personal data regardless of how the data is obtained.</p>
+
+      <p>Under the GDPR, scraping personal data from the internet requires a lawful basis for processing. The two most relevant bases are consent (impractical for scraped data) and legitimate interest (possible but requires a balancing test). The GDPR does not distinguish between data provided directly by individuals and data scraped from public sources&mdash;the same processing requirements apply to both.</p>
+
+      <p>The CCPA takes a slightly different approach. It gives California residents the right to know what personal information businesses collect about them and to request its deletion. If you scrape personal data about California residents, you may be required to respond to these requests, which creates significant operational burden for large-scale scraping operations.</p>
+
+      <h2>Key Court Cases That Define Scraping Legality</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Year</th>
+            <th>Court</th>
+            <th>Key Ruling</th>
+            <th>Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>hiQ Labs v. LinkedIn</td><td>2022</td><td>9th Circuit</td><td>Scraping public data doesn't violate CFAA</td><td>Landmark — strongest pro-scraping precedent</td></tr>
+          <tr><td>Van Buren v. United States</td><td>2021</td><td>Supreme Court</td><td>CFAA "exceeds authorized access" narrowly defined</td><td>Narrowed CFAA scope significantly</td></tr>
+          <tr><td>Meta v. Bright Data</td><td>2024</td><td>N.D. Cal.</td><td>Scraping public Facebook data is not a CFAA violation</td><td>Extended hiQ to social media platforms</td></tr>
+          <tr><td>Ryanair v. PR Aviation</td><td>2015</td><td>EU Court of Justice</td><td>ToS can restrict scraping of unprotected databases</td><td>EU precedent — ToS more enforceable</td></tr>
+          <tr><td>Feist v. Rural Telephone</td><td>1991</td><td>Supreme Court</td><td>Facts are not copyrightable</td><td>Foundational — protects factual data scraping</td></tr>
+          <tr><td>eBay v. Bidder's Edge</td><td>2000</td><td>N.D. Cal.</td><td>Excessive scraping can be trespass to chattels</td><td>Server overload creates liability</td></tr>
+          <tr><td>Clearview AI (Various)</td><td>2020–2025</td><td>Multiple</td><td>Scraping biometric data violates privacy laws</td><td>GDPR/BIPA violations for facial data</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Scraping Legality by Data Type</h2>
+
+      <p>The type of data you are scraping is one of the strongest predictors of legal risk. Public factual data carries the lowest risk, while personal biometric data carries the highest.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Legal Risk</th>
+            <th>Key Concerns</th>
+            <th>Practical Advice</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Public business data (company names, addresses)</td><td>Low</td><td>Minimal — factual data, not copyrightable</td><td>Generally safe; respect rate limits</td></tr>
+          <tr><td>Product pricing and availability</td><td>Low–Medium</td><td>Copyright on database structure possible</td><td>Safe for comparison; avoid reproducing entire databases</td></tr>
+          <tr><td>Public profiles (LinkedIn, etc.)</td><td>Medium</td><td>GDPR for EU subjects; ToS violations</td><td>Use for legitimate B2B purposes; comply with GDPR</td></tr>
+          <tr><td>News articles and blog posts</td><td>Medium–High</td><td>Copyright on creative content</td><td>Fair use for analysis; don't republish full content</td></tr>
+          <tr><td>User-generated content (reviews, comments)</td><td>Medium</td><td>Copyright belongs to users; ToS issues</td><td>Aggregate analysis OK; don't republish verbatim</td></tr>
+          <tr><td>Behind-login content</td><td>High</td><td>CFAA authorization issues; ToS breach</td><td>High risk — get legal advice before proceeding</td></tr>
+          <tr><td>Personal data (emails, phone numbers)</td><td>High</td><td>GDPR, CCPA, state privacy laws</td><td>Must have lawful basis; provide opt-out</td></tr>
+          <tr><td>Biometric data (photos for recognition)</td><td>Very High</td><td>BIPA, GDPR Art. 9, specific biometric laws</td><td>Avoid entirely without explicit consent</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Scraping Legality by Jurisdiction</h2>
+
+      <p>Web scraping legality varies significantly by country. The United States provides the most permissive environment for scraping public data, while the European Union imposes stricter requirements through the GDPR, and some countries have additional database protection laws.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Jurisdiction</th>
+            <th>Public Data Scraping</th>
+            <th>Personal Data</th>
+            <th>Key Laws</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>United States</td><td>Generally legal</td><td>CCPA (California)</td><td>CFAA, Copyright Act</td><td>Most permissive after hiQ ruling</td></tr>
+          <tr><td>European Union</td><td>Legal with restrictions</td><td>Strict (GDPR)</td><td>GDPR, Database Directive</td><td>Database rights add extra protection</td></tr>
+          <tr><td>United Kingdom</td><td>Legal with restrictions</td><td>Strict (UK GDPR)</td><td>CMA, UK GDPR, Copyright Act</td><td>Post-Brexit, similar to EU</td></tr>
+          <tr><td>Australia</td><td>Generally legal</td><td>Moderate (Privacy Act)</td><td>Privacy Act, Copyright Act</td><td>No CFAA equivalent</td></tr>
+          <tr><td>Canada</td><td>Legal with restrictions</td><td>Strict (PIPEDA)</td><td>PIPEDA, Copyright Act</td><td>Similar to EU approach</td></tr>
+          <tr><td>Japan</td><td>Generally legal</td><td>Moderate (APPI)</td><td>APPI, Copyright Act</td><td>2020 amendment increased data protections</td></tr>
+          <tr><td>Brazil</td><td>Legal with restrictions</td><td>Strict (LGPD)</td><td>LGPD</td><td>GDPR-inspired, strong personal data protection</td></tr>
+          <tr><td>India</td><td>Generally legal</td><td>Evolving (DPDP Act)</td><td>IT Act, DPDP Act 2023</td><td>New privacy law still being implemented</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Practical Compliance Framework</h2>
+
+      <p>Based on current case law and regulatory guidance, here is a practical compliance framework for web scraping operations. Following these guidelines does not guarantee legal protection, but it significantly reduces risk and demonstrates good faith.</p>
+
+      <p><strong>1. Only scrape publicly available data.</strong> Avoid scraping behind login walls, paywalls, or any access restriction. The hiQ ruling specifically protects scraping of data that is available to anyone on the open internet. The moment you circumvent any access control, the CFAA risk increases dramatically.</p>
+
+      <p><strong>2. Respect robots.txt.</strong> While robots.txt is not legally binding in most jurisdictions, respecting it demonstrates good faith and reduces the likelihood of legal action. Ignoring robots.txt can be used as evidence of intentional disregard for the website's wishes in trespass or unfair business practice claims.</p>
+
+      <p><strong>3. Implement reasonable rate limiting.</strong> Scraping at high rates that degrade website performance can constitute trespass to chattels (as in eBay v. Bidder's Edge). Space your requests to avoid impacting the target server's performance. A good rule of thumb is no more than one request per second per domain for most websites.</p>
+
+      <p><strong>4. Comply with GDPR/CCPA for personal data.</strong> If you are scraping personal data, you must have a lawful basis for processing under applicable privacy laws. For B2B data, legitimate interest is the most common basis, but it requires a documented balancing test. Maintain records of your processing activities and provide opt-out mechanisms.</p>
+
+      <p><strong>5. Do not reproduce copyrighted creative content.</strong> Scraping factual data (prices, specifications, business information) carries low copyright risk. Scraping and republishing creative content (articles, images, descriptions) carries high risk. If you scrape creative content, use it for analysis only, not republication.</p>
+
+      <p><strong>6. Document your compliance efforts.</strong> Maintain records of your scraping policies, rate limiting configurations, robots.txt compliance, GDPR assessments, and any legal review. If challenged, these records demonstrate that you operated in good faith and made reasonable efforts to comply with applicable laws.</p>
+
+      <p>For teams using scraped B2B data for outreach, platforms like <a href={siteConfig.product.url}>{siteConfig.product.name}</a> handle data compliance as part of their integrated workflow, ensuring that contact data used in campaigns meets privacy requirements and was collected through compliant methods.</p>
+
+      <h2>Common Scraping Scenarios: Legal Analysis</h2>
+
+      <p><strong>Scraping product prices for comparison:</strong> Generally legal. Price data is factual and not copyrightable. The main risks are ToS violations and trespass to chattels if scraping at high volume. Use reasonable rate limiting and you are in a strong legal position.</p>
+
+      <p><strong>Scraping LinkedIn for B2B leads:</strong> Medium risk. Public LinkedIn profiles are publicly available data (supported by hiQ), but LinkedIn's ToS prohibit scraping. GDPR applies if scraping EU profiles. Use the data for legitimate B2B purposes, provide opt-out, and do not scrape behind the login wall.</p>
+
+      <p><strong>Scraping news articles for sentiment analysis:</strong> Low to medium risk. The scraping itself is likely legal; the use of the content determines copyright risk. Extracting sentiment (transformative use) is stronger than republishing summaries. Do not reproduce substantial portions of articles.</p>
+
+      <p><strong>Scraping real estate listings:</strong> Low risk for factual data (addresses, prices, square footage). Medium risk for creative descriptions and photographs. Aggregate data analysis is safe; reproducing full listings is not.</p>
+
+      <p><strong>Scraping social media posts:</strong> Medium risk. Public posts are publicly available, but privacy expectations vary by platform and user. Aggregate analysis is lower risk than individual targeting. GDPR applies to EU users regardless of platform.</p>
+
+      <h2>The Bottom Line</h2>
+
+      <p>Web scraping is legal in most circumstances when you scrape publicly available data, respect robots.txt, implement reasonable rate limits, and comply with applicable privacy laws. The hiQ v. LinkedIn ruling provides strong precedent for scraping public data in the United States, and similar principles are being recognized in other jurisdictions.</p>
+
+      <p>The legal risk increases significantly when you scrape behind access controls, collect personal data without a lawful basis, reproduce copyrighted creative content, or overwhelm target servers with excessive request volumes. Each of these scenarios introduces a different legal framework with different requirements and penalties.</p>
+
+      <p>The practical approach is to assess each scraping project against the five legal frameworks (CFAA, copyright, ToS, privacy, trespass), document your compliance efforts, and consult an attorney for high-risk scenarios. The law in this area is still evolving, with new court decisions and regulations being issued regularly. Staying informed and maintaining good-faith compliance practices is the best risk mitigation strategy available.</p>
+
+    </div>
+  </article>
+</Base>

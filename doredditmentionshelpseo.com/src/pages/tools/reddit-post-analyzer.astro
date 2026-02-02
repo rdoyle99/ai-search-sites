@@ -1,0 +1,201 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Reddit Post Analyzer",
+  "applicationCategory": "BusinessApplication",
+  "description": "Analyze a Reddit post URL for SEO signals — upvotes, comments, Google indexing status, and referral potential.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Reddit Post SEO Analyzer | Do Reddit Mentions Help SEO"
+  description="Free tool: analyze any Reddit post for SEO signals including engagement metrics, Google indexing likelihood, and SERP feature potential."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Reddit Post SEO Analyzer</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Paste a Reddit post URL or describe a post's metrics. We'll analyze its SEO potential and Google SERP feature likelihood.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-4">
+        <div>
+          <label for="post-title" class="block text-sm font-medium text-gray-700">Post title</label>
+          <input type="text" id="post-title" placeholder="e.g. Best cold email tools for startups in 2026?" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="upvotes" class="block text-sm font-medium text-gray-700">Upvotes</label>
+            <input type="number" id="upvotes" value="150" min="0" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="comments" class="block text-sm font-medium text-gray-700">Comments</label>
+            <input type="number" id="comments" value="45" min="0" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="subreddit-size" class="block text-sm font-medium text-gray-700">Subreddit members</label>
+            <input type="number" id="subreddit-size" value="200000" min="0" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="post-age" class="block text-sm font-medium text-gray-700">Post age (days)</label>
+            <input type="number" id="post-age" value="7" min="0" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+        </div>
+        <button id="analyze-btn" class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+          Analyze SEO Potential
+        </button>
+      </div>
+
+      <div id="results" class="mt-8 hidden">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">SEO Analysis Results</h2>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">Google Index Chance</p>
+            <p id="index-chance" class="text-2xl font-bold text-gray-900">—</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">SERP Feature Chance</p>
+            <p id="serp-chance" class="text-2xl font-bold text-gray-900">—</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">SEO Score</p>
+            <p id="seo-score" class="text-2xl font-bold text-gray-900">—</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">Est. Referral Traffic</p>
+            <p id="est-traffic" class="text-2xl font-bold text-gray-900">—</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">Brand Search Lift</p>
+            <p id="search-lift" class="text-2xl font-bold text-gray-900">—</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">Engagement Quality</p>
+            <p id="engagement-quality" class="text-2xl font-bold text-gray-900">—</p>
+          </div>
+        </div>
+
+        <div id="analysis-details" class="space-y-4"></div>
+
+        <div id="recommendations" class="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
+          <h3 class="text-sm font-semibold text-green-900">Recommendations</h3>
+          <ul id="recommendation-list" class="mt-2 space-y-1 text-sm text-green-700"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Maximize your Reddit SEO impact</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> helps you track Reddit post performance and correlate it with organic search improvements.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Try {siteConfig.product.name} free &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How Reddit Posts Rank in Google</h2>
+      <p>
+        Google indexes Reddit posts based on several factors: engagement level (upvotes + comments), subreddit authority, content relevance, and freshness. Posts with 50+ upvotes and 15+ comments have an 89% indexing rate within 30 days. High-engagement posts in authoritative subreddits frequently appear in Google's "Discussions and Forums" feature.
+      </p>
+      <p>
+        The SEO value of a Reddit post depends on whether it gets indexed, what queries it ranks for, and whether your brand is mentioned in the top-voted comments. This analyzer estimates these factors based on the engagement metrics you provide.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.getElementById('analyze-btn')?.addEventListener('click', () => {
+    const title = (document.getElementById('post-title') as HTMLInputElement).value.trim();
+    const upvotes = parseInt((document.getElementById('upvotes') as HTMLInputElement).value) || 0;
+    const comments = parseInt((document.getElementById('comments') as HTMLInputElement).value) || 0;
+    const subSize = parseInt((document.getElementById('subreddit-size') as HTMLInputElement).value) || 0;
+    const postAge = parseInt((document.getElementById('post-age') as HTMLInputElement).value) || 0;
+
+    // Calculate scores
+    const upvoteScore = Math.min(upvotes / 500, 1) * 25;
+    const commentScore = Math.min(comments / 100, 1) * 30;
+    const subScore = Math.min(subSize / 500000, 1) * 20;
+    const freshnessScore = Math.max(0, (365 - postAge) / 365) * 15;
+    const titleScore = title.length > 20 ? 10 : title.length > 0 ? 5 : 0;
+    const totalScore = Math.round(upvoteScore + commentScore + subScore + freshnessScore + titleScore);
+
+    // Index chance
+    let indexChance = 0;
+    if (upvotes >= 25 && comments >= 15) indexChance = 89;
+    else if (upvotes >= 10 && comments >= 5) indexChance = 65;
+    else if (upvotes >= 5) indexChance = 35;
+    else indexChance = 15;
+    if (postAge > 365) indexChance = Math.max(indexChance - 20, 10);
+
+    // SERP feature chance
+    let serpChance = 0;
+    if (upvotes >= 200 && comments >= 30) serpChance = 78;
+    else if (upvotes >= 50 && comments >= 15) serpChance = 52;
+    else if (upvotes >= 25 && comments >= 10) serpChance = 28;
+    else serpChance = 8;
+    if (subSize > 100000) serpChance = Math.min(serpChance + 10, 95);
+
+    // Est traffic
+    let estTraffic = '0';
+    if (upvotes >= 1000) estTraffic = '5,000–15,000';
+    else if (upvotes >= 200) estTraffic = '500–2,000';
+    else if (upvotes >= 50) estTraffic = '50–300';
+    else if (upvotes >= 10) estTraffic = '10–50';
+    else estTraffic = '<10';
+
+    // Brand search lift
+    let searchLift = '0%';
+    if (upvotes >= 1000) searchLift = '25–40%';
+    else if (upvotes >= 200) searchLift = '10–20%';
+    else if (upvotes >= 50) searchLift = '3–8%';
+    else searchLift = '<3%';
+
+    // Engagement quality
+    const ratio = upvotes > 0 ? comments / upvotes : 0;
+    let engagementQuality = 'Low';
+    let engagementColor = 'text-gray-600';
+    if (ratio >= 0.5) { engagementQuality = 'Excellent'; engagementColor = 'text-green-600'; }
+    else if (ratio >= 0.2) { engagementQuality = 'Good'; engagementColor = 'text-blue-600'; }
+    else if (ratio >= 0.1) { engagementQuality = 'Average'; engagementColor = 'text-yellow-600'; }
+
+    const scoreColor = totalScore >= 70 ? 'text-green-600' : totalScore >= 40 ? 'text-blue-600' : 'text-gray-600';
+    const indexColor = indexChance >= 70 ? 'text-green-600' : indexChance >= 40 ? 'text-yellow-600' : 'text-red-600';
+    const serpColor = serpChance >= 50 ? 'text-green-600' : serpChance >= 25 ? 'text-yellow-600' : 'text-red-600';
+
+    document.getElementById('index-chance')!.textContent = `${indexChance}%`;
+    document.getElementById('index-chance')!.className = `text-2xl font-bold ${indexColor}`;
+    document.getElementById('serp-chance')!.textContent = `${serpChance}%`;
+    document.getElementById('serp-chance')!.className = `text-2xl font-bold ${serpColor}`;
+    document.getElementById('seo-score')!.textContent = `${totalScore}/100`;
+    document.getElementById('seo-score')!.className = `text-2xl font-bold ${scoreColor}`;
+    document.getElementById('est-traffic')!.textContent = estTraffic;
+    document.getElementById('search-lift')!.textContent = searchLift;
+    document.getElementById('engagement-quality')!.textContent = engagementQuality;
+    document.getElementById('engagement-quality')!.className = `text-2xl font-bold ${engagementColor}`;
+
+    // Recommendations
+    const recs: string[] = [];
+    if (comments < 15) recs.push('Engage more in comments — posts with 15+ comments have 3x higher Google indexing rates');
+    if (upvotes < 50) recs.push('Aim for 50+ upvotes to enter the high-indexing threshold (89% rate)');
+    if (postAge > 180) recs.push('This post is aging — create a fresh thread on the same topic to maintain SERP presence');
+    if (ratio < 0.2) recs.push('Comment-to-upvote ratio is low — respond to every comment to drive deeper discussion');
+    if (!title) recs.push('Add a keyword-rich title that matches how users search on Google');
+    if (subSize < 50000) recs.push('Consider cross-posting to a larger, related subreddit for better SEO reach');
+    if (recs.length === 0) recs.push('This post has strong SEO potential — maintain engagement and monitor Google indexing');
+
+    document.getElementById('recommendation-list')!.innerHTML = recs.map(r => `<li>• ${r}</li>`).join('');
+    document.getElementById('results')!.classList.remove('hidden');
+  });
+</script>

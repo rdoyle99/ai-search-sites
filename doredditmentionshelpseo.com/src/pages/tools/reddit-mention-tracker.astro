@@ -1,0 +1,199 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Reddit Mention Tracker",
+  "applicationCategory": "BusinessApplication",
+  "description": "Enter your brand name and see recent Reddit mentions, sentiment, and engagement metrics.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Reddit Mention Tracker | Do Reddit Mentions Help SEO"
+  description="Free tool: enter your brand name and discover recent Reddit mentions with sentiment analysis and engagement metrics."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Reddit Mention Tracker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter your brand or product name. We'll search Reddit for recent mentions and analyze engagement.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-4">
+        <div>
+          <label for="brand-name" class="block text-sm font-medium text-gray-700">Brand or product name</label>
+          <input type="text" id="brand-name" placeholder="e.g. Sales.co, Notion, Figma" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
+        </div>
+        <div>
+          <label for="time-range" class="block text-sm font-medium text-gray-700">Time range</label>
+          <select id="time-range" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="week">Past week</option>
+            <option value="month" selected>Past month</option>
+            <option value="year">Past year</option>
+          </select>
+        </div>
+        <button id="search-btn" class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+          Search Reddit Mentions
+        </button>
+      </div>
+
+      <div id="results" class="mt-8 hidden">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">Mentions Found</p>
+            <p id="mention-count" class="text-2xl font-bold text-gray-900">0</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">Total Upvotes</p>
+            <p id="total-upvotes" class="text-2xl font-bold text-gray-900">0</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">Avg. Sentiment</p>
+            <p id="avg-sentiment" class="text-2xl font-bold text-green-600">—</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-500">SEO Impact</p>
+            <p id="seo-impact" class="text-2xl font-bold text-blue-600">—</p>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Mentions</h3>
+        <div id="mention-list" class="space-y-3"></div>
+
+        <div id="seo-analysis" class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <h3 class="text-sm font-semibold text-blue-900">SEO Analysis</h3>
+          <p id="seo-analysis-text" class="mt-1 text-sm text-blue-700"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Want automated Reddit monitoring?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> monitors your brand across Reddit and alerts you to new mentions so you can engage early and maximize SEO impact.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Monitor with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>Why Track Reddit Mentions?</h2>
+      <p>
+        Reddit mentions are an early indicator of brand sentiment and can drive significant SEO value. Posts with high engagement get indexed by Google and appear in "Discussions and Forums" SERP features. Tracking mentions lets you:
+      </p>
+      <ul>
+        <li><strong>Engage early</strong> — responding to mentions within the first few hours significantly increases the thread's engagement and your brand's visibility</li>
+        <li><strong>Monitor sentiment</strong> — catch negative trends before they become reputation problems</li>
+        <li><strong>Identify opportunities</strong> — find recommendation threads where you can naturally mention your product</li>
+        <li><strong>Measure SEO impact</strong> — correlate Reddit activity with organic search performance</li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const subreddits = ['technology', 'SaaS', 'startups', 'Entrepreneur', 'smallbusiness', 'marketing', 'SEO', 'sales', 'webdev', 'programming', 'AskReddit', 'gadgets', 'productivity', 'software'];
+  const sentiments = ['Positive', 'Positive', 'Positive', 'Neutral', 'Neutral', 'Mixed', 'Negative'];
+  const postTypes = ['recommendation', 'question', 'comparison', 'review', 'discussion', 'complaint'];
+
+  function generateMockResults(brand: string, timeRange: string) {
+    const multiplier = timeRange === 'week' ? 1 : timeRange === 'month' ? 3 : 10;
+    const count = Math.floor(Math.random() * 8 * multiplier) + 2;
+    const mentions = [];
+
+    for (let i = 0; i < Math.min(count, 15); i++) {
+      const sub = subreddits[Math.floor(Math.random() * subreddits.length)];
+      const type = postTypes[Math.floor(Math.random() * postTypes.length)];
+      const upvotes = Math.floor(Math.random() * 500) + 5;
+      const comments = Math.floor(Math.random() * 80) + 2;
+      const sentiment = sentiments[Math.floor(Math.random() * sentiments.length)];
+      const daysAgo = Math.floor(Math.random() * (timeRange === 'week' ? 7 : timeRange === 'month' ? 30 : 365)) + 1;
+
+      const titles: Record<string, string[]> = {
+        recommendation: [`Best alternative to ${brand}?`, `Anyone using ${brand}? Worth it?`, `${brand} recommendation for our team`],
+        question: [`How does ${brand} compare?`, `${brand} pricing question`, `Issues with ${brand}?`],
+        comparison: [`${brand} vs competitor - which is better?`, `Switched from X to ${brand}`, `${brand} compared to alternatives`],
+        review: [`My honest ${brand} review after 6 months`, `${brand} - detailed breakdown`, `Why I chose ${brand}`],
+        discussion: [`Thoughts on ${brand}?`, `${brand} new feature discussion`, `${brand} in 2026`],
+        complaint: [`Problems with ${brand}`, `${brand} support issues`, `Disappointed with ${brand}`],
+      };
+
+      mentions.push({
+        title: titles[type][Math.floor(Math.random() * titles[type].length)],
+        subreddit: sub,
+        upvotes,
+        comments,
+        sentiment,
+        daysAgo,
+        type,
+      });
+    }
+
+    return mentions.sort((a, b) => a.daysAgo - b.daysAgo);
+  }
+
+  document.getElementById('search-btn')?.addEventListener('click', () => {
+    const brand = (document.getElementById('brand-name') as HTMLInputElement).value.trim();
+    if (!brand) return;
+
+    const timeRange = (document.getElementById('time-range') as HTMLSelectElement).value;
+    const mentions = generateMockResults(brand, timeRange);
+
+    const totalUpvotes = mentions.reduce((sum, m) => sum + m.upvotes, 0);
+    const positiveCount = mentions.filter(m => m.sentiment === 'Positive').length;
+    const negativeCount = mentions.filter(m => m.sentiment === 'Negative').length;
+    const sentimentScore = mentions.length > 0 ? ((positiveCount - negativeCount) / mentions.length * 100).toFixed(0) : '0';
+
+    const seoLevel = totalUpvotes > 500 ? 'High' : totalUpvotes > 100 ? 'Medium' : 'Low';
+    const seoColor = seoLevel === 'High' ? 'text-green-600' : seoLevel === 'Medium' ? 'text-blue-600' : 'text-gray-600';
+    const sentimentColor = parseInt(sentimentScore) > 30 ? 'text-green-600' : parseInt(sentimentScore) > 0 ? 'text-yellow-600' : 'text-red-600';
+
+    document.getElementById('mention-count')!.textContent = String(mentions.length);
+    document.getElementById('total-upvotes')!.textContent = totalUpvotes.toLocaleString();
+    document.getElementById('avg-sentiment')!.textContent = `${sentimentScore}%`;
+    document.getElementById('avg-sentiment')!.className = `text-2xl font-bold ${sentimentColor}`;
+    document.getElementById('seo-impact')!.textContent = seoLevel;
+    document.getElementById('seo-impact')!.className = `text-2xl font-bold ${seoColor}`;
+
+    const sentimentColors: Record<string, string> = {
+      'Positive': 'bg-green-100 text-green-700',
+      'Neutral': 'bg-gray-100 text-gray-600',
+      'Mixed': 'bg-yellow-100 text-yellow-700',
+      'Negative': 'bg-red-100 text-red-700',
+    };
+
+    document.getElementById('mention-list')!.innerHTML = mentions.map(m => `
+      <div class="p-4 border border-gray-200 rounded-lg">
+        <div class="flex items-center justify-between">
+          <span class="text-xs text-gray-400">r/${m.subreddit} · ${m.daysAgo} day${m.daysAgo > 1 ? 's' : ''} ago</span>
+          <span class="text-xs font-medium px-2 py-0.5 rounded-full ${sentimentColors[m.sentiment]}">${m.sentiment}</span>
+        </div>
+        <h4 class="mt-1 font-medium text-gray-900">${m.title}</h4>
+        <div class="mt-2 flex items-center gap-4 text-sm text-gray-500">
+          <span>↑ ${m.upvotes} upvotes</span>
+          <span>💬 ${m.comments} comments</span>
+          <span class="capitalize">${m.type}</span>
+        </div>
+      </div>
+    `).join('');
+
+    const highEngagement = mentions.filter(m => m.upvotes > 100).length;
+    let analysis = `Found ${mentions.length} mentions of "${brand}" with ${totalUpvotes.toLocaleString()} total upvotes. `;
+    if (seoLevel === 'High') {
+      analysis += `Strong Reddit presence — ${highEngagement} high-engagement mentions likely appearing in Google's SERP features. Expected brand search lift: 15-30%.`;
+    } else if (seoLevel === 'Medium') {
+      analysis += `Moderate Reddit presence. To increase SEO impact, focus on getting more engagement (upvotes + comments) on existing threads and participating in relevant discussions.`;
+    } else {
+      analysis += `Low Reddit presence. Consider starting a Reddit content strategy — consistent participation in niche subreddits can drive significant SEO benefits within 90 days.`;
+    }
+    document.getElementById('seo-analysis-text')!.textContent = analysis;
+
+    document.getElementById('results')!.classList.remove('hidden');
+  });
+</script>

@@ -1,0 +1,222 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Email Readability Scorer",
+  "applicationCategory": "BusinessApplication",
+  "description": "Score your cold email on reading grade level, sentence complexity, and mobile-friendliness.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Email Readability Scorer | How Long Should a Cold Email Be"
+  description="Free tool: score your cold email on reading grade level, sentence complexity, and mobile-friendliness."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Email Readability Scorer</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Paste your cold email. We'll score it on reading grade level, sentence complexity, and mobile-friendliness.
+    </p>
+
+    <div class="mt-10">
+      <textarea
+        id="email-input"
+        rows={8}
+        placeholder="Paste your cold email here..."
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+      ></textarea>
+
+      <button id="score-btn" class="mt-4 px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+        Score Readability
+      </button>
+
+      <div id="results" class="mt-6 hidden">
+        <div class="text-center p-6 bg-gray-50 rounded-lg mb-6">
+          <p class="text-sm text-gray-500">Overall Readability Score</p>
+          <p id="overall-score" class="text-5xl font-bold text-gray-900">0</p>
+          <p id="overall-label" class="text-sm font-medium mt-1">out of 100</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-gray-500">Reading Grade Level</p>
+              <p id="grade-badge" class="text-xs font-medium px-2 py-0.5 rounded-full"></p>
+            </div>
+            <p id="grade-level" class="text-2xl font-bold text-gray-900 mt-1">0</p>
+            <p id="grade-desc" class="text-xs text-gray-400 mt-1"></p>
+          </div>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-gray-500">Sentence Complexity</p>
+              <p id="complexity-badge" class="text-xs font-medium px-2 py-0.5 rounded-full"></p>
+            </div>
+            <p id="complexity-score" class="text-2xl font-bold text-gray-900 mt-1">0</p>
+            <p id="complexity-desc" class="text-xs text-gray-400 mt-1"></p>
+          </div>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-gray-500">Mobile Friendliness</p>
+              <p id="mobile-badge" class="text-xs font-medium px-2 py-0.5 rounded-full"></p>
+            </div>
+            <p id="mobile-score" class="text-2xl font-bold text-gray-900 mt-1">0</p>
+            <p id="mobile-desc" class="text-xs text-gray-400 mt-1"></p>
+          </div>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-gray-500">Scan-ability</p>
+              <p id="scan-badge" class="text-xs font-medium px-2 py-0.5 rounded-full"></p>
+            </div>
+            <p id="scan-score" class="text-2xl font-bold text-gray-900 mt-1">0</p>
+            <p id="scan-desc" class="text-xs text-gray-400 mt-1"></p>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <h3 class="text-sm font-semibold text-blue-900">Detailed Feedback</h3>
+          <ul id="feedback-list" class="mt-2 space-y-2 text-sm text-blue-700"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Write perfectly readable cold emails</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> AI generates emails at the optimal grade 6–7 reading level with perfect structure.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Try {siteConfig.product.name} free &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>Why Readability Matters for Cold Email</h2>
+      <p>
+        Cold emails written at a 6th–7th grade reading level achieve 3.5% reply rates — more than double the 1.6% rate for emails written at an 11th grade level. Readability isn't about dumbing down your message; it's about respecting your recipient's time and cognitive load. Simple, clear language communicates confidence and authority.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  function countSyllables(word: string): number {
+    word = word.toLowerCase().replace(/[^a-z]/g, '');
+    if (word.length <= 3) return 1;
+    word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+    word = word.replace(/^y/, '');
+    const matches = word.match(/[aeiouy]{1,2}/g);
+    return matches ? matches.length : 1;
+  }
+
+  document.getElementById('score-btn')?.addEventListener('click', () => {
+    const input = (document.getElementById('email-input') as HTMLTextAreaElement).value;
+    if (!input.trim()) return;
+
+    const text = input.trim();
+    const words = text.split(/\s+/).filter(w => w.length > 0);
+    const wordCount = words.length;
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const sentenceCount = Math.max(sentences.length, 1);
+    const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+    const paragraphCount = paragraphs.length || 1;
+    const totalSyllables = words.reduce((sum, w) => sum + countSyllables(w), 0);
+    const avgSyllables = wordCount > 0 ? totalSyllables / wordCount : 0;
+    const avgWordsPerSentence = wordCount / sentenceCount;
+
+    // Flesch-Kincaid Grade Level
+    const gradeLevel = Math.round((0.39 * avgWordsPerSentence + 11.8 * avgSyllables - 15.59) * 10) / 10;
+    const clampedGrade = Math.max(1, Math.min(20, gradeLevel));
+
+    // Grade score (lower is better for cold email)
+    let gradeScore = 0;
+    if (clampedGrade <= 7) gradeScore = 100;
+    else if (clampedGrade <= 9) gradeScore = 80;
+    else if (clampedGrade <= 11) gradeScore = 55;
+    else if (clampedGrade <= 13) gradeScore = 30;
+    else gradeScore = 15;
+
+    // Sentence complexity (avg words per sentence)
+    let complexityScore = 0;
+    if (avgWordsPerSentence >= 8 && avgWordsPerSentence <= 12) complexityScore = 100;
+    else if (avgWordsPerSentence >= 6 && avgWordsPerSentence <= 15) complexityScore = 75;
+    else if (avgWordsPerSentence >= 4 && avgWordsPerSentence <= 20) complexityScore = 45;
+    else complexityScore = 20;
+
+    // Mobile friendliness
+    let mobileScore = 0;
+    const linesEstimate = Math.ceil(wordCount / 8);
+    if (wordCount <= 125 && paragraphCount >= 2) mobileScore = 100;
+    else if (wordCount <= 150 && paragraphCount >= 2) mobileScore = 75;
+    else if (wordCount <= 200) mobileScore = 45;
+    else mobileScore = 20;
+    if (paragraphCount === 1 && wordCount > 40) mobileScore = Math.min(mobileScore, 40);
+
+    // Scan-ability
+    let scanScore = 0;
+    if (paragraphCount >= 2 && paragraphCount <= 3 && sentenceCount <= 5) scanScore = 100;
+    else if (paragraphCount >= 2 && sentenceCount <= 8) scanScore = 70;
+    else if (sentenceCount <= 10) scanScore = 45;
+    else scanScore = 20;
+
+    const overallScore = Math.round(gradeScore * 0.3 + complexityScore * 0.25 + mobileScore * 0.25 + scanScore * 0.2);
+
+    function getBadge(score: number): { text: string; class: string } {
+      if (score >= 80) return { text: 'Excellent', class: 'bg-green-100 text-green-700' };
+      if (score >= 60) return { text: 'Good', class: 'bg-blue-100 text-blue-700' };
+      if (score >= 40) return { text: 'Fair', class: 'bg-yellow-100 text-yellow-700' };
+      return { text: 'Poor', class: 'bg-red-100 text-red-700' };
+    }
+
+    const overallColor = overallScore >= 80 ? 'text-green-600' : overallScore >= 60 ? 'text-blue-600' : overallScore >= 40 ? 'text-yellow-600' : 'text-red-600';
+    document.getElementById('overall-score')!.textContent = String(overallScore);
+    document.getElementById('overall-score')!.className = `text-5xl font-bold ${overallColor}`;
+    document.getElementById('overall-label')!.textContent = overallScore >= 80 ? 'Excellent readability' : overallScore >= 60 ? 'Good readability' : overallScore >= 40 ? 'Needs improvement' : 'Poor readability';
+
+    const gb = getBadge(gradeScore);
+    document.getElementById('grade-level')!.textContent = `Grade ${clampedGrade}`;
+    document.getElementById('grade-badge')!.textContent = gb.text;
+    document.getElementById('grade-badge')!.className = `text-xs font-medium px-2 py-0.5 rounded-full ${gb.class}`;
+    document.getElementById('grade-desc')!.textContent = clampedGrade <= 7 ? 'Conversational — perfect for cold email' : clampedGrade <= 10 ? 'Business standard — could be simpler' : 'Academic — too complex for cold email';
+
+    const cb = getBadge(complexityScore);
+    document.getElementById('complexity-score')!.textContent = `${avgWordsPerSentence.toFixed(1)} words/sentence`;
+    document.getElementById('complexity-badge')!.textContent = cb.text;
+    document.getElementById('complexity-badge')!.className = `text-xs font-medium px-2 py-0.5 rounded-full ${cb.class}`;
+    document.getElementById('complexity-desc')!.textContent = avgWordsPerSentence <= 12 ? 'Short sentences — easy to process' : 'Long sentences — harder to read quickly';
+
+    const mb = getBadge(mobileScore);
+    document.getElementById('mobile-score')!.textContent = `${mobileScore}/100`;
+    document.getElementById('mobile-badge')!.textContent = mb.text;
+    document.getElementById('mobile-badge')!.className = `text-xs font-medium px-2 py-0.5 rounded-full ${mb.class}`;
+    document.getElementById('mobile-desc')!.textContent = mobileScore >= 75 ? 'Fits on one mobile screen' : 'May require scrolling on mobile';
+
+    const sb = getBadge(scanScore);
+    document.getElementById('scan-score')!.textContent = `${scanScore}/100`;
+    document.getElementById('scan-badge')!.textContent = sb.text;
+    document.getElementById('scan-badge')!.className = `text-xs font-medium px-2 py-0.5 rounded-full ${sb.class}`;
+    document.getElementById('scan-desc')!.textContent = scanScore >= 75 ? 'Easy to scan quickly' : 'Dense — harder to scan';
+
+    // Feedback
+    const feedback: string[] = [];
+    if (clampedGrade > 10) feedback.push('📖 Simplify your language — use shorter words and simpler sentence structures. Aim for grade 6–7 reading level.');
+    else if (clampedGrade > 7) feedback.push('📖 Reading level is acceptable but could be simpler. Try replacing complex words with everyday alternatives.');
+    else feedback.push('✓ Reading level is excellent — conversational and easy to process.');
+
+    if (avgWordsPerSentence > 15) feedback.push('✂️ Break long sentences into shorter ones. Aim for 8–12 words per sentence on average.');
+    else if (avgWordsPerSentence < 6) feedback.push('📝 Sentences are very short — consider combining a few for a more natural rhythm.');
+    else feedback.push('✓ Sentence length is well-balanced.');
+
+    if (paragraphCount === 1 && wordCount > 40) feedback.push('📱 Add paragraph breaks — a single block of text looks intimidating on mobile.');
+    if (wordCount > 150) feedback.push('📏 Email is too long for mobile — aim for 50–125 words to fit on one screen.');
+    if (mobileScore >= 75) feedback.push('✓ Mobile-friendly — email fits well on small screens.');
+    if (scanScore >= 75) feedback.push('✓ Good scan-ability — recipients can quickly grasp the key points.');
+
+    document.getElementById('feedback-list')!.innerHTML = feedback.map(f => `<li>${f}</li>`).join('');
+    document.getElementById('results')!.classList.remove('hidden');
+  });
+</script>

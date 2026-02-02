@@ -1,0 +1,310 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Terms of Service Analyzer",
+  "applicationCategory": "BusinessApplication",
+  "description": "Paste a website's Terms of Service and instantly identify clauses that restrict web scraping, data collection, and automated access.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Terms of Service Analyzer | Is Web Scraping Legal"
+  description="Free tool: paste any website's Terms of Service to identify scraping restrictions, data collection clauses, and automated access prohibitions."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Terms of Service Analyzer</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Paste a website's Terms of Service below and we'll highlight clauses related to web scraping, automated access, data collection, and intellectual property restrictions.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Paste Terms of Service text</label>
+          <textarea
+            id="tos-input"
+            rows="12"
+            placeholder="Paste the full Terms of Service text here...&#10;&#10;Tip: Go to the website's /terms, /tos, or /legal page, select all text (Ctrl+A / Cmd+A), and paste it here."
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm font-mono"
+          ></textarea>
+        </div>
+
+        <button
+          id="analyze-btn"
+          class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+        >
+          Analyze Terms of Service
+        </button>
+      </div>
+
+      <div id="results" class="mt-6 hidden">
+        <div id="summary" class="p-6 rounded-lg">
+          <div class="flex items-center gap-4">
+            <div id="summary-icon" class="text-5xl"></div>
+            <div>
+              <p id="summary-level" class="text-xl font-bold"></p>
+              <p id="summary-detail" class="text-sm mt-1"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-4 gap-3">
+          <div class="p-3 bg-red-50 rounded-lg text-center">
+            <p class="text-xs text-red-600 font-medium">Scraping Blocks</p>
+            <p id="stat-scraping" class="text-2xl font-bold text-red-700">0</p>
+          </div>
+          <div class="p-3 bg-orange-50 rounded-lg text-center">
+            <p class="text-xs text-orange-600 font-medium">Data Collection</p>
+            <p id="stat-data" class="text-2xl font-bold text-orange-700">0</p>
+          </div>
+          <div class="p-3 bg-yellow-50 rounded-lg text-center">
+            <p class="text-xs text-yellow-600 font-medium">IP / Copyright</p>
+            <p id="stat-ip" class="text-2xl font-bold text-yellow-700">0</p>
+          </div>
+          <div class="p-3 bg-blue-50 rounded-lg text-center">
+            <p class="text-xs text-blue-600 font-medium">Enforcement</p>
+            <p id="stat-enforcement" class="text-2xl font-bold text-blue-700">0</p>
+          </div>
+        </div>
+
+        <div id="findings" class="mt-6 space-y-4"></div>
+
+        <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p class="text-xs text-yellow-800">
+            <strong>Disclaimer:</strong> This tool uses pattern matching to identify potentially relevant clauses. It does not provide legal interpretation. The absence of flagged clauses does not mean scraping is permitted. Consult a qualified attorney for legal advice.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need B2B data without ToS headaches?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        Skip the scraping complexity. <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> provides verified B2B contact data collected through compliant methods — no ToS analysis required.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Get compliant data from {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How This Tool Works</h2>
+      <p>
+        This tool scans Terms of Service text for clauses commonly used to restrict web scraping and automated data collection. It identifies four categories of relevant language:
+      </p>
+      <ul>
+        <li><strong>Scraping restrictions</strong> — explicit prohibitions on crawling, scraping, spidering, or automated access</li>
+        <li><strong>Data collection clauses</strong> — restrictions on harvesting, mining, extracting, or collecting data</li>
+        <li><strong>Intellectual property</strong> — copyright assertions, database rights, and content ownership claims</li>
+        <li><strong>Enforcement provisions</strong> — termination rights, injunctive relief, and legal action clauses</li>
+      </ul>
+      <p>
+        While ToS violations are generally a breach of contract (not criminal), courts have given varying weight to ToS prohibitions in scraping cases. In <em>hiQ v. LinkedIn</em>, the court noted that ToS alone cannot create CFAA liability for accessing public data. However, in <em>Craigslist v. 3Taps</em>, a ToS violation combined with technical blocking was treated more seriously.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  interface Finding {
+    category: 'scraping' | 'data' | 'ip' | 'enforcement';
+    severity: 'high' | 'medium' | 'low';
+    label: string;
+    matchedText: string;
+    explanation: string;
+  }
+
+  interface PatternDef {
+    pattern: RegExp;
+    category: 'scraping' | 'data' | 'ip' | 'enforcement';
+    severity: 'high' | 'medium' | 'low';
+    label: string;
+    explanation: string;
+  }
+
+  const patterns: PatternDef[] = [
+    // Scraping restrictions
+    { pattern: /\b(scrape|scraping|web\s*scrap(e|ing))\b/gi, category: 'scraping', severity: 'high', label: 'Explicit scraping prohibition', explanation: 'The ToS explicitly mentions scraping, which is a direct restriction on web scraping activities.' },
+    { pattern: /\b(crawl|crawling|spider|spidering)\b/gi, category: 'scraping', severity: 'high', label: 'Crawling/spidering prohibition', explanation: 'References to crawling or spidering indicate restrictions on automated navigation of the website.' },
+    { pattern: /\b(robot|bot|automated)\b[^.]*\b(access|use|interact|browse|navigate)\b/gi, category: 'scraping', severity: 'high', label: 'Automated access restriction', explanation: 'Restricts the use of robots, bots, or automated systems to access the website.' },
+    { pattern: /\b(shall not|may not|must not|do not|prohibited from|not permitted)\b[^.]*\b(scrape|crawl|spider|automat)/gi, category: 'scraping', severity: 'high', label: 'Explicit prohibition clause', explanation: 'A direct prohibition on scraping-related activities.' },
+    { pattern: /\brobot(?:s)?\.txt\b/gi, category: 'scraping', severity: 'medium', label: 'robots.txt reference', explanation: 'The ToS references robots.txt, indicating awareness of and likely reliance on robot access controls.' },
+    { pattern: /\b(rate\s*limit|throttl|request\s*limit)\b/gi, category: 'scraping', severity: 'medium', label: 'Rate limiting clause', explanation: 'Mentions rate limiting or request throttling, which may affect how you can access the site programmatically.' },
+
+    // Data collection
+    { pattern: /\b(harvest|harvesting)\b[^.]*\b(data|information|email|content)\b/gi, category: 'data', severity: 'high', label: 'Data harvesting prohibition', explanation: 'Explicitly prohibits harvesting data from the service.' },
+    { pattern: /\b(mine|mining|extract|extraction)\b[^.]*\b(data|information|content)\b/gi, category: 'data', severity: 'high', label: 'Data mining/extraction restriction', explanation: 'Restricts mining or extraction of data from the platform.' },
+    { pattern: /\b(collect|collection|gather|gathering)\b[^.]*\b(data|information|personal|user)\b/gi, category: 'data', severity: 'medium', label: 'Data collection restriction', explanation: 'Contains clauses about data collection that may apply to scraping activities.' },
+    { pattern: /\b(download|copy|duplicate|replicate|reproduce)\b[^.]*\b(content|data|material|information|page|portion)\b/gi, category: 'data', severity: 'medium', label: 'Content copying restriction', explanation: 'Restricts downloading, copying, or reproducing content from the site.' },
+    { pattern: /\b(store|cache|retain)\b[^.]*\b(content|data|information|page)\b/gi, category: 'data', severity: 'low', label: 'Data storage/caching restriction', explanation: 'May restrict storing or caching data obtained from the site.' },
+    { pattern: /\b(commercial\s*use|commercial\s*purpose)\b/gi, category: 'data', severity: 'medium', label: 'Commercial use restriction', explanation: 'Restricts commercial use of data or content, which may affect business scraping use cases.' },
+
+    // Intellectual property
+    { pattern: /\b(copyright|copyrighted|©)\b/gi, category: 'ip', severity: 'medium', label: 'Copyright assertion', explanation: 'Asserts copyright over content, which affects your right to copy and use scraped data.' },
+    { pattern: /\b(intellectual\s*property|proprietary)\b/gi, category: 'ip', severity: 'medium', label: 'Intellectual property claim', explanation: 'Broad intellectual property claims that may cover scraped data.' },
+    { pattern: /\b(database\s*right|sui\s*generis)\b/gi, category: 'ip', severity: 'high', label: 'Database rights claim', explanation: 'Asserts database rights (common in EU jurisdictions), which can directly restrict extraction of substantial portions of data.' },
+    { pattern: /\b(trademark|trade\s*mark|service\s*mark)\b/gi, category: 'ip', severity: 'low', label: 'Trademark notice', explanation: 'Trademark assertions — generally less relevant to data scraping but indicates IP awareness.' },
+    { pattern: /\b(license|licen[cs]e)\b[^.]*\b(grant|limited|non-exclusive|revocable)\b/gi, category: 'ip', severity: 'medium', label: 'Limited license grant', explanation: 'Grants only a limited license to access content, which implies that scraping beyond normal use may exceed the license.' },
+
+    // Enforcement
+    { pattern: /\b(terminat|suspend|revoke|block)\b[^.]*\b(access|account|right|permission)\b/gi, category: 'enforcement', severity: 'medium', label: 'Access termination clause', explanation: 'Reserves the right to terminate access for ToS violations, including scraping.' },
+    { pattern: /\b(injunctive\s*relief|equitable\s*relief|restraining\s*order)\b/gi, category: 'enforcement', severity: 'high', label: 'Injunctive relief clause', explanation: 'Reserves the right to seek injunctive relief, which could result in a court order to stop scraping immediately.' },
+    { pattern: /\b(damages|liability|indemnif)/gi, category: 'enforcement', severity: 'medium', label: 'Damages/liability clause', explanation: 'Provisions for damages or indemnification that could apply to scraping-related ToS violations.' },
+    { pattern: /\b(governing\s*law|jurisdiction|arbitrat)/gi, category: 'enforcement', severity: 'low', label: 'Jurisdiction/dispute clause', explanation: 'Specifies governing law and dispute resolution — important for understanding where and how any scraping dispute would be handled.' },
+    { pattern: /\b(CFAA|Computer\s*Fraud|unauthorized\s*access)\b/gi, category: 'enforcement', severity: 'high', label: 'CFAA / unauthorized access reference', explanation: 'References to the Computer Fraud and Abuse Act or unauthorized access — indicates the site may pursue criminal or civil CFAA claims against scrapers.' },
+  ];
+
+  function analyzeTos(text: string): Finding[] {
+    const findings: Finding[] = [];
+    const sentences = text.replace(/\n+/g, ' ').split(/(?<=[.!?])\s+/);
+
+    for (const pat of patterns) {
+      const matchedSentences: string[] = [];
+      for (const sentence of sentences) {
+        if (pat.pattern.test(sentence)) {
+          matchedSentences.push(sentence.trim());
+          pat.pattern.lastIndex = 0; // Reset regex
+        }
+      }
+      if (matchedSentences.length > 0) {
+        // Take the most relevant match (first one, truncated)
+        const bestMatch = matchedSentences[0].substring(0, 300) + (matchedSentences[0].length > 300 ? '...' : '');
+        findings.push({
+          category: pat.category,
+          severity: pat.severity,
+          label: pat.label + (matchedSentences.length > 1 ? ` (${matchedSentences.length} matches)` : ''),
+          matchedText: bestMatch,
+          explanation: pat.explanation,
+        });
+      }
+    }
+
+    return findings;
+  }
+
+  function displayResults(findings: Finding[]) {
+    const resultsEl = document.getElementById('results')!;
+    resultsEl.classList.remove('hidden');
+
+    const scrapingCount = findings.filter(f => f.category === 'scraping').length;
+    const dataCount = findings.filter(f => f.category === 'data').length;
+    const ipCount = findings.filter(f => f.category === 'ip').length;
+    const enforcementCount = findings.filter(f => f.category === 'enforcement').length;
+
+    document.getElementById('stat-scraping')!.textContent = String(scrapingCount);
+    document.getElementById('stat-data')!.textContent = String(dataCount);
+    document.getElementById('stat-ip')!.textContent = String(ipCount);
+    document.getElementById('stat-enforcement')!.textContent = String(enforcementCount);
+
+    // Summary
+    const summaryEl = document.getElementById('summary')!;
+    const iconEl = document.getElementById('summary-icon')!;
+    const levelEl = document.getElementById('summary-level')!;
+    const detailEl = document.getElementById('summary-detail')!;
+
+    const highCount = findings.filter(f => f.severity === 'high').length;
+    const totalCount = findings.length;
+
+    if (totalCount === 0) {
+      summaryEl.className = 'p-6 rounded-lg bg-green-50 border border-green-200';
+      iconEl.textContent = '✅';
+      levelEl.textContent = 'No Scraping Restrictions Found';
+      levelEl.className = 'text-xl font-bold text-green-700';
+      detailEl.textContent = 'No common scraping-related clauses were detected. However, this doesn\'t guarantee that scraping is permitted — the ToS may use unusual language, or scraping may be restricted by other means.';
+    } else if (highCount >= 3 || scrapingCount >= 2) {
+      summaryEl.className = 'p-6 rounded-lg bg-red-50 border border-red-200';
+      iconEl.textContent = '🚫';
+      levelEl.textContent = 'Strong Scraping Restrictions Detected';
+      levelEl.className = 'text-xl font-bold text-red-700';
+      detailEl.textContent = `Found ${totalCount} relevant clauses (${highCount} high severity). This ToS contains significant restrictions on scraping and automated data collection.`;
+    } else if (highCount >= 1 || totalCount >= 4) {
+      summaryEl.className = 'p-6 rounded-lg bg-yellow-50 border border-yellow-200';
+      iconEl.textContent = '⚠️';
+      levelEl.textContent = 'Moderate Scraping Restrictions Detected';
+      levelEl.className = 'text-xl font-bold text-yellow-700';
+      detailEl.textContent = `Found ${totalCount} relevant clauses (${highCount} high severity). This ToS contains some restrictions that may apply to scraping activities.`;
+    } else {
+      summaryEl.className = 'p-6 rounded-lg bg-blue-50 border border-blue-200';
+      iconEl.textContent = '🔵';
+      levelEl.textContent = 'Minor Restrictions Detected';
+      levelEl.className = 'text-xl font-bold text-blue-700';
+      detailEl.textContent = `Found ${totalCount} potentially relevant clauses, but none are high severity. Standard IP and licensing language is present.`;
+    }
+
+    // Findings
+    const findingsEl = document.getElementById('findings')!;
+    const categoryLabels: Record<string, string> = {
+      scraping: '🕷️ Scraping Restrictions',
+      data: '📊 Data Collection Clauses',
+      ip: '©️ Intellectual Property',
+      enforcement: '⚖️ Enforcement Provisions',
+    };
+    const severityColors: Record<string, string> = {
+      high: 'border-l-red-500 bg-red-50',
+      medium: 'border-l-yellow-500 bg-yellow-50',
+      low: 'border-l-blue-500 bg-blue-50',
+    };
+    const severityLabels: Record<string, string> = {
+      high: 'High',
+      medium: 'Medium',
+      low: 'Low',
+    };
+    const severityBadges: Record<string, string> = {
+      high: 'bg-red-100 text-red-700',
+      medium: 'bg-yellow-100 text-yellow-700',
+      low: 'bg-blue-100 text-blue-700',
+    };
+
+    // Group by category
+    const categories: Array<'scraping' | 'data' | 'ip' | 'enforcement'> = ['scraping', 'data', 'ip', 'enforcement'];
+    let html = '';
+    for (const cat of categories) {
+      const catFindings = findings.filter(f => f.category === cat);
+      if (catFindings.length === 0) continue;
+
+      html += `<div class="space-y-2">
+        <h3 class="text-sm font-bold text-gray-700">${categoryLabels[cat]}</h3>`;
+
+      for (const f of catFindings) {
+        html += `<div class="p-4 border-l-4 rounded-r-lg ${severityColors[f.severity]}">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-sm font-semibold">${f.label}</span>
+            <span class="text-xs font-medium px-2 py-0.5 rounded-full ${severityBadges[f.severity]}">${severityLabels[f.severity]}</span>
+          </div>
+          <p class="text-xs text-gray-600 mb-2">${f.explanation}</p>
+          <div class="p-2 bg-white rounded border border-gray-200">
+            <p class="text-xs text-gray-500 font-mono leading-relaxed">"${f.matchedText}"</p>
+          </div>
+        </div>`;
+      }
+
+      html += '</div>';
+    }
+
+    if (html === '') {
+      html = '<p class="text-sm text-gray-500">No scraping-related clauses detected in the provided text.</p>';
+    }
+
+    findingsEl.innerHTML = html;
+  }
+
+  document.getElementById('analyze-btn')?.addEventListener('click', () => {
+    const text = (document.getElementById('tos-input') as HTMLTextAreaElement).value;
+    if (!text.trim()) {
+      alert('Please paste Terms of Service text to analyze.');
+      return;
+    }
+    if (text.trim().length < 100) {
+      alert('The text seems too short to be a complete Terms of Service. Please paste the full ToS.');
+      return;
+    }
+    const findings = analyzeTos(text);
+    displayResults(findings);
+  });
+</script>

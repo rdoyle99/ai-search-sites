@@ -1,0 +1,188 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Key Web Scraping Court Cases: hiQ v. LinkedIn and Beyond",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-01-26T00:00:00.000Z",
+  "dateModified": "2026-02-01T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Key Web Scraping Court Cases: hiQ v. LinkedIn and Beyond"
+  description="Every major web scraping lawsuit analyzed — what the courts decided and what it means for your scraping operations."
+  schema={schema}
+  articleDate="2026-01-26"
+  articleModified="2026-02-01"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">January 26, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Key Web Scraping Court Cases: hiQ v. LinkedIn and Beyond</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>The legal landscape of web scraping has been shaped by a series of landmark court cases, from the 2000 eBay v. Bidder's Edge ruling through the 2022 hiQ v. LinkedIn decision. Each case established specific legal principles that together form the current legal framework for scraping in 2026.</strong></p>
+
+      <p>Understanding web scraping law requires understanding the cases that created it. Unlike many areas of technology law that are governed primarily by statute, web scraping law has been built almost entirely through litigation. Companies that scraped data got sued, courts issued rulings, and those rulings became the precedent that governs future scraping activity. The result is a body of case law that is sometimes contradictory, often nuanced, and always evolving.</p>
+
+      <p>This article analyzes every major web scraping court case chronologically, explaining the facts, the legal arguments, the court's reasoning, and the practical implications for scraping operations in 2026. Together, these cases tell the story of how web scraping went from legally ambiguous to largely protected for public data.</p>
+
+      <h2>eBay v. Bidder's Edge (2000) — The Trespass Foundation</h2>
+
+      <p><strong>Court:</strong> Northern District of California<br/>
+      <strong>Ruling:</strong> Injunction granted against scraper<br/>
+      <strong>Key principle:</strong> Excessive automated access can constitute trespass to chattels</p>
+
+      <p>eBay v. Bidder's Edge is the earliest significant web scraping case and established the legal theory that has shaped all subsequent litigation. Bidder's Edge operated an auction aggregation service that scraped eBay listings to display alongside listings from other auction platforms. Bidder's Edge sent approximately 100,000 requests per day to eBay's servers, consuming server resources and bandwidth.</p>
+
+      <p>eBay sued under trespass to chattels, arguing that Bidder's Edge's automated access interfered with eBay's computer systems. The court agreed, granting a preliminary injunction. The ruling established that automated access to a website can constitute trespass when it causes actual harm to the server infrastructure or interferes with the website's normal operation.</p>
+
+      <p>The critical limitation of this ruling: it requires actual or threatened harm to the computer system. Courts have generally not extended trespass to chattels to cases where the scraping activity has no measurable impact on server performance. For modern scraping operations that implement reasonable rate limiting, the trespass theory is rarely viable. The lesson from this case is clear: do not overwhelm servers with excessive request volume.</p>
+
+      <h2>Feist Publications v. Rural Telephone Service (1991) — Facts Cannot Be Copyrighted</h2>
+
+      <p><strong>Court:</strong> United States Supreme Court<br/>
+      <strong>Ruling:</strong> Facts and factual compilations without creative selection are not copyrightable<br/>
+      <strong>Key principle:</strong> "Sweat of the brow" does not create copyright protection</p>
+
+      <p>While not technically a web scraping case, Feist is the most important case for understanding the copyright dimension of scraping. Rural Telephone published a white pages directory. Feist copied some of the listings for use in its own directory. Rural sued for copyright infringement, arguing that the labor invested in compiling the directory gave it copyright protection.</p>
+
+      <p>The Supreme Court rejected this "sweat of the brow" doctrine, ruling that copyright requires originality. Facts themselves are not copyrightable, and compilations of facts are only copyrightable if they involve creative selection, coordination, or arrangement. A simple alphabetical listing of names and phone numbers does not meet this threshold.</p>
+
+      <p>For web scraping, Feist is foundational. It means that scraping factual data&mdash;business names, addresses, prices, product specifications, financial data&mdash;does not constitute copyright infringement. The data itself is not copyrightable, even if the website invested significant resources in collecting it. However, the creative presentation of that data (website design, original descriptions, photographs) may still be copyrighted. The distinction is between facts (not copyrightable, safe to scrape) and expression (copyrightable, risky to scrape).</p>
+
+      <h2>hiQ Labs v. LinkedIn (2017–2022) — The Landmark Ruling</h2>
+
+      <p><strong>Court:</strong> Ninth Circuit Court of Appeals<br/>
+      <strong>Ruling:</strong> Scraping publicly available data does not violate the CFAA<br/>
+      <strong>Key principle:</strong> No "authorization" is required to access public data</p>
+
+      <p>hiQ Labs v. LinkedIn is the single most important web scraping case and the strongest legal protection for scraping public data. hiQ Labs built a workforce analytics product by scraping publicly available LinkedIn profiles. LinkedIn sent hiQ a cease-and-desist letter and began implementing technical measures to block hiQ's scraping. hiQ sued LinkedIn for an injunction preventing LinkedIn from blocking its access.</p>
+
+      <p>The case went through multiple rounds of litigation:</p>
+
+      <ul>
+        <li><strong>2017:</strong> The district court granted hiQ a preliminary injunction, ordering LinkedIn to stop blocking hiQ's scrapers.</li>
+        <li><strong>2019:</strong> The Ninth Circuit affirmed the injunction, ruling that the CFAA likely does not apply to scraping publicly available data.</li>
+        <li><strong>2021:</strong> The Supreme Court vacated and remanded in light of its Van Buren decision (which narrowed the CFAA's scope).</li>
+        <li><strong>2022:</strong> The Ninth Circuit again affirmed the injunction, holding that scraping publicly available data does not violate the CFAA because there is no "authorization" gate to access public data. If data is available to anyone with a web browser, accessing it with automated tools does not constitute "unauthorized access."</li>
+      </ul>
+
+      <p>The implications of hiQ are profound. Before this ruling, companies routinely used CFAA threats to deter scraping. After hiQ, the CFAA is effectively off the table for scraping publicly available data. Companies that want to prevent scraping must rely on other legal theories (copyright, ToS, trespass) or technical measures (rate limiting, CAPTCHAs, IP blocking).</p>
+
+      <p>Important limitation: hiQ applies to data that is publicly available without authentication. Data behind login walls is not covered by this ruling. The court explicitly distinguished between data anyone can access and data restricted to authenticated users.</p>
+
+      <h2>Van Buren v. United States (2021) — Narrowing the CFAA</h2>
+
+      <p><strong>Court:</strong> United States Supreme Court<br/>
+      <strong>Ruling:</strong> CFAA "exceeds authorized access" applies only to accessing data off-limits through an access gate<br/>
+      <strong>Key principle:</strong> Misuse of authorized access is not a CFAA violation</p>
+
+      <p>While Van Buren was a criminal case (not about web scraping), it fundamentally changed how the CFAA is interpreted. Nathan Van Buren, a police officer, used his authorized access to a law enforcement database to look up a license plate in exchange for a bribe. The government charged him under the CFAA for "exceeding authorized access."</p>
+
+      <p>The Supreme Court ruled 6&ndash;3 that "exceeds authorized access" means accessing information on a computer that the user is not entitled to access at all&mdash;not accessing information for an unauthorized purpose. Van Buren had legitimate access to the database; using it for the wrong reason was not a CFAA violation (though it may violate other laws).</p>
+
+      <p>For web scraping, Van Buren matters because it narrows the CFAA to situations where there is a clear technological barrier to access. Using a website for purposes the operator does not intend (scraping rather than browsing) is not "exceeding authorized access" if you could access the data normally. This ruling made it much harder for companies to use the CFAA against scrapers who access publicly available data.</p>
+
+      <h2>Meta Platforms v. Bright Data (2024) — Social Media Confirmation</h2>
+
+      <p><strong>Court:</strong> Northern District of California<br/>
+      <strong>Ruling:</strong> Scraping public Facebook/Instagram data does not violate the CFAA<br/>
+      <strong>Key principle:</strong> hiQ applies to social media platforms</p>
+
+      <p>Meta sued Bright Data (formerly Luminati Networks), a web scraping service provider, for scraping publicly available Facebook and Instagram data. Meta argued that Bright Data violated the CFAA, Meta's Terms of Service, and various state laws.</p>
+
+      <p>The court dismissed Meta's CFAA claim, citing hiQ and Van Buren. It held that Bright Data's scraping of publicly viewable Facebook and Instagram pages did not constitute unauthorized access under the CFAA. However, the court allowed some of Meta's other claims to proceed, including breach of contract (ToS) for data scraped while logged in to Facebook accounts.</p>
+
+      <p>This case is significant because it extended the hiQ precedent explicitly to social media platforms. It confirmed that even large social media companies cannot use the CFAA to prevent scraping of their publicly available data. However, it also confirmed that scraping behind a login (using a Facebook account to access data not available to the public) may violate both the CFAA and the platform's ToS.</p>
+
+      <h2>Clearview AI (Multiple Cases, 2020–2025) — Privacy Limits</h2>
+
+      <p><strong>Courts:</strong> Multiple jurisdictions (US, EU, Australia, Canada, UK)<br/>
+      <strong>Rulings:</strong> Multiple fines and orders against Clearview<br/>
+      <strong>Key principle:</strong> Scraping biometric data violates privacy laws regardless of public availability</p>
+
+      <p>Clearview AI scraped billions of facial images from social media and the open web to build a facial recognition database used by law enforcement. Despite the images being publicly available, Clearview faced legal action across multiple jurisdictions:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Jurisdiction</th>
+            <th>Action</th>
+            <th>Fine/Penalty</th>
+            <th>Key Issue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Italy (GDPR)</td><td>Fine by Garante</td><td>€20 million</td><td>Processing biometric data without consent</td></tr>
+          <tr><td>France (GDPR)</td><td>Fine by CNIL</td><td>€20 million</td><td>Unlawful processing of personal data</td></tr>
+          <tr><td>UK (UK GDPR)</td><td>Fine by ICO</td><td>£7.5 million</td><td>Processing data of UK residents</td></tr>
+          <tr><td>Australia</td><td>Order by OAIC</td><td>Cease processing</td><td>Violation of Australian Privacy Act</td></tr>
+          <tr><td>Illinois (US)</td><td>BIPA lawsuit</td><td>Settlement</td><td>Collecting biometric data without consent</td></tr>
+          <tr><td>Canada</td><td>Finding by OPC</td><td>Cease collection</td><td>Violation of PIPEDA</td></tr>
+        </tbody>
+      </table>
+
+      <p>Clearview demonstrates the limits of the "public data is fair game" principle. While scraping publicly available data may not violate the CFAA, privacy laws&mdash;particularly the GDPR and biometric privacy laws&mdash;can still prohibit the collection and processing of certain types of personal data regardless of its public availability. Biometric data receives the highest level of protection, but the principle extends to all personal data in GDPR jurisdictions.</p>
+
+      <h2>Ryanair v. PR Aviation (2015) — EU Database Rights</h2>
+
+      <p><strong>Court:</strong> Court of Justice of the European Union (CJEU)<br/>
+      <strong>Ruling:</strong> Website operators can use contractual terms to restrict scraping even without database right protection<br/>
+      <strong>Key principle:</strong> ToS restrictions on scraping are enforceable in the EU</p>
+
+      <p>PR Aviation scraped Ryanair's website to display flight prices on its comparison platform. Ryanair argued that its Terms of Use prohibited screen scraping. PR Aviation argued that the EU Database Directive gave it the right to access the non-protected database.</p>
+
+      <p>The CJEU ruled that the Database Directive does not prevent website operators from using contractual terms to restrict access to their databases, even when the database does not qualify for sui generis database right protection. This means that in the EU, Terms of Service restrictions on scraping can be enforced through contract law even if the database itself is not protected by database rights.</p>
+
+      <p>This ruling makes the EU legal environment more restrictive for scrapers than the US. While the CFAA may not apply to public data scraping (per hiQ), EU contract law gives website operators a viable legal tool to restrict scraping through their Terms of Service.</p>
+
+      <h2>Summary: What Current Case Law Tells Us</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Principle</th>
+            <th>Support</th>
+            <th>Limitation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Scraping public data doesn't violate CFAA</td><td>hiQ, Van Buren, Meta v. Bright Data</td><td>Only applies to truly public data; login-gated data is different</td></tr>
+          <tr><td>Facts cannot be copyrighted</td><td>Feist v. Rural Telephone</td><td>Creative expression of facts IS copyrightable</td></tr>
+          <tr><td>Excessive scraping can be trespass</td><td>eBay v. Bidder's Edge</td><td>Requires actual server harm; reasonable scraping is fine</td></tr>
+          <tr><td>ToS can restrict scraping (EU)</td><td>Ryanair v. PR Aviation</td><td>Primarily EU; US courts split on browsewrap enforceability</td></tr>
+          <tr><td>Privacy laws apply to scraped personal data</td><td>Clearview AI cases</td><td>Applies to personal data only; factual business data less restricted</td></tr>
+          <tr><td>CFAA "exceeds authorized access" is narrow</td><td>Van Buren v. United States</td><td>Only accessing data behind access gates counts</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Practical Implications for Scraping Operations in 2026</h2>
+
+      <p>Based on the current state of case law, here are the practical guidelines for operating scraping infrastructure with reduced legal risk:</p>
+
+      <p><strong>In the United States:</strong> Scraping publicly available data is on the strongest legal footing it has ever been. The combination of hiQ, Van Buren, and Meta v. Bright Data creates a robust body of precedent protecting public data scraping. The primary remaining risks are copyright (for creative content), trespass (for excessive server load), and privacy (for personal data in states with privacy laws like CCPA).</p>
+
+      <p><strong>In the European Union:</strong> Scraping is more restricted due to the GDPR, the Database Directive, and stronger ToS enforceability. Personal data scraping requires a documented lawful basis. Even non-personal data scraping may be restricted by enforceable Terms of Service under Ryanair v. PR Aviation.</p>
+
+      <p><strong>For B2B data collection:</strong> Scraping publicly available business data for B2B purposes (lead generation, market research, competitive intelligence) is the lowest-risk scraping use case. The data is factual (Feist), publicly available (hiQ), and used for legitimate business purposes (supporting a GDPR legitimate interest argument). Platforms like <a href={siteConfig.product.url}>{siteConfig.product.name}</a> provide B2B contact data collected through compliant methods, ensuring that the data used in your outreach campaigns has been gathered with proper legal safeguards.</p>
+
+      <p><strong>Regardless of jurisdiction:</strong> Respect robots.txt, implement rate limiting, do not circumvent access controls, do not scrape behind login walls, do not reproduce copyrighted creative content, and document your compliance efforts. These practices reduce legal risk across all jurisdictions and demonstrate good faith if ever challenged.</p>
+
+      <h2>The Bottom Line</h2>
+
+      <p>The trajectory of web scraping case law over the past 25 years has moved consistently toward greater protection for scraping public data. The hiQ ruling is the high-water mark, establishing that public data scraping does not violate the CFAA. Van Buren narrowed the CFAA further. Meta v. Bright Data extended these principles to social media.</p>
+
+      <p>At the same time, the Clearview AI cases and GDPR enforcement demonstrate that privacy laws create real limits on what you can do with scraped data, particularly personal data. The law does not simply ask whether you can access data&mdash;it also asks what type of data it is, what you do with it, and whether the individuals whose data you collect have rights that must be respected.</p>
+
+      <p>The scraping operations with the lowest legal risk in 2026 are those that scrape publicly available factual data, respect technical access controls, implement reasonable rate limits, comply with applicable privacy laws, and use the data for legitimate, non-harmful purposes. The case law overwhelmingly supports this type of scraping. The legal risk increases as you move away from this profile in any direction.</p>
+
+    </div>
+  </article>
+</Base>

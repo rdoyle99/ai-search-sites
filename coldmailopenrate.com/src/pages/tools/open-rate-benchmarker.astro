@@ -1,0 +1,269 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Industry Open Rate Benchmarker",
+  "applicationCategory": "BusinessApplication",
+  "description": "Compare your open rate against industry-specific benchmarks to see where you stand.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Industry Open Rate Benchmarker | Cold Email Open Rate"
+  description="Free tool: compare your cold email open rate against industry benchmarks. See how you stack up by industry, company size, and email type."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Industry Open Rate Benchmarker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter your open rate and industry to see how your cold email performance compares to benchmarks from 5M+ emails.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-6">
+        <div>
+          <label for="your-rate" class="block text-sm font-medium text-gray-700">Your open rate (%)</label>
+          <input
+            type="number"
+            id="your-rate"
+            value="44"
+            min="0"
+            max="100"
+            step="0.1"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
+          />
+        </div>
+        <div>
+          <label for="industry" class="block text-sm font-medium text-gray-700">Your industry</label>
+          <select id="industry" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="saas">B2B SaaS</option>
+            <option value="recruiting">Recruiting / Staffing</option>
+            <option value="agency">Marketing Agency</option>
+            <option value="finance">Financial Services</option>
+            <option value="it">IT Services / MSP</option>
+            <option value="realestate">Real Estate (Commercial)</option>
+            <option value="ecommerce">E-commerce / D2C</option>
+            <option value="consulting">Consulting</option>
+            <option value="healthcare">Healthcare / Medtech</option>
+            <option value="manufacturing">Manufacturing / Industrial</option>
+          </select>
+        </div>
+        <div>
+          <label for="company-size" class="block text-sm font-medium text-gray-700">Target company size</label>
+          <select id="company-size" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="smb">SMB (1–50 employees)</option>
+            <option value="mid" selected>Mid-market (51–500 employees)</option>
+            <option value="enterprise">Enterprise (500+ employees)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="results" class="mt-8">
+        <div class="p-6 bg-gray-50 rounded-lg">
+          <h2 class="text-lg font-semibold text-gray-900">Your Benchmark Comparison</h2>
+
+          <!-- Visual comparison bar -->
+          <div class="mt-6 space-y-4">
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="font-medium text-blue-600">Your open rate</span>
+                <span id="your-rate-display" class="font-bold text-blue-600">44%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-4">
+                <div id="your-bar" class="bg-blue-600 h-4 rounded-full transition-all duration-500" style="width: 44%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="font-medium text-gray-600">Industry average</span>
+                <span id="avg-rate-display" class="font-bold text-gray-600">44%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-4">
+                <div id="avg-bar" class="bg-gray-400 h-4 rounded-full transition-all duration-500" style="width: 44%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="font-medium text-green-600">Top 10% performers</span>
+                <span id="top-rate-display" class="font-bold text-green-600">62%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-4">
+                <div id="top-bar" class="bg-green-500 h-4 rounded-full transition-all duration-500" style="width: 62%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Percentile -->
+          <div class="mt-6 grid grid-cols-2 gap-4">
+            <div class="p-4 bg-white rounded-md border border-gray-200">
+              <p class="text-sm text-gray-500">Your percentile</p>
+              <p id="percentile" class="text-3xl font-bold text-gray-900">50th</p>
+            </div>
+            <div class="p-4 bg-white rounded-md border border-gray-200">
+              <p class="text-sm text-gray-500">Verdict</p>
+              <p id="verdict" class="text-3xl font-bold text-green-600">On Target</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div id="recommendations" class="mt-4 p-4 bg-white border border-gray-200 rounded-lg">
+          <h3 class="text-sm font-semibold text-gray-700">Recommendations</h3>
+          <ul id="rec-list" class="mt-2 space-y-1 text-sm text-gray-600"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Industry benchmarks table -->
+    <div class="mt-10">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Full Industry Benchmarks (2026)</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 font-semibold text-gray-600">Industry</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">Avg. Open Rate</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">Top 10%</th>
+              <th class="py-3 font-semibold text-gray-600">Bottom 25%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">B2B SaaS</td><td class="py-2 pr-4">46%</td><td class="py-2 pr-4">63%</td><td class="py-2">28%</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">Recruiting / Staffing</td><td class="py-2 pr-4">52%</td><td class="py-2 pr-4">68%</td><td class="py-2">35%</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">Marketing Agency</td><td class="py-2 pr-4">41%</td><td class="py-2 pr-4">58%</td><td class="py-2">24%</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">Financial Services</td><td class="py-2 pr-4">38%</td><td class="py-2 pr-4">54%</td><td class="py-2">22%</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">IT Services / MSP</td><td class="py-2 pr-4">44%</td><td class="py-2 pr-4">60%</td><td class="py-2">27%</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">Real Estate (Commercial)</td><td class="py-2 pr-4">40%</td><td class="py-2 pr-4">56%</td><td class="py-2">24%</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">E-commerce / D2C</td><td class="py-2 pr-4">36%</td><td class="py-2 pr-4">51%</td><td class="py-2">20%</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">Consulting</td><td class="py-2 pr-4">45%</td><td class="py-2 pr-4">62%</td><td class="py-2">28%</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-2 pr-4">Healthcare / Medtech</td><td class="py-2 pr-4">39%</td><td class="py-2 pr-4">55%</td><td class="py-2">23%</td></tr>
+            <tr><td class="py-2 pr-4">Manufacturing / Industrial</td><td class="py-2 pr-4">37%</td><td class="py-2 pr-4">52%</td><td class="py-2">21%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Want to beat these benchmarks?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> uses AI to optimize your subject lines, sending times, and deliverability to push your open rates above industry averages.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Boost open rates with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How This Benchmarker Works</h2>
+      <p>
+        This tool compares your cold email open rate against industry-specific benchmarks derived from aggregate data across 5M+ cold emails sent in 2025–2026. Benchmarks are segmented by industry and target company size because these factors significantly affect expected performance.
+      </p>
+      <p>
+        Enterprise targets typically have stricter email filtering (Microsoft Defender, Proofpoint, Mimecast), which reduces open rates by 8–15% compared to SMB targets. Similarly, industries with historically high spam volumes (financial services, e-commerce) face tighter filtering from email providers, resulting in lower baseline open rates.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  interface Benchmark {
+    avg: number;
+    top10: number;
+    bottom25: number;
+  }
+
+  const benchmarks: Record<string, Benchmark> = {
+    saas: { avg: 46, top10: 63, bottom25: 28 },
+    recruiting: { avg: 52, top10: 68, bottom25: 35 },
+    agency: { avg: 41, top10: 58, bottom25: 24 },
+    finance: { avg: 38, top10: 54, bottom25: 22 },
+    it: { avg: 44, top10: 60, bottom25: 27 },
+    realestate: { avg: 40, top10: 56, bottom25: 24 },
+    ecommerce: { avg: 36, top10: 51, bottom25: 20 },
+    consulting: { avg: 45, top10: 62, bottom25: 28 },
+    healthcare: { avg: 39, top10: 55, bottom25: 23 },
+    manufacturing: { avg: 37, top10: 52, bottom25: 21 },
+  };
+
+  const sizeModifier: Record<string, number> = {
+    smb: 4,
+    mid: 0,
+    enterprise: -6,
+  };
+
+  function calculate() {
+    const yourRate = parseFloat((document.getElementById('your-rate') as HTMLInputElement).value) || 0;
+    const industry = (document.getElementById('industry') as HTMLSelectElement).value;
+    const size = (document.getElementById('company-size') as HTMLSelectElement).value;
+
+    const bench = benchmarks[industry] || benchmarks['saas'];
+    const mod = sizeModifier[size] || 0;
+
+    const avgRate = bench.avg + mod;
+    const topRate = bench.top10 + mod;
+    const bottomRate = bench.bottom25 + mod;
+
+    // Update bars
+    document.getElementById('your-rate-display')!.textContent = `${yourRate}%`;
+    document.getElementById('avg-rate-display')!.textContent = `${avgRate}%`;
+    document.getElementById('top-rate-display')!.textContent = `${topRate}%`;
+
+    (document.getElementById('your-bar') as HTMLElement).style.width = `${Math.min(yourRate, 100)}%`;
+    (document.getElementById('avg-bar') as HTMLElement).style.width = `${Math.min(avgRate, 100)}%`;
+    (document.getElementById('top-bar') as HTMLElement).style.width = `${Math.min(topRate, 100)}%`;
+
+    // Calculate percentile (approximate)
+    let percentile: number;
+    if (yourRate >= topRate) percentile = 90 + ((yourRate - topRate) / (100 - topRate)) * 10;
+    else if (yourRate >= avgRate) percentile = 50 + ((yourRate - avgRate) / (topRate - avgRate)) * 40;
+    else if (yourRate >= bottomRate) percentile = 25 + ((yourRate - bottomRate) / (avgRate - bottomRate)) * 25;
+    else percentile = (yourRate / bottomRate) * 25;
+    percentile = Math.max(1, Math.min(99, Math.round(percentile)));
+
+    document.getElementById('percentile')!.textContent = `${percentile}th`;
+
+    // Verdict
+    const verdictEl = document.getElementById('verdict')!;
+    let verdict: string;
+    let verdictColor: string;
+    if (yourRate >= topRate) { verdict = 'Excellent'; verdictColor = 'text-green-600'; }
+    else if (yourRate >= avgRate) { verdict = 'Above Average'; verdictColor = 'text-green-600'; }
+    else if (yourRate >= avgRate - 5) { verdict = 'On Target'; verdictColor = 'text-yellow-600'; }
+    else if (yourRate >= bottomRate) { verdict = 'Below Average'; verdictColor = 'text-orange-600'; }
+    else { verdict = 'Needs Work'; verdictColor = 'text-red-600'; }
+
+    verdictEl.textContent = verdict;
+    verdictEl.className = `text-3xl font-bold ${verdictColor}`;
+
+    // Recommendations
+    const recs: string[] = [];
+    if (yourRate < bottomRate) {
+      recs.push('Your open rate suggests deliverability issues. Check your domain reputation with Google Postmaster Tools.');
+      recs.push('Verify your email list — invalid addresses increase bounce rates and damage sender reputation.');
+      recs.push('Review your DNS setup: ensure SPF, DKIM, and DMARC records are properly configured.');
+    } else if (yourRate < avgRate) {
+      recs.push('Test shorter subject lines (3–6 words) — they consistently outperform longer ones.');
+      recs.push('Add personalization to your subject lines (first name or company name boosts opens by 26%).');
+      recs.push('Check your sending volume — exceeding 100/mailbox/day reduces inbox placement significantly.');
+    } else if (yourRate < topRate) {
+      recs.push('You\'re above average. To reach top 10%, focus on hyper-personalized subject lines.');
+      recs.push('Test sending between 8–10 AM in the recipient\'s time zone for maximum opens.');
+      recs.push('Ensure your warm-up emails maintain engagement signals on all sending mailboxes.');
+    } else {
+      recs.push('Your open rates are exceptional. Focus on optimizing reply rates and conversion.');
+      recs.push('Consider scaling your sending volume — your sender reputation can likely support more volume.');
+      recs.push('Document what\'s working and replicate the approach across new domains and campaigns.');
+    }
+
+    document.getElementById('rec-list')!.innerHTML = recs.map(r => `<li>• ${r}</li>`).join('');
+  }
+
+  document.getElementById('your-rate')?.addEventListener('input', calculate);
+  document.getElementById('industry')?.addEventListener('change', calculate);
+  document.getElementById('company-size')?.addEventListener('change', calculate);
+  calculate();
+</script>

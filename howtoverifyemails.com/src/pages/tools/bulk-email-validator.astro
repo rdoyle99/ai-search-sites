@@ -1,0 +1,367 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Bulk Email Validator",
+  "applicationCategory": "BusinessApplication",
+  "description": "Paste a list of emails and get instant validation — flag invalid, risky, and catch-all addresses.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Bulk Email Validator | How to Verify Emails"
+  description="Free bulk email validation tool: paste a list of emails and instantly identify invalid, risky, role-based, and disposable addresses."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Bulk Email Validator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Paste up to 500 email addresses to instantly validate syntax, detect disposable domains, identify role-based addresses, and estimate list quality.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-4">
+        <div>
+          <div class="flex items-center justify-between">
+            <label for="email-list" class="block text-sm font-medium text-gray-700">Email addresses (one per line)</label>
+            <span id="email-count" class="text-xs text-gray-400">0 emails</span>
+          </div>
+          <textarea
+            id="email-list"
+            rows="10"
+            placeholder="john@company.com&#10;jane.doe@gmail.com&#10;info@business.org&#10;test@mailinator.com&#10;invalid-email&#10;sarah@gmial.com"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm font-mono"
+          ></textarea>
+        </div>
+        <div class="flex gap-3">
+          <button
+            id="validate-btn"
+            class="px-6 py-2 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-800 transition-colors"
+          >
+            Validate All
+          </button>
+          <button
+            id="clear-btn"
+            class="px-6 py-2 border border-gray-300 text-gray-700 font-semibold rounded-md hover:bg-gray-50 transition-colors"
+          >
+            Clear
+          </button>
+          <button
+            id="export-btn"
+            class="px-6 py-2 border border-gray-300 text-gray-700 font-semibold rounded-md hover:bg-gray-50 transition-colors hidden"
+          >
+            Export CSV
+          </button>
+        </div>
+      </div>
+
+      <div id="summary" class="mt-6 hidden">
+        <h2 class="text-lg font-semibold text-gray-900">List Quality Report</h2>
+        <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-4 bg-green-50 rounded-lg text-center">
+            <p class="text-sm text-green-600 font-medium">Valid</p>
+            <p id="stat-valid" class="text-2xl font-bold text-green-700">0</p>
+          </div>
+          <div class="p-4 bg-red-50 rounded-lg text-center">
+            <p class="text-sm text-red-600 font-medium">Invalid</p>
+            <p id="stat-invalid" class="text-2xl font-bold text-red-700">0</p>
+          </div>
+          <div class="p-4 bg-yellow-50 rounded-lg text-center">
+            <p class="text-sm text-yellow-600 font-medium">Risky</p>
+            <p id="stat-risky" class="text-2xl font-bold text-yellow-700">0</p>
+          </div>
+          <div class="p-4 bg-gray-50 rounded-lg text-center">
+            <p class="text-sm text-gray-600 font-medium">Duplicates</p>
+            <p id="stat-dupes" class="text-2xl font-bold text-gray-700">0</p>
+          </div>
+        </div>
+
+        <div class="mt-4 p-4 rounded-lg border" id="quality-box">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-gray-500">Overall List Quality Score</p>
+              <p id="quality-score" class="text-3xl font-bold"></p>
+            </div>
+            <div class="text-right">
+              <p class="text-sm text-gray-500">Estimated Bounce Rate</p>
+              <p id="bounce-estimate" class="text-3xl font-bold text-gray-900"></p>
+            </div>
+          </div>
+          <div class="mt-3 w-full bg-gray-200 rounded-full h-3">
+            <div id="quality-bar" class="h-3 rounded-full transition-all duration-700" style="width: 0%"></div>
+          </div>
+          <p id="quality-advice" class="mt-3 text-sm text-gray-600"></p>
+        </div>
+      </div>
+
+      <div id="detail-results" class="mt-6 hidden">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-semibold text-gray-900">Detailed Results</h2>
+          <div class="flex gap-2">
+            <button class="filter-btn text-xs px-2 py-1 rounded bg-gray-100 text-gray-600 hover:bg-gray-200" data-filter="all">All</button>
+            <button class="filter-btn text-xs px-2 py-1 rounded bg-green-100 text-green-700 hover:bg-green-200" data-filter="valid">Valid</button>
+            <button class="filter-btn text-xs px-2 py-1 rounded bg-red-100 text-red-700 hover:bg-red-200" data-filter="invalid">Invalid</button>
+            <button class="filter-btn text-xs px-2 py-1 rounded bg-yellow-100 text-yellow-700 hover:bg-yellow-200" data-filter="risky">Risky</button>
+          </div>
+        </div>
+        <div id="results-list" class="space-y-1 max-h-96 overflow-y-auto"></div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need SMTP-level verification?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        This tool validates syntax and detects common issues. For full mailbox-level verification (97–99% accuracy), <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> verifies every address via SMTP before sending.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Full verification with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How This Tool Works</h2>
+      <p>
+        This bulk validator performs client-side syntax validation on your entire list at once. For each address, it checks: RFC 5321/5322 compliance, domain formatting, common domain typos (like gmial.com → gmail.com), disposable email domains, role-based addresses (info@, support@), and duplicate detection.
+      </p>
+      <p>
+        Addresses are classified into three categories: <strong>Valid</strong> (passes all syntax checks), <strong>Invalid</strong> (fails one or more syntax rules), and <strong>Risky</strong> (valid syntax but flagged for disposable domains, role-based addresses, or suspected typos).
+      </p>
+      <p>
+        The List Quality Score estimates the health of your list based on the percentage of valid vs. invalid and risky addresses. A score above 85% indicates a clean list safe for sending. Below 70%, the list needs significant cleaning before use.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const disposableDomains = new Set(['mailinator.com', 'guerrillamail.com', 'tempmail.com', 'throwaway.email', 'yopmail.com', 'temp-mail.org', 'guerrillamail.info', 'grr.la', 'dispostable.com', 'mailnesia.com', 'tempail.com', 'fakeinbox.com', 'sharklasers.com', 'guerrillamailblock.com', 'trashmail.com', 'trashmail.me', 'trashmail.net', '10minutemail.com', 'minutemail.com', 'tempinbox.com', 'maildrop.cc', 'mailcatch.com', 'getairmail.com', 'meltmail.com']);
+
+  const roleAddresses = new Set(['info', 'admin', 'support', 'sales', 'contact', 'hello', 'help', 'team', 'office', 'billing', 'hr', 'marketing', 'press', 'media', 'abuse', 'postmaster', 'webmaster', 'noreply', 'no-reply', 'feedback', 'jobs', 'careers', 'security', 'privacy', 'legal', 'compliance']);
+
+  const commonTypos: Record<string, string> = {
+    'gmial.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gmai.com': 'gmail.com', 'gmail.co': 'gmail.com',
+    'gamil.com': 'gmail.com', 'gnail.com': 'gmail.com', 'gmail.cm': 'gmail.com',
+    'outlok.com': 'outlook.com', 'outloo.com': 'outlook.com', 'oultook.com': 'outlook.com',
+    'yaho.com': 'yahoo.com', 'yahooo.com': 'yahoo.com', 'yahoo.co': 'yahoo.com',
+    'hotmal.com': 'hotmail.com', 'hotmial.com': 'hotmail.com', 'hotmai.com': 'hotmail.com',
+  };
+
+  type Status = 'valid' | 'invalid' | 'risky';
+
+  interface EmailResult {
+    email: string;
+    status: Status;
+    reasons: string[];
+    suggestion?: string;
+    duplicate?: boolean;
+  }
+
+  let allResults: EmailResult[] = [];
+
+  function validateEmail(email: string, seen: Set<string>): EmailResult {
+    const trimmed = email.trim().toLowerCase();
+    const reasons: string[] = [];
+    let status: Status = 'valid';
+    let suggestion: string | undefined;
+    let duplicate = false;
+
+    if (seen.has(trimmed)) {
+      duplicate = true;
+      reasons.push('Duplicate address');
+    }
+    seen.add(trimmed);
+
+    // Basic format
+    if (!trimmed.includes('@') || trimmed.split('@').length !== 2) {
+      return { email, status: 'invalid', reasons: ['Missing or multiple @ symbols'], duplicate };
+    }
+
+    const [local, domain] = trimmed.split('@');
+
+    if (local.length === 0) {
+      return { email, status: 'invalid', reasons: ['Empty local part'], duplicate };
+    }
+
+    if (local.length > 64) {
+      reasons.push('Local part exceeds 64 characters');
+      status = 'invalid';
+    }
+
+    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(local)) {
+      reasons.push('Invalid characters in local part');
+      status = 'invalid';
+    }
+
+    if (local.startsWith('.') || local.endsWith('.') || local.includes('..')) {
+      reasons.push('Invalid dot placement');
+      status = 'invalid';
+    }
+
+    if (/\s/.test(email.trim())) {
+      reasons.push('Contains whitespace');
+      status = 'invalid';
+    }
+
+    if (domain.length === 0 || !domain.includes('.')) {
+      reasons.push('Invalid domain format');
+      status = 'invalid';
+    } else {
+      const tld = domain.split('.').pop() || '';
+      if (tld.length < 2) {
+        reasons.push('Invalid top-level domain');
+        status = 'invalid';
+      }
+    }
+
+    if (!/^[a-zA-Z0-9.-]+$/.test(domain)) {
+      reasons.push('Invalid domain characters');
+      status = 'invalid';
+    }
+
+    // Only check warnings if syntax is valid
+    if (status !== 'invalid') {
+      if (commonTypos[domain]) {
+        reasons.push(`Likely typo: ${domain} → ${commonTypos[domain]}`);
+        suggestion = `${local}@${commonTypos[domain]}`;
+        status = 'risky';
+      }
+
+      if (disposableDomains.has(domain)) {
+        reasons.push('Disposable email domain');
+        status = 'risky';
+      }
+
+      if (roleAddresses.has(local)) {
+        reasons.push('Role-based address');
+        status = 'risky';
+      }
+    }
+
+    if (reasons.length === 0) {
+      reasons.push('Passes all syntax checks');
+    }
+
+    return { email, status, reasons, suggestion, duplicate };
+  }
+
+  function updateCount() {
+    const text = (document.getElementById('email-list') as HTMLTextAreaElement).value;
+    const count = text.split('\n').map(e => e.trim()).filter(e => e.length > 0).length;
+    document.getElementById('email-count')!.textContent = `${count} email${count !== 1 ? 's' : ''}`;
+  }
+
+  function renderResults(filter: string = 'all') {
+    const listEl = document.getElementById('results-list')!;
+    const filtered = filter === 'all' ? allResults : allResults.filter(r => r.status === filter);
+
+    listEl.innerHTML = filtered.map(r => {
+      const colors = r.status === 'valid' ? 'bg-green-50 border-green-100' : r.status === 'invalid' ? 'bg-red-50 border-red-100' : 'bg-yellow-50 border-yellow-100';
+      const icon = r.status === 'valid' ? '✓' : r.status === 'invalid' ? '✗' : '⚠';
+      const iconColor = r.status === 'valid' ? 'text-green-600' : r.status === 'invalid' ? 'text-red-600' : 'text-yellow-600';
+      const badge = r.duplicate ? '<span class="text-xs bg-gray-200 text-gray-600 px-1 rounded">DUPE</span>' : '';
+      const sugg = r.suggestion ? `<span class="text-xs text-blue-600">→ ${r.suggestion}</span>` : '';
+
+      return `<div class="flex items-start gap-2 text-sm p-2 rounded border ${colors}">
+        <span class="${iconColor} font-bold mt-0.5">${icon}</span>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="font-mono text-gray-800 truncate">${r.email}</span>
+            ${badge} ${sugg}
+          </div>
+          <span class="text-xs text-gray-500">${r.reasons.join(' · ')}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('email-list')?.addEventListener('input', updateCount);
+
+  document.getElementById('validate-btn')?.addEventListener('click', () => {
+    const text = (document.getElementById('email-list') as HTMLTextAreaElement).value;
+    const emails = text.split('\n').map(e => e.trim()).filter(e => e.length > 0);
+    if (emails.length === 0) return;
+
+    const seen = new Set<string>();
+    allResults = emails.map(e => validateEmail(e, seen));
+
+    const validCount = allResults.filter(r => r.status === 'valid').length;
+    const invalidCount = allResults.filter(r => r.status === 'invalid').length;
+    const riskyCount = allResults.filter(r => r.status === 'risky').length;
+    const dupeCount = allResults.filter(r => r.duplicate).length;
+
+    document.getElementById('summary')!.classList.remove('hidden');
+    document.getElementById('detail-results')!.classList.remove('hidden');
+    document.getElementById('export-btn')!.classList.remove('hidden');
+
+    document.getElementById('stat-valid')!.textContent = String(validCount);
+    document.getElementById('stat-invalid')!.textContent = String(invalidCount);
+    document.getElementById('stat-risky')!.textContent = String(riskyCount);
+    document.getElementById('stat-dupes')!.textContent = String(dupeCount);
+
+    const total = allResults.length;
+    const qualityScore = Math.round(((validCount / total) * 100));
+    const bounceEst = (invalidCount / total) * 100;
+
+    const scoreEl = document.getElementById('quality-score')!;
+    const barEl = document.getElementById('quality-bar') as HTMLElement;
+    const boxEl = document.getElementById('quality-box')!;
+    const adviceEl = document.getElementById('quality-advice')!;
+
+    scoreEl.textContent = `${qualityScore}%`;
+    barEl.style.width = `${qualityScore}%`;
+    document.getElementById('bounce-estimate')!.textContent = `~${bounceEst.toFixed(1)}%`;
+
+    if (qualityScore >= 85) {
+      scoreEl.className = 'text-3xl font-bold text-green-600';
+      barEl.className = 'h-3 rounded-full transition-all duration-700 bg-green-500';
+      boxEl.className = 'mt-4 p-4 rounded-lg border border-green-200 bg-green-50';
+      adviceEl.textContent = 'Excellent list quality. Safe to send with minimal bounce risk. Re-verify monthly to maintain quality.';
+    } else if (qualityScore >= 70) {
+      scoreEl.className = 'text-3xl font-bold text-yellow-600';
+      barEl.className = 'h-3 rounded-full transition-all duration-700 bg-yellow-500';
+      boxEl.className = 'mt-4 p-4 rounded-lg border border-yellow-200 bg-yellow-50';
+      adviceEl.textContent = 'Moderate list quality. Remove invalid addresses and review risky ones before sending. Consider SMTP verification for risky addresses.';
+    } else {
+      scoreEl.className = 'text-3xl font-bold text-red-600';
+      barEl.className = 'h-3 rounded-full transition-all duration-700 bg-red-500';
+      boxEl.className = 'mt-4 p-4 rounded-lg border border-red-200 bg-red-50';
+      adviceEl.textContent = 'Poor list quality. This list will cause significant bounces and damage your sender reputation. Clean thoroughly before sending.';
+    }
+
+    renderResults('all');
+  });
+
+  document.getElementById('clear-btn')?.addEventListener('click', () => {
+    (document.getElementById('email-list') as HTMLTextAreaElement).value = '';
+    document.getElementById('summary')!.classList.add('hidden');
+    document.getElementById('detail-results')!.classList.add('hidden');
+    document.getElementById('export-btn')!.classList.add('hidden');
+    allResults = [];
+    updateCount();
+  });
+
+  document.getElementById('export-btn')?.addEventListener('click', () => {
+    if (allResults.length === 0) return;
+    const csv = 'Email,Status,Reasons,Suggestion\n' + allResults.map(r =>
+      `"${r.email}","${r.status}","${r.reasons.join('; ')}","${r.suggestion || ''}"`
+    ).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'email-validation-results.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const filter = (e.target as HTMLElement).dataset.filter || 'all';
+      renderResults(filter);
+    });
+  });
+</script>

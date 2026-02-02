@@ -1,0 +1,205 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Brand Pitch Email Generator",
+  "applicationCategory": "BusinessApplication",
+  "description": "Generate personalized sponsorship pitch emails based on the brand and your creator profile.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Brand Pitch Email Generator | Find Sponsorship Opportunities"
+  description="Free tool: generate personalized sponsorship pitch emails to send to brands based on your creator profile and the brand you're targeting."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Brand Pitch Email Generator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Fill in the details about yourself and the brand you want to pitch. We&rsquo;ll generate a personalized sponsorship email you can send today.
+    </p>
+
+    <div class="mt-10 space-y-6">
+      <div class="p-6 border border-gray-200 rounded-lg bg-white">
+        <h2 class="text-lg font-semibold text-gray-900">About You</h2>
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="your-name" class="block text-sm font-medium text-gray-700">Your name</label>
+            <input type="text" id="your-name" placeholder="Jane Doe" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="channel-name" class="block text-sm font-medium text-gray-700">Channel / brand name</label>
+            <input type="text" id="channel-name" placeholder="TechReview Weekly" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="your-platform" class="block text-sm font-medium text-gray-700">Platform</label>
+            <select id="your-platform" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+              <option value="YouTube channel">YouTube</option>
+              <option value="Instagram account">Instagram</option>
+              <option value="TikTok account">TikTok</option>
+              <option value="podcast">Podcast</option>
+              <option value="newsletter">Newsletter</option>
+              <option value="Twitter/X account">Twitter / X</option>
+            </select>
+          </div>
+          <div>
+            <label for="your-audience" class="block text-sm font-medium text-gray-700">Audience size</label>
+            <input type="text" id="your-audience" placeholder="25,000 subscribers" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="your-niche" class="block text-sm font-medium text-gray-700">Your niche</label>
+            <input type="text" id="your-niche" placeholder="B2B SaaS tools for startups" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="your-metric" class="block text-sm font-medium text-gray-700">Best metric</label>
+            <input type="text" id="your-metric" placeholder="5.2% engagement rate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 border border-gray-200 rounded-lg bg-white">
+        <h2 class="text-lg font-semibold text-gray-900">About the Brand</h2>
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="brand-name" class="block text-sm font-medium text-gray-700">Brand name</label>
+            <input type="text" id="brand-name" placeholder="Notion" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="contact-name" class="block text-sm font-medium text-gray-700">Contact first name</label>
+            <input type="text" id="contact-name" placeholder="Sarah" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="brand-context" class="block text-sm font-medium text-gray-700">Something specific about the brand (recent launch, campaign, feature)</label>
+            <input type="text" id="brand-context" placeholder="e.g., just launched their new AI features for teams" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+        </div>
+      </div>
+
+      <div class="p-6 border border-gray-200 rounded-lg bg-white">
+        <h2 class="text-lg font-semibold text-gray-900">Pitch Style</h2>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <label class="flex items-center gap-2">
+            <input type="radio" name="style" value="standard" checked class="text-blue-600" />
+            <span class="text-sm">Standard pitch</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="style" value="data" class="text-blue-600" />
+            <span class="text-sm">Data-led pitch</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="radio" name="style" value="fan" class="text-blue-600" />
+            <span class="text-sm">Existing fan pitch</span>
+          </label>
+        </div>
+      </div>
+
+      <button id="generate-btn" class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+        Generate Pitch Email
+      </button>
+
+      <div id="output" class="hidden">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-lg font-semibold text-gray-900">Your Pitch Email</h2>
+          <button id="copy-btn" class="text-sm text-blue-600 hover:text-blue-800 font-medium">Copy to clipboard</button>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <p class="text-xs text-gray-500 mb-2">Subject line:</p>
+          <p id="subject-line" class="font-semibold text-gray-900 mb-4"></p>
+          <p class="text-xs text-gray-500 mb-2">Email body:</p>
+          <div id="email-body" class="text-sm leading-relaxed whitespace-pre-wrap"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Send sponsorship pitches at scale</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> automates personalized cold email outreach with follow-up sequences — perfect for pitching multiple brands efficiently.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Scale outreach with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.getElementById('generate-btn')?.addEventListener('click', () => {
+    const yourName = (document.getElementById('your-name') as HTMLInputElement).value || 'Your Name';
+    const channelName = (document.getElementById('channel-name') as HTMLInputElement).value || 'Your Channel';
+    const platform = (document.getElementById('your-platform') as HTMLSelectElement).value;
+    const audience = (document.getElementById('your-audience') as HTMLInputElement).value || '10,000 subscribers';
+    const niche = (document.getElementById('your-niche') as HTMLInputElement).value || 'your niche';
+    const metric = (document.getElementById('your-metric') as HTMLInputElement).value || 'strong engagement';
+    const brandName = (document.getElementById('brand-name') as HTMLInputElement).value || 'Your Brand';
+    const contactName = (document.getElementById('contact-name') as HTMLInputElement).value || 'there';
+    const brandContext = (document.getElementById('brand-context') as HTMLInputElement).value || 'your recent marketing initiatives';
+    const style = (document.querySelector('input[name="style"]:checked') as HTMLInputElement).value;
+
+    let subject = '';
+    let body = '';
+
+    if (style === 'standard') {
+      subject = `${brandName} × ${channelName} — quick partnership idea`;
+      body = `Hi ${contactName},
+
+I noticed ${brandName}'s ${brandContext} — really well done. The positioning resonated with me because it aligns closely with what my audience cares about.
+
+I run ${channelName}, a ${platform} covering ${niche}. We have ${audience} with ${metric}, and our audience is primarily professionals actively evaluating tools and solutions in this space.
+
+I'd love to feature ${brandName} in an integrated segment within my upcoming content. I think a genuine walkthrough of how ${brandName} solves [specific problem] would resonate naturally with my audience.
+
+I've attached my media kit with full audience data and sponsorship packages. Would you be open to a quick 15-minute call this week to discuss?
+
+Best,
+${yourName}`;
+    } else if (style === 'data') {
+      subject = `My audience matches ${brandName}'s target customer — quick idea`;
+      body = `Hi ${contactName},
+
+I run ${channelName}, a ${platform} covering ${niche} with ${audience}. Here's why I think ${brandName} would resonate with my audience:
+
+• ${metric}
+• Audience is primarily professionals evaluating solutions in ${brandName}'s category
+• Recent content in this space has generated strong engagement and click-through
+
+I'd love to feature ${brandName} in a dedicated segment. My audience is actively interested in products like yours, and I can share specific audience survey data that demonstrates the fit.
+
+Happy to send over my full media kit and jump on a quick call. Worth 15 minutes?
+
+Best,
+${yourName}`;
+    } else {
+      subject = `I've been recommending ${brandName} to my audience — let's make it official`;
+      body = `Hi ${contactName},
+
+I've been a genuine fan of ${brandName} and have recommended it to my audience multiple times already. ${brandContext ? `I was especially impressed by ${brandContext}.` : ''}
+
+Since I'm already driving awareness organically, I'd love to explore a formal sponsorship partnership. I run ${channelName}, a ${platform} covering ${niche} with ${audience} and ${metric}.
+
+A sponsored integration would let me go deeper — creating dedicated content that properly showcases ${brandName}'s value to my audience.
+
+I've attached my media kit. Would you be open to discussing a partnership?
+
+Best,
+${yourName}`;
+    }
+
+    document.getElementById('output')!.classList.remove('hidden');
+    document.getElementById('subject-line')!.textContent = subject;
+    document.getElementById('email-body')!.textContent = body;
+
+    const fullText = `Subject: ${subject}\n\n${body}`;
+    document.getElementById('copy-btn')?.addEventListener('click', () => {
+      navigator.clipboard.writeText(fullText).then(() => {
+        const btn = document.getElementById('copy-btn')!;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy to clipboard', 2000);
+      });
+    });
+  });
+</script>

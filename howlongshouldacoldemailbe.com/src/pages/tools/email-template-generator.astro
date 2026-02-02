@@ -1,0 +1,208 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Cold Email Template Generator",
+  "applicationCategory": "BusinessApplication",
+  "description": "Generate optimally-lengthed cold email templates based on your industry and value proposition.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Cold Email Template Generator | How Long Should a Cold Email Be"
+  description="Free tool: generate optimally-lengthed cold email templates based on your industry, target persona, and value proposition."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Cold Email Template Generator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Fill in your details and we'll generate cold email templates at the optimal 50–125 word length.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-4">
+        <div>
+          <label for="your-company" class="block text-sm font-medium text-gray-700">Your company name</label>
+          <input type="text" id="your-company" placeholder="e.g. Sales.co" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+        <div>
+          <label for="value-prop" class="block text-sm font-medium text-gray-700">What do you do? (one sentence)</label>
+          <input type="text" id="value-prop" placeholder="e.g. We help B2B sales teams book 3x more meetings with AI cold email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+        <div>
+          <label for="target-persona" class="block text-sm font-medium text-gray-700">Target persona</label>
+          <select id="target-persona" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="vp-sales">VP of Sales</option>
+            <option value="head-marketing">Head of Marketing</option>
+            <option value="founder">Founder / CEO</option>
+            <option value="director-ops">Director of Operations</option>
+            <option value="head-growth">Head of Growth</option>
+            <option value="cto">CTO / Tech Lead</option>
+          </select>
+        </div>
+        <div>
+          <label for="social-proof" class="block text-sm font-medium text-gray-700">Social proof (optional)</label>
+          <input type="text" id="social-proof" placeholder="e.g. Helped 200+ SaaS companies, 4.8 star rating on G2" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+        </div>
+        <div>
+          <label for="formula" class="block text-sm font-medium text-gray-700">Email formula</label>
+          <select id="formula" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="observation">Observation + Question (4.2% reply rate)</option>
+            <option value="data-drop">Data Drop (3.9% reply rate)</option>
+            <option value="before-after">Before/After (3.7% reply rate)</option>
+            <option value="permission">Permission-Based (3.2% reply rate)</option>
+          </select>
+        </div>
+
+        <button id="generate-btn" class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+          Generate Templates
+        </button>
+      </div>
+
+      <div id="results" class="mt-8 hidden">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Generated Templates</h2>
+        <div id="template-list" class="space-y-6"></div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Want AI-personalized cold emails at scale?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> generates personalized cold emails for each prospect — at the optimal length, with proven formulas, automatically.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Try {siteConfig.product.name} free &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>About These Templates</h2>
+      <p>
+        Each template is generated using proven cold email formulas that produce 3%+ reply rates. Templates are structured at the optimal 50–125 word length with 3–5 sentences, 2–3 paragraphs, and one clear CTA. Customize the bracketed placeholders for each prospect.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  interface Template {
+    subject: string;
+    body: string;
+    wordCount: number;
+    formula: string;
+  }
+
+  function generateTemplates(): void {
+    const company = (document.getElementById('your-company') as HTMLInputElement).value.trim() || '[Your Company]';
+    const valueProp = (document.getElementById('value-prop') as HTMLInputElement).value.trim() || 'help companies improve their operations';
+    const persona = (document.getElementById('target-persona') as HTMLSelectElement).value;
+    const socialProof = (document.getElementById('social-proof') as HTMLInputElement).value.trim();
+    const formula = (document.getElementById('formula') as HTMLSelectElement).value;
+
+    const personaTitles: Record<string, string> = {
+      'vp-sales': 'VP of Sales',
+      'head-marketing': 'Head of Marketing',
+      'founder': 'Founder',
+      'director-ops': 'Director of Operations',
+      'head-growth': 'Head of Growth',
+      'cto': 'CTO',
+    };
+    const title = personaTitles[persona] || 'leader';
+
+    const proofLine = socialProof ? socialProof : `trusted by 200+ companies`;
+
+    const templates: Template[] = [];
+
+    if (formula === 'observation' || formula === 'all') {
+      templates.push({
+        subject: `Quick question about [Company]'s [relevant area]`,
+        body: `Hi [Name],\n\nNoticed [Company] recently [specific observation — e.g., posted 3 new SDR roles on LinkedIn]. When teams grow that fast, [relevant challenge] usually becomes the bottleneck.\n\nWe ${valueProp} — ${proofLine}.\n\nCurious how you're handling this at [Company]?`,
+        wordCount: 45,
+        formula: 'Observation + Question',
+      });
+      templates.push({
+        subject: `[Name], saw [Company]'s recent [trigger event]`,
+        body: `Hi [Name],\n\nSaw that [Company] [specific trigger event]. When ${title}s at similar companies hit this stage, they typically struggle with [relevant pain point].\n\nAt ${company}, we ${valueProp}. [Similar company] saw [specific result] within [timeframe] of working with us.\n\nWorth a quick chat about how we could help?`,
+        wordCount: 55,
+        formula: 'Observation + Question',
+      });
+    }
+
+    if (formula === 'data-drop' || formula === 'all') {
+      templates.push({
+        subject: `[Stat] of [persona type]s are doing this wrong`,
+        body: `Hi [Name],\n\n[X%] of companies at [Company]'s stage [surprising data point related to your solution]. That usually costs [specific impact — e.g., 10+ hours per week or $X,000/month].\n\nWe built ${company} to fix exactly this. ${proofLine.charAt(0).toUpperCase() + proofLine.slice(1)}.\n\nOpen to a 15-minute look?`,
+        wordCount: 50,
+        formula: 'Data Drop',
+      });
+    }
+
+    if (formula === 'before-after' || formula === 'all') {
+      templates.push({
+        subject: `How [Similar Company] fixed [problem]`,
+        body: `Hi [Name],\n\nMost ${title}s at [Company]'s stage spend [time/resource] on [manual process]. It's the highest-cost, lowest-leverage activity on the team.\n\n${company} customers automate that entirely. [Similar company] [specific result] while cutting [specific metric] by [percentage].\n\nInterested in seeing how that works?`,
+        wordCount: 52,
+        formula: 'Before/After',
+      });
+    }
+
+    if (formula === 'permission' || formula === 'all') {
+      templates.push({
+        subject: `Idea for [Company]`,
+        body: `Hi [Name],\n\nI have an idea for how [Company] could [specific benefit based on value prop].\n\nWould it be worth sharing in a 10-minute call this week?`,
+        wordCount: 30,
+        formula: 'Permission-Based',
+      });
+      templates.push({
+        subject: `Quick thought on [Company]'s [area]`,
+        body: `Hi [Name],\n\nBased on what I've seen about [Company], I think there's a way to [specific improvement tied to value prop] without [common objection — e.g., adding headcount or changing your existing stack].\n\nWorth 10 minutes to discuss?`,
+        wordCount: 38,
+        formula: 'Permission-Based',
+      });
+    }
+
+    const list = document.getElementById('template-list')!;
+    list.innerHTML = templates.map((t, i) => `
+      <div class="p-5 border border-gray-200 rounded-lg">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">${t.formula}</span>
+          <button class="copy-btn text-xs text-gray-500 hover:text-gray-700" data-index="${i}">Copy to clipboard</button>
+        </div>
+        <div class="mb-2">
+          <span class="text-xs font-medium text-gray-500">Subject:</span>
+          <p class="text-sm font-semibold text-gray-900">${t.subject}</p>
+        </div>
+        <div class="p-4 bg-gray-50 rounded-md">
+          <pre class="text-sm text-gray-700 whitespace-pre-wrap font-sans">${t.body}</pre>
+        </div>
+        <div class="mt-2 flex items-center gap-4 text-xs text-gray-400">
+          <span>~${t.body.split(/\s+/).length} words</span>
+          <span>${t.body.split(/[.!?]+/).filter(s => s.trim()).length} sentences</span>
+          <span>${t.body.split(/\n\s*\n/).filter(p => p.trim()).length} paragraphs</span>
+        </div>
+      </div>
+    `).join('');
+
+    // Copy handlers
+    list.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt((btn as HTMLElement).dataset.index || '0');
+        const template = templates[idx];
+        const fullText = `Subject: ${template.subject}\n\n${template.body}`;
+        navigator.clipboard.writeText(fullText).then(() => {
+          const orig = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = orig; }, 1500);
+        });
+      });
+    });
+
+    document.getElementById('results')!.classList.remove('hidden');
+  }
+
+  document.getElementById('generate-btn')?.addEventListener('click', generateTemplates);
+</script>

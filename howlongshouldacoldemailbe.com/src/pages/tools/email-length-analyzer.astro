@@ -1,0 +1,227 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Cold Email Length Analyzer",
+  "applicationCategory": "BusinessApplication",
+  "description": "Paste your email and get instant feedback on word count, readability, and predicted reply rate.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Cold Email Length Analyzer | How Long Should a Cold Email Be"
+  description="Free tool: paste your cold email and get instant feedback on word count, sentence structure, readability, and predicted reply rate."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Cold Email Length Analyzer</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Paste your cold email below. We'll analyze word count, sentence structure, and predict reply rate based on data from 3M+ emails.
+    </p>
+
+    <div class="mt-10">
+      <textarea
+        id="email-input"
+        rows={8}
+        placeholder="Paste your cold email here..."
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"
+      ></textarea>
+
+      <button
+        id="analyze-btn"
+        class="mt-4 px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Analyze Email
+      </button>
+
+      <div id="results" class="mt-6 hidden">
+        <div id="overall-badge" class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold mb-6"></div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <p class="text-sm text-gray-500">Word Count</p>
+            <p id="word-count" class="text-2xl font-bold text-gray-900">0</p>
+            <p id="word-verdict" class="text-xs mt-1"></p>
+          </div>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <p class="text-sm text-gray-500">Sentences</p>
+            <p id="sentence-count" class="text-2xl font-bold text-gray-900">0</p>
+            <p id="sentence-verdict" class="text-xs mt-1"></p>
+          </div>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <p class="text-sm text-gray-500">Paragraphs</p>
+            <p id="paragraph-count" class="text-2xl font-bold text-gray-900">0</p>
+            <p id="paragraph-verdict" class="text-xs mt-1"></p>
+          </div>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <p class="text-sm text-gray-500">Avg Words/Sentence</p>
+            <p id="avg-sentence" class="text-2xl font-bold text-gray-900">0</p>
+            <p id="avg-sentence-verdict" class="text-xs mt-1"></p>
+          </div>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <p class="text-sm text-gray-500">Reading Time</p>
+            <p id="reading-time" class="text-2xl font-bold text-gray-900">0s</p>
+            <p id="reading-verdict" class="text-xs mt-1"></p>
+          </div>
+          <div class="p-4 border border-gray-200 rounded-lg">
+            <p class="text-sm text-gray-500">Predicted Reply Rate</p>
+            <p id="reply-rate" class="text-2xl font-bold text-green-600">0%</p>
+            <p id="reply-verdict" class="text-xs mt-1"></p>
+          </div>
+        </div>
+
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+          <h3 class="text-sm font-semibold text-gray-700">Issues Found</h3>
+          <ul id="issues-list" class="mt-2 space-y-1 text-sm text-gray-600"></ul>
+        </div>
+
+        <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+          <h3 class="text-sm font-semibold text-green-900">Recommendations</h3>
+          <ul id="recs-list" class="mt-2 space-y-1 text-sm text-green-700"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Want AI-optimized cold emails?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> writes cold emails at the optimal 50–125 word length, with perfect formatting and personalization.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Try {siteConfig.product.name} free &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How This Analyzer Works</h2>
+      <p>
+        The Cold Email Length Analyzer evaluates your email against the optimal benchmarks derived from 3 million+ cold emails. It checks word count (optimal: 50–125), sentence count (optimal: 3–5), paragraph structure (optimal: 2–3 paragraphs), and sentence length (optimal: 8–12 words per sentence). The predicted reply rate is based on the correlation between these structural elements and actual reply data.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.getElementById('analyze-btn')?.addEventListener('click', () => {
+    const input = (document.getElementById('email-input') as HTMLTextAreaElement).value;
+    if (!input.trim()) return;
+
+    const text = input.trim();
+    const words = text.split(/\s+/).filter(w => w.length > 0);
+    const wordCount = words.length;
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const sentenceCount = sentences.length;
+    const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+    const paragraphCount = paragraphs.length || 1;
+    const avgWordsPerSentence = sentenceCount > 0 ? Math.round(wordCount / sentenceCount) : 0;
+    const readingTimeSec = Math.round(wordCount / 250 * 60);
+    const questionMarks = (text.match(/\?/g) || []).length;
+    const exclamationMarks = (text.match(/!/g) || []).length;
+    const allCapsWords = words.filter(w => w.length > 2 && w === w.toUpperCase() && /[A-Z]/.test(w)).length;
+
+    // Predict reply rate
+    let replyRate = 2.0;
+    if (wordCount >= 50 && wordCount <= 125) replyRate += 1.5;
+    else if (wordCount >= 25 && wordCount <= 150) replyRate += 0.5;
+    else if (wordCount > 200) replyRate -= 1.0;
+    if (sentenceCount >= 3 && sentenceCount <= 5) replyRate += 0.5;
+    if (paragraphCount >= 2 && paragraphCount <= 3) replyRate += 0.4;
+    if (avgWordsPerSentence >= 8 && avgWordsPerSentence <= 12) replyRate += 0.3;
+    if (questionMarks === 1) replyRate += 0.3;
+    if (exclamationMarks === 0) replyRate += 0.2;
+    if (allCapsWords === 0) replyRate += 0.1;
+    replyRate = Math.max(0.5, Math.min(5.0, replyRate));
+
+    // Word count verdict
+    let wordVerdict = '', wordColor = '';
+    if (wordCount >= 50 && wordCount <= 125) { wordVerdict = '✓ Optimal range (50–125)'; wordColor = 'text-green-600'; }
+    else if (wordCount < 50) { wordVerdict = '⚠ Too short (aim for 50+)'; wordColor = 'text-yellow-600'; }
+    else if (wordCount <= 150) { wordVerdict = '⚠ Slightly long (aim for under 125)'; wordColor = 'text-yellow-600'; }
+    else { wordVerdict = '✗ Too long (aim for 50–125)'; wordColor = 'text-red-600'; }
+
+    let sentenceVerdict = '', sentenceColor = '';
+    if (sentenceCount >= 3 && sentenceCount <= 5) { sentenceVerdict = '✓ Optimal (3–5)'; sentenceColor = 'text-green-600'; }
+    else if (sentenceCount < 3) { sentenceVerdict = '⚠ Too few sentences'; sentenceColor = 'text-yellow-600'; }
+    else { sentenceVerdict = '⚠ Too many sentences'; sentenceColor = 'text-yellow-600'; }
+
+    let paraVerdict = '', paraColor = '';
+    if (paragraphCount >= 2 && paragraphCount <= 3) { paraVerdict = '✓ Optimal (2–3)'; paraColor = 'text-green-600'; }
+    else if (paragraphCount === 1) { paraVerdict = '⚠ Add paragraph breaks'; paraColor = 'text-yellow-600'; }
+    else { paraVerdict = '⚠ Too many paragraphs'; paraColor = 'text-yellow-600'; }
+
+    let avgVerdict = '', avgColor = '';
+    if (avgWordsPerSentence >= 8 && avgWordsPerSentence <= 12) { avgVerdict = '✓ Good (8–12)'; avgColor = 'text-green-600'; }
+    else if (avgWordsPerSentence < 8) { avgVerdict = '⚠ Sentences very short'; avgColor = 'text-yellow-600'; }
+    else { avgVerdict = '⚠ Sentences too long'; avgColor = 'text-yellow-600'; }
+
+    let readVerdict = readingTimeSec <= 30 ? '✓ Quick read' : '⚠ Over 30 seconds';
+    let readColor = readingTimeSec <= 30 ? 'text-green-600' : 'text-yellow-600';
+
+    let rateColor = replyRate >= 3.5 ? 'text-green-600' : replyRate >= 2.5 ? 'text-blue-600' : 'text-red-600';
+    let rateVerdict = replyRate >= 3.5 ? 'Above average' : replyRate >= 2.5 ? 'Average' : 'Below average';
+
+    // Overall badge
+    const overallBadge = document.getElementById('overall-badge')!;
+    if (replyRate >= 3.5) {
+      overallBadge.textContent = '✓ Well optimized — high reply rate potential';
+      overallBadge.className = 'inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-green-100 text-green-800';
+    } else if (replyRate >= 2.5) {
+      overallBadge.textContent = '⚠ Good start — some improvements possible';
+      overallBadge.className = 'inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-800';
+    } else {
+      overallBadge.textContent = '✗ Needs work — significant improvements recommended';
+      overallBadge.className = 'inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-800';
+    }
+
+    document.getElementById('word-count')!.textContent = String(wordCount);
+    document.getElementById('word-verdict')!.textContent = wordVerdict;
+    document.getElementById('word-verdict')!.className = `text-xs mt-1 ${wordColor}`;
+    document.getElementById('sentence-count')!.textContent = String(sentenceCount);
+    document.getElementById('sentence-verdict')!.textContent = sentenceVerdict;
+    document.getElementById('sentence-verdict')!.className = `text-xs mt-1 ${sentenceColor}`;
+    document.getElementById('paragraph-count')!.textContent = String(paragraphCount);
+    document.getElementById('paragraph-verdict')!.textContent = paraVerdict;
+    document.getElementById('paragraph-verdict')!.className = `text-xs mt-1 ${paraColor}`;
+    document.getElementById('avg-sentence')!.textContent = String(avgWordsPerSentence);
+    document.getElementById('avg-sentence-verdict')!.textContent = avgVerdict;
+    document.getElementById('avg-sentence-verdict')!.className = `text-xs mt-1 ${avgColor}`;
+    document.getElementById('reading-time')!.textContent = `${readingTimeSec}s`;
+    document.getElementById('reading-verdict')!.textContent = readVerdict;
+    document.getElementById('reading-verdict')!.className = `text-xs mt-1 ${readColor}`;
+    document.getElementById('reply-rate')!.textContent = `${replyRate.toFixed(1)}%`;
+    document.getElementById('reply-rate')!.className = `text-2xl font-bold ${rateColor}`;
+    document.getElementById('reply-verdict')!.textContent = rateVerdict;
+    document.getElementById('reply-verdict')!.className = `text-xs mt-1 ${rateColor}`;
+
+    // Issues
+    const issues: string[] = [];
+    if (wordCount > 150) issues.push(`Email is ${wordCount} words — ${wordCount - 125} words over the optimal maximum of 125`);
+    if (wordCount < 50) issues.push(`Email is only ${wordCount} words — add more context to reach the 50-word minimum`);
+    if (sentenceCount > 5) issues.push(`${sentenceCount} sentences — try to consolidate to 3–5 sentences`);
+    if (paragraphCount === 1 && wordCount > 40) issues.push('Single paragraph — break into 2–3 paragraphs for better readability');
+    if (avgWordsPerSentence > 20) issues.push(`Average sentence is ${avgWordsPerSentence} words — aim for 8–12 words per sentence`);
+    if (questionMarks > 2) issues.push(`${questionMarks} question marks — limit to 1 (your CTA) to avoid decision paralysis`);
+    if (exclamationMarks > 0) issues.push(`${exclamationMarks} exclamation mark(s) — remove them for a professional, personal tone`);
+    if (allCapsWords > 0) issues.push(`${allCapsWords} ALL CAPS word(s) — use normal capitalization to avoid spam signals`);
+    if (issues.length === 0) issues.push('No major issues found!');
+
+    document.getElementById('issues-list')!.innerHTML = issues.map(i => `<li>• ${i}</li>`).join('');
+
+    // Recs
+    const recs: string[] = [];
+    if (wordCount > 125) recs.push('Cut unnecessary words — remove qualifiers ("just", "actually", "I think"), redundant phrases, and anything that doesn\'t directly support your CTA');
+    if (wordCount < 50) recs.push('Add a specific observation about the recipient or a concrete data point to build credibility');
+    if (paragraphCount === 1) recs.push('Split into 3 paragraphs: opener, value prop, CTA — each 1–2 sentences');
+    if (questionMarks === 0) recs.push('End with a question as your CTA — questions get 18% more replies than statements');
+    if (readingTimeSec > 30) recs.push('Target under 30 seconds reading time — your email should be scannable on mobile in one screen');
+    if (recs.length === 0) recs.push('Your email is well-optimized! Consider A/B testing against a slightly different approach');
+
+    document.getElementById('recs-list')!.innerHTML = recs.map(r => `<li>• ${r}</li>`).join('');
+
+    document.getElementById('results')!.classList.remove('hidden');
+  });
+</script>

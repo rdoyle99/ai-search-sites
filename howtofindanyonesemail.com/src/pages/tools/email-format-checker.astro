@@ -1,0 +1,232 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Email Format Checker",
+  "applicationCategory": "BusinessApplication",
+  "description": "Check if an email address follows the correct format and syntax before attempting delivery.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Email Format Checker | Find Anyone's Email"
+  description="Free tool: check if an email address has valid syntax, proper formatting, and a real domain structure."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Email Format Checker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Paste an email address or a list of emails to instantly check for formatting issues, syntax errors, and common problems.
+    </p>
+
+    <div class="mt-10">
+      <textarea
+        id="email-input"
+        rows={6}
+        placeholder="Enter one or more email addresses (one per line)&#10;e.g.&#10;jane.doe@acmecorp.com&#10;john@example&#10;invalid@@email.com"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base font-mono"
+      ></textarea>
+
+      <button
+        id="check-btn"
+        class="mt-4 w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Check Format
+      </button>
+
+      <div id="results" class="mt-6 hidden">
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="p-4 bg-green-50 rounded-lg text-center">
+            <p id="valid-count" class="text-2xl font-bold text-green-700">0</p>
+            <p class="text-xs text-green-600">Valid format</p>
+          </div>
+          <div class="p-4 bg-yellow-50 rounded-lg text-center">
+            <p id="warning-count" class="text-2xl font-bold text-yellow-700">0</p>
+            <p class="text-xs text-yellow-600">Warnings</p>
+          </div>
+          <div class="p-4 bg-red-50 rounded-lg text-center">
+            <p id="invalid-count" class="text-2xl font-bold text-red-700">0</p>
+            <p class="text-xs text-red-600">Invalid</p>
+          </div>
+        </div>
+        <div id="email-results" class="space-y-2"></div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need full email verification (not just format)?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> verifies email addresses via SMTP to confirm the mailbox actually exists — not just that the format looks right.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Verify with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>What This Tool Checks</h2>
+      <p>
+        This email format checker validates the <strong>syntax and structure</strong> of an email address. It checks for proper use of the @ symbol, valid domain structure, correct character usage, and common formatting mistakes. It does NOT verify whether the mailbox exists — for that, you need SMTP verification.
+      </p>
+      <h3>Common Format Issues</h3>
+      <ul>
+        <li><strong>Missing @ symbol</strong> — Every email needs exactly one @ separating local part from domain.</li>
+        <li><strong>Missing domain extension</strong> — Domains must include a TLD (.com, .io, .net, etc.).</li>
+        <li><strong>Invalid characters</strong> — Spaces, commas, and most special characters are not allowed.</li>
+        <li><strong>Double dots</strong> — Consecutive dots (e.g., jane..doe@) are invalid per RFC 5321.</li>
+        <li><strong>Role-based addresses</strong> — Addresses like info@, sales@, admin@ are valid but risky for cold outreach.</li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const roleAddresses = ['info', 'sales', 'support', 'admin', 'contact', 'hello', 'help', 'office', 'team', 'hr', 'marketing', 'press', 'media', 'billing', 'noreply', 'no-reply', 'webmaster', 'postmaster', 'abuse'];
+  const disposableDomains = ['mailinator.com', 'guerrillamail.com', 'tempmail.com', 'throwaway.email', 'yopmail.com', 'sharklasers.com', 'guerrillamailblock.com', 'grr.la', 'dispostable.com', '10minutemail.com', 'trashmail.com', 'fakeinbox.com'];
+  const freeProviders = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com', 'mail.com', 'protonmail.com', 'zoho.com', 'yandex.com'];
+
+  interface CheckResult {
+    email: string;
+    status: 'valid' | 'warning' | 'invalid';
+    issues: string[];
+  }
+
+  function checkEmail(email: string): CheckResult {
+    const trimmed = email.trim().toLowerCase();
+    const issues: string[] = [];
+    let status: 'valid' | 'warning' | 'invalid' = 'valid';
+
+    // Basic checks
+    if (!trimmed.includes('@')) {
+      return { email: trimmed, status: 'invalid', issues: ['Missing @ symbol'] };
+    }
+
+    const parts = trimmed.split('@');
+    if (parts.length !== 2) {
+      return { email: trimmed, status: 'invalid', issues: ['Multiple @ symbols found'] };
+    }
+
+    const [local, domain] = parts;
+
+    if (!local) {
+      return { email: trimmed, status: 'invalid', issues: ['Missing local part (before @)'] };
+    }
+
+    if (!domain) {
+      return { email: trimmed, status: 'invalid', issues: ['Missing domain (after @)'] };
+    }
+
+    if (!domain.includes('.')) {
+      return { email: trimmed, status: 'invalid', issues: ['Domain missing extension (.com, .io, etc.)'] };
+    }
+
+    const tld = domain.split('.').pop() || '';
+    if (tld.length < 2) {
+      issues.push('Domain extension too short');
+      status = 'invalid';
+    }
+
+    if (/\s/.test(trimmed)) {
+      issues.push('Contains spaces');
+      status = 'invalid';
+    }
+
+    if (/\.\./.test(trimmed)) {
+      issues.push('Contains consecutive dots (..)');
+      status = 'invalid';
+    }
+
+    if (local.startsWith('.') || local.endsWith('.')) {
+      issues.push('Local part starts or ends with a dot');
+      status = 'invalid';
+    }
+
+    if (/[^a-z0-9.!#$%&'*+/=?^_`{|}~-]/.test(local)) {
+      issues.push('Local part contains invalid characters');
+      status = 'invalid';
+    }
+
+    if (/[^a-z0-9.-]/.test(domain)) {
+      issues.push('Domain contains invalid characters');
+      status = 'invalid';
+    }
+
+    if (local.length > 64) {
+      issues.push('Local part exceeds 64 characters');
+      status = 'invalid';
+    }
+
+    if (trimmed.length > 254) {
+      issues.push('Total length exceeds 254 characters');
+      status = 'invalid';
+    }
+
+    // Warnings (valid format but potential issues)
+    if (status !== 'invalid') {
+      if (roleAddresses.includes(local)) {
+        issues.push('Role-based address — high spam complaint risk for cold outreach');
+        status = 'warning';
+      }
+
+      if (disposableDomains.includes(domain)) {
+        issues.push('Disposable/temporary email domain');
+        status = 'warning';
+      }
+
+      if (freeProviders.includes(domain)) {
+        issues.push('Free email provider — may not be a business address');
+        status = 'warning';
+      }
+
+      if (local.length < 2) {
+        issues.push('Very short local part — uncommon for business email');
+        status = 'warning';
+      }
+    }
+
+    if (issues.length === 0) {
+      issues.push('Valid email format');
+    }
+
+    return { email: trimmed, status, issues };
+  }
+
+  document.getElementById('check-btn')?.addEventListener('click', () => {
+    const input = (document.getElementById('email-input') as HTMLTextAreaElement).value;
+    const emails = input.split('\n').map(e => e.trim()).filter(e => e.length > 0);
+
+    if (emails.length === 0) return;
+
+    const results = emails.map(checkEmail);
+    const valid = results.filter(r => r.status === 'valid').length;
+    const warnings = results.filter(r => r.status === 'warning').length;
+    const invalid = results.filter(r => r.status === 'invalid').length;
+
+    document.getElementById('results')!.classList.remove('hidden');
+    document.getElementById('valid-count')!.textContent = String(valid);
+    document.getElementById('warning-count')!.textContent = String(warnings);
+    document.getElementById('invalid-count')!.textContent = String(invalid);
+
+    const colors = { valid: 'bg-green-50 border-green-200', warning: 'bg-yellow-50 border-yellow-200', invalid: 'bg-red-50 border-red-200' };
+    const icons = { valid: '✓', warning: '⚠', invalid: '✗' };
+    const textColors = { valid: 'text-green-700', warning: 'text-yellow-700', invalid: 'text-red-700' };
+
+    document.getElementById('email-results')!.innerHTML = results.map(r => `
+      <div class="p-3 rounded-lg border ${colors[r.status]}">
+        <div class="flex items-start gap-2">
+          <span class="${textColors[r.status]} font-bold">${icons[r.status]}</span>
+          <div>
+            <p class="font-mono text-sm font-medium">${r.email}</p>
+            <div class="mt-1 space-y-0.5">
+              ${r.issues.map(issue => `<p class="text-xs ${textColors[r.status]}">${issue}</p>`).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  });
+</script>

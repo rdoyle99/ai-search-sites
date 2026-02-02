@@ -1,0 +1,338 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Robots.txt Checker",
+  "applicationCategory": "BusinessApplication",
+  "description": "Enter a URL and see what's allowed and blocked by the site's robots.txt for your scraper.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Robots.txt Checker | Is Web Scraping Legal"
+  description="Free tool: analyze any website's robots.txt file to see what's allowed and blocked for scrapers, crawlers, and bots."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Robots.txt Checker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter a robots.txt URL or paste its content directly to analyze what paths are allowed and blocked for different user agents.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Option 1: Paste robots.txt content</label>
+          <textarea
+            id="robots-input"
+            rows="8"
+            placeholder="User-agent: *&#10;Disallow: /private/&#10;Disallow: /api/&#10;Allow: /api/public/&#10;&#10;User-agent: Googlebot&#10;Allow: /&#10;&#10;Sitemap: https://example.com/sitemap.xml"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm font-mono"
+          ></textarea>
+        </div>
+
+        <div class="flex gap-3">
+          <div class="flex-1">
+            <label for="user-agent" class="block text-sm font-medium text-gray-700">Your user-agent</label>
+            <select id="user-agent" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+              <option value="*">* (Any bot)</option>
+              <option value="Googlebot">Googlebot</option>
+              <option value="Bingbot">Bingbot</option>
+              <option value="GPTBot">GPTBot (OpenAI)</option>
+              <option value="ChatGPT-User">ChatGPT-User</option>
+              <option value="Google-Extended">Google-Extended (Gemini)</option>
+              <option value="ClaudeBot">ClaudeBot (Anthropic)</option>
+              <option value="CCBot">CCBot (Common Crawl)</option>
+              <option value="Slurp">Slurp (Yahoo)</option>
+              <option value="DuckDuckBot">DuckDuckBot</option>
+              <option value="Applebot">Applebot</option>
+              <option value="custom">Custom...</option>
+            </select>
+            <input
+              type="text"
+              id="custom-ua"
+              placeholder="Enter custom user-agent"
+              class="mt-2 hidden w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm"
+            />
+          </div>
+          <div class="flex-1">
+            <label for="test-path" class="block text-sm font-medium text-gray-700">Test a specific path</label>
+            <input
+              type="text"
+              id="test-path"
+              placeholder="/products/data"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+        </div>
+
+        <button
+          id="analyze-btn"
+          class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+        >
+          Analyze Robots.txt
+        </button>
+      </div>
+
+      <div id="results" class="mt-6 hidden">
+        <div id="path-test-result" class="hidden mb-4 p-4 rounded-lg">
+          <div class="flex items-center gap-3">
+            <span id="path-icon" class="text-3xl"></span>
+            <div>
+              <p id="path-status" class="text-lg font-bold"></p>
+              <p id="path-detail" class="text-sm text-gray-600"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="p-4 bg-green-50 rounded-lg text-center">
+            <p class="text-sm text-green-600 font-medium">Allowed</p>
+            <p id="stat-allowed" class="text-2xl font-bold text-green-700">0</p>
+          </div>
+          <div class="p-4 bg-red-50 rounded-lg text-center">
+            <p class="text-sm text-red-600 font-medium">Blocked</p>
+            <p id="stat-blocked" class="text-2xl font-bold text-red-700">0</p>
+          </div>
+          <div class="p-4 bg-blue-50 rounded-lg text-center">
+            <p class="text-sm text-blue-600 font-medium">Sitemaps</p>
+            <p id="stat-sitemaps" class="text-2xl font-bold text-blue-700">0</p>
+          </div>
+        </div>
+
+        <div id="ua-sections" class="space-y-4"></div>
+
+        <div id="sitemaps-section" class="mt-4 hidden">
+          <h3 class="text-sm font-semibold text-gray-700 mb-2">Sitemaps</h3>
+          <div id="sitemaps-list" class="space-y-1"></div>
+        </div>
+
+        <div id="ai-bots-section" class="mt-6 p-4 bg-gray-50 rounded-lg">
+          <h3 class="text-sm font-semibold text-gray-700 mb-3">AI Bot Access Summary</h3>
+          <div id="ai-bots-list" class="grid grid-cols-2 gap-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need compliant B2B data?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        Skip the scraping complexity. <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> provides verified B2B contact data collected through compliant methods — no robots.txt headaches required.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Get compliant data from {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How This Tool Works</h2>
+      <p>
+        This tool parses robots.txt content and evaluates access rules for specific user agents. It identifies which paths are explicitly allowed or blocked, detects sitemap declarations, and summarizes AI bot access policies.
+      </p>
+      <p>
+        <strong>robots.txt is a voluntary standard</strong> — it's a request, not a technical barrier. However, respecting robots.txt is considered a legal best practice. Courts have cited robots.txt disregard as evidence of bad faith in scraping lawsuits. From a compliance perspective, always check and respect a website's robots.txt before scraping.
+      </p>
+      <p>
+        The tool checks for common AI crawler user agents (GPTBot, ClaudeBot, Google-Extended, CCBot) and shows whether the site explicitly blocks or allows them, which is increasingly common as sites establish AI training data policies.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  interface Rule {
+    type: 'allow' | 'disallow';
+    path: string;
+    userAgent: string;
+  }
+
+  interface ParsedRobots {
+    rules: Rule[];
+    sitemaps: string[];
+    userAgents: string[];
+  }
+
+  function parseRobotsTxt(content: string): ParsedRobots {
+    const lines = content.split('\n').map(l => l.trim());
+    const rules: Rule[] = [];
+    const sitemaps: string[] = [];
+    const userAgents = new Set<string>();
+    let currentUA = '*';
+
+    for (const line of lines) {
+      if (line.startsWith('#') || line === '') continue;
+
+      const [directive, ...valueParts] = line.split(':');
+      const value = valueParts.join(':').trim();
+      const dir = directive.toLowerCase().trim();
+
+      if (dir === 'user-agent') {
+        currentUA = value;
+        userAgents.add(value);
+      } else if (dir === 'disallow' && value) {
+        rules.push({ type: 'disallow', path: value, userAgent: currentUA });
+      } else if (dir === 'allow' && value) {
+        rules.push({ type: 'allow', path: value, userAgent: currentUA });
+      } else if (dir === 'sitemap') {
+        sitemaps.push(value);
+      }
+    }
+
+    if (userAgents.size === 0) userAgents.add('*');
+
+    return { rules, sitemaps, userAgents: Array.from(userAgents) };
+  }
+
+  function isPathAllowed(rules: Rule[], userAgent: string, path: string): { allowed: boolean; matchedRule: Rule | null } {
+    // Get rules for specific UA and wildcard
+    const applicableRules = rules.filter(r => r.userAgent === userAgent || r.userAgent === '*');
+
+    // Sort by specificity (longer path = more specific)
+    const sorted = [...applicableRules].sort((a, b) => b.path.length - a.path.length);
+
+    for (const rule of sorted) {
+      if (path.startsWith(rule.path) || rule.path === '/' && path === '/') {
+        return { allowed: rule.type === 'allow', matchedRule: rule };
+      }
+    }
+
+    // Default: allowed if no matching rule
+    return { allowed: true, matchedRule: null };
+  }
+
+  const aiBots = ['GPTBot', 'ChatGPT-User', 'Google-Extended', 'ClaudeBot', 'CCBot', 'Applebot'];
+
+  document.getElementById('user-agent')?.addEventListener('change', (e) => {
+    const val = (e.target as HTMLSelectElement).value;
+    const customInput = document.getElementById('custom-ua')!;
+    if (val === 'custom') {
+      customInput.classList.remove('hidden');
+    } else {
+      customInput.classList.add('hidden');
+    }
+  });
+
+  document.getElementById('analyze-btn')?.addEventListener('click', () => {
+    const content = (document.getElementById('robots-input') as HTMLTextAreaElement).value;
+    if (!content.trim()) return;
+
+    const parsed = parseRobotsTxt(content);
+    const uaSelect = document.getElementById('user-agent') as HTMLSelectElement;
+    const userAgent = uaSelect.value === 'custom'
+      ? (document.getElementById('custom-ua') as HTMLInputElement).value || '*'
+      : uaSelect.value;
+    const testPath = (document.getElementById('test-path') as HTMLInputElement).value;
+
+    const resultsEl = document.getElementById('results')!;
+    resultsEl.classList.remove('hidden');
+
+    // Path test
+    const pathTestEl = document.getElementById('path-test-result')!;
+    if (testPath) {
+      const result = isPathAllowed(parsed.rules, userAgent, testPath);
+      pathTestEl.classList.remove('hidden');
+      if (result.allowed) {
+        pathTestEl.className = 'mb-4 p-4 rounded-lg bg-green-50 border border-green-200';
+        document.getElementById('path-icon')!.textContent = '✅';
+        document.getElementById('path-status')!.textContent = `${testPath} is ALLOWED for ${userAgent}`;
+        (document.getElementById('path-status')! as HTMLElement).className = 'text-lg font-bold text-green-700';
+        document.getElementById('path-detail')!.textContent = result.matchedRule
+          ? `Matched rule: Allow: ${result.matchedRule.path} (${result.matchedRule.userAgent})`
+          : 'No blocking rule found — path is allowed by default';
+      } else {
+        pathTestEl.className = 'mb-4 p-4 rounded-lg bg-red-50 border border-red-200';
+        document.getElementById('path-icon')!.textContent = '🚫';
+        document.getElementById('path-status')!.textContent = `${testPath} is BLOCKED for ${userAgent}`;
+        (document.getElementById('path-status')! as HTMLElement).className = 'text-lg font-bold text-red-700';
+        document.getElementById('path-detail')!.textContent = result.matchedRule
+          ? `Matched rule: Disallow: ${result.matchedRule.path} (${result.matchedRule.userAgent})`
+          : 'Blocked by default rule';
+      }
+    } else {
+      pathTestEl.classList.add('hidden');
+    }
+
+    // Stats
+    const allowedRules = parsed.rules.filter(r => r.type === 'allow');
+    const blockedRules = parsed.rules.filter(r => r.type === 'disallow');
+    document.getElementById('stat-allowed')!.textContent = String(allowedRules.length);
+    document.getElementById('stat-blocked')!.textContent = String(blockedRules.length);
+    document.getElementById('stat-sitemaps')!.textContent = String(parsed.sitemaps.length);
+
+    // User-agent sections
+    const uaSections = document.getElementById('ua-sections')!;
+    uaSections.innerHTML = parsed.userAgents.map(ua => {
+      const uaRules = parsed.rules.filter(r => r.userAgent === ua);
+      const allows = uaRules.filter(r => r.type === 'allow');
+      const disallows = uaRules.filter(r => r.type === 'disallow');
+
+      return `<div class="p-4 border border-gray-200 rounded-lg">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-sm font-bold text-gray-900">User-agent: ${ua}</span>
+          <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${uaRules.length} rules</span>
+        </div>
+        ${disallows.length > 0 ? `<div class="mb-2">
+          <p class="text-xs text-red-600 font-medium mb-1">Blocked paths:</p>
+          ${disallows.map(r => `<div class="flex items-center gap-2 text-sm"><span class="text-red-500">✗</span><code class="text-xs bg-red-50 px-1 rounded">${r.path}</code></div>`).join('')}
+        </div>` : ''}
+        ${allows.length > 0 ? `<div>
+          <p class="text-xs text-green-600 font-medium mb-1">Allowed paths:</p>
+          ${allows.map(r => `<div class="flex items-center gap-2 text-sm"><span class="text-green-500">✓</span><code class="text-xs bg-green-50 px-1 rounded">${r.path}</code></div>`).join('')}
+        </div>` : ''}
+        ${uaRules.length === 0 ? '<p class="text-xs text-gray-400">No specific rules — inherits from wildcard (*)</p>' : ''}
+      </div>`;
+    }).join('');
+
+    // Sitemaps
+    const sitemapsSection = document.getElementById('sitemaps-section')!;
+    if (parsed.sitemaps.length > 0) {
+      sitemapsSection.classList.remove('hidden');
+      document.getElementById('sitemaps-list')!.innerHTML = parsed.sitemaps.map(s =>
+        `<div class="flex items-center gap-2 text-sm"><span class="text-blue-500">📄</span><code class="text-xs text-blue-700">${s}</code></div>`
+      ).join('');
+    } else {
+      sitemapsSection.classList.add('hidden');
+    }
+
+    // AI Bots summary
+    const aiBotsEl = document.getElementById('ai-bots-list')!;
+    aiBotsEl.innerHTML = aiBots.map(bot => {
+      const botRules = parsed.rules.filter(r => r.userAgent === bot);
+      const hasBlock = botRules.some(r => r.type === 'disallow');
+      const hasAllow = botRules.some(r => r.type === 'allow');
+      const mentioned = parsed.userAgents.includes(bot);
+
+      let status: string;
+      let color: string;
+      if (!mentioned) {
+        // Check wildcard
+        const wildcardBlock = parsed.rules.some(r => r.userAgent === '*' && r.type === 'disallow' && r.path === '/');
+        if (wildcardBlock) {
+          status = 'Blocked (via *)';
+          color = 'text-red-600 bg-red-50';
+        } else {
+          status = 'Not mentioned';
+          color = 'text-gray-500 bg-gray-50';
+        }
+      } else if (hasBlock && !hasAllow) {
+        status = 'Blocked';
+        color = 'text-red-600 bg-red-50';
+      } else if (hasAllow && !hasBlock) {
+        status = 'Allowed';
+        color = 'text-green-600 bg-green-50';
+      } else {
+        status = 'Partial access';
+        color = 'text-yellow-600 bg-yellow-50';
+      }
+
+      return `<div class="flex items-center justify-between p-2 rounded ${color}">
+        <span class="text-xs font-medium">${bot}</span>
+        <span class="text-xs">${status}</span>
+      </div>`;
+    }).join('');
+  });
+</script>

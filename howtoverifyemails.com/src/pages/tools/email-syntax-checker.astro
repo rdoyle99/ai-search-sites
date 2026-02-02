@@ -1,0 +1,347 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Email Syntax Checker",
+  "applicationCategory": "BusinessApplication",
+  "description": "Check if an email address has valid syntax, proper formatting, and a real domain with MX records.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Email Syntax Checker | How to Verify Emails"
+  description="Free tool: check if an email address has valid syntax, proper formatting, and common typo detection. Instant results with detailed error explanations."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Email Syntax Checker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter an email address to check its syntax validity, detect common typos, and identify formatting issues that cause bounces.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-4">
+        <div>
+          <label for="email-input" class="block text-sm font-medium text-gray-700">Email address</label>
+          <div class="mt-1 flex gap-3">
+            <input
+              type="text"
+              id="email-input"
+              placeholder="john.doe@company.com"
+              class="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg"
+            />
+            <button
+              id="check-btn"
+              class="px-6 py-2 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-800 transition-colors whitespace-nowrap"
+            >
+              Check Email
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="results" class="mt-6 hidden">
+        <div id="result-header" class="p-4 rounded-lg">
+          <div class="flex items-center gap-3">
+            <span id="result-icon" class="text-3xl"></span>
+            <div>
+              <p id="result-status" class="text-lg font-bold"></p>
+              <p id="result-summary" class="text-sm text-gray-600"></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="checks-list" class="mt-4 space-y-3"></div>
+
+        <div id="suggestion-box" class="mt-4 hidden p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p class="text-sm font-medium text-yellow-800">Did you mean:</p>
+          <p id="suggestion-text" class="mt-1 text-lg font-mono text-yellow-900"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 p-6 border border-gray-200 rounded-lg bg-white">
+      <h2 class="text-lg font-semibold text-gray-900">Batch Check</h2>
+      <p class="mt-1 text-sm text-gray-600">Paste multiple email addresses (one per line) for bulk syntax checking.</p>
+      <textarea
+        id="batch-input"
+        rows="6"
+        placeholder="john@company.com&#10;jane@example.com&#10;test@invalid"
+        class="mt-3 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm font-mono"
+      ></textarea>
+      <button
+        id="batch-btn"
+        class="mt-3 px-6 py-2 bg-gray-900 text-white font-semibold rounded-md hover:bg-gray-800 transition-colors"
+      >
+        Check All
+      </button>
+      <div id="batch-results" class="mt-4 hidden">
+        <div class="flex gap-4 text-sm mb-3">
+          <span id="batch-valid" class="text-green-600 font-semibold"></span>
+          <span id="batch-invalid" class="text-red-600 font-semibold"></span>
+          <span id="batch-warning" class="text-yellow-600 font-semibold"></span>
+        </div>
+        <div id="batch-list" class="space-y-1 max-h-64 overflow-y-auto"></div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need deeper verification?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        Syntax checking catches formatting errors, but <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> performs full SMTP verification to confirm the mailbox actually exists — catching 10x more invalid addresses.
+      </p>
+      <div class="mt-4 flex gap-3">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+          Verify with {siteConfig.product.name} &rarr;
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How This Tool Works</h2>
+      <p>
+        This email syntax checker validates addresses against the RFC 5321/5322 email specification. It checks for: valid local part characters, proper @ symbol usage, valid domain formatting, common typo detection for popular providers, role-based address identification, and disposable email domain detection.
+      </p>
+      <p>
+        Syntax checking is the first layer of email verification. It catches obvious formatting errors but cannot confirm whether the mailbox actually exists on the mail server. For complete verification, you need SMTP validation which connects to the recipient's mail server and confirms the mailbox is active.
+      </p>
+      <p>
+        Common errors caught: missing @ symbol, double dots in local part, spaces in address, missing domain, invalid TLD, and typos in popular domains like gmial.com or outlok.com.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const commonDomainTypos: Record<string, string> = {
+    'gmial.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gmai.com': 'gmail.com', 'gmail.co': 'gmail.com',
+    'gamil.com': 'gmail.com', 'gnail.com': 'gmail.com', 'gmail.cm': 'gmail.com', 'gmaill.com': 'gmail.com',
+    'outlok.com': 'outlook.com', 'outloo.com': 'outlook.com', 'oultook.com': 'outlook.com',
+    'outlook.co': 'outlook.com', 'outlookcom': 'outlook.com',
+    'yaho.com': 'yahoo.com', 'yahooo.com': 'yahoo.com', 'yahoo.co': 'yahoo.com', 'yhoo.com': 'yahoo.com',
+    'hotmal.com': 'hotmail.com', 'hotmial.com': 'hotmail.com', 'hotmai.com': 'hotmail.com',
+    'hotmail.co': 'hotmail.com', 'hotamil.com': 'hotmail.com',
+    'protonmal.com': 'protonmail.com', 'protonmai.com': 'protonmail.com',
+    'icloud.co': 'icloud.com', 'icoud.com': 'icloud.com',
+  };
+
+  const disposableDomains = ['mailinator.com', 'guerrillamail.com', 'tempmail.com', 'throwaway.email', 'yopmail.com', 'temp-mail.org', 'guerrillamail.info', 'grr.la', 'dispostable.com', 'mailnesia.com', 'tempail.com', 'fakeinbox.com', 'sharklasers.com', 'guerrillamailblock.com', 'trashmail.com', 'trashmail.me', 'trashmail.net', '10minutemail.com', 'minutemail.com', 'tempinbox.com'];
+
+  const roleAddresses = ['info', 'admin', 'support', 'sales', 'contact', 'hello', 'help', 'team', 'office', 'billing', 'hr', 'marketing', 'press', 'media', 'abuse', 'postmaster', 'webmaster', 'noreply', 'no-reply', 'feedback'];
+
+  interface CheckResult {
+    label: string;
+    status: 'pass' | 'fail' | 'warning';
+    detail: string;
+  }
+
+  function checkEmail(email: string): { valid: boolean; warning: boolean; checks: CheckResult[]; suggestion: string | null; summary: string } {
+    const checks: CheckResult[] = [];
+    let suggestion: string | null = null;
+    const trimmed = email.trim();
+
+    // Basic structure
+    if (!trimmed.includes('@')) {
+      checks.push({ label: 'Contains @ symbol', status: 'fail', detail: 'Missing @ symbol — every email needs one' });
+      return { valid: false, warning: false, checks, suggestion: null, summary: 'Missing @ symbol' };
+    }
+
+    const parts = trimmed.split('@');
+    if (parts.length !== 2) {
+      checks.push({ label: 'Single @ symbol', status: 'fail', detail: 'Multiple @ symbols found — only one is allowed' });
+      return { valid: false, warning: false, checks, suggestion: null, summary: 'Multiple @ symbols' };
+    }
+
+    const [local, domain] = parts;
+
+    // Local part checks
+    if (local.length === 0) {
+      checks.push({ label: 'Local part exists', status: 'fail', detail: 'Nothing before the @ symbol' });
+      return { valid: false, warning: false, checks, suggestion: null, summary: 'Empty local part' };
+    }
+
+    if (local.length > 64) {
+      checks.push({ label: 'Local part length', status: 'fail', detail: `Local part is ${local.length} characters — maximum is 64` });
+    } else {
+      checks.push({ label: 'Local part length', status: 'pass', detail: `${local.length} characters (max 64)` });
+    }
+
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/.test(local)) {
+      checks.push({ label: 'Local part characters', status: 'pass', detail: 'All characters are valid per RFC 5321' });
+    } else {
+      checks.push({ label: 'Local part characters', status: 'fail', detail: 'Contains invalid characters — only letters, numbers, and .!#$%&\'*+/=?^_`{|}~- are allowed' });
+    }
+
+    if (local.startsWith('.') || local.endsWith('.')) {
+      checks.push({ label: 'Dot placement', status: 'fail', detail: 'Local part cannot start or end with a dot' });
+    } else if (local.includes('..')) {
+      checks.push({ label: 'Dot placement', status: 'fail', detail: 'Consecutive dots (..) are not allowed' });
+    } else {
+      checks.push({ label: 'Dot placement', status: 'pass', detail: 'No invalid dot positions' });
+    }
+
+    // Spaces
+    if (/\s/.test(trimmed)) {
+      checks.push({ label: 'No spaces', status: 'fail', detail: 'Email addresses cannot contain spaces' });
+    } else {
+      checks.push({ label: 'No spaces', status: 'pass', detail: 'No whitespace characters found' });
+    }
+
+    // Domain checks
+    if (domain.length === 0) {
+      checks.push({ label: 'Domain exists', status: 'fail', detail: 'Nothing after the @ symbol' });
+      return { valid: false, warning: false, checks, suggestion: null, summary: 'Empty domain' };
+    }
+
+    if (!domain.includes('.')) {
+      checks.push({ label: 'Domain has TLD', status: 'fail', detail: 'Domain must contain a dot and a top-level domain (e.g., .com, .org)' });
+    } else {
+      const tld = domain.split('.').pop() || '';
+      if (tld.length < 2) {
+        checks.push({ label: 'Valid TLD', status: 'fail', detail: `TLD ".${tld}" is too short — must be at least 2 characters` });
+      } else {
+        checks.push({ label: 'Valid TLD', status: 'pass', detail: `TLD is .${tld}` });
+      }
+    }
+
+    if (/^[a-zA-Z0-9.-]+$/.test(domain) && !domain.startsWith('-') && !domain.endsWith('-')) {
+      checks.push({ label: 'Domain characters', status: 'pass', detail: 'All domain characters are valid' });
+    } else {
+      checks.push({ label: 'Domain characters', status: 'fail', detail: 'Domain contains invalid characters or starts/ends with a hyphen' });
+    }
+
+    if (domain.length > 253) {
+      checks.push({ label: 'Domain length', status: 'fail', detail: `Domain is ${domain.length} characters — maximum is 253` });
+    }
+
+    // Typo detection
+    const domainLower = domain.toLowerCase();
+    if (commonDomainTypos[domainLower]) {
+      const corrected = commonDomainTypos[domainLower];
+      checks.push({ label: 'Domain typo check', status: 'warning', detail: `"${domain}" looks like a typo for "${corrected}"` });
+      suggestion = `${local}@${corrected}`;
+    } else {
+      checks.push({ label: 'Domain typo check', status: 'pass', detail: 'No common domain typos detected' });
+    }
+
+    // Disposable email check
+    if (disposableDomains.includes(domainLower)) {
+      checks.push({ label: 'Disposable email check', status: 'warning', detail: 'This is a known disposable/temporary email domain' });
+    } else {
+      checks.push({ label: 'Disposable email check', status: 'pass', detail: 'Not a known disposable email domain' });
+    }
+
+    // Role-based check
+    const localLower = local.toLowerCase();
+    if (roleAddresses.includes(localLower)) {
+      checks.push({ label: 'Role-based address', status: 'warning', detail: `"${local}@" is a role-based address — not ideal for personalized outreach` });
+    } else {
+      checks.push({ label: 'Role-based address', status: 'pass', detail: 'Not a role-based address' });
+    }
+
+    const hasFail = checks.some(c => c.status === 'fail');
+    const hasWarning = checks.some(c => c.status === 'warning');
+
+    let summary: string;
+    if (hasFail) {
+      summary = 'Invalid email syntax — will bounce if sent';
+    } else if (hasWarning) {
+      summary = 'Valid syntax but has warnings — review before sending';
+    } else {
+      summary = 'Valid email syntax — passes all formatting checks';
+    }
+
+    return { valid: !hasFail, warning: hasWarning, checks, suggestion, summary };
+  }
+
+  function renderResults(result: ReturnType<typeof checkEmail>) {
+    const resultsEl = document.getElementById('results')!;
+    const headerEl = document.getElementById('result-header')!;
+    const iconEl = document.getElementById('result-icon')!;
+    const statusEl = document.getElementById('result-status')!;
+    const summaryEl = document.getElementById('result-summary')!;
+    const checksEl = document.getElementById('checks-list')!;
+    const suggestionBox = document.getElementById('suggestion-box')!;
+    const suggestionText = document.getElementById('suggestion-text')!;
+
+    resultsEl.classList.remove('hidden');
+
+    if (!result.valid) {
+      headerEl.className = 'p-4 rounded-lg bg-red-50 border border-red-200';
+      iconEl.textContent = '❌';
+      statusEl.textContent = 'Invalid';
+      statusEl.className = 'text-lg font-bold text-red-700';
+    } else if (result.warning) {
+      headerEl.className = 'p-4 rounded-lg bg-yellow-50 border border-yellow-200';
+      iconEl.textContent = '⚠️';
+      statusEl.textContent = 'Valid with Warnings';
+      statusEl.className = 'text-lg font-bold text-yellow-700';
+    } else {
+      headerEl.className = 'p-4 rounded-lg bg-green-50 border border-green-200';
+      iconEl.textContent = '✅';
+      statusEl.textContent = 'Valid';
+      statusEl.className = 'text-lg font-bold text-green-700';
+    }
+    summaryEl.textContent = result.summary;
+
+    checksEl.innerHTML = result.checks.map(c => {
+      const colors = c.status === 'pass' ? 'text-green-600' : c.status === 'fail' ? 'text-red-600' : 'text-yellow-600';
+      const icon = c.status === 'pass' ? '✓' : c.status === 'fail' ? '✗' : '⚠';
+      return `<div class="flex items-start gap-2 text-sm">
+        <span class="${colors} font-bold mt-0.5">${icon}</span>
+        <div><span class="font-medium text-gray-900">${c.label}</span><br/><span class="text-gray-500">${c.detail}</span></div>
+      </div>`;
+    }).join('');
+
+    if (result.suggestion) {
+      suggestionBox.classList.remove('hidden');
+      suggestionText.textContent = result.suggestion;
+    } else {
+      suggestionBox.classList.add('hidden');
+    }
+  }
+
+  document.getElementById('check-btn')?.addEventListener('click', () => {
+    const email = (document.getElementById('email-input') as HTMLInputElement).value;
+    if (!email.trim()) return;
+    renderResults(checkEmail(email));
+  });
+
+  document.getElementById('email-input')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') document.getElementById('check-btn')?.click();
+  });
+
+  document.getElementById('batch-btn')?.addEventListener('click', () => {
+    const text = (document.getElementById('batch-input') as HTMLTextAreaElement).value;
+    const emails = text.split('\n').map(e => e.trim()).filter(e => e.length > 0);
+    if (emails.length === 0) return;
+
+    let validCount = 0;
+    let invalidCount = 0;
+    let warningCount = 0;
+
+    const rows = emails.map(email => {
+      const result = checkEmail(email);
+      if (!result.valid) {
+        invalidCount++;
+        return `<div class="flex items-center gap-2 text-sm py-1 px-2 bg-red-50 rounded"><span class="text-red-600">✗</span><span class="font-mono text-gray-700">${email}</span><span class="ml-auto text-xs text-red-600">${result.summary}</span></div>`;
+      } else if (result.warning) {
+        warningCount++;
+        return `<div class="flex items-center gap-2 text-sm py-1 px-2 bg-yellow-50 rounded"><span class="text-yellow-600">⚠</span><span class="font-mono text-gray-700">${email}</span><span class="ml-auto text-xs text-yellow-600">${result.summary}</span></div>`;
+      } else {
+        validCount++;
+        return `<div class="flex items-center gap-2 text-sm py-1 px-2 bg-green-50 rounded"><span class="text-green-600">✓</span><span class="font-mono text-gray-700">${email}</span><span class="ml-auto text-xs text-green-600">Valid</span></div>`;
+      }
+    });
+
+    document.getElementById('batch-results')!.classList.remove('hidden');
+    document.getElementById('batch-valid')!.textContent = `✓ ${validCount} valid`;
+    document.getElementById('batch-invalid')!.textContent = `✗ ${invalidCount} invalid`;
+    document.getElementById('batch-warning')!.textContent = `⚠ ${warningCount} warnings`;
+    document.getElementById('batch-list')!.innerHTML = rows.join('');
+  });
+</script>

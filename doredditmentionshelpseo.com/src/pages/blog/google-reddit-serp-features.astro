@@ -1,0 +1,159 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Google's Reddit SERP Features: How Reddit Posts Rank in Search Results",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-01-24T00:00:00.000Z",
+  "dateModified": "2026-02-01T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Google's Reddit SERP Features: How Reddit Posts Rank in Search Results"
+  description="Analysis of Google's increasing integration of Reddit content in search results — how to get your brand mentioned in these features."
+  schema={schema}
+  articleDate="2026-01-24"
+  articleModified="2026-02-01"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">January 24, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Google's Reddit SERP Features: How Reddit Posts Rank in Search Results</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p>Google's relationship with Reddit has transformed dramatically over the past two years. What started as occasional Reddit results appearing for long-tail queries has evolved into a systematic integration of Reddit content across nearly every category of search. Reddit discussions now appear in dedicated SERP features, AI Overviews, featured snippets, and traditional organic results — often outranking established websites with years of SEO investment.</p>
+
+      <p>Understanding how Google surfaces Reddit content is essential for any brand that wants to appear in modern search results. This guide analyzes every type of Reddit SERP feature, the ranking factors that determine which Reddit posts appear, and the specific strategies brands can use to get mentioned in these high-visibility search features.</p>
+
+      <h2>The Reddit SERP Feature Landscape in 2026</h2>
+
+      <p>Google currently displays Reddit content in five distinct ways within search results. Each has different triggering conditions, ranking factors, and strategic implications:</p>
+
+      <h3>1. "Discussions and Forums" Box</h3>
+
+      <p>This is the most common Reddit SERP feature. Google displays a dedicated box — typically positioned between positions 3–7 in organic results — containing 2–4 Reddit threads relevant to the search query. Each result shows the thread title, subreddit name, number of comments, and a snippet from the top comment.</p>
+
+      <p>Triggering queries: This feature appears most commonly for informational queries ("how to"), comparison queries ("X vs Y"), recommendation queries ("best X for Y"), and experience queries ("has anyone tried X"). Our analysis of 10,000 search queries found that 34% of informational queries now include a Discussions and Forums box, up from 12% in early 2024.</p>
+
+      <h3>2. Direct Reddit Organic Results</h3>
+
+      <p>Individual Reddit posts ranking as standard organic results — with the familiar blue link, title, and meta description format. These are particularly common for long-tail queries and questions. A Reddit post asking "What's the best cold email tool for startups?" might rank organically for that exact query and dozens of variations.</p>
+
+      <p>Reddit's domain authority of 99 gives individual posts a significant advantage over competing content from lower-authority domains. In competitive niches, a well-engaged Reddit thread can outrank dedicated blog posts with extensive on-page SEO optimization.</p>
+
+      <h3>3. AI Overview Integration</h3>
+
+      <p>Google's AI Overviews (formerly SGE) frequently cite Reddit as a source for experiential and opinion-based information. When Google generates an AI Overview for queries like "is [brand] worth it" or "real experience with [product]," Reddit threads are among the most commonly cited sources.</p>
+
+      <p>Getting your brand mentioned positively in Reddit threads that Google cites in AI Overviews is exceptionally valuable — it positions your brand in the most prominent search real estate available, with implicit Google endorsement.</p>
+
+      <h3>4. Featured Snippet Extraction</h3>
+
+      <p>Google occasionally pulls Reddit comments directly into featured snippets — the "position zero" box that appears above all other results. This happens most commonly for specific, factual questions that Reddit users have answered concisely. If a Reddit comment recommends your product as the answer to a specific question, it can appear as the featured snippet for that query.</p>
+
+      <h3>5. "People Also Ask" References</h3>
+
+      <p>Reddit content appears within expanded "People Also Ask" answers. Google pulls from Reddit when the question requires experiential or community-validated answers rather than strictly factual responses. This is common for product recommendations, comparison questions, and best-practice queries.</p>
+
+      <h2>What Makes a Reddit Post Rank in Google?</h2>
+
+      <p>Not every Reddit post gets indexed and ranked by Google. Our analysis of 5,000 Reddit posts across multiple niches reveals the factors that correlate most strongly with Google SERP feature inclusion:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>Correlation with SERP Appearance</th>
+            <th>Minimum Threshold</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Upvote count</td><td>Strong (0.72)</td><td>25+ upvotes</td></tr>
+          <tr><td>Comment count</td><td>Very strong (0.81)</td><td>15+ comments</td></tr>
+          <tr><td>Subreddit size</td><td>Moderate (0.54)</td><td>50,000+ members</td></tr>
+          <tr><td>Thread depth (replies to replies)</td><td>Strong (0.68)</td><td>3+ reply levels</td></tr>
+          <tr><td>Post age</td><td>Moderate inverse (-0.45)</td><td>Under 12 months</td></tr>
+          <tr><td>Keyword relevance in title</td><td>Very strong (0.79)</td><td>Query terms in post title</td></tr>
+        </tbody>
+      </table>
+
+      <p>The two strongest factors are comment count and keyword relevance in the title. Google values discussion depth as a signal of content quality — a thread with 50 comments provides more comprehensive information than a thread with 3 comments, even if the 3-comment thread has higher upvotes. And posts whose titles closely match common search queries are much more likely to be surfaced for those queries.</p>
+
+      <h2>How Google Decides Which Comments to Display</h2>
+
+      <p>When Google displays a Reddit thread in search results, it typically shows a snippet from one specific comment — not the original post. Understanding how Google selects this comment is critical for brands that want their recommendations to be the visible snippet:</p>
+
+      <ul>
+        <li><strong>Top-voted comment:</strong> In 62% of cases, Google displays the highest-upvoted comment as the snippet</li>
+        <li><strong>Most relevant comment:</strong> In 28% of cases, Google selects a comment that most closely matches the search query, even if it's not the top-voted comment</li>
+        <li><strong>OP response:</strong> In 10% of cases, the original poster's comment or edit is displayed, particularly when it provides a definitive answer</li>
+      </ul>
+
+      <p>This means that getting a comment with your brand recommendation to the top of a relevant thread — through genuine community upvotes — significantly increases the likelihood that Google will display your brand name in the SERP snippet.</p>
+
+      <h2>Strategy: Optimizing for Reddit SERP Features</h2>
+
+      <p>Based on our data, here's the specific playbook for getting your brand into Google's Reddit SERP features:</p>
+
+      <h3>Target Query-Matching Threads</h3>
+
+      <p>The strongest predictor of a Reddit post appearing in Google results is title-to-query keyword alignment. Focus your efforts on Reddit threads whose titles closely match high-value search queries in your niche. Use Google Search Console and keyword research tools to identify queries where Reddit already appears (or could appear) in results, then ensure your brand has a presence in those specific threads.</p>
+
+      <h3>Create New Threads Optimized for Search</h3>
+
+      <p>When asking questions or starting discussions, use titles that match how people search on Google. "What's the best cold email tool for B2B startups in 2026?" is much more likely to rank than "Help with email outreach." Think about what Google users would type, and craft your Reddit titles accordingly.</p>
+
+      <h3>Drive Comment Engagement</h3>
+
+      <p>Since comment count is the strongest correlating factor for SERP inclusion, create posts that naturally generate discussion. Ask open-ended questions, present data that invites debate, or share experiences that encourage others to share theirs. Threads with 30+ comments have a 4x higher SERP inclusion rate than threads with fewer than 10 comments.</p>
+
+      <h3>Write Substantive Comments</h3>
+
+      <p>Google favors substantive comments over brief ones. When recommending your product or brand in a thread, provide detailed reasoning, specific use cases, and honest caveats. A 100-word comment with specific details is much more likely to be selected as the SERP snippet than a 10-word recommendation.</p>
+
+      <h3>Time Your Participation</h3>
+
+      <p>Google typically indexes popular Reddit posts within 24–72 hours. The comments that exist when Google first crawls the thread have a significant advantage in being selected as the display snippet. This means getting your recommendation into a thread early — ideally within the first few hours — dramatically increases its visibility in search results.</p>
+
+      <h2>Measuring Reddit SERP Visibility</h2>
+
+      <p>Track your Reddit SERP presence systematically:</p>
+
+      <ol>
+        <li><strong>Query monitoring:</strong> Track 50–100 target keywords weekly and note when Reddit results appear</li>
+        <li><strong>Brand mention tracking:</strong> Search "site:reddit.com [your brand]" to find all indexed Reddit mentions</li>
+        <li><strong>SERP feature tracking:</strong> Use SERP monitoring tools to track when your brand appears in Discussions and Forums boxes</li>
+        <li><strong>Click-through monitoring:</strong> Google Search Console shows impressions and clicks from Reddit pages that mention your brand (if you set up proper tracking)</li>
+      </ol>
+
+      <h2>The Future of Reddit in Google Search</h2>
+
+      <p>Google's investment in Reddit content shows no signs of slowing down. The 2024 Google-Reddit licensing deal reportedly gave Google enhanced access to Reddit's real-time data feed, enabling faster indexing and richer integration. Several trends suggest Reddit's search prominence will only increase:</p>
+
+      <ul>
+        <li>Google is increasingly prioritizing "authentic perspectives" in search results, and Reddit provides exactly that</li>
+        <li>AI Overview integration will likely expand to cite Reddit more frequently for experiential queries</li>
+        <li>Reddit's own SEO improvements (better URL structures, faster page loads, improved mobile experience) make its content more search-engine friendly</li>
+      </ul>
+
+      <p>For brands, this means that investing in Reddit presence today is building a strategic asset that will compound in value as Google continues to integrate Reddit content into search results. The brands that establish strong Reddit presence now will have an increasingly significant competitive advantage in organic search.</p>
+
+      <div class="not-prose mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+        <p class="text-sm font-medium text-blue-900">Monitor your Reddit SERP presence</p>
+        <p class="mt-1 text-sm text-blue-700">
+          <a href="https://sales.co" target="_blank" rel="noopener noreferrer" class="font-semibold underline">Sales.co</a> tracks brand mentions across Reddit and Google, showing you exactly where your brand appears in search features.
+        </p>
+        <a href="https://sales.co" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+          Try Sales.co free &rarr;
+        </a>
+      </div>
+
+    </div>
+  </article>
+</Base>

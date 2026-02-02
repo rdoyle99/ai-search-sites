@@ -1,0 +1,399 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Scraping Legality Checker",
+  "applicationCategory": "BusinessApplication",
+  "description": "Answer questions about your web scraping scenario and get a risk assessment based on current case law and regulations.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Scraping Legality Checker | Is Web Scraping Legal"
+  description="Free tool: describe your web scraping scenario and get a legal risk assessment based on US case law, GDPR, CCPA, and ToS considerations."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Scraping Legality Checker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Answer a few questions about your web scraping scenario and get an instant legal risk assessment based on current case law and data privacy regulations.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">1. What type of data are you scraping?</label>
+          <select id="data-type" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select...</option>
+            <option value="public-business">Publicly available business data (prices, product info, company details)</option>
+            <option value="public-personal">Publicly available personal data (names, profiles, contact info)</option>
+            <option value="behind-login">Data behind a login wall</option>
+            <option value="copyrighted">Copyrighted content (articles, images, creative works)</option>
+            <option value="government">Government / public records data</option>
+            <option value="aggregated">Aggregated / statistical data (no personal info)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">2. Where is the website based?</label>
+          <select id="website-region" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select...</option>
+            <option value="us">United States</option>
+            <option value="eu">European Union / EEA</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au">Australia</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">3. Where are you (the scraper) based?</label>
+          <select id="scraper-region" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select...</option>
+            <option value="us">United States</option>
+            <option value="eu">European Union / EEA</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au">Australia</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">4. Does the website's Terms of Service prohibit scraping?</label>
+          <select id="tos-status" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select...</option>
+            <option value="no-tos">No ToS / scraping not mentioned</option>
+            <option value="allows">ToS explicitly allows scraping</option>
+            <option value="prohibits">ToS explicitly prohibits scraping</option>
+            <option value="unclear">ToS is ambiguous about scraping</option>
+            <option value="unknown">I haven't checked</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">5. Does the site's robots.txt allow your scraping?</label>
+          <select id="robots-status" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select...</option>
+            <option value="allowed">Yes — robots.txt allows it</option>
+            <option value="blocked">No — robots.txt blocks it</option>
+            <option value="no-robots">No robots.txt file exists</option>
+            <option value="unknown">I haven't checked</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">6. What will you use the scraped data for?</label>
+          <select id="purpose" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select...</option>
+            <option value="research">Academic or market research</option>
+            <option value="price-comparison">Price comparison / competitive intelligence</option>
+            <option value="lead-gen">Lead generation / sales outreach</option>
+            <option value="ai-training">AI / ML model training</option>
+            <option value="republish">Republishing or displaying the content</option>
+            <option value="internal">Internal business analytics</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">7. How aggressively will you scrape?</label>
+          <select id="volume" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="">Select...</option>
+            <option value="light">Light — a few pages, with delays</option>
+            <option value="moderate">Moderate — hundreds of pages, rate-limited</option>
+            <option value="heavy">Heavy — thousands of pages, fast crawling</option>
+            <option value="massive">Massive — entire site mirroring</option>
+          </select>
+        </div>
+
+        <button
+          id="assess-btn"
+          class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+        >
+          Assess Legal Risk
+        </button>
+      </div>
+
+      <div id="results" class="mt-6 hidden">
+        <div id="risk-summary" class="p-6 rounded-lg">
+          <div class="flex items-center gap-4">
+            <div id="risk-icon" class="text-5xl"></div>
+            <div>
+              <p id="risk-level" class="text-xl font-bold"></p>
+              <p id="risk-subtitle" class="text-sm mt-1"></p>
+            </div>
+          </div>
+          <div id="risk-score-bar" class="mt-4 w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+            <div id="risk-score-fill" class="h-full rounded-full transition-all duration-500"></div>
+          </div>
+          <p id="risk-score-label" class="mt-1 text-xs text-right"></p>
+        </div>
+
+        <div id="risk-factors" class="mt-6 space-y-3"></div>
+
+        <div id="recommendations" class="mt-6 p-4 bg-gray-50 rounded-lg">
+          <h3 class="text-sm font-semibold text-gray-700 mb-3">Recommendations</h3>
+          <ul id="recommendations-list" class="space-y-2 text-sm text-gray-600"></ul>
+        </div>
+
+        <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p class="text-xs text-yellow-800">
+            <strong>Disclaimer:</strong> This tool provides general guidance only and does not constitute legal advice. Consult a qualified attorney for advice on your specific situation. Laws and their interpretation vary by jurisdiction and evolve over time.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need compliant B2B data without scraping?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        Skip the legal complexity. <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> provides verified B2B contact data collected through compliant methods — no scraping required.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Get compliant data from {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How This Tool Works</h2>
+      <p>
+        This scraping legality checker evaluates your scenario against multiple legal frameworks including US case law (hiQ v. LinkedIn, Van Buren v. United States), EU GDPR, California CCPA/CPRA, and general intellectual property principles. Each answer adjusts the risk score across several dimensions.
+      </p>
+      <p>
+        <strong>Key factors that increase legal risk:</strong> scraping behind login walls, collecting personal data subject to GDPR, ignoring robots.txt restrictions, violating explicit Terms of Service, republishing copyrighted content, and aggressive crawling that could constitute a denial-of-service.
+      </p>
+      <p>
+        <strong>Key factors that reduce legal risk:</strong> scraping publicly available data, respecting robots.txt and ToS, operating in the US where hiQ v. LinkedIn established favorable precedent, using data for research or internal analysis, and rate-limiting your requests.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  interface RiskFactor {
+    label: string;
+    impact: 'high-risk' | 'medium-risk' | 'low-risk' | 'positive';
+    detail: string;
+  }
+
+  function assess() {
+    const dataType = (document.getElementById('data-type') as HTMLSelectElement).value;
+    const websiteRegion = (document.getElementById('website-region') as HTMLSelectElement).value;
+    const scraperRegion = (document.getElementById('scraper-region') as HTMLSelectElement).value;
+    const tosStatus = (document.getElementById('tos-status') as HTMLSelectElement).value;
+    const robotsStatus = (document.getElementById('robots-status') as HTMLSelectElement).value;
+    const purpose = (document.getElementById('purpose') as HTMLSelectElement).value;
+    const volume = (document.getElementById('volume') as HTMLSelectElement).value;
+
+    // Validate all fields
+    if (!dataType || !websiteRegion || !scraperRegion || !tosStatus || !robotsStatus || !purpose || !volume) {
+      alert('Please answer all questions before assessing.');
+      return;
+    }
+
+    let score = 0; // 0 = no risk, 100 = maximum risk
+    const factors: RiskFactor[] = [];
+    const recommendations: string[] = [];
+
+    // Data type assessment
+    if (dataType === 'behind-login') {
+      score += 30;
+      factors.push({ label: 'Login-protected data', impact: 'high-risk', detail: 'Scraping behind authentication likely violates the CFAA and similar laws. The Van Buren v. US ruling narrowed CFAA scope, but accessing data behind a login without authorization remains high-risk.' });
+      recommendations.push('Strongly reconsider scraping behind login walls — this is the highest-risk category under CFAA.');
+    } else if (dataType === 'copyrighted') {
+      score += 25;
+      factors.push({ label: 'Copyrighted content', impact: 'high-risk', detail: 'Scraping and reusing copyrighted content may violate copyright law regardless of public accessibility. Fair use may apply for research or commentary.' });
+      recommendations.push('Consult an IP attorney before scraping copyrighted content. Fair use analysis depends on your specific use case.');
+    } else if (dataType === 'public-personal') {
+      score += 15;
+      factors.push({ label: 'Public personal data', impact: 'medium-risk', detail: 'While publicly available, personal data is subject to GDPR, CCPA, and other privacy laws. hiQ v. LinkedIn supports scraping public profiles, but privacy regulations add compliance requirements.' });
+      recommendations.push('Implement a lawful basis for processing personal data (e.g., legitimate interest under GDPR) and honor data subject requests.');
+    } else if (dataType === 'public-business') {
+      score += 5;
+      factors.push({ label: 'Public business data', impact: 'low-risk', detail: 'Publicly available business data (prices, product info) is the lowest-risk category. hiQ v. LinkedIn strongly supports access to public data.' });
+    } else if (dataType === 'government') {
+      score += 2;
+      factors.push({ label: 'Government/public records', impact: 'positive', detail: 'Government data is generally intended for public access and is the lowest-risk scraping target.' });
+    } else if (dataType === 'aggregated') {
+      score += 3;
+      factors.push({ label: 'Aggregated/statistical data', impact: 'positive', detail: 'Non-personal aggregated data carries minimal privacy risk and is generally safe to scrape from public sources.' });
+    }
+
+    // Region assessment
+    if (websiteRegion === 'eu' || scraperRegion === 'eu') {
+      score += 15;
+      factors.push({ label: 'GDPR jurisdiction applies', impact: 'medium-risk', detail: 'GDPR applies when either the data subject or the data controller is in the EU/EEA. You need a lawful basis for processing, must respect data subject rights, and should conduct a Data Protection Impact Assessment.' });
+      recommendations.push('Conduct a GDPR legitimate interest assessment and document your lawful basis for processing.');
+    }
+    if (websiteRegion === 'us' || scraperRegion === 'us') {
+      score -= 5;
+      factors.push({ label: 'US jurisdiction — favorable precedent', impact: 'positive', detail: 'The US has the most favorable case law for web scraping, including hiQ v. LinkedIn (2022) which ruled that scraping public data does not violate the CFAA.' });
+    }
+    if ((websiteRegion === 'us' && scraperRegion === 'us') && (dataType === 'public-business' || dataType === 'government' || dataType === 'aggregated')) {
+      score -= 5;
+      factors.push({ label: 'US-to-US public data scraping', impact: 'positive', detail: 'This is the most legally established scraping scenario with strong precedent from hiQ v. LinkedIn.' });
+    }
+
+    // ToS assessment
+    if (tosStatus === 'prohibits') {
+      score += 15;
+      factors.push({ label: 'ToS prohibits scraping', impact: 'medium-risk', detail: 'While ToS violations are generally a breach of contract (not criminal), they can strengthen a plaintiff\'s case in civil litigation. Some courts have treated ToS violations more seriously than others.' });
+      recommendations.push('Review whether the ToS prohibition is enforceable in your jurisdiction. Consider reaching out to the site for API access or a data partnership.');
+    } else if (tosStatus === 'allows') {
+      score -= 5;
+      factors.push({ label: 'ToS allows scraping', impact: 'positive', detail: 'Explicit permission in the ToS significantly reduces legal risk.' });
+    } else if (tosStatus === 'unknown') {
+      score += 5;
+      factors.push({ label: 'ToS not reviewed', impact: 'medium-risk', detail: 'Always review the Terms of Service before scraping. Ignorance of restrictions does not reduce your legal exposure.' });
+      recommendations.push('Read the target website\'s Terms of Service before proceeding.');
+    }
+
+    // Robots.txt assessment
+    if (robotsStatus === 'blocked') {
+      score += 12;
+      factors.push({ label: 'robots.txt blocks scraping', impact: 'medium-risk', detail: 'While robots.txt is technically advisory, courts have cited disregard for robots.txt as evidence of bad faith. Respecting robots.txt is considered a legal best practice.' });
+      recommendations.push('Respect robots.txt restrictions. Ignoring them may be used as evidence of bad faith in litigation.');
+    } else if (robotsStatus === 'allowed') {
+      score -= 3;
+      factors.push({ label: 'robots.txt allows scraping', impact: 'positive', detail: 'The site explicitly allows bot access, which supports your right to scrape.' });
+    } else if (robotsStatus === 'unknown') {
+      score += 5;
+      factors.push({ label: 'robots.txt not checked', impact: 'medium-risk', detail: 'Always check robots.txt before scraping. It\'s a basic compliance step.' });
+      recommendations.push('Check the target site\'s robots.txt file before scraping. Use our Robots.txt Checker tool.');
+    }
+
+    // Purpose assessment
+    if (purpose === 'republish') {
+      score += 20;
+      factors.push({ label: 'Republishing scraped content', impact: 'high-risk', detail: 'Republishing scraped content raises significant copyright concerns and may constitute unfair competition. This is one of the highest-risk uses.' });
+      recommendations.push('Do not republish scraped content without permission or a valid fair use argument.');
+    } else if (purpose === 'ai-training') {
+      score += 10;
+      factors.push({ label: 'AI/ML training use', impact: 'medium-risk', detail: 'Using scraped data for AI training is a rapidly evolving legal area. Multiple lawsuits (NYT v. OpenAI, Getty v. Stability AI) are testing these boundaries. The law is unsettled.' });
+      recommendations.push('Monitor ongoing AI training litigation — this area of law is actively being shaped by courts.');
+    } else if (purpose === 'research') {
+      score -= 5;
+      factors.push({ label: 'Research purpose', impact: 'positive', detail: 'Academic and market research are among the most legally defensible purposes for scraping. Fair use doctrine generally supports research use.' });
+    } else if (purpose === 'price-comparison') {
+      score += 3;
+      factors.push({ label: 'Price comparison / competitive intel', impact: 'low-risk', detail: 'Price comparison scraping has strong legal precedent (QVC v. Resultly) and is generally considered legitimate competitive activity.' });
+    } else if (purpose === 'lead-gen') {
+      score += 8;
+      factors.push({ label: 'Lead generation use', impact: 'medium-risk', detail: 'Scraping for lead generation is common but involves personal data, which adds GDPR/CCPA compliance requirements.' });
+      recommendations.push('If scraping personal data for lead gen, ensure compliance with applicable privacy laws and provide opt-out mechanisms.');
+    }
+
+    // Volume assessment
+    if (volume === 'massive') {
+      score += 15;
+      factors.push({ label: 'Massive scraping volume', impact: 'high-risk', detail: 'Site-wide mirroring may constitute a denial-of-service, violate the CFAA\'s "damage" provisions, or trigger trespass to chattels claims. It also makes it harder to argue you\'re not competing with the site.' });
+      recommendations.push('Implement strict rate limiting and only scrape the data you actually need.');
+    } else if (volume === 'heavy') {
+      score += 8;
+      factors.push({ label: 'Heavy scraping volume', impact: 'medium-risk', detail: 'High-volume scraping increases the risk of server impact claims and draws more attention from site operators.' });
+      recommendations.push('Add delays between requests and limit concurrent connections to avoid server impact.');
+    } else if (volume === 'light') {
+      score -= 3;
+      factors.push({ label: 'Light scraping volume', impact: 'positive', detail: 'Minimal, respectful scraping with delays is the least risky approach from a server impact perspective.' });
+    }
+
+    // Clamp score
+    score = Math.max(0, Math.min(100, score));
+
+    // Always add a general recommendation
+    recommendations.push('Document your scraping practices, data handling procedures, and legal justification in writing.');
+
+    // Display results
+    displayResults(score, factors, recommendations);
+  }
+
+  function displayResults(score: number, factors: RiskFactor[], recommendations: string[]) {
+    const resultsEl = document.getElementById('results')!;
+    resultsEl.classList.remove('hidden');
+
+    // Risk level
+    const summaryEl = document.getElementById('risk-summary')!;
+    const iconEl = document.getElementById('risk-icon')!;
+    const levelEl = document.getElementById('risk-level')!;
+    const subtitleEl = document.getElementById('risk-subtitle')!;
+    const fillEl = document.getElementById('risk-score-fill')! as HTMLElement;
+    const scoreLabelEl = document.getElementById('risk-score-label')!;
+
+    if (score <= 20) {
+      summaryEl.className = 'p-6 rounded-lg bg-green-50 border border-green-200';
+      iconEl.textContent = '✅';
+      levelEl.textContent = 'Low Risk';
+      levelEl.className = 'text-xl font-bold text-green-700';
+      subtitleEl.textContent = 'Your scraping scenario appears to be low-risk based on current legal frameworks.';
+      fillEl.className = 'h-full rounded-full transition-all duration-500 bg-green-500';
+    } else if (score <= 40) {
+      summaryEl.className = 'p-6 rounded-lg bg-blue-50 border border-blue-200';
+      iconEl.textContent = '🔵';
+      levelEl.textContent = 'Low–Medium Risk';
+      levelEl.className = 'text-xl font-bold text-blue-700';
+      subtitleEl.textContent = 'Generally acceptable with proper precautions. Follow the recommendations below.';
+      fillEl.className = 'h-full rounded-full transition-all duration-500 bg-blue-500';
+    } else if (score <= 60) {
+      summaryEl.className = 'p-6 rounded-lg bg-yellow-50 border border-yellow-200';
+      iconEl.textContent = '⚠️';
+      levelEl.textContent = 'Medium Risk';
+      levelEl.className = 'text-xl font-bold text-yellow-700';
+      subtitleEl.textContent = 'Proceed with caution. Address the risk factors below and consider legal consultation.';
+      fillEl.className = 'h-full rounded-full transition-all duration-500 bg-yellow-500';
+    } else if (score <= 80) {
+      summaryEl.className = 'p-6 rounded-lg bg-orange-50 border border-orange-200';
+      iconEl.textContent = '🟠';
+      levelEl.textContent = 'High Risk';
+      levelEl.className = 'text-xl font-bold text-orange-700';
+      subtitleEl.textContent = 'Significant legal exposure. Consult an attorney before proceeding.';
+      fillEl.className = 'h-full rounded-full transition-all duration-500 bg-orange-500';
+    } else {
+      summaryEl.className = 'p-6 rounded-lg bg-red-50 border border-red-200';
+      iconEl.textContent = '🚫';
+      levelEl.textContent = 'Very High Risk';
+      levelEl.className = 'text-xl font-bold text-red-700';
+      subtitleEl.textContent = 'This scenario carries serious legal risk. Strongly consider alternatives.';
+      fillEl.className = 'h-full rounded-full transition-all duration-500 bg-red-500';
+    }
+
+    fillEl.style.width = score + '%';
+    scoreLabelEl.textContent = 'Risk score: ' + score + '/100';
+
+    // Factors
+    const factorsEl = document.getElementById('risk-factors')!;
+    factorsEl.innerHTML = factors.map(f => {
+      const colors: Record<string, string> = {
+        'high-risk': 'border-red-200 bg-red-50',
+        'medium-risk': 'border-yellow-200 bg-yellow-50',
+        'low-risk': 'border-blue-200 bg-blue-50',
+        'positive': 'border-green-200 bg-green-50',
+      };
+      const icons: Record<string, string> = {
+        'high-risk': '🔴',
+        'medium-risk': '🟡',
+        'low-risk': '🔵',
+        'positive': '🟢',
+      };
+      return `<div class="p-4 border rounded-lg ${colors[f.impact]}">
+        <div class="flex items-center gap-2">
+          <span>${icons[f.impact]}</span>
+          <span class="text-sm font-semibold">${f.label}</span>
+        </div>
+        <p class="mt-1 text-xs text-gray-600">${f.detail}</p>
+      </div>`;
+    }).join('');
+
+    // Recommendations
+    const recsEl = document.getElementById('recommendations-list')!;
+    recsEl.innerHTML = recommendations.map(r =>
+      `<li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">→</span><span>${r}</span></li>`
+    ).join('');
+  }
+
+  document.getElementById('assess-btn')?.addEventListener('click', assess);
+</script>
