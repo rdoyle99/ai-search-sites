@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const posts = [
+  {
+    slug: 'email-verification-guide',
+    title: 'How to Verify Email Addresses: The Complete Guide for 2026',
+    description: 'Every verification method explained — syntax checks, MX lookups, SMTP validation, and catch-all detection — with accuracy benchmarks.',
+    date: '2026-01-28',
+  },
+  {
+    slug: 'email-verification-tools-compared',
+    title: 'Best Email Verification Tools Compared: Accuracy and Pricing (2026)',
+    description: '10 email verification tools tested against 50,000 addresses — accuracy rates, speed, pricing, and API capabilities compared.',
+    date: '2026-01-26',
+  },
+  {
+    slug: 'bounce-rate-email-verification',
+    title: 'How Email Verification Reduces Bounce Rates: Data from 1 Million Sends',
+    description: 'Before-and-after analysis of bounce rates, deliverability, and domain reputation for campaigns with and without email verification.',
+    date: '2026-01-24',
+  },
+];
+---
+
+<Base
+  title={`Blog | ${siteConfig.title}`}
+  description="Research and guides on email verification methods, tools, and deliverability impact."
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Blog</h1>
+    <p class="mt-4 text-lg text-gray-600">Research and guides on email verification methods, tools, and deliverability impact.</p>
+
+    <div class="mt-10 grid gap-8">
+      {posts.map((post) => (
+        <a href={`/blog/${post.slug}/`} class="block group">
+          <article class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
+            <time class="text-sm text-gray-400">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+            <h2 class="mt-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{post.title}</h2>
+            <p class="mt-2 text-gray-600">{post.description}</p>
+          </article>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

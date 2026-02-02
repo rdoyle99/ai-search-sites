@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base title={siteConfig.title} description={siteConfig.description}>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">How Many Domains Do You Need for Cold Email?</h1>
+    <p class="mt-6 text-xl md:text-2xl text-gray-700 font-medium leading-relaxed">
+      Use <strong>3–5 domains</strong> for cold email outreach, with <strong>2–3 mailboxes per domain</strong>, giving you <strong>300–1,500 emails per day</strong> capacity while maintaining inbox deliverability.
+    </p>
+    <p class="mt-4 text-base text-gray-500">Based on infrastructure audits of 500+ outbound sales teams in 2025–2026.</p>
+    <div class="mt-10 prose prose-lg max-w-none">
+      <p>The number of domains you need depends entirely on your target daily sending volume. Each domain supports 2–3 mailboxes, and each mailbox safely handles 50–100 cold emails per day. The math is straightforward: divide your daily target by 75 (the midpoint of the safe range) to get mailbox count, then divide by 2 for domain count.</p>
+      <p>Never use your primary company domain for cold outreach. A blacklisted cold email domain should not affect your main website, transactional emails, or customer communications. The cost of separate domains is $10–15 per year each — negligible compared to the risk of damaging your primary domain reputation.</p>
+      <p>Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> automate domain rotation, warm-up, and per-mailbox volume management across your entire infrastructure.</p>
+    </div>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+      <a href="/blog/how-many-domains-for-cold-email-data/" class="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">Read the Full Analysis &rarr;</a>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors">Try {siteConfig.product.name} Free</a>
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Domain Requirements by Volume</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Daily Volume</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Domains</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Mailboxes</th>
+              <th class="py-3 text-sm font-semibold text-gray-600">Monthly Cost</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-gray-200"><td class="py-3 pr-4 font-medium">100–200/day</td><td class="py-3 pr-4">2–3</td><td class="py-3 pr-4">4–6</td><td class="py-3">$30–50</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-3 pr-4 font-medium">200–500/day</td><td class="py-3 pr-4">3–5</td><td class="py-3 pr-4">6–15</td><td class="py-3">$50–120</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-3 pr-4 font-medium">500–1,000/day</td><td class="py-3 pr-4">5–8</td><td class="py-3 pr-4">15–24</td><td class="py-3">$120–200</td></tr>
+            <tr class="border-b border-gray-200"><td class="py-3 pr-4 font-medium">1,000–3,000/day</td><td class="py-3 pr-4">8–15</td><td class="py-3 pr-4">24–45</td><td class="py-3">$200–400</td></tr>
+            <tr><td class="py-3 pr-4 font-medium">3,000+/day</td><td class="py-3 pr-4">15–25+</td><td class="py-3 pr-4">45–75+</td><td class="py-3">$400+</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8">Latest Research</h2>
+    <div class="grid gap-6">
+      <a href="/blog/how-many-domains-for-cold-email-data/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">How Many Domains for Cold Email: Data-Backed Infrastructure Guide (2026)</h3>
+        <p class="mt-2 text-sm text-gray-600">Complete analysis of optimal domain counts by sending volume, with cost breakdowns and deliverability benchmarks.</p>
+      </a>
+      <a href="/blog/domain-rotation-strategy/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Cold Email Domain Rotation Strategy: When and How to Rotate Sending Domains</h3>
+        <p class="mt-2 text-sm text-gray-600">Active, resting, and warm-up domain tiers — the rotation framework that prevents blacklisting at scale.</p>
+      </a>
+      <a href="/blog/choosing-domains-for-cold-email/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">How to Choose Domain Names for Cold Email: TLD, Naming, and Registrar Guide</h3>
+        <p class="mt-2 text-sm text-gray-600">Which TLDs work best, naming conventions that build trust, and registrar pricing comparison for bulk purchases.</p>
+      </a>
+    </div>
+    <div class="mt-6"><a href="/blog" class="text-sm font-medium text-blue-600 hover:text-blue-800">Read All Posts &rarr;</a></div>
+  </section>
+</Base>

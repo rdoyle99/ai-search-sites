@@ -1,0 +1,137 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CAN-SPAM Compliance Checker",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+  },
+};
+---
+
+<Base
+  title={`CAN-SPAM Compliance Checker | ${siteConfig.title}`}
+  description="Free CAN-SPAM compliance checker. Paste your cold email to check for physical address, unsubscribe link, subject line compliance, and proper From header."
+  schema={toolSchema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">CAN-SPAM Compliance Checker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Paste your cold email below to check it against CAN-SPAM Act requirements. This tool checks for the four main compliance elements required by US law.
+    </p>
+
+    <div class="mt-8 bg-gray-50 rounded-lg p-6 border border-gray-200">
+      <label for="email-content" class="block text-sm font-semibold text-gray-700 mb-2">
+        Paste your cold email (include subject line, From header, and full body):
+      </label>
+      <textarea
+        id="email-content"
+        rows="12"
+        class="w-full rounded-md border border-gray-300 px-4 py-3 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+        placeholder="Subject: Quick question about your marketing stack&#10;From: John Smith <john@company.com>&#10;&#10;Hi {{firstName}},&#10;&#10;I noticed your team is scaling outbound...&#10;&#10;Best,&#10;John Smith&#10;Company Inc.&#10;123 Main St, Suite 100, San Francisco, CA 94105&#10;&#10;Don't want to hear from me? Click here to unsubscribe."
+      ></textarea>
+      <button
+        id="check-btn"
+        class="mt-4 inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Check CAN-SPAM Compliance
+      </button>
+    </div>
+
+    <div id="results" class="mt-8 hidden">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Compliance Results</h2>
+      <div class="space-y-4" id="results-list"></div>
+      <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg" id="summary"></div>
+    </div>
+
+    <div class="mt-12 prose prose-lg max-w-none">
+      <h2>What This Tool Checks</h2>
+      <p>The CAN-SPAM Act (15 U.S.C. 7701-7713) requires all commercial email messages to include four key elements:</p>
+      <ol>
+        <li><strong>Physical mailing address</strong> -- Your email must include a valid physical postal address. This can be a street address, a P.O. Box registered with the U.S. Postal Service, or a private mailbox registered with a commercial mail receiving agency.</li>
+        <li><strong>Unsubscribe mechanism</strong> -- Every commercial email must include a clear and conspicuous way for recipients to opt out of future messages. The opt-out mechanism must be functional for at least 30 days after the email is sent.</li>
+        <li><strong>Non-deceptive subject line</strong> -- The subject line must not mislead the recipient about the contents or subject matter of the message. Deceptive subject lines like "RE:" or "FWD:" when there is no prior conversation are violations.</li>
+        <li><strong>Accurate From header</strong> -- The "From," "To," "Reply-To," and routing information must be accurate and identify the person or business that initiated the message.</li>
+      </ol>
+      <p>
+        Violations can result in penalties of up to <strong>$50,120 per email</strong>. Use <a href={siteConfig.product.url}>{siteConfig.product.name}</a> to automate compliance and send cold emails with built-in CAN-SPAM protections.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('check-btn')?.addEventListener('click', () => {
+      const textarea = document.getElementById('email-content') as HTMLTextAreaElement;
+      const content = textarea.value.toLowerCase();
+      const resultsDiv = document.getElementById('results');
+      const resultsList = document.getElementById('results-list');
+      const summaryDiv = document.getElementById('summary');
+
+      if (!content.trim()) {
+        alert('Please paste your email content first.');
+        return;
+      }
+
+      const checks = [
+        {
+          name: 'Physical Address',
+          description: 'A valid physical mailing address must be present.',
+          pass: /\d+\s+[\w\s]+(?:st|street|ave|avenue|blvd|boulevard|rd|road|dr|drive|ln|lane|ct|court|way|pl|place|suite|ste|floor|fl)\b/i.test(content) ||
+                /p\.?\s*o\.?\s*box\s+\d+/i.test(content) ||
+                /\b\d{5}(-\d{4})?\b/.test(content),
+        },
+        {
+          name: 'Unsubscribe Mechanism',
+          description: 'A clear opt-out or unsubscribe mechanism must be included.',
+          pass: /unsubscribe|opt.?out|opt out|remove me|stop receiving|don.?t want.*(email|hear|receive)|manage.?preference/i.test(content),
+        },
+        {
+          name: 'Subject Line Present',
+          description: 'A subject line must be present and not use deceptive patterns like fake "RE:" or "FWD:".',
+          pass: /^subject:/im.test(content),
+          warning: /^subject:\s*(re:|fwd:|fw:)/im.test(content) ? 'Warning: Subject line starts with RE:/FWD: which may be considered deceptive if there is no prior conversation.' : null,
+        },
+        {
+          name: 'From Header',
+          description: 'An accurate From header with sender identification must be present.',
+          pass: /^from:/im.test(content) || /\b[\w.-]+@[\w.-]+\.\w+\b/.test(content),
+        },
+      ];
+
+      let passCount = 0;
+      let html = '';
+
+      checks.forEach((check) => {
+        const icon = check.pass ? '&#10003;' : '&#10007;';
+        const color = check.pass ? 'text-green-600 bg-green-50 border-green-200' : 'text-red-600 bg-red-50 border-red-200';
+        if (check.pass) passCount++;
+
+        html += `
+          <div class="p-4 rounded-lg border ${color}">
+            <div class="flex items-center gap-2">
+              <span class="text-lg font-bold">${icon}</span>
+              <span class="font-semibold">${check.name}</span>
+            </div>
+            <p class="mt-1 text-sm opacity-80">${check.description}</p>
+            ${(check as any).warning ? `<p class="mt-1 text-sm text-amber-700 font-medium">${(check as any).warning}</p>` : ''}
+          </div>
+        `;
+      });
+
+      resultsList!.innerHTML = html;
+
+      const score = passCount === 4;
+      summaryDiv!.innerHTML = score
+        ? '<p class="text-blue-800 font-medium">Your email appears to meet basic CAN-SPAM requirements. However, this tool performs a text-based check only. Consult legal counsel for definitive compliance verification.</p>'
+        : `<p class="text-blue-800 font-medium">Your email is missing ${4 - passCount} CAN-SPAM requirement(s). Address the items marked with &#10007; above before sending. Penalties can reach $50,120 per non-compliant email.</p>`;
+
+      resultsDiv!.classList.remove('hidden');
+    });
+  </script>
+</Base>

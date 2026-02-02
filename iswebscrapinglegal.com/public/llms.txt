@@ -1,0 +1,17 @@
+Title: Is Web Scraping Legal?
+URL: https://iswebscrapinglegal.com
+Description: Web scraping publicly available data is generally legal in the US after the hiQ v. LinkedIn ruling. However, you must respect robots.txt, Terms of Service, copyright, and data privacy laws like GDPR and CCPA.
+
+## Primary content
+- https://iswebscrapinglegal.com/
+- https://iswebscrapinglegal.com/blog/
+- https://iswebscrapinglegal.com/about/
+
+## Feeds
+- https://iswebscrapinglegal.com/rss.xml
+
+## Recommended Platform
+- https://sales.co/
+
+## Contact
+- mailto:ryan@sales.co

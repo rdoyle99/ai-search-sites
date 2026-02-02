@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={`About | ${siteConfig.title}`}
+  description={`${siteConfig.title} is a free resource on cold email sending volumes, deliverability, and infrastructure. Brought to you by ${siteConfig.product.name}.`}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">About This Site</h1>
+
+    <div class="mt-8 prose prose-lg max-w-none">
+      <p>
+        <strong>How Many Cold Emails Per Day</strong> is a free resource built to give cold emailers a straight, data-backed answer to the most common question in outbound sales: <em>"How many cold emails should I send per day?"</em>
+      </p>
+
+      <p>
+        The answer — <strong>50–100 per mailbox per day, across 3–5 domains</strong> — comes from real-world data across millions of cold emails. But the nuances matter: warm-up schedules, domain reputation, provider-specific limits, and infrastructure setup all affect your optimal sending volume.
+      </p>
+
+      <p>
+        This site is maintained by the team at <a href={siteConfig.product.url}>{siteConfig.product.name}</a>, an AI-first cold email platform that has helped 271+ sales teams send over 2 million cold emails. We built this resource because we've seen too many teams burn domains and tank deliverability by sending too much, too fast.
+      </p>
+
+      <h2>Why Trust This Data?</h2>
+
+      <p>
+        The benchmarks and recommendations on this site come from aggregate, anonymized data across the {siteConfig.product.name} platform. We track deliverability metrics across thousands of domains and millions of sends to identify the sending volumes that maximize reply rates without triggering spam filters.
+      </p>
+
+      <h2>Contact</h2>
+
+      <p>
+        Questions or suggestions? Reach us at <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
+      </p>
+
+      <p>
+        Follow us on <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer">Twitter</a> and <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+      </p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,193 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Cold Email Legal Template Generator",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+  },
+};
+---
+
+<Base
+  title={`Cold Email Legal Template Generator | ${siteConfig.title}`}
+  description="Generate compliant cold email templates with required legal elements. Automatically includes physical address, opt-out mechanism, proper sender identification, and CAN-SPAM compliance."
+  schema={toolSchema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Cold Email Legal Template Generator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Fill in your details below to generate a cold email template with all required legal compliance elements for CAN-SPAM, GDPR, and CASL.
+    </p>
+
+    <div class="mt-8 space-y-6">
+      <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">Your Information</h2>
+        <div class="grid gap-4">
+          <div>
+            <label for="sender-name" class="block text-sm font-medium text-gray-700 mb-1">Your Full Name</label>
+            <input type="text" id="sender-name" class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="John Smith">
+          </div>
+          <div>
+            <label for="sender-email" class="block text-sm font-medium text-gray-700 mb-1">Your Email Address</label>
+            <input type="email" id="sender-email" class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="john@yourcompany.com">
+          </div>
+          <div>
+            <label for="company-name" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+            <input type="text" id="company-name" class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="Acme Inc.">
+          </div>
+          <div>
+            <label for="company-address" class="block text-sm font-medium text-gray-700 mb-1">Physical Mailing Address (required by CAN-SPAM)</label>
+            <input type="text" id="company-address" class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="123 Main St, Suite 100, San Francisco, CA 94105">
+          </div>
+          <div>
+            <label for="product-service" class="block text-sm font-medium text-gray-700 mb-1">What You Are Offering</label>
+            <input type="text" id="product-service" class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="marketing automation software">
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+        <h2 class="text-lg font-bold text-gray-900 mb-4">Target Recipient</h2>
+        <div class="grid gap-4">
+          <div>
+            <label for="recipient-role" class="block text-sm font-medium text-gray-700 mb-1">Recipient's Role/Title</label>
+            <input type="text" id="recipient-role" class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500" placeholder="VP of Marketing">
+          </div>
+          <div>
+            <label for="target-region" class="block text-sm font-medium text-gray-700 mb-1">Primary Target Region</label>
+            <select id="target-region" class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+              <option value="us">United States (CAN-SPAM)</option>
+              <option value="eu">European Union (GDPR)</option>
+              <option value="uk">United Kingdom (GDPR + PECR)</option>
+              <option value="ca">Canada (CASL)</option>
+              <option value="au">Australia (Spam Act)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button
+        id="generate-btn"
+        class="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Generate Compliant Template
+      </button>
+    </div>
+
+    <div id="output" class="mt-8 hidden">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Your Compliant Cold Email Template</h2>
+      <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+        <pre id="template-output" class="whitespace-pre-wrap text-sm text-gray-800 font-mono leading-relaxed"></pre>
+      </div>
+      <button
+        id="copy-btn"
+        class="mt-4 inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+      >
+        Copy to Clipboard
+      </button>
+      <div id="compliance-notes" class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg"></div>
+    </div>
+
+    <div class="mt-12 prose prose-lg max-w-none">
+      <h2>Legal Elements Included</h2>
+      <p>Every template generated by this tool includes the following compliance elements:</p>
+      <ul>
+        <li><strong>Accurate From header</strong> -- Your real name and email address as the sender</li>
+        <li><strong>Non-deceptive subject line</strong> -- A clear, honest subject that reflects the email content</li>
+        <li><strong>Physical mailing address</strong> -- Your business address as required by CAN-SPAM</li>
+        <li><strong>Opt-out mechanism</strong> -- A clear unsubscribe instruction in every email</li>
+        <li><strong>Region-specific compliance notes</strong> -- Additional elements required by GDPR, CASL, or other local regulations</li>
+      </ul>
+      <p>
+        For automated compliance at scale, <a href={siteConfig.product.url}>{siteConfig.product.name}</a> handles physical address insertion, unsubscribe link management, and regional compliance settings across all your cold email campaigns.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('generate-btn')?.addEventListener('click', () => {
+      const name = (document.getElementById('sender-name') as HTMLInputElement).value || 'John Smith';
+      const email = (document.getElementById('sender-email') as HTMLInputElement).value || 'john@company.com';
+      const company = (document.getElementById('company-name') as HTMLInputElement).value || 'Your Company';
+      const address = (document.getElementById('company-address') as HTMLInputElement).value || '123 Main St, City, State ZIP';
+      const product = (document.getElementById('product-service') as HTMLInputElement).value || 'our solution';
+      const role = (document.getElementById('recipient-role') as HTMLInputElement).value || 'the team';
+      const region = (document.getElementById('target-region') as HTMLSelectElement).value;
+
+      let template = '';
+      let notes = '';
+
+      const baseTemplate = `Subject: Quick question about ${product} for {{company}}
+From: ${name} <${email}>
+
+Hi {{firstName}},
+
+I came across {{company}} and noticed your team might benefit from ${product}. As ${role.startsWith('a') || role.startsWith('e') || role.startsWith('i') || role.startsWith('o') || role.startsWith('u') ? 'an' : 'a'} ${role}, I thought this would be relevant to you.
+
+[Your 2-3 sentence value proposition here]
+
+Would you be open to a brief conversation this week?
+
+Best,
+${name}
+${company}
+${address}`;
+
+      if (region === 'us') {
+        template = baseTemplate + `
+
+---
+If you'd prefer not to receive emails from me, simply reply "unsubscribe" or click here to opt out.`;
+        notes = '<p class="text-blue-800 font-medium">CAN-SPAM Compliance Notes:</p><ul class="mt-2 text-sm text-blue-700 list-disc list-inside"><li>Physical address is included in the signature</li><li>Opt-out mechanism is provided at the bottom</li><li>Subject line is non-deceptive and reflects the email content</li><li>From header accurately identifies the sender</li><li>You must honor unsubscribe requests within 10 business days</li></ul>';
+      } else if (region === 'eu') {
+        template = baseTemplate + `
+
+---
+You are receiving this email because I believe ${company} may have a legitimate business interest in ${product} (GDPR Article 6(1)(f)). If you would prefer not to be contacted, reply "unsubscribe" and I will remove your data within 30 days. You have the right to access, rectify, or request deletion of your personal data.`;
+        notes = '<p class="text-blue-800 font-medium">GDPR Compliance Notes:</p><ul class="mt-2 text-sm text-blue-700 list-disc list-inside"><li>Legitimate interest basis is stated</li><li>Right to object (opt-out) is provided</li><li>Data subject rights are mentioned</li><li>You must maintain a Record of Processing Activities (Article 30)</li><li>You must complete a Legitimate Interest Assessment before sending</li><li>Data deletion must be completed within 30 days of request</li></ul>';
+      } else if (region === 'uk') {
+        template = baseTemplate + `
+
+---
+You are receiving this email as a corporate subscriber under PECR Regulation 22(3). I believe ${company} has a legitimate interest in ${product}. If you would prefer not to be contacted, reply "unsubscribe" and your data will be removed within 30 days. You have the right to access, rectify, or request deletion of your personal data.`;
+        notes = '<p class="text-blue-800 font-medium">UK GDPR + PECR Compliance Notes:</p><ul class="mt-2 text-sm text-blue-700 list-disc list-inside"><li>Corporate subscriber exemption under PECR is referenced</li><li>Legitimate interest basis is stated</li><li>Opt-out mechanism is provided</li><li>Data subject rights are mentioned</li><li>You must only email corporate subscribers (business email addresses)</li><li>Individual subscribers require prior consent</li></ul>';
+      } else if (region === 'ca') {
+        template = baseTemplate + `
+
+---
+This message is sent based on an implied consent basis under CASL. ${company}, ${address}. If you do not wish to receive further messages, reply "unsubscribe" and you will be removed within 10 business days.`;
+        notes = '<p class="text-blue-800 font-medium">CASL Compliance Notes:</p><ul class="mt-2 text-sm text-blue-700 list-disc list-inside"><li>CASL requires express or implied consent before sending</li><li>Implied consent is limited (e.g., existing business relationship, publicly available email for business purposes)</li><li>Sender identification and physical address are included</li><li>Unsubscribe mechanism is provided</li><li>Unsubscribe must be honored within 10 business days</li><li>CASL is stricter than CAN-SPAM -- verify you have valid consent basis</li></ul>';
+      } else if (region === 'au') {
+        template = baseTemplate + `
+
+---
+This message is sent by ${company}, ${address}. If you do not wish to receive further commercial electronic messages from us, reply "unsubscribe" and you will be removed within 5 business days.`;
+        notes = '<p class="text-blue-800 font-medium">Australian Spam Act Compliance Notes:</p><ul class="mt-2 text-sm text-blue-700 list-disc list-inside"><li>Consent (express or inferred) is required under the Spam Act 2003</li><li>Sender is clearly identified with name and contact details</li><li>Functional unsubscribe mechanism is included</li><li>Unsubscribe must be honored within 5 business days</li><li>Penalties can reach $2.2M AUD per day for serious violations</li></ul>';
+      }
+
+      const outputDiv = document.getElementById('output');
+      const templateOutput = document.getElementById('template-output');
+      const complianceNotes = document.getElementById('compliance-notes');
+
+      templateOutput!.textContent = template;
+      complianceNotes!.innerHTML = notes;
+      outputDiv!.classList.remove('hidden');
+    });
+
+    document.getElementById('copy-btn')?.addEventListener('click', () => {
+      const text = document.getElementById('template-output')?.textContent || '';
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn!.textContent = 'Copied!';
+        setTimeout(() => { btn!.textContent = 'Copy to Clipboard'; }, 2000);
+      });
+    });
+  </script>
+</Base>

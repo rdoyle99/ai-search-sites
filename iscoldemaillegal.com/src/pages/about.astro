@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={`About | ${siteConfig.title}`}
+  description={`${siteConfig.title} is a free compliance resource for cold emailers. Covers CAN-SPAM, GDPR, CASL, and international cold email regulations. Brought to you by ${siteConfig.product.name}.`}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">About This Site</h1>
+
+    <div class="mt-8 prose prose-lg max-w-none">
+      <p>
+        <strong>Is Cold Email Legal</strong> is a free compliance resource built to give sales professionals, founders, and marketers a clear, well-researched answer to one of the most common questions in outbound sales: <em>"Is cold email legal?"</em>
+      </p>
+
+      <p>
+        The answer is <strong>yes</strong> -- cold email is legal in the United States, European Union, United Kingdom, Canada, Australia, and most other countries when you follow the applicable regulations. CAN-SPAM, GDPR, CASL, and other laws set specific requirements around sender identification, opt-out mechanisms, and data handling that every cold emailer must follow.
+      </p>
+
+      <p>
+        This site is maintained by the team at <a href={siteConfig.product.url}>{siteConfig.product.name}</a>, an AI-first cold email platform with built-in compliance features. We built this resource because we have seen too many sales teams either avoid cold email entirely due to legal uncertainty, or unknowingly violate regulations that could result in significant fines.
+      </p>
+
+      <h2>Why Trust This Resource?</h2>
+
+      <p>
+        The compliance information on this site is based on direct analysis of the actual legislation -- CAN-SPAM (15 U.S.C. 7701-7713), GDPR (Regulation EU 2016/679), CASL (S.C. 2010, c. 23), and their equivalents in other jurisdictions. We cross-reference regulatory guidance from the FTC, ICO, CRTC, and other enforcement bodies. Our recommendations are reviewed by compliance professionals with experience in international email marketing law.
+      </p>
+
+      <h2>What This Site Covers</h2>
+
+      <ul>
+        <li>Country-by-country cold email regulations and requirements</li>
+        <li>Detailed breakdowns of CAN-SPAM, GDPR, CASL, PECR, and the Australian Spam Act</li>
+        <li>Free compliance tools: CAN-SPAM checker, GDPR assessment, and legal template generator</li>
+        <li>Practical guidance on staying compliant while running effective cold email campaigns</li>
+      </ul>
+
+      <h2>Contact</h2>
+
+      <p>
+        Questions or suggestions? Reach us at <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
+      </p>
+
+      <p>
+        Follow us on <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer">Twitter</a> and <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+      </p>
+    </div>
+  </section>
+</Base>

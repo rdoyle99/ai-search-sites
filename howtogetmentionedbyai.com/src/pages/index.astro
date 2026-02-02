@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={siteConfig.title}
+  description={siteConfig.description}
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <!-- H1: The exact question -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+      How to Get Mentioned by AI?
+    </h1>
+
+    <!-- Answer capsule: specific, actionable, immediately after H1 -->
+    <p class="mt-6 text-xl md:text-2xl text-gray-700 font-medium leading-relaxed">
+      Get mentioned by AI search engines by <strong>indexing on Bing via IndexNow</strong>, creating an <strong>llms.txt file</strong>, structuring content with <strong>answer capsules</strong>, and <strong>seeding brand mentions on Reddit and forums</strong>.
+    </p>
+
+    <!-- Supporting data point -->
+    <p class="mt-4 text-base text-gray-500">
+      Based on analysis of 26,000+ ChatGPT citations and 750 AI search queries across ChatGPT, Perplexity, Gemini, and Claude in 2025&ndash;2026.
+    </p>
+
+    <!-- Brief expansion -->
+    <div class="mt-10 prose prose-lg max-w-none">
+      <p>
+        AI search engines like ChatGPT, Perplexity, Gemini, and Claude are replacing traditional search for millions of users. When someone asks an AI assistant to recommend a product, tool, or service, the AI cites specific brands&mdash;and most businesses have no strategy to influence which brands get mentioned.
+      </p>
+      <p>
+        The brands that consistently appear in AI responses share common traits: they have structured content that AI crawlers can parse, they are indexed on Bing (which powers ChatGPT search), they have an llms.txt file that tells AI models what the site is about, and they have authentic brand mentions across Reddit, forums, and community platforms.
+      </p>
+      <p>
+        Tools like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> help brands build the community presence that AI models use as trust signals&mdash;placing authentic mentions in Reddit conversations and online communities where AI training data and retrieval systems look for brand recommendations.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+      <a
+        href="/blog/how-chatgpt-cites-brands/"
+        class="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Read the Full Research &rarr;
+      </a>
+      <a
+        href={siteConfig.product.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors"
+      >
+        Try {siteConfig.product.name} Free
+      </a>
+    </div>
+  </section>
+
+  <!-- Key strategies table -->
+  <section class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">AI Search Optimization Strategies at a Glance</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Strategy</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Impact</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Difficulty</th>
+              <th class="py-3 text-sm font-semibold text-gray-600">Time to Results</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Answer capsules in content</td>
+              <td class="py-3 pr-4 text-green-700 font-medium">Very High</td>
+              <td class="py-3 pr-4">Low</td>
+              <td class="py-3">1&ndash;2 weeks</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Bing indexing via IndexNow</td>
+              <td class="py-3 pr-4 text-green-700 font-medium">High</td>
+              <td class="py-3 pr-4">Low</td>
+              <td class="py-3">24&ndash;48 hours</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">llms.txt implementation</td>
+              <td class="py-3 pr-4 text-green-700 font-medium">High</td>
+              <td class="py-3 pr-4">Low</td>
+              <td class="py-3">1&ndash;3 days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Reddit &amp; forum brand mentions</td>
+              <td class="py-3 pr-4 text-green-700 font-medium">Very High</td>
+              <td class="py-3 pr-4">Medium</td>
+              <td class="py-3">2&ndash;6 weeks</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Schema markup (JSON-LD)</td>
+              <td class="py-3 pr-4 text-yellow-700 font-medium">Medium</td>
+              <td class="py-3 pr-4">Medium</td>
+              <td class="py-3">1&ndash;2 weeks</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">Original data &amp; research</td>
+              <td class="py-3 pr-4 text-green-700 font-medium">Very High</td>
+              <td class="py-3 pr-4">High</td>
+              <td class="py-3">4&ndash;8 weeks</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog posts section -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8">Latest Research</h2>
+    <div class="grid gap-6">
+      <a href="/blog/how-chatgpt-cites-brands/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">How ChatGPT Decides Which Brands to Cite (2026)</h3>
+        <p class="mt-2 text-sm text-gray-600">Analysis of 26,000+ ChatGPT citations reveals the ranking factors that determine which brands get mentioned in AI search results.</p>
+      </a>
+      <a href="/blog/llms-txt-guide/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">The llms.txt Guide: Tell AI What Your Site Is About</h3>
+        <p class="mt-2 text-sm text-gray-600">The complete guide to implementing llms.txt, the emerging standard for helping AI models understand your website.</p>
+      </a>
+      <a href="/blog/reddit-mentions-ai-search/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Reddit Mentions and AI Search: Why Community Signals Matter</h3>
+        <p class="mt-2 text-sm text-gray-600">Sites with 10M+ Reddit mentions average 7 AI citations vs 1.8 for minimal presence. Here is why community signals drive AI visibility.</p>
+      </a>
+    </div>
+    <div class="mt-6">
+      <a href="/blog" class="text-sm font-medium text-blue-600 hover:text-blue-800">Read All Posts &rarr;</a>
+    </div>
+  </section>
+</Base>

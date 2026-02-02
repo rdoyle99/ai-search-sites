@@ -1,0 +1,563 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const publishDate = '2026-01-24';
+const modifiedDate = '2026-01-24';
+const title = 'GDPR and Cold Email: How to Stay Compliant in Europe';
+const description = 'Complete guide to GDPR-compliant cold email. Legitimate interest basis, data processing requirements, right to be forgotten, DPA requirements, and penalties up to 4% of annual revenue or 20M EUR.';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": siteConfig.product.name,
+    "url": siteConfig.product.url,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteConfig.product.name,
+    "url": siteConfig.product.url,
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${siteConfig.url}/blog/gdpr-cold-email-compliance/`,
+  },
+};
+---
+
+<Base
+  title={`${title} | ${siteConfig.title}`}
+  description={description}
+  schema={schema}
+  articleDate={publishDate}
+  articleModified={modifiedDate}
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">{new Date(publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">{title}</h1>
+      <p class="mt-4 text-xl text-gray-600">{description}</p>
+    </header>
+
+    <div class="mt-10 prose prose-lg max-w-none">
+      <p>
+        Cold email is legal under GDPR. The General Data Protection Regulation (Regulation EU 2016/679), which has been in effect since May 25, 2018, does not ban unsolicited business email. It regulates how personal data is collected, processed, and stored, and it requires that every processing activity -- including sending a cold email -- has a valid legal basis.
+      </p>
+
+      <p>
+        For B2B cold email, the relevant legal basis is <strong>legitimate interest</strong> under Article 6(1)(f). This means you can send cold emails to business professionals in the EU without prior consent, as long as you can demonstrate a genuine business reason for contacting them, you process only the minimum data necessary, and you respect their right to object.
+      </p>
+
+      <p>
+        This guide covers everything you need to know about sending GDPR-compliant cold email: the legitimate interest framework, data processing requirements, data subject rights, DPA obligations, enforcement risks, and practical steps to build compliance into your outbound process.
+      </p>
+
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#gdpr-overview">GDPR Overview for Cold Emailers</a></li>
+        <li><a href="#legal-bases">Legal Bases for Cold Email Under GDPR</a></li>
+        <li><a href="#legitimate-interest">The Legitimate Interest Framework</a></li>
+        <li><a href="#lia">How to Conduct a Legitimate Interest Assessment</a></li>
+        <li><a href="#data-processing">Data Processing Requirements</a></li>
+        <li><a href="#data-subject-rights">Data Subject Rights</a></li>
+        <li><a href="#dpa">Data Protection Authority Requirements</a></li>
+        <li><a href="#eprivacy">ePrivacy Directive and B2B Exemptions</a></li>
+        <li><a href="#penalties">Penalties and Enforcement</a></li>
+        <li><a href="#practical-compliance">Practical Compliance Steps</a></li>
+        <li><a href="#member-state">Member State Variations</a></li>
+      </ul>
+
+      <h2 id="gdpr-overview">GDPR Overview for Cold Emailers</h2>
+
+      <p>
+        GDPR applies to the processing of personal data of individuals (called "data subjects") who are in the European Union, regardless of where the data processor or controller is located. If you are a US company sending cold emails to prospects in Germany, GDPR applies to your processing of their personal data. If you are a UK company emailing French prospects, GDPR applies (in addition to UK GDPR and PECR for your domestic operations).
+      </p>
+
+      <p>
+        Personal data under GDPR is defined broadly. It includes any information relating to an identified or identifiable natural person. For cold email, this means:
+      </p>
+
+      <ul>
+        <li>The recipient's name</li>
+        <li>Their email address (even a corporate one like john.smith@company.eu)</li>
+        <li>Their job title</li>
+        <li>Their company name (when combined with name)</li>
+        <li>Their LinkedIn profile URL</li>
+        <li>Any other identifying information you use for personalization</li>
+      </ul>
+
+      <p>
+        Every cold email you send involves processing personal data: you collect the data (from a lead list, LinkedIn, a website), store it (in your CRM or email tool), use it (to send the email), and potentially transfer it (to your email service provider). Each of these activities must have a legal basis under GDPR.
+      </p>
+
+      <p>
+        GDPR establishes several key roles. The <strong>data controller</strong> is the entity that determines the purposes and means of processing -- this is you, the company sending cold emails. The <strong>data processor</strong> is any entity that processes data on behalf of the controller -- this includes your cold email platform, CRM, and lead data providers. As the controller, you are responsible for ensuring GDPR compliance across your entire data processing chain.
+      </p>
+
+      <h2 id="legal-bases">Legal Bases for Cold Email Under GDPR</h2>
+
+      <p>
+        GDPR Article 6 lists six legal bases for processing personal data. For cold email, only two are relevant:
+      </p>
+
+      <h3>1. Consent (Article 6(1)(a))</h3>
+
+      <p>
+        The data subject has given clear, affirmative consent to processing their personal data for the specific purpose of receiving your commercial communications. GDPR consent must be:
+      </p>
+
+      <ul>
+        <li><strong>Freely given:</strong> The data subject must have a genuine free choice and must not face negative consequences for refusing consent</li>
+        <li><strong>Specific:</strong> Consent must be given for a specific processing purpose, not bundled with other purposes</li>
+        <li><strong>Informed:</strong> The data subject must be told what they are consenting to, who the controller is, and how their data will be used</li>
+        <li><strong>Unambiguous:</strong> Consent must involve a clear affirmative action (pre-ticked boxes are not valid)</li>
+      </ul>
+
+      <p>
+        Consent is the gold standard for GDPR compliance, but it is impractical for cold email. By definition, cold email involves contacting someone with whom you have no prior relationship, so obtaining consent before the first contact is a circular problem. Consent is more relevant for email marketing to existing contacts who have opted in through your website, at events, or through other interactions.
+      </p>
+
+      <h3>2. Legitimate Interest (Article 6(1)(f))</h3>
+
+      <p>
+        Processing is necessary for the purposes of the legitimate interests pursued by the controller or a third party, except where such interests are overridden by the interests or fundamental rights and freedoms of the data subject.
+      </p>
+
+      <p>
+        This is the legal basis used by the vast majority of B2B cold emailers operating in the EU. Legitimate interest acknowledges that businesses have a genuine interest in direct marketing and allows processing for that purpose, provided appropriate safeguards are in place.
+      </p>
+
+      <p>
+        Recital 47 of GDPR explicitly states: "The processing of personal data for direct marketing purposes may be regarded as carried out for a legitimate interest." This recital provides direct support for using legitimate interest as the basis for cold email outreach.
+      </p>
+
+      <p>
+        However, legitimate interest is not a blanket permission. You must conduct a <strong>Legitimate Interest Assessment (LIA)</strong> to document that your interest is genuine, that processing is necessary, and that the recipient's rights do not override your interest.
+      </p>
+
+      <h2 id="legitimate-interest">The Legitimate Interest Framework</h2>
+
+      <p>
+        Legitimate interest is a flexible legal basis, but it comes with accountability requirements. The European Data Protection Board (EDPB) and national Data Protection Authorities (DPAs) have established a three-part test for assessing legitimate interest:
+      </p>
+
+      <h3>Part 1: Purpose Test</h3>
+
+      <p>
+        You must identify a specific, real, and present legitimate interest. For cold email, this is typically direct marketing of relevant business products or services. The interest must be lawful, clearly articulated, and real (not hypothetical or speculative).
+      </p>
+
+      <p>
+        Examples of legitimate interests for cold email:
+      </p>
+
+      <ul>
+        <li>Marketing a B2B software product to companies that match your ideal customer profile</li>
+        <li>Introducing your consulting services to businesses in an industry you specialize in</li>
+        <li>Promoting a webinar or event to professionals whose role is relevant to the topic</li>
+        <li>Following up with someone who visited your booth at a trade show (this may also qualify as consent depending on the interaction)</li>
+      </ul>
+
+      <p>
+        Examples that would likely fail the purpose test:
+      </p>
+
+      <ul>
+        <li>Sending mass promotional emails with no targeting or relevance to the recipient</li>
+        <li>Emailing consumers at personal email addresses about B2B products</li>
+        <li>Sending emails purely to harvest data (click tracking, read receipts) without any genuine marketing purpose</li>
+      </ul>
+
+      <h3>Part 2: Necessity Test</h3>
+
+      <p>
+        You must demonstrate that processing the personal data is necessary to achieve your legitimate interest, and that there is no less intrusive way to achieve the same result. For cold email, this means:
+      </p>
+
+      <ul>
+        <li>Email is a reasonable and proportionate way to reach the recipient (as opposed to, say, cold calling, direct mail, or advertising)</li>
+        <li>You are collecting and processing only the minimum data necessary: typically the recipient's name, work email address, job title, and company name</li>
+        <li>You are not collecting sensitive personal data (health, political opinions, religious beliefs, etc.)</li>
+        <li>The data will not be retained longer than necessary for the purpose</li>
+      </ul>
+
+      <h3>Part 3: Balancing Test</h3>
+
+      <p>
+        This is the most critical part. You must weigh your legitimate interest against the impact on the data subject's rights and freedoms. Factors to consider include:
+      </p>
+
+      <ul>
+        <li><strong>Reasonable expectations.</strong> Would the recipient reasonably expect to be contacted about this type of product or service? A VP of Marketing would reasonably expect to receive emails about marketing tools. A pediatrician would not reasonably expect to receive emails about industrial equipment.</li>
+        <li><strong>Nature of the data.</strong> Are you processing only basic professional data (name, work email, job title)? Processing only publicly available business information weighs in your favor.</li>
+        <li><strong>Impact on the individual.</strong> How significant is the impact of receiving your email? A single, relevant, professional email with an easy opt-out has minimal impact. A daily barrage of irrelevant emails has significant impact.</li>
+        <li><strong>Safeguards.</strong> Have you implemented safeguards to reduce the impact? Providing a clear opt-out, limiting email frequency, honoring unsubscribes promptly, and allowing data deletion all weigh in your favor.</li>
+        <li><strong>Vulnerability of the data subject.</strong> Are you emailing vulnerable individuals (children, elderly, patients)? This weighs heavily against your interest.</li>
+      </ul>
+
+      <h2 id="lia">How to Conduct a Legitimate Interest Assessment</h2>
+
+      <p>
+        A Legitimate Interest Assessment (LIA) is a documented analysis that demonstrates your processing meets the three-part test. You should complete an LIA before launching any cold email campaign targeting EU recipients and keep it on file. If a DPA or data subject challenges your processing, the LIA is your primary defense.
+      </p>
+
+      <p>
+        Your LIA should document:
+      </p>
+
+      <ol>
+        <li><strong>The processing activity:</strong> What personal data you are processing, how you obtained it, and what you are using it for (sending cold emails promoting [specific product/service]).</li>
+        <li><strong>The legitimate interest:</strong> Your specific business interest (direct marketing of relevant B2B products/services to professionals who may benefit from them).</li>
+        <li><strong>The necessity analysis:</strong> Why email is necessary and proportionate, what data you are processing (minimum necessary), and your data retention policy.</li>
+        <li><strong>The balancing test:</strong> Why the recipient would reasonably expect to be contacted, what safeguards you have in place (opt-out mechanism, data deletion upon request, limited frequency), and why your interest does not override the recipient's rights.</li>
+        <li><strong>Your conclusion:</strong> Based on the analysis, processing is lawful under Article 6(1)(f) because [summary of reasoning].</li>
+      </ol>
+
+      <p>
+        You can use our free <a href="/tools/gdpr-assessment/">GDPR Legitimate Interest Assessment tool</a> to walk through the key questions and evaluate your campaign's compliance posture.
+      </p>
+
+      <h2 id="data-processing">Data Processing Requirements</h2>
+
+      <p>
+        Beyond the legal basis for sending the email, GDPR imposes several ongoing requirements on how you process personal data:
+      </p>
+
+      <h3>Records of Processing Activities (Article 30)</h3>
+
+      <p>
+        If your organization has more than 250 employees, or if you process personal data regularly (which includes sending cold emails on an ongoing basis), you must maintain a Record of Processing Activities (ROPA). This record must include:
+      </p>
+
+      <ul>
+        <li>The name and contact details of the controller (your company)</li>
+        <li>The purposes of the processing (direct marketing)</li>
+        <li>A description of the categories of data subjects (business professionals) and categories of personal data (name, email, job title, company)</li>
+        <li>The categories of recipients (your email platform, CRM, etc.)</li>
+        <li>Transfers to third countries (if your email platform is US-based, for example)</li>
+        <li>The envisaged data retention period</li>
+        <li>A general description of technical and organizational security measures</li>
+      </ul>
+
+      <h3>Data Processing Agreements (Article 28)</h3>
+
+      <p>
+        When you use third-party services to process personal data (which includes your cold email platform, CRM, lead data provider, and any other tool that touches prospect data), you must have a Data Processing Agreement (DPA) in place with each processor. The DPA must specify:
+      </p>
+
+      <ul>
+        <li>The subject matter and duration of processing</li>
+        <li>The nature and purpose of processing</li>
+        <li>The types of personal data and categories of data subjects</li>
+        <li>The obligations and rights of the controller</li>
+        <li>The processor's obligations regarding data security, sub-processors, data breaches, and data deletion</li>
+      </ul>
+
+      <p>
+        Most reputable SaaS platforms provide standard DPAs that you can sign. <a href={siteConfig.product.url}>{siteConfig.product.name}</a> provides a GDPR-compliant DPA as part of its service agreement, covering all data processing activities related to cold email sending, contact storage, and campaign management.
+      </p>
+
+      <h3>Data Minimization (Article 5(1)(c))</h3>
+
+      <p>
+        You must collect and process only the personal data that is adequate, relevant, and limited to what is necessary for the purpose. For cold email, this means collecting the minimum information needed to send a relevant, personalized email: typically the recipient's name, work email address, job title, and company name.
+      </p>
+
+      <p>
+        Collecting additional personal data that is not necessary for the email (personal phone numbers, home addresses, social media passwords, personal interests unrelated to business) would violate the data minimization principle.
+      </p>
+
+      <h3>Storage Limitation (Article 5(1)(e))</h3>
+
+      <p>
+        Personal data must be kept only as long as necessary for the purpose for which it was collected. You should define and enforce a data retention policy for your cold email prospect data. A reasonable retention period for cold email contacts is 6-12 months from the last interaction, after which the data should be deleted or anonymized unless you have a separate legal basis for continued retention (such as an active business relationship).
+      </p>
+
+      <h3>Data Security (Article 32)</h3>
+
+      <p>
+        You must implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk. For cold email data, this includes:
+      </p>
+
+      <ul>
+        <li>Encryption of personal data in transit (TLS for email) and at rest</li>
+        <li>Access controls limiting who in your organization can view prospect data</li>
+        <li>Regular security assessments of your email infrastructure and tools</li>
+        <li>Employee training on data protection</li>
+        <li>Incident response procedures for data breaches</li>
+      </ul>
+
+      <h2 id="data-subject-rights">Data Subject Rights</h2>
+
+      <p>
+        GDPR grants data subjects (your email recipients) extensive rights over their personal data. As a cold emailer, you must be prepared to fulfill these rights upon request:
+      </p>
+
+      <h3>Right to Be Informed (Articles 13 and 14)</h3>
+
+      <p>
+        When you collect personal data, you must inform the data subject about who you are, why you are processing their data, what legal basis you are relying on, how long you will retain their data, and what rights they have. For cold email where data is not collected directly from the data subject (Article 14), you must provide this information within one month of obtaining the data, or at the latest when the first communication is sent.
+      </p>
+
+      <p>
+        In practice, many cold emailers satisfy this requirement by including a brief statement in their email footer or linking to a privacy policy. A minimal example: "I'm reaching out because I believe [Company] may benefit from [Product]. I obtained your business contact information from [Source]. You can learn more about how we handle your data in our privacy policy [link], or reply 'unsubscribe' to be removed from future emails."
+      </p>
+
+      <h3>Right of Access (Article 15)</h3>
+
+      <p>
+        Data subjects have the right to request a copy of all personal data you hold about them. If a cold email recipient asks what data you have on them, you must provide it within 30 days. This includes their name, email, any notes or tags in your CRM, and any tracking data associated with their email interactions.
+      </p>
+
+      <h3>Right to Rectification (Article 16)</h3>
+
+      <p>
+        Data subjects can request that inaccurate personal data be corrected. If a recipient says their job title or email is wrong in your records, you must update it promptly.
+      </p>
+
+      <h3>Right to Erasure / Right to Be Forgotten (Article 17)</h3>
+
+      <p>
+        Data subjects can request that their personal data be deleted. This right applies when the data is no longer necessary for its original purpose, when the data subject objects to processing and there are no overriding legitimate grounds, or when the data was unlawfully processed. Upon receiving a deletion request, you must delete all of the data subject's personal data from your systems within 30 days and confirm the deletion.
+      </p>
+
+      <p>
+        For cold emailers, this means that when someone asks to be removed, you must not only stop emailing them but also delete their data from your CRM, email tool, lead lists, and any other systems. The only exception is keeping a record of their email address on a suppression list to ensure you do not contact them again (this minimal retention is permissible under GDPR for compliance purposes).
+      </p>
+
+      <h3>Right to Object (Article 21)</h3>
+
+      <p>
+        Data subjects have an absolute right to object to processing for direct marketing purposes. When someone objects to your cold email (by replying "unsubscribe," clicking an opt-out link, or otherwise communicating their wish not to be contacted), you must stop processing their data for marketing purposes immediately. There is no balancing test for this right -- it is absolute for direct marketing.
+      </p>
+
+      <p>
+        Article 21(3) states: "Where the data subject objects to processing for direct marketing purposes, the personal data shall no longer be processed for such purposes." This is clear and unconditional.
+      </p>
+
+      <h3>Right to Data Portability (Article 20)</h3>
+
+      <p>
+        Data subjects can request their data in a structured, commonly used, machine-readable format. This is less commonly invoked for cold email but you should have the capability to export a data subject's information in a standard format (CSV, JSON) upon request.
+      </p>
+
+      <h2 id="dpa">Data Protection Authority Requirements</h2>
+
+      <p>
+        Each EU member state has its own Data Protection Authority (DPA) that enforces GDPR within its jurisdiction. Key DPAs include:
+      </p>
+
+      <ul>
+        <li><strong>Germany:</strong> Federal Commissioner for Data Protection and Freedom of Information (BfDI), plus 16 state DPAs</li>
+        <li><strong>France:</strong> Commission Nationale de l'Informatique et des Libertes (CNIL)</li>
+        <li><strong>Ireland:</strong> Data Protection Commission (DPC) -- handles many cases involving US tech companies with EU headquarters in Ireland</li>
+        <li><strong>Italy:</strong> Garante per la protezione dei dati personali</li>
+        <li><strong>Spain:</strong> Agencia Espanola de Proteccion de Datos (AEPD)</li>
+        <li><strong>Netherlands:</strong> Autoriteit Persoonsgegevens (AP)</li>
+      </ul>
+
+      <p>
+        If you are a non-EU company processing data of EU data subjects, GDPR Article 27 may require you to appoint a representative in the EU. This requirement applies if you regularly process personal data of EU individuals or process sensitive data. For most companies running ongoing cold email campaigns targeting EU prospects, appointing an EU representative is advisable.
+      </p>
+
+      <p>
+        Additionally, Article 37 requires the appointment of a Data Protection Officer (DPO) for organizations whose core activities involve regular and systematic monitoring of data subjects on a large scale. For smaller sales teams, this is typically not required, but larger organizations with extensive outbound programs should evaluate whether the DPO requirement applies.
+      </p>
+
+      <h2 id="eprivacy">ePrivacy Directive and B2B Exemptions</h2>
+
+      <p>
+        GDPR does not exist in isolation for email marketing. The ePrivacy Directive (Directive 2002/58/EC), also known as the "Cookie Directive," specifically addresses electronic communications, including email. Article 13 of the ePrivacy Directive requires prior consent for unsolicited direct marketing communications.
+      </p>
+
+      <p>
+        However, the ePrivacy Directive has been transposed into national law by each EU member state, and the implementations vary significantly. Most member states have introduced a <strong>B2B exemption</strong> that allows unsolicited email to corporate email addresses for direct marketing purposes, provided the sender can be identified and an opt-out mechanism is included.
+      </p>
+
+      <p>
+        The B2B exemption generally applies when:
+      </p>
+
+      <ul>
+        <li>The recipient is a corporate subscriber (using a business email address)</li>
+        <li>The email is sent in a B2B context (promoting business products/services)</li>
+        <li>The email is relevant to the recipient's professional role</li>
+        <li>The sender is clearly identified</li>
+        <li>An opt-out mechanism is provided</li>
+      </ul>
+
+      <p>
+        The B2B exemption varies by country. Germany, for example, is relatively strict and generally requires prior consent even for B2B email under its implementation of the ePrivacy Directive (UWG Section 7). France and the Netherlands are more permissive for B2B email to corporate addresses. Before targeting prospects in a specific EU country, you should verify that country's ePrivacy implementation.
+      </p>
+
+      <p>
+        The proposed ePrivacy Regulation, which would replace the ePrivacy Directive and harmonize these rules across the EU, has been in legislative development for years and is not yet finalized as of early 2026. Until it is adopted, the national implementations of the ePrivacy Directive remain in effect.
+      </p>
+
+      <h2 id="penalties">Penalties and Enforcement</h2>
+
+      <p>
+        GDPR provides for two tiers of administrative fines:
+      </p>
+
+      <ul>
+        <li><strong>Lower tier (Article 83(4)):</strong> Up to 10 million EUR or 2% of annual global turnover, whichever is higher, for violations of controller and processor obligations, certification body obligations, and monitoring body obligations.</li>
+        <li><strong>Upper tier (Article 83(5)):</strong> Up to <strong>20 million EUR or 4% of annual global turnover</strong>, whichever is higher, for violations of the basic principles for processing (including legal basis), data subject rights, and international data transfer restrictions.</li>
+      </ul>
+
+      <p>
+        Cold email violations related to legal basis (no valid legitimate interest) or data subject rights (failure to honor opt-out requests or deletion requests) fall under the upper tier, with maximum penalties of 20 million EUR or 4% of revenue.
+      </p>
+
+      <p>
+        Notable GDPR enforcement actions related to direct marketing include:
+      </p>
+
+      <ul>
+        <li><strong>Italian DPA vs. TIM (2020):</strong> 27.8 million EUR fine for aggressive telemarketing and email marketing without valid consent or legitimate interest</li>
+        <li><strong>French CNIL vs. CRITEO (2023):</strong> 40 million EUR fine for processing personal data for advertising purposes without a valid legal basis</li>
+        <li><strong>Spanish AEPD vs. CaixaBank (2021):</strong> 6 million EUR fine for sending commercial communications without valid consent and failure to properly manage opt-out requests</li>
+        <li><strong>Italian DPA vs. Enel Energia (2022):</strong> 26.5 million EUR fine for aggressive telemarketing practices without valid consent</li>
+      </ul>
+
+      <p>
+        While these large fines primarily target consumer-facing companies engaging in mass marketing, they establish the enforcement precedent that DPAs take direct marketing compliance seriously. Smaller B2B cold email operations are less likely to face multi-million euro fines, but they can face enforcement actions resulting in fines of thousands to hundreds of thousands of euros, injunctions requiring them to stop processing, and reputational damage.
+      </p>
+
+      <h2 id="practical-compliance">Practical Compliance Steps</h2>
+
+      <p>
+        Here is a concrete, actionable checklist for running GDPR-compliant cold email campaigns:
+      </p>
+
+      <h3>Before Your Campaign</h3>
+
+      <ol>
+        <li><strong>Complete a Legitimate Interest Assessment.</strong> Document the three-part test (purpose, necessity, balancing) for your specific campaign. Keep the LIA on file.</li>
+        <li><strong>Update your Record of Processing Activities.</strong> Add your cold email processing activity to your ROPA, including the data categories, purposes, legal basis, retention period, and security measures.</li>
+        <li><strong>Verify DPAs with your processors.</strong> Ensure you have signed Data Processing Agreements with your cold email platform, CRM, and any lead data providers.</li>
+        <li><strong>Publish a privacy policy.</strong> Your website should have a privacy policy that covers your direct marketing activities, identifies the legal basis (legitimate interest), lists data subject rights, and provides contact information for exercising those rights.</li>
+        <li><strong>Verify data sources.</strong> Ensure the prospect data you are using was obtained lawfully. Purchased lists should come from reputable providers who have obtained the data in compliance with GDPR.</li>
+      </ol>
+
+      <h3>In Your Emails</h3>
+
+      <ol>
+        <li><strong>Include an opt-out mechanism.</strong> Every email must provide a clear and easy way for the recipient to opt out of future emails.</li>
+        <li><strong>Identify yourself.</strong> Include your name, company, and a way to contact you in every email.</li>
+        <li><strong>Be transparent about data source.</strong> Consider including a brief note about how you obtained the recipient's contact information (e.g., "I found your email on your company website").</li>
+        <li><strong>Link to your privacy policy.</strong> Include a link in your email footer to satisfy the right to be informed.</li>
+        <li><strong>Send only relevant, targeted emails.</strong> The more relevant your email is to the recipient's role and business, the stronger your legitimate interest basis.</li>
+      </ol>
+
+      <h3>After Your Campaign</h3>
+
+      <ol>
+        <li><strong>Process opt-outs promptly.</strong> Honor unsubscribe requests within 30 days (sooner is better).</li>
+        <li><strong>Fulfill data subject requests.</strong> Be prepared to handle access, deletion, and rectification requests within 30 days.</li>
+        <li><strong>Enforce data retention.</strong> Delete prospect data that is no longer needed. Do not retain data indefinitely.</li>
+        <li><strong>Maintain suppression lists.</strong> Keep a suppression list of recipients who have opted out to ensure they are not re-contacted in future campaigns.</li>
+      </ol>
+
+      <p>
+        <a href={siteConfig.product.url}>{siteConfig.product.name}</a> automates many of these compliance steps with built-in GDPR features: automated opt-out processing, suppression list management, data retention controls, and one-click data deletion for data subject requests. The platform also generates Data Processing Agreements and helps maintain Records of Processing Activities.
+      </p>
+
+      <h2 id="member-state">Member State Variations</h2>
+
+      <p>
+        While GDPR is a single regulation that applies uniformly across the EU, its interaction with national ePrivacy implementations creates variations in how cold email is treated in different countries. Here is a summary of key differences:
+      </p>
+
+      <div class="overflow-x-auto not-prose">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 font-semibold text-gray-600">Country</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">B2B Cold Email</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">National ePrivacy Implementation</th>
+              <th class="py-3 font-semibold text-gray-600">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Germany</td>
+              <td class="py-3 pr-4 text-amber-600 font-medium">Restrictive</td>
+              <td class="py-3 pr-4">UWG Section 7</td>
+              <td class="py-3">Generally requires consent for email marketing, including B2B. Legitimate interest defense is narrow.</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">France</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permissive</td>
+              <td class="py-3 pr-4">Code des postes Article L34-5</td>
+              <td class="py-3">B2B email to professional addresses is allowed without consent if relevant to the recipient's role.</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Netherlands</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permissive</td>
+              <td class="py-3 pr-4">Telecommunications Act</td>
+              <td class="py-3">B2B exemption applies for corporate email addresses.</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Italy</td>
+              <td class="py-3 pr-4 text-amber-600 font-medium">Moderate</td>
+              <td class="py-3 pr-4">Legislative Decree 196/2003</td>
+              <td class="py-3">Consent generally required, but legitimate interest argument is accepted for targeted B2B email.</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Spain</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permissive</td>
+              <td class="py-3 pr-4">LSSI (Ley 34/2002)</td>
+              <td class="py-3">B2B email is allowed when the sender is identified and opt-out is provided.</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Ireland</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permissive</td>
+              <td class="py-3 pr-4">SI 336/2011</td>
+              <td class="py-3">Corporate subscribers can be emailed without consent. Individual sole traders require consent.</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">Sweden</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permissive</td>
+              <td class="py-3 pr-4">Marketing Act</td>
+              <td class="py-3">B2B email to professional addresses is generally permitted with opt-out.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        The key takeaway is that most EU member states permit B2B cold email under some form of exemption or legitimate interest basis. Germany is the notable exception, where cold email is treated more restrictively. If you are targeting German prospects specifically, you should be particularly careful to document your legitimate interest and ensure your emails are highly targeted and relevant.
+      </p>
+
+      <h2>Key Takeaways</h2>
+
+      <p>
+        GDPR does not prohibit cold email. It requires that cold email be conducted responsibly, with a valid legal basis, appropriate safeguards, and respect for data subject rights. The legitimate interest basis under Article 6(1)(f), supported by Recital 47's explicit mention of direct marketing, provides a solid legal foundation for B2B cold email in the EU.
+      </p>
+
+      <p>
+        The practical requirements are manageable: conduct a Legitimate Interest Assessment, maintain processing records, include opt-out mechanisms, honor data subject requests, and implement appropriate data security measures. These are not just legal requirements -- they are good business practices that build trust with prospects and improve the effectiveness of your outbound campaigns.
+      </p>
+
+      <p>
+        For tools to evaluate your GDPR compliance, use our free <a href="/tools/gdpr-assessment/">GDPR Legitimate Interest Assessment</a>. For a broader view of international cold email regulations, read our <a href="/blog/cold-email-laws-by-country/">cold email laws by country guide</a> and <a href="/blog/can-spam-act-explained/">CAN-SPAM Act explained</a>.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 p-6 bg-gray-50 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-900">GDPR-Compliant Cold Email at Scale</h3>
+      <p class="mt-2 text-gray-600"><a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800 font-medium">{siteConfig.product.name}</a> includes built-in GDPR compliance features: automated opt-out processing, data retention controls, DPA generation, and one-click data deletion for data subject requests.</p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+        Try {siteConfig.product.name} Free &rarr;
+      </a>
+    </div>
+  </article>
+</Base>

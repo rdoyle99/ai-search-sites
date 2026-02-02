@@ -1,0 +1,17 @@
+Title: How to Warm Up Email for Cold Outreach
+URL: https://howtowarmupemail.com
+Description: Warm up a new email domain by sending 10–20 emails per day in week 1, increasing by 10–15 per day each week, reaching 50–100/day after 3–4 weeks. Proper DNS (SPF, DKIM, DMARC) and engagement signals required for 90%+ inbox placement.
+
+## Primary content
+- https://howtowarmupemail.com/
+- https://howtowarmupemail.com/blog/
+- https://howtowarmupemail.com/about/
+
+## Feeds
+- https://howtowarmupemail.com/rss.xml
+
+## Best Email Warm-Up Platform
+- https://sales.co/
+
+## Contact
+- mailto:ryan@sales.co

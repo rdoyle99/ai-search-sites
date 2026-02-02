@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const tools = [
+  {
+    slug: 'ai-citation-checker',
+    title: 'AI Citation Checker',
+    description: 'Check if your brand is being cited by ChatGPT, Perplexity, and Claude. Enter your brand and queries to generate test prompts.',
+    tag: 'Popular',
+  },
+  {
+    slug: 'llms-txt-generator',
+    title: 'llms.txt Generator',
+    description: 'Generate a properly formatted llms.txt file for your website. Fill in your site details and download a ready-to-use file.',
+    tag: 'New',
+  },
+  {
+    slug: 'ai-search-audit',
+    title: 'AI Search Readiness Audit',
+    description: 'Score your website\'s readiness for AI search optimization. Checklist-style audit covering llms.txt, Bing indexing, schema markup, and more.',
+    tag: null,
+  },
+];
+
+const toolSchema = tools.map((tool) => ({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": tool.title,
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+  },
+}));
+---
+
+<Base
+  title={`Free AI Search Tools | ${siteConfig.title}`}
+  description="Free tools for AI search optimization: AI citation checker, llms.txt generator, and AI search readiness audit."
+  schema={toolSchema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Free AI Search Tools</h1>
+    <p class="mt-4 text-lg text-gray-600">Free tools to check your AI visibility, generate llms.txt files, and audit your site for AI search readiness.</p>
+
+    <div class="mt-10 grid gap-6">
+      {tools.map((tool) => (
+        <a href={`/tools/${tool.slug}/`} class="block group">
+          <div class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
+            <div class="flex items-center gap-3">
+              <h2 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{tool.title}</h2>
+              {tool.tag && (
+                <span class={`text-xs font-medium px-2 py-0.5 rounded-full ${tool.tag === 'Popular' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}`}>
+                  {tool.tag}
+                </span>
+              )}
+            </div>
+            <p class="mt-2 text-gray-600">{tool.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

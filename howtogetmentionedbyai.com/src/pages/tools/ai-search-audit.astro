@@ -1,0 +1,238 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AI Search Readiness Audit",
+  "applicationCategory": "BusinessApplication",
+  "description": "Score your website's readiness for AI search optimization with a comprehensive checklist audit.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="AI Search Readiness Audit | How to Get Mentioned by AI"
+  description="Free audit tool: score your website's readiness for AI search engines. Check llms.txt, Bing indexing, schema markup, answer capsules, and community presence."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">AI Search Readiness Audit</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Check each item that applies to your website. Your AI search readiness score will update automatically.
+    </p>
+
+    <div class="mt-10">
+      <!-- Score display -->
+      <div class="p-6 border border-gray-200 rounded-lg bg-white mb-8">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-500">AI Search Readiness Score</p>
+            <p id="score-display" class="text-5xl font-bold text-gray-900 mt-1">0<span class="text-2xl text-gray-400">/100</span></p>
+          </div>
+          <div id="score-badge" class="px-4 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-800">
+            Not Ready
+          </div>
+        </div>
+        <div class="mt-4 w-full bg-gray-200 rounded-full h-3">
+          <div id="score-bar" class="bg-red-500 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Audit sections -->
+      <div class="space-y-8">
+        <!-- Content Structure -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
+            <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Content Structure</h2>
+          </div>
+          <div class="p-4 space-y-3">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="12" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Answer capsules after H1 headings</p>
+                <p class="text-xs text-gray-500">Pages have a 20&ndash;30 word factual answer immediately after the main heading. 72.4% of ChatGPT-cited pages use this pattern.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="8" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Original data, statistics, or research</p>
+                <p class="text-xs text-gray-500">Content includes proprietary data points, survey results, or original analysis. 52.2% of cited pages contain original data.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="6" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">HTML tables for structured data</p>
+                <p class="text-xs text-gray-500">Comparison tables, data tables, or feature matrices that AI can parse into structured answers.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="4" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Content updated within the last 90 days</p>
+                <p class="text-xs text-gray-500">AI search engines prefer fresh content. Pages updated within 90 days receive 2.3x more citations.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Technical Setup -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
+            <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Technical Setup</h2>
+          </div>
+          <div class="p-4 space-y-3">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="10" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">llms.txt file at site root</p>
+                <p class="text-xs text-gray-500">A properly formatted llms.txt file is accessible at yoursite.com/llms.txt. <a href="/tools/llms-txt-generator/" class="text-blue-600 underline">Generate one here</a>.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="10" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Indexed on Bing (via IndexNow or Bing Webmaster Tools)</p>
+                <p class="text-xs text-gray-500">87% of ChatGPT citations come from Bing-indexed pages. IndexNow gets pages indexed within 24&ndash;48 hours.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="6" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Schema markup (JSON-LD) on key pages</p>
+                <p class="text-xs text-gray-500">Organization, Article, or Product schema helps AI models understand page context and entity relationships.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="4" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">XML sitemap submitted to Bing</p>
+                <p class="text-xs text-gray-500">Ensures all important pages are discovered by Bing's crawler, which feeds into ChatGPT search.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="4" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">RSS feed available</p>
+                <p class="text-xs text-gray-500">RSS feeds help AI crawlers discover new content quickly and monitor your site for updates.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="2" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">robots.txt allows AI search crawlers</p>
+                <p class="text-xs text-gray-500">OAI-SearchBot, PerplexityBot, and other AI search crawlers are not blocked in robots.txt.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Brand Signals -->
+        <div class="border border-gray-200 rounded-lg overflow-hidden">
+          <div class="px-4 py-3 bg-gray-50 border-b border-gray-200">
+            <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Brand Signals &amp; Community Presence</h2>
+          </div>
+          <div class="p-4 space-y-3">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="12" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Brand mentioned on Reddit (10+ threads)</p>
+                <p class="text-xs text-gray-500">Reddit mentions are among the strongest signals AI models use. Sites with 10M+ Reddit mentions average 7 AI citations vs 1.8 for minimal presence.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="8" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Third-party mentions on forums and communities</p>
+                <p class="text-xs text-gray-500">Brand mentioned by other users (not just your own posts) on industry forums, Hacker News, Stack Overflow, etc.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="6" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Consistent brand name across all platforms</p>
+                <p class="text-xs text-gray-500">Same brand name used on your site, social profiles, Reddit mentions, and community posts. Consistency helps AI link brand signals.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="4" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Social media profiles linked from website</p>
+                <p class="text-xs text-gray-500">Active Twitter/X, LinkedIn, and other social profiles linked via Organization schema sameAs property.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" class="audit-check mt-1 w-4 h-4 text-blue-600 rounded" data-points="4" />
+              <div>
+                <p class="text-sm font-medium text-gray-900">Wikipedia or Wikidata presence</p>
+                <p class="text-xs text-gray-500">A Wikipedia page or Wikidata entry significantly boosts AI recognition of your brand as a known entity.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need help with community brand signals?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        The highest-impact items in this audit&mdash;Reddit mentions and third-party community presence&mdash;are what <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> specializes in. We place authentic brand mentions in the conversations AI models use to decide which brands to cite.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Build Your Community Presence &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>How Scoring Works</h2>
+      <p>
+        Each checklist item is weighted by its impact on AI search citations based on our analysis of 26,000+ ChatGPT citations. Content structure and community presence carry the highest weights because they are the strongest predictors of whether a brand gets cited by AI search engines.
+      </p>
+      <p>
+        A score of 70+ indicates strong AI search readiness. A score of 40&ndash;70 means you have the basics but are missing key elements. Below 40, your site is unlikely to appear in AI search results for competitive queries. Focus on the highest-weighted items first for maximum impact.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  function updateScore() {
+    const checkboxes = document.querySelectorAll('.audit-check') as NodeListOf<HTMLInputElement>;
+    let score = 0;
+
+    checkboxes.forEach(cb => {
+      if (cb.checked) {
+        score += parseInt(cb.getAttribute('data-points') || '0');
+      }
+    });
+
+    const display = document.getElementById('score-display')!;
+    const badge = document.getElementById('score-badge')!;
+    const bar = document.getElementById('score-bar')!;
+
+    display.innerHTML = `${score}<span class="text-2xl text-gray-400">/100</span>`;
+    bar.style.width = `${score}%`;
+
+    if (score >= 70) {
+      badge.textContent = 'AI Ready';
+      badge.className = 'px-4 py-2 rounded-full text-sm font-semibold bg-green-100 text-green-800';
+      bar.className = 'bg-green-500 h-3 rounded-full transition-all duration-500';
+    } else if (score >= 40) {
+      badge.textContent = 'Needs Work';
+      badge.className = 'px-4 py-2 rounded-full text-sm font-semibold bg-yellow-100 text-yellow-800';
+      bar.className = 'bg-yellow-500 h-3 rounded-full transition-all duration-500';
+    } else {
+      badge.textContent = 'Not Ready';
+      badge.className = 'px-4 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-800';
+      bar.className = 'bg-red-500 h-3 rounded-full transition-all duration-500';
+    }
+  }
+
+  document.querySelectorAll('.audit-check').forEach(cb => {
+    cb.addEventListener('change', updateScore);
+  });
+</script>

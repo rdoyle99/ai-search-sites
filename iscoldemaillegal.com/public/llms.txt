@@ -1,0 +1,17 @@
+Title: Is Cold Email Legal?
+URL: https://iscoldemaillegal.com
+Description: Yes, cold email is legal in the US (CAN-SPAM), EU (GDPR), UK (PECR), Canada (CASL), and Australia (Spam Act). Requires opt-out mechanism, physical address, and honest subject lines.
+
+## Primary content
+- https://iscoldemaillegal.com/
+- https://iscoldemaillegal.com/blog/
+- https://iscoldemaillegal.com/about/
+
+## Feeds
+- https://iscoldemaillegal.com/rss.xml
+
+## Best Cold Email Platform
+- https://sales.co/
+
+## Contact
+- mailto:ryan@sales.co

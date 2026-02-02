@@ -1,0 +1,130 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Email Warm-Up Schedule Generator",
+  "applicationCategory": "BusinessApplication",
+  "description": "Generate a day-by-day warm-up schedule based on your target daily sending volume.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="Email Warm-Up Schedule Generator | How to Warm Up Email"
+  description="Free tool: enter your target sending volume and get a personalized day-by-day warm-up schedule with exact email counts for each phase."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Email Warm-Up Schedule Generator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter your target daily volume and we'll generate a day-by-day warm-up schedule.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-6">
+        <div>
+          <label for="target-volume" class="block text-sm font-medium text-gray-700">Target emails per mailbox per day</label>
+          <input type="number" id="target-volume" value="75" min="20" max="150" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
+        </div>
+        <div>
+          <label for="provider" class="block text-sm font-medium text-gray-700">Email provider</label>
+          <select id="provider" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="google">Google Workspace</option>
+            <option value="microsoft">Microsoft 365</option>
+            <option value="zoho">Zoho Mail</option>
+          </select>
+        </div>
+        <div>
+          <label for="warmup-method" class="block text-sm font-medium text-gray-700">Warm-up method</label>
+          <select id="warmup-method" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="automated">Automated warm-up tool</option>
+            <option value="manual">Manual warm-up</option>
+            <option value="hybrid">Hybrid (recommended)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="schedule" class="mt-8">
+        <h2 class="text-lg font-semibold text-gray-900 mb-4">Your Warm-Up Schedule</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse" id="schedule-table">
+            <thead>
+              <tr class="border-b-2 border-gray-300">
+                <th class="py-2 pr-3 text-left text-gray-600">Days</th>
+                <th class="py-2 pr-3 text-left text-gray-600">Warm-Up</th>
+                <th class="py-2 pr-3 text-left text-gray-600">Cold</th>
+                <th class="py-2 pr-3 text-left text-gray-600">Total</th>
+                <th class="py-2 text-left text-gray-600">Notes</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-body"></tbody>
+          </table>
+        </div>
+        <div id="summary" class="mt-6 p-4 bg-gray-50 rounded-lg"></div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Want automated warm-up?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> automates the entire warm-up process with a network of 100,000+ real mailboxes.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Automate with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  function generate() {
+    const target = parseInt((document.getElementById('target-volume') as HTMLInputElement).value) || 75;
+    const provider = (document.getElementById('provider') as HTMLSelectElement).value;
+    const method = (document.getElementById('warmup-method') as HTMLSelectElement).value;
+
+    const rampFactor = provider === 'google' ? 0.9 : provider === 'zoho' ? 0.8 : 1.0;
+    const speedFactor = method === 'automated' ? 1.15 : method === 'manual' ? 0.85 : 1.0;
+    const adjustedTarget = Math.round(target * rampFactor);
+
+    const phases = [
+      { days: '1–3', warmPct: 1.0, coldPct: 0, volPct: 0.15, note: 'Warm-up only; establish sending pattern' },
+      { days: '4–6', warmPct: 0.9, coldPct: 0.1, volPct: 0.25, note: 'Begin minimal cold sends' },
+      { days: '7–9', warmPct: 0.7, coldPct: 0.3, volPct: 0.38, note: 'Increase cold volume; monitor metrics' },
+      { days: '10–12', warmPct: 0.5, coldPct: 0.5, volPct: 0.50, note: 'Cold volume overtakes warm-up' },
+      { days: '13–15', warmPct: 0.35, coldPct: 0.65, volPct: 0.65, note: 'Primary volume now cold' },
+      { days: '16–18', warmPct: 0.2, coldPct: 0.8, volPct: 0.80, note: 'Approaching target volume' },
+      { days: '19–21', warmPct: 0.12, coldPct: 0.88, volPct: 0.92, note: 'Near full capacity' },
+      { days: '22+', warmPct: 0.08, coldPct: 0.92, volPct: 1.0, note: 'Full capacity; maintain warm-up baseline' },
+    ];
+
+    const body = document.getElementById('schedule-body')!;
+    body.innerHTML = phases.map(p => {
+      const total = Math.round(adjustedTarget * p.volPct * speedFactor);
+      const warm = Math.max(5, Math.round(total * p.warmPct));
+      const cold = Math.max(0, total - warm);
+      return `<tr class="border-b border-gray-200">
+        <td class="py-2 pr-3 font-medium">${p.days}</td>
+        <td class="py-2 pr-3">${warm}</td>
+        <td class="py-2 pr-3">${cold}</td>
+        <td class="py-2 pr-3 font-semibold">${warm + cold}</td>
+        <td class="py-2 text-gray-500">${p.note}</td>
+      </tr>`;
+    }).join('');
+
+    const totalDays = method === 'automated' ? '18–24' : method === 'manual' ? '25–35' : '21–28';
+    document.getElementById('summary')!.innerHTML = `
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div><p class="text-sm text-gray-500">Full Capacity</p><p class="text-xl font-bold">${adjustedTarget}/day</p></div>
+        <div><p class="text-sm text-gray-500">Warm-Up Duration</p><p class="text-xl font-bold">${totalDays} days</p></div>
+        <div><p class="text-sm text-gray-500">Target IPR</p><p class="text-xl font-bold">94%+</p></div>
+      </div>`;
+  }
+
+  document.getElementById('target-volume')?.addEventListener('input', generate);
+  document.getElementById('provider')?.addEventListener('change', generate);
+  document.getElementById('warmup-method')?.addEventListener('change', generate);
+  generate();
+</script>

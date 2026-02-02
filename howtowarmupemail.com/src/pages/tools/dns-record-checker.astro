@@ -1,0 +1,165 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DNS Record Checker for Email Warm-Up",
+  "applicationCategory": "BusinessApplication",
+  "description": "Check your SPF, DKIM, and DMARC records to ensure they are configured correctly before starting email warm-up.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="DNS Record Checker for Email | How to Warm Up Email"
+  description="Free tool: check your SPF, DKIM, and DMARC records to ensure they are configured correctly before starting email warm-up."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">DNS Record Checker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Enter your domain and DNS records below. We'll verify your email authentication is configured correctly for warm-up.
+    </p>
+
+    <div class="mt-10">
+      <div class="space-y-6">
+        <div>
+          <label for="domain-input" class="block text-sm font-medium text-gray-700">Your sending domain</label>
+          <input type="text" id="domain-input" placeholder="yourdomain.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
+        </div>
+        <div>
+          <label for="spf-input" class="block text-sm font-medium text-gray-700">SPF Record (TXT)</label>
+          <input type="text" id="spf-input" placeholder="v=spf1 include:_spf.google.com ~all" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm font-mono" />
+        </div>
+        <div>
+          <label for="dkim-input" class="block text-sm font-medium text-gray-700">DKIM Record (present?)</label>
+          <select id="dkim-input" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="yes">Yes — DKIM is configured</option>
+            <option value="no">No — DKIM is not set up</option>
+            <option value="unsure">Not sure</option>
+          </select>
+        </div>
+        <div>
+          <label for="dmarc-input" class="block text-sm font-medium text-gray-700">DMARC Record (TXT)</label>
+          <input type="text" id="dmarc-input" placeholder="v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm font-mono" />
+        </div>
+        <div>
+          <label for="mx-input" class="block text-sm font-medium text-gray-700">MX Records configured?</label>
+          <select id="mx-input" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="yes">Yes — MX records point to my email provider</option>
+            <option value="no">No — MX records are not set up</option>
+            <option value="unsure">Not sure</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="check-btn" class="mt-6 px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+        Check DNS Configuration
+      </button>
+
+      <div id="results" class="mt-6 hidden space-y-4">
+        <div id="overall-score" class="p-4 rounded-lg"></div>
+        <div id="details" class="space-y-3"></div>
+      </div>
+    </div>
+
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Need DNS set up automatically?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> verifies and guides DNS setup for every domain before warm-up begins.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Set Up with {siteConfig.product.name} &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>Why DNS Records Matter for Warm-Up</h2>
+      <p>
+        SPF, DKIM, and DMARC are the three pillars of email authentication. Without all three configured correctly, inbox providers will reject or spam-folder your messages regardless of how carefully you warm up. Domains missing any authentication record see <strong>52% lower inbox placement</strong> on average. In 2026, both Google and Microsoft require all three records for full sender reputation credit.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.getElementById('check-btn')?.addEventListener('click', () => {
+    const domain = (document.getElementById('domain-input') as HTMLInputElement).value.trim();
+    const spf = (document.getElementById('spf-input') as HTMLInputElement).value.trim();
+    const dkim = (document.getElementById('dkim-input') as HTMLSelectElement).value;
+    const dmarc = (document.getElementById('dmarc-input') as HTMLInputElement).value.trim();
+    const mx = (document.getElementById('mx-input') as HTMLSelectElement).value;
+
+    const checks: { label: string; status: 'pass' | 'warn' | 'fail'; detail: string }[] = [];
+
+    // SPF check
+    if (spf.startsWith('v=spf1') && (spf.includes('include:') || spf.includes('ip4:')) && (spf.includes('~all') || spf.includes('-all'))) {
+      checks.push({ label: 'SPF Record', status: 'pass', detail: 'SPF record is properly formatted with include directive and enforcement.' });
+    } else if (spf.startsWith('v=spf1')) {
+      checks.push({ label: 'SPF Record', status: 'warn', detail: 'SPF record exists but may be missing include directive or enforcement (~all / -all).' });
+    } else if (spf) {
+      checks.push({ label: 'SPF Record', status: 'fail', detail: 'SPF record does not start with v=spf1. Check your formatting.' });
+    } else {
+      checks.push({ label: 'SPF Record', status: 'fail', detail: 'No SPF record provided. SPF is required for email authentication.' });
+    }
+
+    // DKIM check
+    if (dkim === 'yes') {
+      checks.push({ label: 'DKIM Record', status: 'pass', detail: 'DKIM is configured. Verify the selector matches your email provider.' });
+    } else if (dkim === 'unsure') {
+      checks.push({ label: 'DKIM Record', status: 'warn', detail: 'Check your email provider admin console to verify DKIM is enabled and the DNS TXT record is published.' });
+    } else {
+      checks.push({ label: 'DKIM Record', status: 'fail', detail: 'DKIM is not configured. Missing DKIM reduces inbox placement by 15–20%.' });
+    }
+
+    // DMARC check
+    if (dmarc.startsWith('v=DMARC1') && (dmarc.includes('p=none') || dmarc.includes('p=quarantine') || dmarc.includes('p=reject'))) {
+      const policy = dmarc.includes('p=quarantine') || dmarc.includes('p=reject') ? 'enforcing' : 'monitoring';
+      checks.push({ label: 'DMARC Record', status: policy === 'enforcing' ? 'pass' : 'warn', detail: policy === 'enforcing' ? 'DMARC is configured with enforcement policy. Excellent.' : 'DMARC is set to p=none (monitoring). Move to p=quarantine after 30 days of clean sending for full reputation credit.' });
+    } else if (dmarc) {
+      checks.push({ label: 'DMARC Record', status: 'fail', detail: 'DMARC record format is incorrect. Should start with v=DMARC1 and include a policy (p=none/quarantine/reject).' });
+    } else {
+      checks.push({ label: 'DMARC Record', status: 'fail', detail: 'No DMARC record provided. DMARC is required in 2026 for full sender reputation.' });
+    }
+
+    // MX check
+    if (mx === 'yes') {
+      checks.push({ label: 'MX Records', status: 'pass', detail: 'MX records configured. Your domain can receive replies — essential for engagement signals.' });
+    } else if (mx === 'unsure') {
+      checks.push({ label: 'MX Records', status: 'warn', detail: 'Verify MX records point to your email provider. Without them, you cannot receive replies.' });
+    } else {
+      checks.push({ label: 'MX Records', status: 'fail', detail: 'MX records not configured. You cannot receive emails or engagement signals without them.' });
+    }
+
+    const passCount = checks.filter(c => c.status === 'pass').length;
+    const failCount = checks.filter(c => c.status === 'fail').length;
+
+    const results = document.getElementById('results')!;
+    results.classList.remove('hidden');
+
+    const overall = document.getElementById('overall-score')!;
+    if (failCount === 0 && passCount === 4) {
+      overall.className = 'p-4 rounded-lg bg-green-50 border border-green-200';
+      overall.innerHTML = `<p class="font-semibold text-green-800">✓ All checks passed — ${domain || 'your domain'} is ready for warm-up</p>`;
+    } else if (failCount === 0) {
+      overall.className = 'p-4 rounded-lg bg-yellow-50 border border-yellow-200';
+      overall.innerHTML = `<p class="font-semibold text-yellow-800">⚠ ${passCount}/4 passed with warnings — review recommendations below</p>`;
+    } else {
+      overall.className = 'p-4 rounded-lg bg-red-50 border border-red-200';
+      overall.innerHTML = `<p class="font-semibold text-red-800">✗ ${failCount} issue(s) found — fix before starting warm-up</p>`;
+    }
+
+    const details = document.getElementById('details')!;
+    details.innerHTML = checks.map(c => {
+      const colors = { pass: 'border-green-200 bg-green-50', warn: 'border-yellow-200 bg-yellow-50', fail: 'border-red-200 bg-red-50' };
+      const icons = { pass: '✓', warn: '⚠', fail: '✗' };
+      const textColors = { pass: 'text-green-800', warn: 'text-yellow-800', fail: 'text-red-800' };
+      return `<div class="p-3 rounded-lg border ${colors[c.status]}">
+        <p class="font-medium ${textColors[c.status]}">${icons[c.status]} ${c.label}</p>
+        <p class="text-sm mt-1 ${textColors[c.status]} opacity-80">${c.detail}</p>
+      </div>`;
+    }).join('');
+  });
+</script>

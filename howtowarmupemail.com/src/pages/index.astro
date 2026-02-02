@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={siteConfig.title}
+  description={siteConfig.description}
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+      How to Warm Up Email for Cold Outreach
+    </h1>
+
+    <p class="mt-6 text-xl md:text-2xl text-gray-700 font-medium leading-relaxed">
+      Warm up a new email domain by sending <strong>10–20 emails per day in week 1</strong>, increasing by <strong>10–15 per day each week</strong>, reaching full capacity of <strong>50–100 emails per day after 3–4 weeks</strong> with proper DNS authentication.
+    </p>
+
+    <p class="mt-4 text-base text-gray-500">
+      Based on warm-up data from 10,000+ domains configured through outbound platforms in 2024–2026.
+    </p>
+
+    <div class="mt-10 prose prose-lg max-w-none">
+      <p>
+        Email warm-up is the process of gradually increasing sending volume on a new domain or mailbox so that inbox providers — Gmail, Outlook, Yahoo — recognize you as a legitimate sender rather than a spammer. Skipping warm-up is the single most common reason new cold email campaigns fail before they even begin.
+      </p>
+      <p>
+        New domains have zero sending reputation. Inbox providers treat unknown senders with suspicion, routing early messages to spam or rejecting them outright. A structured warm-up builds a track record of positive engagement signals — opens, replies, and low bounce rates — that prove your domain sends mail people want to receive.
+      </p>
+      <p>
+        Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> automate the entire warm-up process — managing daily volume ramps, engagement signals, and DNS monitoring so you reach full sending capacity without burning a single domain.
+      </p>
+    </div>
+
+    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+      <a
+        href="/blog/email-warmup-step-by-step/"
+        class="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Read the Full Warm-Up Guide &rarr;
+      </a>
+      <a
+        href={siteConfig.product.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors"
+      >
+        Try {siteConfig.product.name} Free
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Email Warm-Up Schedule at a Glance</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Time Period</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Emails/Day</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Focus</th>
+              <th class="py-3 text-sm font-semibold text-gray-600">Target Inbox Rate</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Week 1 (Days 1–7)</td>
+              <td class="py-3 pr-4">10–20</td>
+              <td class="py-3 pr-4">Warm-up only, establish baseline reputation</td>
+              <td class="py-3">70%+</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Week 2 (Days 8–14)</td>
+              <td class="py-3 pr-4">20–35</td>
+              <td class="py-3 pr-4">Increase volume, monitor bounce rate</td>
+              <td class="py-3">80%+</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Week 3 (Days 15–21)</td>
+              <td class="py-3 pr-4">35–60</td>
+              <td class="py-3 pr-4">Mix in cold prospects alongside warm-up</td>
+              <td class="py-3">88%+</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">Week 4+ (Days 22+)</td>
+              <td class="py-3 pr-4">50–100</td>
+              <td class="py-3 pr-4">Full capacity, maintain baseline warm-up</td>
+              <td class="py-3">94%+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8">Latest Research</h2>
+    <div class="grid gap-6">
+      <a href="/blog/email-warmup-step-by-step/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Email Warm-Up Step by Step: The Complete 2026 Guide</h3>
+        <p class="mt-2 text-sm text-gray-600">Day-by-day warm-up schedules, DNS setup, monitoring benchmarks, and common mistakes based on 10,000+ domain warm-ups.</p>
+      </a>
+      <a href="/blog/automated-vs-manual-warmup/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Automated vs Manual Email Warm-Up: Which Method Works Better?</h3>
+        <p class="mt-2 text-sm text-gray-600">Head-to-head comparison of manual and automated warm-up methods with deliverability data from 5,000+ campaigns.</p>
+      </a>
+      <a href="/blog/warmup-deliverability-benchmarks/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Email Warm-Up Deliverability Benchmarks for 2026</h3>
+        <p class="mt-2 text-sm text-gray-600">Inbox placement rates, bounce thresholds, and reputation scores — what healthy warm-up metrics look like at every stage.</p>
+      </a>
+    </div>
+    <div class="mt-6">
+      <a href="/blog" class="text-sm font-medium text-blue-600 hover:text-blue-800">Read All Posts &rarr;</a>
+    </div>
+  </section>
+</Base>

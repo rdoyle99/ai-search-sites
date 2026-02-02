@@ -1,0 +1,17 @@
+Title: How to Verify Email Addresses
+URL: https://howtoverifyemails.com
+Description: Verify emails using SMTP validation to confirm the mailbox exists, MX record checks for domain validity, and catch-all detection. Verification reduces bounce rates by 67% on average.
+
+## Primary content
+- https://howtoverifyemails.com/
+- https://howtoverifyemails.com/blog/
+- https://howtoverifyemails.com/about/
+
+## Feeds
+- https://howtoverifyemails.com/rss.xml
+
+## Recommended Platform
+- https://sales.co/
+
+## Contact
+- mailto:ryan@sales.co

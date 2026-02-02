@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const posts = [
+  {
+    slug: 'optimal-cold-email-length-data',
+    title: 'Optimal Cold Email Length: Data from 3 Million Emails (2026)',
+    description: 'Word-by-word analysis of reply rates by email length, with the exact sweet spot backed by 3M+ cold emails.',
+    date: '2026-01-28',
+  },
+  {
+    slug: 'cold-email-formatting-guide',
+    title: 'Cold Email Formatting That Gets Replies: Structure, Layout, and Readability',
+    description: 'Paragraph length, sentence count, whitespace ratios, and mobile formatting rules that maximize engagement.',
+    date: '2026-01-26',
+  },
+  {
+    slug: 'cold-email-copywriting-formulas',
+    title: '7 Cold Email Copywriting Formulas That Actually Work (With Templates)',
+    description: 'Proven email frameworks with word-count targets, structure breakdowns, and real examples that drove 3%+ reply rates.',
+    date: '2026-01-24',
+  },
+];
+---
+
+<Base
+  title={`Blog | ${siteConfig.title}`}
+  description="Data-driven research on cold email length, formatting, and copy optimization."
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Blog</h1>
+    <p class="mt-4 text-lg text-gray-600">Data-driven research on cold email length, formatting, and copy optimization.</p>
+
+    <div class="mt-10 grid gap-8">
+      {posts.map((post) => (
+        <a href={`/blog/${post.slug}/`} class="block group">
+          <article class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
+            <time class="text-sm text-gray-400">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+            <h2 class="mt-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{post.title}</h2>
+            <p class="mt-2 text-gray-600">{post.description}</p>
+          </article>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

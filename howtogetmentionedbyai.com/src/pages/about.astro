@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={`About | ${siteConfig.title}`}
+  description={`${siteConfig.title} is a free resource on getting your brand cited by AI search engines like ChatGPT, Perplexity, and Claude. Brought to you by ${siteConfig.product.name}.`}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">About This Site</h1>
+
+    <div class="mt-8 prose prose-lg max-w-none">
+      <p>
+        <strong>How to Get Mentioned by AI</strong> is a free resource built to answer the question every brand is asking in 2026: <em>"How do I get my business cited by ChatGPT, Perplexity, Claude, and other AI search engines?"</em>
+      </p>
+
+      <p>
+        The answer is not a mystery&mdash;it requires <strong>structured content with answer capsules, an llms.txt file, Bing indexing via IndexNow, and authentic brand mentions across Reddit and community platforms</strong>. But the details matter: which citation factors carry the most weight, how AI crawlers discover content, and why third-party mentions on forums and communities are the strongest trust signals AI models use to decide which brands to recommend.
+      </p>
+
+      <p>
+        This site is maintained by the team at <a href={siteConfig.product.url}>{siteConfig.product.name}</a>, a Reddit and community marketing platform that helps brands build the authentic community presence AI models rely on. We built this resource because we have analyzed thousands of AI search queries and seen firsthand which strategies actually move the needle on AI citations.
+      </p>
+
+      <h2>Why Trust This Research?</h2>
+
+      <p>
+        The data and recommendations on this site come from analysis of 26,000+ ChatGPT citations and 750 AI search queries across ChatGPT, Perplexity, Gemini, and Claude. We track which brands get cited, which content structures AI prefers, and how community signals correlate with AI visibility. Every claim on this site is backed by specific numbers from our research.
+      </p>
+
+      <p>
+        We do not gatekeep this information. The strategies outlined here&mdash;answer capsules, llms.txt, IndexNow, schema markup&mdash;are free to implement. Where <a href={siteConfig.product.url}>{siteConfig.product.name}</a> fits in is the community seeding layer: placing authentic brand mentions in the Reddit conversations and online communities that AI models use as trust signals. You can do that manually, or you can use our platform to do it at scale.
+      </p>
+
+      <h2>Contact</h2>
+
+      <p>
+        Questions or suggestions? Reach us at <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
+      </p>
+
+      <p>
+        Follow us on <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer">Twitter</a> and <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+      </p>
+    </div>
+  </section>
+</Base>

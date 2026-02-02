@@ -1,0 +1,526 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const publishDate = '2026-01-26';
+const modifiedDate = '2026-01-26';
+const title = 'CAN-SPAM Act Explained: What Cold Emailers Need to Know';
+const description = 'Every CAN-SPAM requirement explained in detail. Common violations and fines ($50,120 per email), B2B exemptions, gray areas, and a full compliance checklist for cold emailers.';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": siteConfig.product.name,
+    "url": siteConfig.product.url,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteConfig.product.name,
+    "url": siteConfig.product.url,
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${siteConfig.url}/blog/can-spam-act-explained/`,
+  },
+};
+---
+
+<Base
+  title={`${title} | ${siteConfig.title}`}
+  description={description}
+  schema={schema}
+  articleDate={publishDate}
+  articleModified={modifiedDate}
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">{new Date(publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">{title}</h1>
+      <p class="mt-4 text-xl text-gray-600">{description}</p>
+    </header>
+
+    <div class="mt-10 prose prose-lg max-w-none">
+      <p>
+        The CAN-SPAM Act (Controlling the Assault of Non-Solicited Pornography and Marketing Act) is the federal law that governs commercial email in the United States. Signed into law on December 16, 2003, and effective since January 1, 2004, CAN-SPAM established the first national standards for sending commercial email. It is codified at 15 U.S.C. 7701-7713 and enforced primarily by the Federal Trade Commission (FTC).
+      </p>
+
+      <p>
+        For cold emailers, CAN-SPAM is the most important law to understand because it defines what you can and cannot do when sending unsolicited commercial email to US recipients. The good news: CAN-SPAM is an <strong>opt-out law</strong>, meaning you do not need prior permission to send a cold email. The bad news: non-compliance can cost you up to $50,120 per email in penalties, with no cap on the total fine.
+      </p>
+
+      <p>
+        This guide explains every CAN-SPAM requirement in detail, covers common violations, explores B2B exemptions and gray areas, and provides a complete compliance checklist you can use for every cold email campaign.
+      </p>
+
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#scope">What CAN-SPAM Covers</a></li>
+        <li><a href="#requirements">The 7 CAN-SPAM Requirements</a></li>
+        <li><a href="#penalties">Penalties and Enforcement</a></li>
+        <li><a href="#violations">Common Violations</a></li>
+        <li><a href="#b2b">B2B Cold Email and CAN-SPAM</a></li>
+        <li><a href="#gray-areas">Gray Areas and Common Questions</a></li>
+        <li><a href="#checklist">Complete Compliance Checklist</a></li>
+        <li><a href="#comparison">CAN-SPAM vs Other Laws</a></li>
+      </ul>
+
+      <h2 id="scope">What CAN-SPAM Covers</h2>
+
+      <p>
+        CAN-SPAM applies to all "commercial electronic mail messages." The FTC defines a commercial email as any email whose <strong>primary purpose</strong> is the commercial advertisement or promotion of a commercial product or service. This includes emails that promote content on a commercial website.
+      </p>
+
+      <p>
+        The law distinguishes between three types of email:
+      </p>
+
+      <ol>
+        <li><strong>Commercial messages.</strong> Emails whose primary purpose is commercial advertisement or promotion. These are fully subject to CAN-SPAM requirements.</li>
+        <li><strong>Transactional or relationship messages.</strong> Emails that facilitate an agreed-upon transaction, deliver goods or services, provide warranty or product information, or manage an ongoing commercial relationship. These are exempt from most CAN-SPAM requirements (but must still have accurate routing information and non-deceptive subject lines).</li>
+        <li><strong>Other messages.</strong> Emails that are neither commercial nor transactional. These are not subject to CAN-SPAM.</li>
+      </ol>
+
+      <p>
+        The "primary purpose" test is important. If an email contains both commercial content and transactional content, its classification depends on which purpose a reasonable recipient would consider primary, based on the subject line, the placement and proportion of commercial vs. transactional content, and the overall impression.
+      </p>
+
+      <p>
+        CAN-SPAM applies to all commercial email sent to or from the United States, regardless of where the sender is located. If you are a company in London sending cold emails to prospects in New York, CAN-SPAM applies to you. The law applies per message, not per sender, so every single email you send must comply independently.
+      </p>
+
+      <h2 id="requirements">The 7 CAN-SPAM Requirements</h2>
+
+      <h3>Requirement 1: Accurate Header Information</h3>
+
+      <p>
+        The "From," "To," "Reply-To," and routing information in your email must be accurate and identify the person or business that initiated the message. This means:
+      </p>
+
+      <ul>
+        <li>The "From" field must contain a valid email address that belongs to the sender or the sender's organization</li>
+        <li>The "From" name must accurately identify the individual or business sending the email</li>
+        <li>The "Reply-To" address must be a valid, monitored email address</li>
+        <li>The originating domain name and email address must be accurate</li>
+        <li>Routing information (the email headers that track the message's path) must not be falsified</li>
+      </ul>
+
+      <p>
+        This requirement is straightforward for legitimate cold emailers. Where it becomes an issue is when senders use fake domains, spoofed email addresses, or misleading "From" names (e.g., using "Google Support" as your From name when you are not affiliated with Google).
+      </p>
+
+      <h3>Requirement 2: Non-Deceptive Subject Lines</h3>
+
+      <p>
+        The subject line must accurately reflect the content of the message. The FTC evaluates this based on whether a reasonable recipient would be misled about the contents or subject matter of the message.
+      </p>
+
+      <p>
+        Common subject line violations include:
+      </p>
+
+      <ul>
+        <li><strong>"RE:" or "FWD:" prefixes</strong> when there was no prior conversation. This implies a pre-existing relationship that does not exist and is considered deceptive.</li>
+        <li><strong>False urgency or claims.</strong> Subject lines like "Your account has been suspended" or "You've been selected for a special offer" when no account exists and there is no special selection process.</li>
+        <li><strong>Impersonation.</strong> Subject lines that imply the email is from a different company or person than the actual sender.</li>
+        <li><strong>Misleading content descriptions.</strong> A subject line that says "Meeting notes from Tuesday" when the email is actually a sales pitch.</li>
+      </ul>
+
+      <p>
+        For cold emailers, the safest approach is to write subject lines that honestly describe your reason for emailing. "Quick question about your marketing stack" is fine if you actually have a question. "RE: Our meeting next week" is a violation if you have never met the person.
+      </p>
+
+      <h3>Requirement 3: Identification as an Advertisement</h3>
+
+      <p>
+        CAN-SPAM requires that commercial emails be identified as advertisements. However, the law gives senders significant flexibility in how to do this. The FTC has stated that the disclosure does not need to be in the subject line, and there is no specific language or placement required.
+      </p>
+
+      <p>
+        In practice, most cold emailers satisfy this requirement implicitly through the content of the email itself. If your email is clearly a sales pitch or business introduction, a reasonable recipient would understand it is commercial in nature. Adding a small footer line such as "This is a commercial message" or "This email is an advertisement" provides additional protection but is not strictly necessary if the commercial nature is clear from the content.
+      </p>
+
+      <p>
+        The exemption for transactional messages means that if your email has a genuine transactional primary purpose (e.g., responding to a business inquiry, following up on a meeting, delivering requested information), the advertisement identification requirement does not apply.
+      </p>
+
+      <h3>Requirement 4: Physical Mailing Address</h3>
+
+      <p>
+        Every commercial email must include a valid physical postal address of the sender. The FTC accepts three forms:
+      </p>
+
+      <ol>
+        <li>A current street address</li>
+        <li>A post office box registered with the United States Postal Service</li>
+        <li>A private mailbox registered with a commercial mail receiving agency established under USPS regulations</li>
+      </ol>
+
+      <p>
+        The address must be valid and current at the time the email is sent. You can include it in the email body, in the email signature, or in the footer. Most cold emailers include it in their email signature block alongside their name, title, and company information.
+      </p>
+
+      <p>
+        For companies that operate remotely or do not have a traditional office, using a registered agent address, a virtual office address, or a UPS Store mailbox (which qualifies as a CMRA under USPS regulations) is fully compliant.
+      </p>
+
+      <p>
+        <a href={siteConfig.product.url}>{siteConfig.product.name}</a> automatically inserts your physical mailing address into every cold email, ensuring this requirement is met across all campaigns without manual effort.
+      </p>
+
+      <h3>Requirement 5: Opt-Out Mechanism</h3>
+
+      <p>
+        Every commercial email must include a clear and conspicuous explanation of how the recipient can opt out of receiving future commercial emails from you. The opt-out mechanism must meet these criteria:
+      </p>
+
+      <ul>
+        <li>It must be able to process opt-out requests for at least 30 days after the message is sent</li>
+        <li>It must not require the recipient to pay a fee, provide personally identifying information beyond their email address, or take any steps other than sending a reply email or visiting a single page on a website</li>
+        <li>It must be clearly visible and easy to find in the email</li>
+      </ul>
+
+      <p>
+        Common opt-out mechanisms include:
+      </p>
+
+      <ul>
+        <li>An unsubscribe link at the bottom of the email</li>
+        <li>A text instruction such as "Reply STOP to unsubscribe"</li>
+        <li>A link to a preference center where the recipient can manage their email preferences</li>
+      </ul>
+
+      <p>
+        All three are valid under CAN-SPAM. The simplest approach for cold email is to include a line at the bottom of your email such as "If you'd prefer not to receive emails from me, reply 'unsubscribe' or click here to opt out." This satisfies the requirement with minimal friction.
+      </p>
+
+      <h3>Requirement 6: Honor Opt-Out Requests Within 10 Business Days</h3>
+
+      <p>
+        Once a recipient opts out, you must stop sending them commercial email within <strong>10 business days</strong>. This is a hard deadline with no exceptions. After the opt-out is processed:
+      </p>
+
+      <ul>
+        <li>You cannot send the recipient any commercial email, even if they opted out of one specific type and you want to send another</li>
+        <li>You cannot sell, transfer, or share the recipient's email address with any other entity for the purpose of sending commercial email (unless the transfer is part of a merger, acquisition, or bankruptcy)</li>
+        <li>You cannot require the recipient to take any additional steps to complete the opt-out (no "confirm your unsubscribe" emails)</li>
+      </ul>
+
+      <p>
+        The 10 business day window means you need a system in place to process opt-out requests promptly. If you are sending cold emails manually, this means checking your inbox daily for unsubscribe replies and maintaining a suppression list. If you are using a cold email platform, the platform should handle this automatically.
+      </p>
+
+      <h3>Requirement 7: Monitor Third-Party Compliance</h3>
+
+      <p>
+        If you hire another company to handle your email marketing or cold email outreach, you are still legally responsible for CAN-SPAM compliance. Both the company whose product is promoted in the email and the company that actually sends the email can be held liable for violations.
+      </p>
+
+      <p>
+        This applies to several common scenarios:
+      </p>
+
+      <ul>
+        <li>Using a cold email agency or lead generation firm</li>
+        <li>Hiring a virtual assistant to send cold emails on your behalf</li>
+        <li>Using an email service provider or cold email platform</li>
+        <li>Partnering with an affiliate marketer who sends emails promoting your product</li>
+      </ul>
+
+      <p>
+        In each case, you must ensure that the emails being sent on your behalf comply with all CAN-SPAM requirements. The FTC has brought enforcement actions against both the companies that send non-compliant emails and the companies whose products those emails promote.
+      </p>
+
+      <h2 id="penalties">Penalties and Enforcement</h2>
+
+      <p>
+        CAN-SPAM violations carry civil penalties of up to <strong>$50,120 per email</strong> (this amount is adjusted annually for inflation; the base amount in the statute is $46,517, with the current adjusted amount reaching $50,120 as of 2026). There is no cap on the total fine, meaning that a campaign of 10,000 non-compliant emails could theoretically result in a penalty exceeding $500 million.
+      </p>
+
+      <p>
+        In practice, the FTC and state attorneys general have pursued enforcement actions resulting in fines ranging from tens of thousands of dollars to multi-million dollar settlements. Notable enforcement actions include:
+      </p>
+
+      <ul>
+        <li><strong>ValueClick (2009):</strong> $2.9 million settlement for deceptive subject lines and failure to include physical addresses</li>
+        <li><strong>Jumpstart Automotive Group (2014):</strong> $3.5 million settlement for sending emails with misleading "From" information</li>
+        <li><strong>LoanDepot (2019):</strong> Enforcement action for failure to honor unsubscribe requests within the 10-day window</li>
+      </ul>
+
+      <p>
+        CAN-SPAM also includes criminal penalties for certain aggravated violations:
+      </p>
+
+      <ul>
+        <li>Accessing someone else's computer without authorization to send spam: up to 5 years in prison</li>
+        <li>Using false identities or stolen credit cards to register for email accounts used for spam: up to 5 years</li>
+        <li>Sending spam through open relays or unauthorized proxy servers: up to 5 years</li>
+        <li>Harvesting email addresses from websites whose published policy prohibits it: up to 5 years</li>
+        <li>Using automated tools to generate email addresses by combining names, letters, or numbers: up to 5 years</li>
+      </ul>
+
+      <p>
+        These criminal provisions are aimed at large-scale spammers, not legitimate cold emailers. However, they illustrate the seriousness with which the law treats email fraud and deception.
+      </p>
+
+      <h2 id="violations">Common Violations</h2>
+
+      <p>
+        Based on FTC enforcement actions, consumer complaints, and industry analysis, the most common CAN-SPAM violations among cold emailers are:
+      </p>
+
+      <h3>1. Missing Physical Address</h3>
+
+      <p>
+        This is the most frequently overlooked requirement. Many cold emailers compose quick, conversational emails that include their name and company but omit their physical address. Even if the email is only two sentences long, the physical address must be present. There are no exceptions.
+      </p>
+
+      <h3>2. No Opt-Out Mechanism</h3>
+
+      <p>
+        The second most common violation. Some cold emailers, particularly those sending manually from Gmail or Outlook, forget to include an unsubscribe option. Every commercial email must include one, regardless of how personal or conversational the tone is.
+      </p>
+
+      <h3>3. Deceptive Subject Lines Using "RE:" or "FWD:"</h3>
+
+      <p>
+        This is a deliberate tactic used by some cold emailers to boost open rates. Adding "RE:" to a subject line implies there was a prior conversation, which is deceptive when there was none. The FTC has specifically addressed this practice and considers it a violation. Some email platforms have even started flagging emails with fake "RE:" subject lines as spam.
+      </p>
+
+      <h3>4. Failure to Honor Unsubscribe Requests</h3>
+
+      <p>
+        This violation occurs when someone replies "unsubscribe" or clicks an opt-out link but continues to receive emails. It can happen due to poor suppression list management, syncing delays between email tools, or simply forgetting to check for unsubscribe replies. The 10 business day deadline is firm.
+      </p>
+
+      <h3>5. Misleading "From" Information</h3>
+
+      <p>
+        Using a generic or misleading "From" name to bypass spam filters or increase open rates. Examples include using "Google" as your From name when you work for a marketing agency, or using a first name that is not your real name. The From field must accurately identify the sender.
+      </p>
+
+      <h3>6. Sharing Email Addresses After Opt-Out</h3>
+
+      <p>
+        After someone unsubscribes, you cannot share their email address with other companies or affiliates for the purpose of sending commercial email. This violation occurs in affiliate marketing networks and lead-sharing arrangements where unsubscribe lists are not properly synchronized.
+      </p>
+
+      <h2 id="b2b">B2B Cold Email and CAN-SPAM</h2>
+
+      <p>
+        A common misconception is that CAN-SPAM provides special exemptions for B2B email. It does not. CAN-SPAM applies equally to B2B and B2C commercial email. Whether you are emailing a consumer at their personal Gmail address or a VP of Sales at their corporate address, the same seven requirements apply.
+      </p>
+
+      <p>
+        However, there are practical differences in how CAN-SPAM is enforced in B2B contexts:
+      </p>
+
+      <ul>
+        <li><strong>Fewer consumer complaints.</strong> Business recipients are less likely to file FTC complaints about cold emails than consumers, particularly if the email is relevant to their role.</li>
+        <li><strong>Lower spam filter risk.</strong> Well-crafted B2B cold emails that are personalized and relevant are less likely to be flagged as spam by corporate email systems compared to mass B2C promotional emails.</li>
+        <li><strong>Transactional message exemptions.</strong> If you have an existing business relationship with the recipient, some of your emails may qualify as transactional or relationship messages, which are exempt from most CAN-SPAM requirements.</li>
+        <li><strong>Practical enforcement focus.</strong> The FTC's enforcement resources are primarily directed at large-scale consumer spam operations, not small B2B cold email campaigns. This does not mean you can ignore CAN-SPAM, but the likelihood of enforcement action for a compliant but unwanted B2B cold email is low.</li>
+      </ul>
+
+      <p>
+        The bottom line: treat every B2B cold email as a commercial message subject to full CAN-SPAM compliance. The requirements are not burdensome -- physical address, opt-out link, honest subject line, accurate From header -- and they protect you legally while also making your emails appear more professional and trustworthy.
+      </p>
+
+      <h2 id="gray-areas">Gray Areas and Common Questions</h2>
+
+      <h3>Is a LinkedIn connection request considered consent under CAN-SPAM?</h3>
+
+      <p>
+        No. CAN-SPAM does not require consent at all (it is an opt-out law), so this question is moot for US-only campaigns. You can email anyone without prior consent as long as your email complies with CAN-SPAM requirements. However, if you are also targeting recipients in CASL or GDPR jurisdictions, a LinkedIn connection does not constitute express consent under those laws. It may support an argument for "implied consent" under CASL if the connection is relevant to your business relationship.
+      </p>
+
+      <h3>Do I need to include "Advertisement" in the subject line?</h3>
+
+      <p>
+        No. CAN-SPAM requires that you identify the message as an advertisement, but it does not prescribe the method or placement. The FTC has stated that the identification can appear anywhere in the email, and there is no specific language required. The commercial nature of the email is usually clear from the content itself.
+      </p>
+
+      <h3>Can I use a shared inbox or alias as my From address?</h3>
+
+      <p>
+        Yes, as long as the From information accurately identifies the person or business that initiated the message. Using "sales@yourcompany.com" or "john@yourcompany.com" are both fine. Using "support@google.com" when you are not Google is a violation.
+      </p>
+
+      <h3>Does CAN-SPAM apply to cold emails sent from outside the US to US recipients?</h3>
+
+      <p>
+        Yes. CAN-SPAM applies to all commercial email where the recipient is in the United States, regardless of where the sender is located. If you are a UK company sending cold emails to US prospects, you must comply with CAN-SPAM for those emails (in addition to PECR and UK GDPR for your UK prospects).
+      </p>
+
+      <h3>What about follow-up emails in a sequence?</h3>
+
+      <p>
+        Each email in a cold email sequence is an independent commercial message under CAN-SPAM. Every email in the sequence must include a physical address, opt-out mechanism, accurate From header, and non-deceptive subject line. If the recipient has unsubscribed after the first email, you must suppress all subsequent emails in the sequence within 10 business days.
+      </p>
+
+      <h3>Is it legal to scrape email addresses for cold email?</h3>
+
+      <p>
+        CAN-SPAM does not prohibit using publicly available email addresses for cold email. However, it does prohibit using automated tools to generate email addresses by combining names, letters, or numbers (dictionary attacks), and harvesting email addresses from websites whose published policy prohibits it. Other laws (CFAA, state laws, website terms of service) may impose additional restrictions on email scraping.
+      </p>
+
+      <h2 id="checklist">Complete CAN-SPAM Compliance Checklist</h2>
+
+      <p>
+        Use this checklist before sending any cold email campaign to US recipients:
+      </p>
+
+      <div class="overflow-x-auto not-prose">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 font-semibold text-gray-600">Requirement</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">What to Check</th>
+              <th class="py-3 font-semibold text-gray-600">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Accurate From header</td>
+              <td class="py-3 pr-4">From name and email accurately identify you or your business</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Non-deceptive subject line</td>
+              <td class="py-3 pr-4">Subject reflects email content, no fake RE:/FWD:, no false urgency</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Advertisement identification</td>
+              <td class="py-3 pr-4">Commercial nature is clear from email content or explicit disclosure</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Physical mailing address</td>
+              <td class="py-3 pr-4">Valid street address, PO Box, or CMRA address is included</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Opt-out mechanism</td>
+              <td class="py-3 pr-4">Clear unsubscribe link or reply instruction is present and functional</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Opt-out processing</td>
+              <td class="py-3 pr-4">System to process unsubscribes within 10 business days is in place</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Suppression list</td>
+              <td class="py-3 pr-4">Previous unsubscribers are excluded from the current campaign</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Third-party compliance</td>
+              <td class="py-3 pr-4">Any agency or VA sending on your behalf is following CAN-SPAM</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">Reply-To address</td>
+              <td class="py-3 pr-4">Reply-To is a valid, monitored email address</td>
+              <td class="py-3">[ ]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        <a href={siteConfig.product.url}>{siteConfig.product.name}</a> automates most of these checks. The platform automatically inserts physical addresses, manages opt-out processing, suppresses unsubscribed recipients, and validates From headers across all campaigns. You can use our free <a href="/tools/can-spam-checker/">CAN-SPAM Compliance Checker</a> to validate your email content before sending.
+      </p>
+
+      <h2 id="comparison">CAN-SPAM vs Other Laws</h2>
+
+      <p>
+        CAN-SPAM is one of the most permissive commercial email laws in the world. Here is how it compares to the other major frameworks:
+      </p>
+
+      <div class="overflow-x-auto not-prose">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 font-semibold text-gray-600">Feature</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">CAN-SPAM (US)</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">GDPR (EU)</th>
+              <th class="py-3 font-semibold text-gray-600">CASL (Canada)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Model</td>
+              <td class="py-3 pr-4">Opt-out</td>
+              <td class="py-3 pr-4">Legitimate interest</td>
+              <td class="py-3">Opt-in</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Prior consent required?</td>
+              <td class="py-3 pr-4">No</td>
+              <td class="py-3 pr-4">No (with valid LIA)</td>
+              <td class="py-3">Yes (express or implied)</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Physical address</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3 pr-4">Recommended</td>
+              <td class="py-3">Required</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Opt-out deadline</td>
+              <td class="py-3 pr-4">10 business days</td>
+              <td class="py-3 pr-4">30 days</td>
+              <td class="py-3">10 business days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Max penalty</td>
+              <td class="py-3 pr-4">$50,120/email</td>
+              <td class="py-3 pr-4">4% revenue / 20M EUR</td>
+              <td class="py-3">$10M CAD/violation</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">B2B exemptions</td>
+              <td class="py-3 pr-4">None (same rules)</td>
+              <td class="py-3 pr-4">Yes (LI for B2B)</td>
+              <td class="py-3">Limited (implied consent)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Key Takeaways</h2>
+
+      <p>
+        CAN-SPAM is a straightforward law with clear, specific requirements. The core obligations -- accurate sender information, honest subject lines, physical address, opt-out mechanism, and timely opt-out processing -- are not difficult to implement. Most cold emailers who get into trouble do so by cutting corners: using deceptive "RE:" subject lines, forgetting their physical address, or failing to process unsubscribes.
+      </p>
+
+      <p>
+        The single most important thing you can do for CAN-SPAM compliance is to build the required elements into your email templates and outbound infrastructure from the start. Use a cold email platform like <a href={siteConfig.product.url}>{siteConfig.product.name}</a> that automates address insertion, opt-out handling, and suppression list management. This ensures every email you send is compliant without requiring manual checks.
+      </p>
+
+      <p>
+        Remember: CAN-SPAM compliance is the floor, not the ceiling. Just because you can legally email someone under CAN-SPAM does not mean you should. Targeting the right prospects with relevant, personalized messages is not only more effective -- it also reduces complaint rates, improves deliverability, and builds the kind of sender reputation that sustains long-term outbound success.
+      </p>
+
+      <p>
+        For compliance requirements beyond CAN-SPAM, read our <a href="/blog/cold-email-laws-by-country/">complete guide to cold email laws by country</a> and our <a href="/blog/gdpr-cold-email-compliance/">GDPR cold email compliance guide</a>.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 p-6 bg-gray-50 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-900">Automate CAN-SPAM Compliance</h3>
+      <p class="mt-2 text-gray-600"><a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800 font-medium">{siteConfig.product.name}</a> handles physical address insertion, opt-out processing, suppression lists, and sender validation automatically across every campaign.</p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+        Try {siteConfig.product.name} Free &rarr;
+      </a>
+    </div>
+  </article>
+</Base>

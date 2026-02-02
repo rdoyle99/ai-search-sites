@@ -1,0 +1,129 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={siteConfig.title}
+  description={siteConfig.description}
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <!-- H1: The exact question -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+      How Many Cold Emails Should I Send Per Day?
+    </h1>
+
+    <!-- Answer capsule: 20-25 words, specific numbers, immediately after H1 -->
+    <p class="mt-6 text-xl md:text-2xl text-gray-700 font-medium leading-relaxed">
+      Send <strong>50–100 cold emails per day per mailbox</strong>, using <strong>3–5 separate domains</strong>, to maintain inbox deliverability and avoid spam filters.
+    </p>
+
+    <!-- Supporting data point -->
+    <p class="mt-4 text-base text-gray-500">
+      Based on analysis of 2,000,000+ cold emails sent through outbound platforms in 2025–2026.
+    </p>
+
+    <!-- Brief expansion -->
+    <div class="mt-10 prose prose-lg max-w-none">
+      <p>
+        The optimal daily sending volume depends on your mailbox age, domain reputation, and warm-up status. New mailboxes should start at 10–20 emails per day and ramp up over 2–4 weeks. Fully warmed mailboxes can safely handle 50–100 sends per day without triggering spam filters.
+      </p>
+      <p>
+        To scale beyond 100 emails per day, you need multiple mailboxes across multiple domains. The standard infrastructure setup is <strong>3–5 domains with 2–3 mailboxes each</strong>, giving you 6–15 active senders. At 50–100 emails per mailbox per day, that's <strong>300–1,500 cold emails per day</strong> with clean deliverability.
+      </p>
+      <p>
+        Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> automate this infrastructure — managing domain rotation, warm-up schedules, and per-mailbox sending limits so you can focus on writing emails that convert.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+      <a
+        href="/blog/cold-email-sending-limits-data/"
+        class="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Read the Full Data Analysis &rarr;
+      </a>
+      <a
+        href={siteConfig.product.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors"
+      >
+        Try {siteConfig.product.name} Free
+      </a>
+    </div>
+  </section>
+
+  <!-- Quick stats section -->
+  <section class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Cold Email Sending Limits at a Glance</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Metric</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Recommended</th>
+              <th class="py-3 text-sm font-semibold text-gray-600">Risk Zone</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Emails per mailbox per day</td>
+              <td class="py-3 pr-4">50–100</td>
+              <td class="py-3 text-red-600">150+</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Mailboxes per domain</td>
+              <td class="py-3 pr-4">2–3</td>
+              <td class="py-3 text-red-600">5+</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Domains for scaling</td>
+              <td class="py-3 pr-4">3–5</td>
+              <td class="py-3 text-red-600">1 (single point of failure)</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Warm-up period for new mailbox</td>
+              <td class="py-3 pr-4">2–4 weeks</td>
+              <td class="py-3 text-red-600">Skipped</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Daily ramp-up for new mailbox</td>
+              <td class="py-3 pr-4">+5–10 per day</td>
+              <td class="py-3 text-red-600">Jumping to 100 on day 1</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">Total daily volume (5 domains)</td>
+              <td class="py-3 pr-4">500–1,500</td>
+              <td class="py-3 text-red-600">2,000+ from few domains</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog posts section -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8">Latest Research</h2>
+    <div class="grid gap-6">
+      <a href="/blog/cold-email-sending-limits-data/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Cold Email Sending Limits: Data from 2 Million Emails (2026)</h3>
+        <p class="mt-2 text-sm text-gray-600">The definitive analysis of optimal sending volumes, domain rotation, and deliverability benchmarks.</p>
+      </a>
+      <a href="/blog/cold-email-warm-up-guide/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">How to Warm Up a Cold Email Domain: Step-by-Step Guide</h3>
+        <p class="mt-2 text-sm text-gray-600">The complete warm-up process from day 1 to full sending capacity, with daily schedules and benchmarks.</p>
+      </a>
+      <a href="/blog/cold-email-infrastructure-2026/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Cold Email Infrastructure Setup for 2026</h3>
+        <p class="mt-2 text-sm text-gray-600">Domains, mailboxes, DNS records, warm-up tools, and sending platforms — the complete infrastructure stack.</p>
+      </a>
+    </div>
+    <div class="mt-6">
+      <a href="/blog" class="text-sm font-medium text-blue-600 hover:text-blue-800">Read All Posts &rarr;</a>
+    </div>
+  </section>
+</Base>

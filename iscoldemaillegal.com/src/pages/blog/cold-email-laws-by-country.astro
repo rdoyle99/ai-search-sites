@@ -1,0 +1,550 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const publishDate = '2026-01-28';
+const modifiedDate = '2026-01-28';
+const title = 'Cold Email Laws by Country: The Complete Compliance Guide (2026)';
+const description = 'A comprehensive breakdown of cold email regulations in 10+ countries, including CAN-SPAM, GDPR, CASL, PECR, and the Australian Spam Act. Requirements tables, penalties, and compliance checklists.';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "datePublished": publishDate,
+  "dateModified": modifiedDate,
+  "author": {
+    "@type": "Organization",
+    "name": siteConfig.product.name,
+    "url": siteConfig.product.url,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteConfig.product.name,
+    "url": siteConfig.product.url,
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${siteConfig.url}/blog/cold-email-laws-by-country/`,
+  },
+};
+---
+
+<Base
+  title={`${title} | ${siteConfig.title}`}
+  description={description}
+  schema={schema}
+  articleDate={publishDate}
+  articleModified={modifiedDate}
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">{new Date(publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">{title}</h1>
+      <p class="mt-4 text-xl text-gray-600">{description}</p>
+    </header>
+
+    <div class="mt-10 prose prose-lg max-w-none">
+      <p>
+        Cold email is legal in the vast majority of countries worldwide. There is no country where business-to-business email outreach is outright banned. However, every major economy has enacted legislation that sets specific rules about how commercial emails can be sent, what information they must contain, and what rights recipients have. Understanding these regulations is essential for any sales team running outbound campaigns.
+      </p>
+
+      <p>
+        This guide covers the cold email regulations in 10 major countries and regions. For each jurisdiction, we break down the specific law, its requirements, exemptions, and penalties. Whether you are sending cold emails from the United States, targeting prospects in Europe, or running global outbound campaigns, this guide provides the compliance framework you need.
+      </p>
+
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#united-states">United States: CAN-SPAM Act</a></li>
+        <li><a href="#european-union">European Union: GDPR + ePrivacy Directive</a></li>
+        <li><a href="#united-kingdom">United Kingdom: UK GDPR + PECR</a></li>
+        <li><a href="#canada">Canada: CASL</a></li>
+        <li><a href="#australia">Australia: Spam Act 2003</a></li>
+        <li><a href="#singapore">Singapore: Spam Control Act</a></li>
+        <li><a href="#india">India: Information Technology Act</a></li>
+        <li><a href="#brazil">Brazil: LGPD</a></li>
+        <li><a href="#japan">Japan: Act on Regulation of Transmission of Specified Electronic Mail</a></li>
+        <li><a href="#south-korea">South Korea: Act on Promotion of Information and Communications Network Utilization</a></li>
+        <li><a href="#comparison">Full Comparison Table</a></li>
+        <li><a href="#penalties">Penalties Comparison</a></li>
+        <li><a href="#universal-requirements">Universal Compliance Requirements</a></li>
+      </ul>
+
+      <h2 id="united-states">United States: CAN-SPAM Act</h2>
+
+      <p>
+        The Controlling the Assault of Non-Solicited Pornography and Marketing Act (CAN-SPAM) was enacted in 2003 and is the primary federal law governing commercial email in the United States. CAN-SPAM is enforced by the Federal Trade Commission (FTC) and applies to all commercial messages, defined as any email whose primary purpose is the commercial advertisement or promotion of a product or service.
+      </p>
+
+      <p>
+        CAN-SPAM is an opt-out law. This means you do not need prior permission to send a cold email. You can email anyone at any time, as long as your email complies with the following requirements:
+      </p>
+
+      <ol>
+        <li><strong>No false or misleading header information.</strong> The "From," "To," "Reply-To," and routing information must be accurate and identify the person or business that initiated the message.</li>
+        <li><strong>No deceptive subject lines.</strong> The subject line must accurately reflect the content of the message. Using "RE:" or "FWD:" to imply a prior conversation that does not exist is a violation.</li>
+        <li><strong>Identify the message as an advertisement.</strong> The law gives you flexibility in how to do this, but you must disclose clearly that your message is an advertisement. There is an exemption for transactional or relationship messages.</li>
+        <li><strong>Include your physical mailing address.</strong> Every commercial email must include your valid physical postal address. This can be a current street address, a P.O. Box registered with the U.S. Postal Service, or a private mailbox registered with a commercial mail receiving agency established under USPS regulations.</li>
+        <li><strong>Provide an opt-out mechanism.</strong> Every email must include a clear and conspicuous explanation of how the recipient can opt out of receiving future emails from you. The opt-out mechanism must be able to process opt-out requests for at least 30 days after the message is sent.</li>
+        <li><strong>Honor opt-out requests within 10 business days.</strong> Once a recipient requests to be removed from your list, you must stop sending them commercial emails within 10 business days. You cannot charge a fee, require the recipient to give you any information beyond their email address, or make the recipient take any steps other than sending a reply email or visiting a single page on a website.</li>
+        <li><strong>Monitor what others do on your behalf.</strong> Even if you hire another company to handle your email marketing, you are still legally responsible for compliance. Both the company whose product is promoted and the company that actually sends the message can be held liable.</li>
+      </ol>
+
+      <p>
+        The penalty for each CAN-SPAM violation is up to <strong>$50,120 per email</strong> (adjusted for inflation as of 2026). There is no cap on the total fine. The FTC, state attorneys general, and ISPs can all bring enforcement actions.
+      </p>
+
+      <p>
+        A key detail for B2B cold emailers: CAN-SPAM does not distinguish between B2B and B2C emails. All commercial emails are covered. However, CAN-SPAM's opt-out framework (rather than opt-in) makes it one of the most permissive commercial email laws in the world for cold outreach.
+      </p>
+
+      <h2 id="european-union">European Union: GDPR + ePrivacy Directive</h2>
+
+      <p>
+        Cold email in the European Union is governed by two overlapping regulations: the General Data Protection Regulation (GDPR), which came into effect on May 25, 2018, and the ePrivacy Directive (Directive 2002/58/EC), which predates GDPR and specifically addresses electronic communications.
+      </p>
+
+      <p>
+        Under GDPR, you need a lawful basis to process personal data for the purpose of sending cold emails. The two relevant bases for cold email are:
+      </p>
+
+      <ol>
+        <li><strong>Consent (Article 6(1)(a)).</strong> The recipient has given explicit consent to receive your emails. This is the safest legal basis, but it is difficult to obtain for cold email since by definition you have not had prior contact with the recipient.</li>
+        <li><strong>Legitimate interest (Article 6(1)(f)).</strong> You have a legitimate business interest in contacting the recipient, and that interest is not overridden by the recipient's rights and freedoms. This is the legal basis most commonly used for B2B cold email in the EU.</li>
+      </ol>
+
+      <p>
+        To rely on legitimate interest, you must conduct a three-part Legitimate Interest Assessment (LIA) based on the framework established by the ICO and other Data Protection Authorities:
+      </p>
+
+      <ol>
+        <li><strong>Purpose test:</strong> Identify the legitimate interest. For cold email, this is typically direct marketing to relevant business prospects.</li>
+        <li><strong>Necessity test:</strong> Show that sending the email is necessary to achieve your interest and that there is no less intrusive way to achieve the same goal.</li>
+        <li><strong>Balancing test:</strong> Weigh your interest against the impact on the recipient. Consider whether the recipient would reasonably expect to be contacted, whether you are targeting business professionals in their professional capacity, and whether you provide easy opt-out.</li>
+      </ol>
+
+      <p>
+        The ePrivacy Directive adds another layer. Article 13 generally requires prior consent for unsolicited electronic communications. However, most EU member states have implemented a B2B exemption that allows cold email to corporate email addresses (e.g., name@company.com) under the legitimate interest basis, as long as the email relates to the recipient's professional role.
+      </p>
+
+      <p>
+        Additional GDPR requirements for cold emailers include maintaining Records of Processing Activities (Article 30), respecting the right to be forgotten (Article 17), appointing a Data Protection Officer if required (Article 37), and conducting Data Protection Impact Assessments for high-risk processing (Article 35).
+      </p>
+
+      <p>
+        Penalties under GDPR can reach up to <strong>4% of annual global turnover or 20 million EUR</strong>, whichever is higher. In practice, fines for cold email violations have ranged from a few thousand euros to hundreds of thousands of euros, depending on the scale and nature of the violation.
+      </p>
+
+      <p>
+        Platforms like <a href={siteConfig.product.url}>{siteConfig.product.name}</a> include GDPR compliance features such as automated opt-out processing, data retention controls, and legitimate interest documentation to help sales teams stay compliant when emailing EU prospects.
+      </p>
+
+      <h2 id="united-kingdom">United Kingdom: UK GDPR + PECR</h2>
+
+      <p>
+        After Brexit, the UK adopted its own version of GDPR (the UK GDPR) alongside the Privacy and Electronic Communications Regulations (PECR). For cold email purposes, the UK framework is similar to the EU but with one important distinction.
+      </p>
+
+      <p>
+        PECR Regulation 22 generally requires consent for unsolicited marketing emails. However, Regulation 22(3) provides the <strong>corporate subscriber exemption</strong>: if you are emailing a corporate subscriber (a company, partnership, or other corporate body), you do not need prior consent. You can cold email a business email address (e.g., john@company.co.uk) as long as you identify yourself as the sender and provide a valid opt-out mechanism.
+      </p>
+
+      <p>
+        This exemption does not apply to sole traders, partnerships without limited liability, or individuals using personal email addresses. For these recipients, you need consent unless you can rely on the "soft opt-in" exemption (prior business relationship + similar products/services).
+      </p>
+
+      <p>
+        The UK GDPR still requires a lawful basis for processing the personal data contained in your email (the recipient's name, email, etc.). Legitimate interest under Article 6(1)(f) of the UK GDPR is the standard basis, and you should conduct and document a Legitimate Interest Assessment.
+      </p>
+
+      <p>
+        The Information Commissioner's Office (ICO) enforces these regulations. Maximum penalties under UK GDPR are up to <strong>17.5 million GBP or 4% of annual global turnover</strong>, whichever is higher. PECR penalties can reach up to 500,000 GBP.
+      </p>
+
+      <h2 id="canada">Canada: CASL</h2>
+
+      <p>
+        Canada's Anti-Spam Legislation (CASL), which came into full effect on July 1, 2014, is one of the strictest anti-spam laws in the world. Unlike CAN-SPAM, CASL is an <strong>opt-in law</strong>, meaning you generally need consent before sending a commercial electronic message (CEM) to a Canadian recipient.
+      </p>
+
+      <p>
+        CASL recognizes two types of consent:
+      </p>
+
+      <ol>
+        <li><strong>Express consent.</strong> The recipient has explicitly agreed to receive your emails. This consent does not expire and is the gold standard.</li>
+        <li><strong>Implied consent.</strong> Consent is implied in certain circumstances, including:
+          <ul>
+            <li>An existing business relationship (purchase or contract within the last 2 years)</li>
+            <li>An existing inquiry (the recipient inquired about your products/services within the last 6 months)</li>
+            <li>The recipient's email address is conspicuously published (e.g., on their website or business card) without a statement that they do not want unsolicited commercial emails, AND the email is relevant to their role or business</li>
+            <li>The recipient has disclosed their email address to you directly without indicating they do not wish to receive unsolicited messages</li>
+          </ul>
+        </li>
+      </ol>
+
+      <p>
+        The "conspicuously published" exemption is the primary basis for B2B cold email in Canada. If a prospect has their business email address on their company website or LinkedIn profile, and your email is relevant to their professional role, you may have implied consent under CASL. However, implied consent from this basis is limited: it allows you to send one initial message to establish consent, not an ongoing campaign.
+      </p>
+
+      <p>
+        Every CEM sent under CASL must include the sender's name, physical mailing address, and either a telephone number or email address or web address. It must also include a functional unsubscribe mechanism that works for at least 60 days after the message is sent. Unsubscribe requests must be honored within <strong>10 business days</strong>.
+      </p>
+
+      <p>
+        CASL penalties are severe: up to <strong>$10 million CAD per violation</strong> for organizations and $1 million CAD per violation for individuals. The CRTC (Canadian Radio-television and Telecommunications Commission) has issued multi-million dollar fines for CASL violations.
+      </p>
+
+      <h2 id="australia">Australia: Spam Act 2003</h2>
+
+      <p>
+        Australia's Spam Act 2003 regulates all commercial electronic messages sent from or to Australia. Like CASL, the Spam Act is an opt-in law that generally requires consent before sending commercial messages.
+      </p>
+
+      <p>
+        The Spam Act requires three things for every commercial electronic message:
+      </p>
+
+      <ol>
+        <li><strong>Consent.</strong> You must have either express consent or inferred consent from the recipient. Inferred consent can arise from an existing business relationship, the publication of the email address in a business context, or other circumstances where consent can reasonably be inferred.</li>
+        <li><strong>Identification.</strong> The message must clearly identify the sender, including their name or business name and contact information. This information must remain current and accurate for at least 30 days after the message is sent.</li>
+        <li><strong>Unsubscribe.</strong> Every message must include a functional unsubscribe facility. Unsubscribe requests must be honored within <strong>5 business days</strong>. The unsubscribe mechanism must be free and simple to use.</li>
+      </ol>
+
+      <p>
+        The Australian Communications and Media Authority (ACMA) enforces the Spam Act. Penalties can reach up to <strong>$2.2 million AUD per day</strong> for serious or repeated violations. In 2024, ACMA issued infringement notices totaling hundreds of thousands of dollars against companies for sending unsolicited commercial emails without proper consent or unsubscribe mechanisms.
+      </p>
+
+      <p>
+        For B2B cold email, the "inferred consent" provision is relevant if the recipient's email address is published in a business context and your email is relevant to their business role. However, this is narrower than CAN-SPAM's blanket permission, so Australian-targeted cold email campaigns require careful attention to consent documentation.
+      </p>
+
+      <h2 id="singapore">Singapore: Spam Control Act</h2>
+
+      <p>
+        Singapore's Spam Control Act (SCA), enacted in 2007, regulates unsolicited commercial messages sent to Singapore email addresses or from Singapore. The SCA is more permissive than CASL or the Australian Spam Act, operating on an opt-out model similar to CAN-SPAM.
+      </p>
+
+      <p>
+        Requirements under the SCA include:
+      </p>
+
+      <ul>
+        <li>Every unsolicited commercial message must include an opt-out mechanism (functional for at least 30 days)</li>
+        <li>The sender must be identifiable from the message</li>
+        <li>Subject lines must include the label "&lt;ADV&gt;" for advertisements (though enforcement of this requirement has been inconsistent)</li>
+        <li>Opt-out requests must be honored within 10 business days</li>
+        <li>The message must not contain false or misleading header information</li>
+      </ul>
+
+      <p>
+        Enforcement is handled by the Info-communications Media Development Authority (IMDA). The SCA provides for a <strong>private right of action</strong> where recipients can claim $25 per unsolicited message in civil court, up to a maximum of $1 million. There are no criminal penalties under the SCA itself, though the Personal Data Protection Act (PDPA) can apply additional penalties for misuse of personal data.
+      </p>
+
+      <h2 id="india">India: Information Technology Act</h2>
+
+      <p>
+        India does not have a dedicated anti-spam law equivalent to CAN-SPAM or CASL. Commercial email is primarily governed by the Information Technology Act, 2000 (IT Act) and the Digital Personal Data Protection Act, 2023 (DPDPA).
+      </p>
+
+      <p>
+        The IT Act, along with its rules on reasonable security practices (the IT Rules, 2011), requires organizations to obtain consent before collecting and using personal data. The DPDPA, which is being implemented in phases, introduces stricter consent requirements and establishes the Data Protection Board of India as the enforcement body.
+      </p>
+
+      <p>
+        In practice, B2B cold email to Indian businesses is widely practiced and generally permissible, provided you include clear sender identification and an opt-out mechanism. The Telecom Regulatory Authority of India (TRAI) manages the National Do Not Call Registry, which primarily applies to phone calls and SMS but can be referenced for email preferences.
+      </p>
+
+      <p>
+        Penalties under the DPDPA can reach up to <strong>250 crore INR (approximately $30 million USD)</strong> for significant data protection violations. However, enforcement specifically targeting B2B cold email has been minimal to date.
+      </p>
+
+      <h2 id="brazil">Brazil: LGPD</h2>
+
+      <p>
+        Brazil's Lei Geral de Protecao de Dados (LGPD), which came into effect in September 2020, is modeled after GDPR and applies to the processing of personal data of individuals in Brazil, regardless of where the data processor is located.
+      </p>
+
+      <p>
+        Under LGPD, cold email requires a lawful basis for processing personal data. The two relevant bases are:
+      </p>
+
+      <ol>
+        <li><strong>Legitimate interest (Article 10).</strong> Similar to GDPR, you can process personal data for direct marketing purposes if you have a legitimate interest that does not override the data subject's rights. You must conduct a balancing test and document your assessment.</li>
+        <li><strong>Consent (Article 7).</strong> The data subject has given free, informed, and unambiguous consent for the specific purpose of receiving commercial communications.</li>
+      </ol>
+
+      <p>
+        LGPD also grants data subjects rights including access, correction, deletion, and portability of their data. The Autoridade Nacional de Protecao de Dados (ANPD) enforces the law. Penalties can reach up to <strong>2% of revenue in Brazil, capped at 50 million BRL per violation</strong> (approximately $10 million USD).
+      </p>
+
+      <h2 id="japan">Japan: Act on Regulation of Transmission of Specified Electronic Mail</h2>
+
+      <p>
+        Japan's Act on Regulation of Transmission of Specified Electronic Mail (often called the Anti-Spam Act) was significantly amended in 2008 to shift from an opt-out model to an <strong>opt-in model</strong>. Under the current law, you must have prior consent before sending commercial email to Japanese recipients.
+      </p>
+
+      <p>
+        Exceptions to the consent requirement include:
+      </p>
+
+      <ul>
+        <li>Emails sent to addresses published on the recipient's website or business materials for the purpose of receiving business inquiries</li>
+        <li>Emails sent within an existing business relationship</li>
+        <li>Emails sent to corporate email addresses (as opposed to personal email addresses) in a B2B context</li>
+      </ul>
+
+      <p>
+        All commercial emails must include the sender's name, contact information, and a functioning opt-out mechanism. The Ministry of Internal Affairs and Communications (MIC) and the Japan Data Communications Association (JADCA) handle enforcement. Violations can result in fines of up to <strong>30 million JPY (approximately $200,000 USD)</strong> and imprisonment of up to 1 year.
+      </p>
+
+      <h2 id="south-korea">South Korea: Act on Promotion of Information and Communications Network Utilization</h2>
+
+      <p>
+        South Korea has one of the strictest anti-spam regimes in Asia. The Act on Promotion of Information and Communications Network Utilization and Information Protection (commonly known as the Network Act) requires <strong>express prior consent</strong> before sending commercial advertising emails. This applies to both B2B and B2C communications.
+      </p>
+
+      <p>
+        Requirements for commercial email in South Korea include:
+      </p>
+
+      <ul>
+        <li>Express prior consent from the recipient (opt-in required)</li>
+        <li>The subject line must start with "(Advertisement)" or "(AD)"</li>
+        <li>Sender name, contact information, and business registration number must be included</li>
+        <li>A functional unsubscribe mechanism must be provided</li>
+        <li>Emails must not be sent between 9 PM and 8 AM unless the recipient has specifically consented to receiving messages during those hours</li>
+      </ul>
+
+      <p>
+        The Korea Communications Commission (KCC) enforces these rules. Penalties can reach up to <strong>30 million KRW per violation (approximately $23,000 USD)</strong>, with criminal penalties including imprisonment for up to 1 year. South Korea actively enforces its anti-spam laws, and the KCC has pursued enforcement actions against both domestic and international senders.
+      </p>
+
+      <h2 id="comparison">Full Comparison Table</h2>
+
+      <div class="overflow-x-auto not-prose">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 font-semibold text-gray-600">Country</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">Law</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">Model</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">B2B Cold Email</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">Physical Address</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">Unsubscribe</th>
+              <th class="py-3 font-semibold text-gray-600">Opt-Out Deadline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">United States</td>
+              <td class="py-3 pr-4">CAN-SPAM</td>
+              <td class="py-3 pr-4">Opt-out</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permitted</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">10 business days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">EU</td>
+              <td class="py-3 pr-4">GDPR + ePrivacy</td>
+              <td class="py-3 pr-4">Legitimate interest</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permitted (with LIA)</td>
+              <td class="py-3 pr-4">Recommended</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">30 days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">United Kingdom</td>
+              <td class="py-3 pr-4">UK GDPR + PECR</td>
+              <td class="py-3 pr-4">Corporate exemption</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permitted (corporate)</td>
+              <td class="py-3 pr-4">Recommended</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">28 days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Canada</td>
+              <td class="py-3 pr-4">CASL</td>
+              <td class="py-3 pr-4">Opt-in</td>
+              <td class="py-3 pr-4 text-amber-600 font-medium">Limited (implied consent)</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">10 business days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Australia</td>
+              <td class="py-3 pr-4">Spam Act 2003</td>
+              <td class="py-3 pr-4">Opt-in</td>
+              <td class="py-3 pr-4 text-amber-600 font-medium">Limited (inferred consent)</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">5 business days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Singapore</td>
+              <td class="py-3 pr-4">Spam Control Act</td>
+              <td class="py-3 pr-4">Opt-out</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permitted</td>
+              <td class="py-3 pr-4">Recommended</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">10 business days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">India</td>
+              <td class="py-3 pr-4">IT Act + DPDPA</td>
+              <td class="py-3 pr-4">Consent-based</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Generally permitted</td>
+              <td class="py-3 pr-4">Recommended</td>
+              <td class="py-3 pr-4">Recommended</td>
+              <td class="py-3">Not specified</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Brazil</td>
+              <td class="py-3 pr-4">LGPD</td>
+              <td class="py-3 pr-4">Legitimate interest</td>
+              <td class="py-3 pr-4 text-green-600 font-medium">Permitted (with LIA)</td>
+              <td class="py-3 pr-4">Recommended</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">15 days</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Japan</td>
+              <td class="py-3 pr-4">Anti-Spam Act</td>
+              <td class="py-3 pr-4">Opt-in</td>
+              <td class="py-3 pr-4 text-amber-600 font-medium">Limited (B2B exemptions)</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">Not specified</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">South Korea</td>
+              <td class="py-3 pr-4">Network Act</td>
+              <td class="py-3 pr-4">Opt-in</td>
+              <td class="py-3 pr-4 text-red-600 font-medium">Requires consent</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3 pr-4">Required</td>
+              <td class="py-3">Not specified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="penalties">Penalties Comparison</h2>
+
+      <div class="overflow-x-auto not-prose">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 font-semibold text-gray-600">Country</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">Maximum Financial Penalty</th>
+              <th class="py-3 pr-4 font-semibold text-gray-600">Criminal Penalties</th>
+              <th class="py-3 font-semibold text-gray-600">Enforcement Body</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">United States</td>
+              <td class="py-3 pr-4">$50,120 per email (no cap)</td>
+              <td class="py-3 pr-4">Yes (aggravated violations)</td>
+              <td class="py-3">FTC, State AGs</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">European Union</td>
+              <td class="py-3 pr-4">4% of annual revenue or 20M EUR</td>
+              <td class="py-3 pr-4">Varies by member state</td>
+              <td class="py-3">National DPAs</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">United Kingdom</td>
+              <td class="py-3 pr-4">17.5M GBP or 4% of revenue</td>
+              <td class="py-3 pr-4">No</td>
+              <td class="py-3">ICO</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Canada</td>
+              <td class="py-3 pr-4">$10M CAD per violation (orgs)</td>
+              <td class="py-3 pr-4">No</td>
+              <td class="py-3">CRTC</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Australia</td>
+              <td class="py-3 pr-4">$2.2M AUD per day</td>
+              <td class="py-3 pr-4">No</td>
+              <td class="py-3">ACMA</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Singapore</td>
+              <td class="py-3 pr-4">$25 per message (civil, up to $1M)</td>
+              <td class="py-3 pr-4">No</td>
+              <td class="py-3">IMDA</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">India</td>
+              <td class="py-3 pr-4">250 crore INR (~$30M USD)</td>
+              <td class="py-3 pr-4">Yes (IT Act violations)</td>
+              <td class="py-3">DPBI, CERT-In</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Brazil</td>
+              <td class="py-3 pr-4">2% of revenue (cap 50M BRL)</td>
+              <td class="py-3 pr-4">No</td>
+              <td class="py-3">ANPD</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Japan</td>
+              <td class="py-3 pr-4">30M JPY (~$200K USD)</td>
+              <td class="py-3 pr-4">Yes (up to 1 year)</td>
+              <td class="py-3">MIC, JADCA</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">South Korea</td>
+              <td class="py-3 pr-4">30M KRW (~$23K USD) per violation</td>
+              <td class="py-3 pr-4">Yes (up to 1 year)</td>
+              <td class="py-3">KCC</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="universal-requirements">Universal Compliance Requirements</h2>
+
+      <p>
+        Despite the significant differences between national regulations, there are several requirements that are universal across virtually all jurisdictions. If you follow these baseline requirements, you will be compliant (or close to compliant) in most countries:
+      </p>
+
+      <ol>
+        <li><strong>Include your identity.</strong> Every cold email must clearly identify who is sending it. This means your real name (or your company name), a valid email address, and in most jurisdictions, a physical mailing address.</li>
+        <li><strong>Provide an opt-out mechanism.</strong> Every single commercial email you send must include a way for the recipient to stop receiving future emails from you. The mechanism must be free, easy to use, and functional for at least 30 days after the email is sent.</li>
+        <li><strong>Honor opt-out requests promptly.</strong> When someone asks to be removed from your list, do it. The deadline varies by country (5 business days in Australia, 10 in the US and Canada, 30 in the EU), but the principle is universal: once they say stop, you stop.</li>
+        <li><strong>Do not use deceptive practices.</strong> Do not use misleading subject lines, false sender information, or deceptive routing. This is a violation in every single jurisdiction covered in this guide.</li>
+        <li><strong>Target business professionals in their professional capacity.</strong> B2B cold email is treated more permissively than B2C in almost every jurisdiction. Send to work email addresses about business-relevant topics.</li>
+        <li><strong>Document your compliance.</strong> Keep records of your compliance measures, consent (where required), and opt-out processing. This documentation is your defense in the event of a complaint or regulatory inquiry.</li>
+      </ol>
+
+      <p>
+        <a href={siteConfig.product.url}>{siteConfig.product.name}</a> automates these universal requirements across all jurisdictions. The platform handles opt-out processing, physical address insertion, sender identification, and compliance documentation, allowing sales teams to focus on writing effective cold emails while the compliance infrastructure runs in the background.
+      </p>
+
+      <h2>Key Takeaways</h2>
+
+      <p>
+        Cold email is legal in every country covered in this guide, with varying levels of restriction. The United States and Singapore are the most permissive, operating on opt-out models where you can email anyone as long as you comply with formatting and unsubscribe requirements. The EU, UK, and Brazil occupy a middle ground, allowing B2B cold email under legitimate interest with appropriate safeguards. Canada, Australia, Japan, and South Korea are the most restrictive, generally requiring some form of prior consent, though each provides exemptions for certain B2B scenarios.
+      </p>
+
+      <p>
+        The key to compliant cold email is understanding which regulations apply to your recipients (not just your own jurisdiction), implementing the required compliance elements in every email, and maintaining documentation of your compliance measures. When in doubt, apply the strictest standard -- if your emails comply with CASL, they will almost certainly comply with CAN-SPAM and most other frameworks as well.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 p-6 bg-gray-50 rounded-lg border border-gray-200">
+      <h3 class="text-lg font-bold text-gray-900">Send Compliant Cold Emails at Scale</h3>
+      <p class="mt-2 text-gray-600"><a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800 font-medium">{siteConfig.product.name}</a> is an AI-first cold email platform with built-in compliance features for CAN-SPAM, GDPR, and CASL. Automated opt-out handling, physical address insertion, and regional compliance controls.</p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+        Try {siteConfig.product.name} Free &rarr;
+      </a>
+    </div>
+  </article>
+</Base>

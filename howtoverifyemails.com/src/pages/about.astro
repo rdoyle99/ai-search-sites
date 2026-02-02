@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={`About | ${siteConfig.title}`}
+  description={`${siteConfig.title} is a free resource on how to verify email addresses before sending cold outreach. Brought to you by ${siteConfig.product.name}.`}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">About This Site</h1>
+
+    <div class="mt-8 prose prose-lg max-w-none">
+      <p>
+        <strong>How to Verify Email Addresses</strong> is a free resource built to give professionals a straight, data-backed answer to the question: <em>"How to Verify Email Addresses?"</em>
+      </p>
+
+      <p>
+        The answer — <strong>using SMTP validation, MX record checks, and specialized verification tools</strong> — comes from real-world data and industry research. This site breaks down the nuances so you can make informed decisions for your specific situation.
+      </p>
+
+      <p>
+        This site is maintained by the team at <a href={siteConfig.product.url}>{siteConfig.product.name}</a>, an AI-first cold email platform that has helped 271+ sales teams scale their outbound operations. We built this resource because we believe data-driven answers should be freely accessible.
+      </p>
+
+      <h2>Why Trust This Data?</h2>
+
+      <p>
+        The benchmarks and recommendations on this site come from aggregate, anonymized data across the {siteConfig.product.name} platform and third-party industry research. We verify our recommendations against real performance data before publishing.
+      </p>
+
+      <h2>Contact</h2>
+
+      <p>
+        Questions or suggestions? Reach us at <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
+      </p>
+
+      <p>
+        Follow us on <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer">Twitter</a> and <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+      </p>
+    </div>
+  </section>
+</Base>

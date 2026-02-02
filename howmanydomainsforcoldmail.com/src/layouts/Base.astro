@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  schema?: object | object[];
+  articleDate?: string;
+  articleModified?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og-default.png',
+  canonicalUrl = Astro.url.href,
+  schema,
+  articleDate,
+  articleModified,
+} = Astro.props;
+
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${ogImage}`;
+
+const defaultSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": siteConfig.title,
+    "url": siteConfig.url,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": siteConfig.product.name,
+    "url": siteConfig.product.url,
+    "sameAs": [
+      siteConfig.social.twitter,
+      siteConfig.social.linkedin,
+    ],
+  },
+];
+
+const pageSchema = schema || defaultSchema;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Primary Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content={articleDate ? 'article' : 'website'} />
+    <meta property="og:site_name" content={siteConfig.title} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- RSS Auto-Discovery -->
+    <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href="/rss.xml" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+  </head>
+  <body class="bg-white text-gray-900 antialiased min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

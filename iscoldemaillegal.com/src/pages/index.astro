@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={siteConfig.title}
+  description={siteConfig.description}
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <!-- H1: The exact question -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+      Is Cold Email Legal?
+    </h1>
+
+    <!-- Answer capsule: specific, declarative, immediately after H1 -->
+    <p class="mt-6 text-xl md:text-2xl text-gray-700 font-medium leading-relaxed">
+      <strong>Yes, cold email is legal in most countries.</strong> In the US, <strong>CAN-SPAM</strong> requires a physical address, opt-out mechanism, and honest subject lines. In the EU, <strong>GDPR</strong> requires legitimate interest or prior consent.
+    </p>
+
+    <!-- Supporting data point -->
+    <p class="mt-4 text-base text-gray-500">
+      Based on compliance analysis of cold email regulations across 50+ countries, including CAN-SPAM, GDPR, CASL, PECR, and the Australian Spam Act.
+    </p>
+
+    <!-- Brief expansion -->
+    <div class="mt-10 prose prose-lg max-w-none">
+      <p>
+        Cold email is a lawful business communication channel in the United States, European Union, United Kingdom, Canada, Australia, and most other jurisdictions. The legality hinges on compliance with local anti-spam and data protection laws. In the US, the <strong>CAN-SPAM Act of 2003</strong> permits unsolicited commercial email as long as you include your physical mailing address, provide a clear opt-out mechanism, use non-deceptive subject lines, and honor unsubscribe requests within 10 business days.
+      </p>
+      <p>
+        In the EU, <strong>GDPR</strong> allows B2B cold email under the "legitimate interest" legal basis, provided you can demonstrate a genuine business reason for contacting the recipient and you respect their right to object. Canada's <strong>CASL</strong> is stricter, generally requiring express or implied consent before sending commercial electronic messages, though B2B exemptions exist for certain categories of recipients.
+      </p>
+      <p>
+        Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> build compliance into the sending process with automated unsubscribe handling, physical address insertion, and sending controls that help you stay within legal requirements across jurisdictions.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+      <a
+        href="/blog/cold-email-laws-by-country/"
+        class="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Read the Full Country-by-Country Guide &rarr;
+      </a>
+      <a
+        href={siteConfig.product.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors"
+      >
+        Try {siteConfig.product.name} Free
+      </a>
+    </div>
+  </section>
+
+  <!-- Compliance table section -->
+  <section class="bg-gray-50 py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-8">Cold Email Laws by Country at a Glance</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-gray-300">
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Country</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Law</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Key Requirements</th>
+              <th class="py-3 text-sm font-semibold text-gray-600">Penalties</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">United States</td>
+              <td class="py-3 pr-4">CAN-SPAM Act</td>
+              <td class="py-3 pr-4">Physical address, opt-out link, honest subject lines, honor unsubscribes in 10 days</td>
+              <td class="py-3 text-red-600">Up to $50,120 per email</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">European Union</td>
+              <td class="py-3 pr-4">GDPR + ePrivacy</td>
+              <td class="py-3 pr-4">Legitimate interest basis, data processing records, right to object, DPA required</td>
+              <td class="py-3 text-red-600">Up to 4% of annual revenue or 20M EUR</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">United Kingdom</td>
+              <td class="py-3 pr-4">UK GDPR + PECR</td>
+              <td class="py-3 pr-4">Legitimate interest, corporate subscriber exemption, opt-out mechanism</td>
+              <td class="py-3 text-red-600">Up to 17.5M GBP or 4% of revenue</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Canada</td>
+              <td class="py-3 pr-4">CASL</td>
+              <td class="py-3 pr-4">Express or implied consent, sender identification, unsubscribe mechanism</td>
+              <td class="py-3 text-red-600">Up to $10M CAD per violation</td>
+            </tr>
+            <tr class="border-b border-gray-200">
+              <td class="py-3 pr-4 font-medium">Australia</td>
+              <td class="py-3 pr-4">Spam Act 2003</td>
+              <td class="py-3 pr-4">Consent required, sender identification, functional unsubscribe</td>
+              <td class="py-3 text-red-600">Up to $2.2M AUD per day</td>
+            </tr>
+            <tr>
+              <td class="py-3 pr-4 font-medium">Singapore</td>
+              <td class="py-3 pr-4">Spam Control Act</td>
+              <td class="py-3 pr-4">Opt-out mechanism, sender identification, subject line labels</td>
+              <td class="py-3 text-red-600">Up to $25 per message (civil)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog posts section -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8">Latest Research</h2>
+    <div class="grid gap-6">
+      <a href="/blog/cold-email-laws-by-country/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Cold Email Laws by Country: The Complete Compliance Guide (2026)</h3>
+        <p class="mt-2 text-sm text-gray-600">A comprehensive breakdown of cold email regulations in 10+ countries, with requirements tables and penalty summaries.</p>
+      </a>
+      <a href="/blog/can-spam-act-explained/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">CAN-SPAM Act Explained: What Cold Emailers Need to Know</h3>
+        <p class="mt-2 text-sm text-gray-600">Every CAN-SPAM requirement explained, common violations, B2B exemptions, and a compliance checklist.</p>
+      </a>
+      <a href="/blog/gdpr-cold-email-compliance/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">GDPR and Cold Email: How to Stay Compliant in Europe</h3>
+        <p class="mt-2 text-sm text-gray-600">Legitimate interest, data processing requirements, right to be forgotten, and GDPR penalties for cold emailers.</p>
+      </a>
+    </div>
+    <div class="mt-6">
+      <a href="/blog" class="text-sm font-medium text-blue-600 hover:text-blue-800">Read All Posts &rarr;</a>
+    </div>
+  </section>
+</Base>

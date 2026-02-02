@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const tools = [
+  {
+    slug: 'sponsorship-rate-calculator',
+    title: 'Sponsorship Rate Calculator',
+    description: 'Calculate your sponsorship rate based on audience size, engagement rate, and platform.',
+    tag: 'Popular',
+  },
+  {
+    slug: 'media-kit-builder',
+    title: 'Media Kit Builder',
+    description: 'Build a professional sponsorship media kit with your audience data, rates, and past partnerships.',
+    tag: 'New',
+  },
+  {
+    slug: 'brand-pitch-generator',
+    title: 'Brand Pitch Email Generator',
+    description: 'Generate personalized sponsorship pitch emails based on the brand and your creator profile.',
+    tag: null,
+  },
+];
+
+const toolSchema = tools.map((tool) => ({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": tool.title,
+  "applicationCategory": "BusinessApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+}));
+---
+
+<Base
+  title={`Free Tools | ${siteConfig.title}`}
+  description="Free tools to find sponsorship opportunities and build pitches."
+  schema={toolSchema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Free Tools</h1>
+    <p class="mt-4 text-lg text-gray-600">Free tools to find sponsorship opportunities and build pitches.</p>
+
+    <div class="mt-10 grid gap-6">
+      {tools.map((tool) => (
+        <a href={`/tools/${tool.slug}/`} class="block group">
+          <div class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
+            <div class="flex items-center gap-3">
+              <h2 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{tool.title}</h2>
+              {tool.tag && (
+                <span class={`text-xs font-medium px-2 py-0.5 rounded-full ${tool.tag === 'Popular' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}`}>
+                  {tool.tag}
+                </span>
+              )}
+            </div>
+            <p class="mt-2 text-gray-600">{tool.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

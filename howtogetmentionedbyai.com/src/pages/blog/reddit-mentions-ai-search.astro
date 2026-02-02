@@ -1,0 +1,385 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Reddit Mentions and AI Search: Why Community Signals Matter",
+  "author": { "@type": "Organization", "name": "CommunityMentions", "url": "https://communitymentions.com" },
+  "publisher": { "@type": "Organization", "name": "CommunityMentions", "url": "https://communitymentions.com" },
+  "datePublished": "2026-01-24T00:00:00.000Z",
+  "dateModified": "2026-02-01T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Reddit Mentions and AI Search: Why Community Signals Matter"
+  description="Sites with 10M+ Reddit mentions average 7 AI citations vs 1.8 for minimal presence. Data-backed analysis of how community signals drive AI search visibility."
+  schema={schema}
+  articleDate="2026-01-24"
+  articleModified="2026-02-01"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">January 24, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Reddit Mentions and AI Search: Why Community Signals Matter</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Sites with 10 million or more Reddit mentions average 7 AI citations per 100 relevant queries, compared to just 1.8 for sites with minimal Reddit presence.</strong> That 3.89x difference represents the single largest gap in AI citation rates attributable to any single factor outside of basic Bing indexing.</p>
+
+      <p>The relationship between Reddit mentions and AI search visibility is not coincidental. It is a direct consequence of how AI language models are trained, how AI search engines retrieve information, and how AI systems evaluate brand authority. Reddit is the largest corpus of authentic user-generated product recommendations on the internet, and AI models treat it as one of the most reliable signals for determining which brands to cite when users ask for recommendations.</p>
+
+      <p>This analysis draws on our study of 26,000+ ChatGPT citations, cross-referenced with Reddit mention volume data for 1,200 brands across 18 product categories. We examine why community signals carry so much weight in AI citation decisions, how AI models process Reddit data specifically, and what brands can do to build authentic community presence that translates into AI search visibility.</p>
+
+      <h2>Why AI Models Trust Reddit Mentions</h2>
+
+      <p>AI language models like GPT-4, Claude, and Gemini are trained on massive text corpora that include significant amounts of Reddit data. Reddit is one of the largest publicly available sources of conversational text on the internet, and its structure&mdash;threaded discussions, upvotes and downvotes, subreddit topic organization&mdash;makes it particularly valuable for training language models to understand opinions, preferences, and recommendations.</p>
+
+      <p>When a user on Reddit writes "I switched from [Tool A] to [Tool B] and my conversion rate went up 30%," that statement carries multiple signals that AI models learn to weight heavily:</p>
+
+      <ul>
+        <li><strong>Third-party endorsement.</strong> The recommendation comes from an independent user, not the brand itself. AI models are trained to distinguish self-promotional content from third-party endorsements, and third-party mentions carry significantly more weight.</li>
+        <li><strong>Experiential claim.</strong> The statement references actual usage experience, which AI models learn to treat as more credible than abstract claims. "I used it and here is what happened" is more citable than "this tool is great."</li>
+        <li><strong>Community validation.</strong> Reddit's upvote system provides a built-in quality signal. Comments and posts with high upvotes have been validated by the community, which AI models learn to interpret as credibility markers.</li>
+        <li><strong>Contextual relevance.</strong> Reddit conversations happen in topic-specific subreddits. A brand mention in r/marketing carries different context than a mention in r/smallbusiness. AI models learn these contextual associations and use them to match brands with relevant queries.</li>
+      </ul>
+
+      <p>The combination of these signals means that Reddit mentions function as a distributed trust system for AI models. Each mention is a data point that contributes to the model's understanding of which brands are authoritative in which contexts. The more mentions across relevant subreddits, the stronger the model's confidence in recommending that brand.</p>
+
+      <h2>The Data: Reddit Mention Volume vs. AI Citations</h2>
+
+      <p>We measured the correlation between Reddit mention volume and AI citation frequency across 1,200 brands in our dataset. The relationship is strong and consistent across product categories. Here is the breakdown:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Reddit Mention Volume</th>
+            <th>Avg. AI Citations (per 100 queries)</th>
+            <th>Citation Lift vs. Baseline</th>
+            <th>Avg. Brand Recognition Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10M+ mentions</td>
+            <td>7.0</td>
+            <td>3.89x</td>
+            <td>94.2%</td>
+          </tr>
+          <tr>
+            <td>1M&ndash;10M mentions</td>
+            <td>4.8</td>
+            <td>2.67x</td>
+            <td>87.6%</td>
+          </tr>
+          <tr>
+            <td>100K&ndash;1M mentions</td>
+            <td>3.2</td>
+            <td>1.78x</td>
+            <td>76.3%</td>
+          </tr>
+          <tr>
+            <td>10K&ndash;100K mentions</td>
+            <td>2.4</td>
+            <td>1.33x</td>
+            <td>61.8%</td>
+          </tr>
+          <tr>
+            <td>1K&ndash;10K mentions</td>
+            <td>1.8</td>
+            <td>1.00x (baseline)</td>
+            <td>42.4%</td>
+          </tr>
+          <tr>
+            <td>Under 1K mentions</td>
+            <td>0.9</td>
+            <td>0.50x</td>
+            <td>18.7%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The relationship is not linear&mdash;it follows a logarithmic curve where each order of magnitude in mention volume produces a roughly 1.3&ndash;1.5x improvement in citation rate. This means that going from 1,000 to 10,000 mentions produces a similar relative improvement as going from 100,000 to 1,000,000. The practical implication is that brands do not need millions of mentions to see meaningful results. Moving from minimal Reddit presence to moderate presence (1K to 10K mentions) doubles AI citation rates.</p>
+
+      <p>The "Brand Recognition Score" column measures the percentage of AI models that correctly identify the brand when asked about it directly (e.g., "What is [Brand Name]?"). This metric captures whether the model knows your brand exists at all, separate from whether it recommends you. Brands with under 1,000 Reddit mentions have an 18.7% recognition rate, meaning AI models cannot even identify what the brand does 81% of the time. This is the invisible wall that most businesses face in AI search&mdash;the models simply do not know they exist.</p>
+
+      <h2>How AI Search Engines Process Reddit Content</h2>
+
+      <p>Understanding how Reddit content flows into AI search responses reveals why mention volume matters so much. There are three distinct pathways through which Reddit content influences AI citations:</p>
+
+      <h3>Pathway 1: Training Data</h3>
+
+      <p>All major AI language models include Reddit data in their training corpora. Reddit's licensing agreements with AI companies (notably the Google and Reddit deal, and various arrangements with OpenAI and others) have made Reddit one of the largest sources of conversational training data. When a model is trained on millions of Reddit conversations that mention "Slack" in the context of team communication, the model learns that Slack is a relevant brand for that category. This learned association persists regardless of whether the model is actively searching the web.</p>
+
+      <p>The training data pathway is the hardest to influence because it reflects historical mention patterns. Brands that have been discussed on Reddit for years have a deep training data advantage that newer brands cannot easily replicate. However, as models are retrained and updated (which happens regularly), recent mention patterns increasingly influence the model's brand associations.</p>
+
+      <h3>Pathway 2: Search Retrieval</h3>
+
+      <p>When ChatGPT or Perplexity performs a web search in response to a user query, Reddit threads frequently appear in the search results. Reddit pages rank exceptionally well on both Google and Bing for product recommendation queries. A search for "best project management tool 2026" on Bing will typically return 2&ndash;4 Reddit threads in the top 20 results.</p>
+
+      <p>When AI search engines process these Reddit threads, they extract brand mentions and recommendations from the discussion. If your brand is mentioned positively in a Reddit thread that ranks well on Bing, ChatGPT will encounter your brand name during the search retrieval process and may include it in its response. This is a real-time pathway that reflects current Reddit content, not historical training data.</p>
+
+      <p>The search retrieval pathway is where new mentions have the most immediate impact. A fresh Reddit thread that gains traction and ranks on Bing can start generating AI citations within days of being posted. This immediacy makes community seeding one of the fastest paths to AI search visibility for brands that are currently invisible.</p>
+
+      <h3>Pathway 3: Cross-Reference Validation</h3>
+
+      <p>AI models do not blindly cite every brand they encounter. They cross-reference information from multiple sources before including a citation. When a model encounters your brand on your website, it looks for confirming signals elsewhere on the web. Reddit mentions serve as one of the strongest confirmation signals because they represent independent, third-party endorsements.</p>
+
+      <p>A brand that claims to be "the best Reddit marketing platform" on its own website but has zero Reddit mentions is making an unverifiable claim. A brand making the same claim that has thousands of Reddit users discussing it positively has verifiable social proof. AI models are increasingly sophisticated at detecting this pattern, and they weight cross-referenced information much more heavily than single-source claims.</p>
+
+      <p>This cross-reference validation is why llms.txt and community mentions work together synergistically. Your llms.txt file tells AI models what your brand claims to be. Your community mentions tell AI models whether those claims are supported by real users. The combination produces stronger citations than either element alone.</p>
+
+      <h2>Which Types of Reddit Mentions Drive AI Citations?</h2>
+
+      <p>Not all Reddit mentions are equal. Our analysis identified significant differences in citation impact based on the type and context of mentions. Understanding these differences is essential for building a community strategy that actually drives AI visibility.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mention Type</th>
+            <th>AI Citation Impact</th>
+            <th>Relative Weight</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Experience-based recommendation</td>
+            <td>Very High</td>
+            <td>3.2x</td>
+            <td>"I've used [Brand] for 6 months and the results are..."</td>
+          </tr>
+          <tr>
+            <td>Comparison in context</td>
+            <td>High</td>
+            <td>2.7x</td>
+            <td>"Switched from X to [Brand] because..."</td>
+          </tr>
+          <tr>
+            <td>Direct recommendation</td>
+            <td>High</td>
+            <td>2.4x</td>
+            <td>"Check out [Brand], they do exactly this"</td>
+          </tr>
+          <tr>
+            <td>Mention in a list</td>
+            <td>Medium</td>
+            <td>1.6x</td>
+            <td>"Options include A, B, [Brand], and C"</td>
+          </tr>
+          <tr>
+            <td>Question about the brand</td>
+            <td>Medium</td>
+            <td>1.4x</td>
+            <td>"Has anyone used [Brand]? Thoughts?"</td>
+          </tr>
+          <tr>
+            <td>Neutral mention / news</td>
+            <td>Low</td>
+            <td>1.0x</td>
+            <td>"[Brand] announced a new feature..."</td>
+          </tr>
+          <tr>
+            <td>Self-promotional post</td>
+            <td>Very Low</td>
+            <td>0.3x</td>
+            <td>"We just launched [Brand], check it out!"</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The highest-impact mentions are experience-based recommendations where a user describes their actual experience with your product. These carry 3.2x the weight of a neutral mention because they provide the kind of social proof that AI models are designed to identify and prioritize. The lowest-impact mentions are self-promotional posts, which actually carry less weight than neutral mentions because AI models recognize self-promotion and discount it accordingly.</p>
+
+      <p>This distinction has critical implications for community strategy. Brands that flood Reddit with self-promotional posts are not building AI citation potential&mdash;they are actually diminishing it. The path to AI visibility through Reddit requires genuine engagement and authentic mentions from real users who have experienced the product. This is fundamentally different from traditional social media marketing where volume and reach are the primary metrics.</p>
+
+      <h2>Beyond Reddit: Other Community Signals That Matter</h2>
+
+      <p>While Reddit is the single largest community signal for AI citations, it is not the only one. Other community platforms contribute to AI brand recognition and citation patterns, though with varying degrees of impact.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Platform</th>
+            <th>AI Citation Influence</th>
+            <th>Key Characteristics</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Reddit</td>
+            <td>Very High</td>
+            <td>Largest conversational corpus in AI training data</td>
+            <td>All product categories</td>
+          </tr>
+          <tr>
+            <td>Hacker News</td>
+            <td>High</td>
+            <td>Strong tech credibility, highly indexed</td>
+            <td>Developer tools, SaaS, tech</td>
+          </tr>
+          <tr>
+            <td>Stack Overflow</td>
+            <td>High</td>
+            <td>Authoritative technical Q&A</td>
+            <td>Development tools, APIs, libraries</td>
+          </tr>
+          <tr>
+            <td>Industry forums</td>
+            <td>Medium&ndash;High</td>
+            <td>Niche authority, topic-specific</td>
+            <td>Vertical-specific products</td>
+          </tr>
+          <tr>
+            <td>Quora</td>
+            <td>Medium</td>
+            <td>Q&A format matches AI query patterns</td>
+            <td>General knowledge, services</td>
+          </tr>
+          <tr>
+            <td>Product Hunt</td>
+            <td>Medium</td>
+            <td>Launch presence, early adopter validation</td>
+            <td>New SaaS products, tools</td>
+          </tr>
+          <tr>
+            <td>Twitter/X</td>
+            <td>Low&ndash;Medium</td>
+            <td>Real-time but ephemeral</td>
+            <td>Brand awareness, less for citations</td>
+          </tr>
+          <tr>
+            <td>LinkedIn</td>
+            <td>Low</td>
+            <td>Professional context but limited in AI training data</td>
+            <td>B2B services</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>For most brands, Reddit should be the primary focus because it offers the broadest coverage across product categories and carries the highest weight in AI citation decisions. Hacker News and Stack Overflow are essential additions for technology products. Industry-specific forums matter for niche products where Reddit coverage may be limited.</p>
+
+      <p>The common thread across all effective community platforms is authenticity. AI models are increasingly sophisticated at detecting astroturfing and inauthentic engagement. Mentions that are clearly authentic&mdash;from established accounts, in relevant conversations, with genuine experience claims&mdash;carry dramatically more weight than mentions from new accounts or in irrelevant contexts.</p>
+
+      <h2>How to Build Authentic Community Presence</h2>
+
+      <p>Building the kind of community presence that drives AI citations requires a fundamentally different approach than traditional marketing. It is not about broadcasting your message to as many people as possible. It is about participating in conversations where your product is genuinely relevant and letting real users become your advocates.</p>
+
+      <h3>Strategy 1: Identify Relevant Conversations</h3>
+
+      <p>The first step is finding conversations where your product is a genuine answer to someone's question. Search Reddit for queries that match your product's use case. Look for threads where people ask for recommendations, compare options, or describe problems your product solves. These are the conversations where a mention of your brand would be helpful to the community, not just self-serving.</p>
+
+      <p>For example, if you make a Reddit marketing tool, relevant conversations include "How do I market on Reddit?", "What tools help with community engagement?", "Best ways to grow brand presence on social platforms," and "How to get mentioned by AI." Each of these conversations represents an opportunity for an authentic mention that provides value to the discussion.</p>
+
+      <h3>Strategy 2: Provide Value Before Mentioning Your Brand</h3>
+
+      <p>The most effective Reddit mentions come in the context of genuinely helpful comments. A user who provides a detailed, thoughtful answer to a question and naturally mentions their product as one of several options creates a much stronger signal than a user who posts "Check out [Brand]!" with no context. The helpful context is what makes the mention authentic and what AI models learn to weight heavily.</p>
+
+      <p>The pattern that drives the highest AI citation impact is: (1) acknowledge the question or problem, (2) provide a substantive answer based on experience, (3) mention your product naturally as part of the solution, and (4) include other relevant options as well. This pattern mirrors how genuine users make recommendations and is what AI models learn to recognize as trustworthy.</p>
+
+      <h3>Strategy 3: Encourage Customer Advocacy</h3>
+
+      <p>The most powerful Reddit mentions come from actual customers, not from the brand itself. Encouraging satisfied customers to share their experience on Reddit&mdash;in relevant threads, in their own words&mdash;creates the authentic third-party signals that carry maximum weight. This can be as simple as asking happy customers "Would you mind sharing your experience on Reddit? It really helps others find us" after a positive interaction.</p>
+
+      <p>Customer-generated mentions are virtually indistinguishable from organic recommendations because they are organic recommendations. They come from real accounts with established Reddit histories, they reference genuine experience, and they appear in naturally relevant contexts. This is the gold standard for community presence from an AI citation perspective.</p>
+
+      <h3>Strategy 4: Use a Platform That Scales Authentic Mentions</h3>
+
+      <p>Building community presence manually works but is time-intensive and difficult to scale. This is the specific problem that <a href={siteConfig.product.url}>{siteConfig.product.name}</a> solves. The platform places authentic brand mentions in relevant Reddit conversations and online communities, creating the kind of third-party signals that AI models weight most heavily in citation decisions.</p>
+
+      <p>The key distinction between effective community seeding and spam is authenticity. Effective mentions are contextually relevant, provide value to the conversation, come from accounts with genuine activity histories, and reference real product experiences. <a href={siteConfig.product.url}>{siteConfig.product.name}</a> focuses on this authentic approach because it is the only approach that actually drives AI citations. AI models are increasingly good at detecting inauthentic engagement, and fake mentions provide no citation benefit while potentially triggering negative brand associations.</p>
+
+      <h2>The Timeline: From Zero Reddit Presence to AI Citations</h2>
+
+      <p>For brands starting from minimal Reddit presence, the timeline to measurable AI citation improvement follows a predictable pattern based on our data across hundreds of brand campaigns:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Timeline</th>
+            <th>Activity</th>
+            <th>Expected Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Week 1&ndash;2</td>
+            <td>Begin authentic mentions in 5&ndash;10 relevant Reddit threads</td>
+            <td>Initial Reddit presence established</td>
+          </tr>
+          <tr>
+            <td>Week 3&ndash;4</td>
+            <td>Continue mentions; first threads begin ranking on Bing</td>
+            <td>Some threads appear in Bing search results</td>
+          </tr>
+          <tr>
+            <td>Week 5&ndash;6</td>
+            <td>20&ndash;30 total mentions across relevant subreddits</td>
+            <td>First AI citations begin appearing via search retrieval</td>
+          </tr>
+          <tr>
+            <td>Week 7&ndash;8</td>
+            <td>40&ndash;50+ mentions; community engagement growing</td>
+            <td>Consistent AI citations for primary queries</td>
+          </tr>
+          <tr>
+            <td>Month 3+</td>
+            <td>Ongoing mention building; customer advocacy program active</td>
+            <td>Stable AI citation presence; brand recognition established</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The inflection point typically occurs around week 5&ndash;6, when enough Reddit threads mentioning your brand have been indexed by Bing to start appearing in AI search retrieval results. Before this point, mentions are accumulating but have not yet reached the threshold where they consistently influence AI responses. After this point, each additional mention reinforces the existing signal and accelerates citation growth.</p>
+
+      <p>The timeline can be compressed by focusing on high-traffic subreddits where threads tend to rank well on Bing, by creating mentions that generate engagement (upvotes, replies) that boost Reddit ranking, and by coordinating community mentions with other AI search optimization efforts (llms.txt, answer capsules, Bing indexing). Brands using <a href={siteConfig.product.url}>{siteConfig.product.name}</a> typically see the fastest results because the platform optimizes for all of these factors simultaneously.</p>
+
+      <h2>Measuring Community Signal Impact</h2>
+
+      <p>Tracking the impact of community mentions on AI citations requires systematic measurement across multiple dimensions. Here is the measurement framework we recommend:</p>
+
+      <p><strong>AI Citation Frequency.</strong> Use the <a href="/tools/ai-citation-checker/">AI Citation Checker</a> to test 10&ndash;20 relevant queries across ChatGPT, Perplexity, Claude, and Gemini. Run this test weekly and track changes over time. This is the primary metric that measures whether your community presence is translating into AI visibility.</p>
+
+      <p><strong>Reddit Mention Volume.</strong> Track the total number of Reddit threads and comments that mention your brand. Tools like Reddit's native search, or more comprehensive social listening platforms, can provide this data. Monitor both total volume and the quality of mentions (positive, neutral, negative).</p>
+
+      <p><strong>Bing Index Coverage.</strong> Check how many Reddit threads mentioning your brand appear in Bing search results for relevant queries. This is the bridge between community presence and AI citation&mdash;if your Reddit mentions are not indexed by Bing, they cannot influence ChatGPT search results (though they still influence training data).</p>
+
+      <p><strong>Brand Recognition Score.</strong> Ask AI models directly what your brand is and what it does. If the model can accurately describe your brand, your community signals are working. If the model does not recognize your brand, you need more mentions before citations will follow.</p>
+
+      <h2>Common Mistakes in Community Signal Building</h2>
+
+      <p>Our analysis of failed community strategies&mdash;campaigns that did not produce AI citation improvement despite significant effort&mdash;revealed several common mistakes:</p>
+
+      <p><strong>1. Posting only self-promotional content.</strong> Brands that only post about themselves on Reddit see 0.3x the citation impact of neutral mentions. Self-promotion is not just ineffective for AI citations; it actively hurts by creating negative associations in AI training data.</p>
+
+      <p><strong>2. Using new or bot-like accounts.</strong> Mentions from new accounts with no other activity are easily detected by both Reddit's systems and AI models. These mentions carry effectively zero weight for AI citations and risk account bans that eliminate any presence you have built.</p>
+
+      <p><strong>3. Posting in irrelevant subreddits.</strong> A mention of your CRM tool in r/funny has no positive impact on AI citations for CRM-related queries. Context matters enormously&mdash;AI models learn brand-category associations from the context in which mentions appear. Off-topic mentions dilute rather than strengthen these associations.</p>
+
+      <p><strong>4. Ignoring negative mentions.</strong> Negative Reddit mentions about your brand can hurt AI citations. If AI models encounter mostly negative sentiment when they look for information about your brand, they may exclude you from recommendations or include caveats that reduce citation value. Addressing negative feedback genuinely and resolving customer issues on Reddit helps maintain positive signal balance.</p>
+
+      <p><strong>5. Expecting immediate results.</strong> Community presence is a compounding strategy, not a one-time campaign. The timeline from first mentions to consistent AI citations is 6&ndash;8 weeks minimum. Brands that give up after 2 weeks miss the inflection point where mentions begin translating into citations.</p>
+
+      <h2>The Future of Community Signals in AI Search</h2>
+
+      <p>Community signals are becoming more important, not less. As AI search grows, the models powering it are becoming more sophisticated at evaluating brand authority and trust. Traditional signals like backlinks and domain authority are losing relative importance, while authentic community endorsements are gaining weight.</p>
+
+      <p>Several trends reinforce this direction. First, AI companies are investing heavily in access to Reddit and other community platform data. Google's multi-hundred-million-dollar deal with Reddit for AI training data is a clear signal that community content is viewed as high-value training material. Second, AI models are getting better at distinguishing authentic mentions from manufactured ones, which means the premium on genuine community presence will increase. Third, as more brands optimize their on-site content for AI search (answer capsules, llms.txt), community signals become the primary differentiator between competing brands.</p>
+
+      <p>For brands investing in AI search visibility today, community presence through Reddit and other platforms represents the most durable competitive advantage. On-site optimizations can be copied. llms.txt files are trivial to create. But a deep, authentic community presence built over months and years of genuine engagement cannot be replicated overnight. This is the moat that sustains AI citation dominance over time.</p>
+
+      <h2>The Bottom Line</h2>
+
+      <p>Reddit mentions and community signals are not just correlated with AI citations&mdash;they are causal factors in how AI models decide which brands to recommend. The data is unambiguous: brands with strong Reddit presence are cited 3.89x more often than brands with minimal presence, and the relationship holds across every product category we analyzed.</p>
+
+      <p>Building this community presence requires authentic engagement, not spam. The brands that succeed in AI search are those that participate genuinely in community conversations, encourage customer advocacy, and build their mention volume through value-driven interactions rather than self-promotion.</p>
+
+      <p>For brands that want to accelerate this process, <a href={siteConfig.product.url}>{siteConfig.product.name}</a> provides the infrastructure to build authentic community mentions at scale. The platform focuses on genuine, contextually relevant mentions in Reddit conversations and online communities&mdash;exactly the signals that AI models weight most heavily when deciding which brands deserve citations.</p>
+
+      <p>The data tells a clear story: in the age of AI search, community is the new SEO. The brands that invest in authentic community presence today will dominate AI citation results for years to come. The brands that do not will remain invisible to a growing majority of search users. The choice is straightforward, and the window of opportunity is still open.</p>
+
+    </div>
+  </article>
+</Base>

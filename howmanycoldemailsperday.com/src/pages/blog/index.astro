@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const posts = [
+  {
+    slug: 'cold-email-sending-limits-data',
+    title: 'Cold Email Sending Limits: Data from 2 Million Emails (2026)',
+    description: 'The definitive analysis of optimal sending volumes, domain rotation, and deliverability benchmarks based on 2M+ cold emails.',
+    date: '2026-01-28',
+  },
+  {
+    slug: 'cold-email-warm-up-guide',
+    title: 'How to Warm Up a Cold Email Domain: Step-by-Step Guide',
+    description: 'The complete warm-up process from day 1 to full sending capacity, with daily schedules and benchmarks.',
+    date: '2026-01-26',
+  },
+  {
+    slug: 'cold-email-infrastructure-2026',
+    title: 'Cold Email Infrastructure Setup for 2026',
+    description: 'Domains, mailboxes, DNS records, warm-up tools, and sending platforms — the complete infrastructure stack.',
+    date: '2026-01-24',
+  },
+];
+---
+
+<Base
+  title={`Blog | ${siteConfig.title}`}
+  description="Research and guides on cold email sending volumes, deliverability, warm-up, and infrastructure."
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Blog</h1>
+    <p class="mt-4 text-lg text-gray-600">Data-driven research on cold email sending, deliverability, and infrastructure.</p>
+
+    <div class="mt-10 grid gap-8">
+      {posts.map((post) => (
+        <a href={`/blog/${post.slug}/`} class="block group">
+          <article class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
+            <time class="text-sm text-gray-400">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+            <h2 class="mt-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{post.title}</h2>
+            <p class="mt-2 text-gray-600">{post.description}</p>
+          </article>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+---
+
+<Base
+  title={`About | ${siteConfig.title}`}
+  description={`${siteConfig.title} is a free resource on email warm-up processes, deliverability, and domain reputation. Brought to you by ${siteConfig.product.name}.`}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">About This Site</h1>
+
+    <div class="mt-8 prose prose-lg max-w-none">
+      <p>
+        <strong>How to Warm Up Email</strong> is a free resource built to give cold emailers a clear, data-backed guide to the most critical step in outbound sales infrastructure: <em>email warm-up</em>.
+      </p>
+
+      <p>
+        The answer — <strong>start at 10–20 emails per day and ramp to 50–100 over 3–4 weeks</strong> — comes from real-world warm-up data across 10,000+ domains. But the nuances matter: DNS configuration, warm-up tool selection, engagement signal quality, and provider-specific behaviors all determine whether your domain achieves 94% inbox placement or gets blacklisted in the first two weeks.
+      </p>
+
+      <p>
+        This site is maintained by the team at <a href={siteConfig.product.url}>{siteConfig.product.name}</a>, an AI-first cold email platform that has helped 271+ sales teams warm up and manage thousands of sending domains. We built this resource because warm-up is the step most teams either skip entirely or execute poorly — and both mistakes destroy campaigns before they start.
+      </p>
+
+      <h2>Why Trust This Data?</h2>
+
+      <p>
+        The benchmarks and recommendations on this site come from aggregate, anonymized warm-up data across the {siteConfig.product.name} platform and third-party deliverability research. We track inbox placement rates, bounce rates, and reputation scores across thousands of domains during their warm-up periods to identify the exact ramp schedules that produce the best long-term deliverability.
+      </p>
+
+      <h2>Contact</h2>
+
+      <p>
+        Questions or suggestions? Reach us at <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
+      </p>
+
+      <p>
+        Follow us on <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer">Twitter</a> and <a href={siteConfig.social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+      </p>
+    </div>
+  </section>
+</Base>

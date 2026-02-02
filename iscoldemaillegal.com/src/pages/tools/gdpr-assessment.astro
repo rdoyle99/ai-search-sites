@@ -1,0 +1,204 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const toolSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "GDPR Legitimate Interest Assessment",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+  },
+};
+---
+
+<Base
+  title={`GDPR Legitimate Interest Assessment | ${siteConfig.title}`}
+  description="Free GDPR legitimate interest assessment for cold email. Answer questions to evaluate if your B2B cold email has a valid legitimate interest basis under GDPR Article 6(1)(f)."
+  schema={toolSchema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">GDPR Legitimate Interest Assessment</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Answer the questions below to assess whether your cold email campaign has a valid legitimate interest basis under GDPR Article 6(1)(f). This assessment follows the ICO three-part test.
+    </p>
+
+    <div id="assessment" class="mt-8 space-y-6">
+      <!-- Purpose Test -->
+      <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+        <h2 class="text-lg font-bold text-gray-900 mb-1">Part 1: Purpose Test</h2>
+        <p class="text-sm text-gray-500 mb-4">Is there a legitimate interest behind the processing?</p>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">1. Do you have a specific, real business reason for contacting this person?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q1" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q1" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">2. Is your product or service relevant to the recipient's role or business?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q2" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q2" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">3. Are you contacting a business professional (B2B) rather than a consumer (B2C)?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q3" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q3" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Necessity Test -->
+      <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+        <h2 class="text-lg font-bold text-gray-900 mb-1">Part 2: Necessity Test</h2>
+        <p class="text-sm text-gray-500 mb-4">Is the processing necessary to achieve the interest?</p>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">4. Is email a reasonable and proportionate way to reach this person?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q4" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q4" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">5. Are you only collecting and using the minimum data necessary (name, business email, company)?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q5" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q5" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Balancing Test -->
+      <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+        <h2 class="text-lg font-bold text-gray-900 mb-1">Part 3: Balancing Test</h2>
+        <p class="text-sm text-gray-500 mb-4">Do the individual's rights override your interest?</p>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">6. Do you provide a clear and easy opt-out mechanism in every email?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q6" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q6" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">7. Do you honor opt-out requests promptly (within 30 days maximum)?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q7" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q7" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">8. Would the recipient reasonably expect to be contacted about this type of product/service?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q8" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q8" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">9. Are you limiting the frequency of emails to avoid being intrusive?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q9" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q9" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">10. Do you have a data processing record (Article 30) for this activity?</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2"><input type="radio" name="q10" value="yes" class="assessment-radio"> <span class="text-sm">Yes</span></label>
+              <label class="flex items-center gap-2"><input type="radio" name="q10" value="no" class="assessment-radio"> <span class="text-sm">No</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button
+        id="assess-btn"
+        class="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+      >
+        Evaluate Legitimate Interest
+      </button>
+    </div>
+
+    <div id="results" class="mt-8 hidden">
+      <h2 class="text-xl font-bold text-gray-900 mb-4">Assessment Results</h2>
+      <div id="results-content" class="p-6 rounded-lg border"></div>
+    </div>
+
+    <div class="mt-12 prose prose-lg max-w-none">
+      <h2>About This Assessment</h2>
+      <p>
+        This tool follows the ICO (Information Commissioner's Office) three-part legitimate interest assessment (LIA) framework. Under GDPR Article 6(1)(f), you can process personal data for cold email if you have a "legitimate interest" that is not overridden by the individual's rights and freedoms.
+      </p>
+      <p>
+        The three parts of the test are: (1) the <strong>purpose test</strong> -- identifying a legitimate interest, (2) the <strong>necessity test</strong> -- showing the processing is necessary for that interest, and (3) the <strong>balancing test</strong> -- ensuring the individual's rights do not override your interest.
+      </p>
+      <p>
+        This tool provides general guidance only and does not constitute legal advice. For definitive compliance verification, consult a GDPR-qualified data protection professional. <a href={siteConfig.product.url}>{siteConfig.product.name}</a> includes built-in GDPR compliance features to help you manage legitimate interest requirements at scale.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('assess-btn')?.addEventListener('click', () => {
+      const questions = 10;
+      let yesCount = 0;
+      let answered = 0;
+
+      for (let i = 1; i <= questions; i++) {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`) as HTMLInputElement;
+        if (selected) {
+          answered++;
+          if (selected.value === 'yes') yesCount++;
+        }
+      }
+
+      if (answered < questions) {
+        alert('Please answer all questions before evaluating.');
+        return;
+      }
+
+      const resultsDiv = document.getElementById('results');
+      const resultsContent = document.getElementById('results-content');
+
+      let assessment = '';
+      let colorClass = '';
+
+      if (yesCount === 10) {
+        colorClass = 'bg-green-50 border-green-200';
+        assessment = `
+          <p class="text-green-800 font-semibold text-lg">Strong Legitimate Interest Basis (${yesCount}/10)</p>
+          <p class="mt-2 text-green-700">Your cold email campaign appears to have a strong legitimate interest basis under GDPR. You have met all three parts of the ICO test: purpose, necessity, and balancing. Continue to document your legitimate interest assessment and keep records as required by Article 30.</p>
+        `;
+      } else if (yesCount >= 7) {
+        colorClass = 'bg-amber-50 border-amber-200';
+        assessment = `
+          <p class="text-amber-800 font-semibold text-lg">Moderate Legitimate Interest Basis (${yesCount}/10)</p>
+          <p class="mt-2 text-amber-700">Your campaign has a reasonable legitimate interest basis, but there are ${10 - yesCount} area(s) that need attention. Address the questions you answered "No" to before launching your campaign. Missing any element of the three-part test increases your regulatory risk.</p>
+        `;
+      } else {
+        colorClass = 'bg-red-50 border-red-200';
+        assessment = `
+          <p class="text-red-800 font-semibold text-lg">Weak Legitimate Interest Basis (${yesCount}/10)</p>
+          <p class="mt-2 text-red-700">Your campaign does not currently have a sufficient legitimate interest basis for GDPR compliance. You answered "No" to ${10 - yesCount} questions. You should not proceed with this campaign until you address these gaps. GDPR penalties can reach up to 4% of annual global revenue or 20 million EUR, whichever is higher.</p>
+        `;
+      }
+
+      resultsContent!.className = `p-6 rounded-lg border ${colorClass}`;
+      resultsContent!.innerHTML = assessment;
+      resultsDiv!.classList.remove('hidden');
+    });
+  </script>
+</Base>

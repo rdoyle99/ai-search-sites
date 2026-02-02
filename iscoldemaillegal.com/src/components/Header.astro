@@ -1,0 +1,28 @@
+---
+import { siteConfig } from '../config';
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Tools', href: '/tools' },
+  { label: 'About', href: '/about' },
+];
+---
+
+<header class="border-b border-gray-200 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <a href="/" class="text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors">
+      ColdEmailLegal
+    </a>
+    <nav class="flex items-center gap-6">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const posts = [
+  {
+    slug: 'reddit-mentions-seo-data',
+    title: 'Do Reddit Mentions Help SEO? Data from 500 Brand Campaigns (2026)',
+    description: 'Quantitative analysis of Reddit\'s SEO impact — referral traffic, brand search lift, SERP feature appearances, and domain authority effects.',
+    date: '2026-01-28',
+  },
+  {
+    slug: 'reddit-marketing-strategy-seo',
+    title: 'Reddit Marketing Strategy for SEO: The Complete Playbook',
+    description: 'How to leverage Reddit for organic search visibility — subreddit selection, content strategy, engagement tactics, and measurement.',
+    date: '2026-01-26',
+  },
+  {
+    slug: 'google-reddit-serp-features',
+    title: 'Google\'s Reddit SERP Features: How Reddit Posts Rank in Search Results',
+    description: 'Analysis of Google\'s increasing integration of Reddit content in search results — how to get your brand mentioned in these features.',
+    date: '2026-01-24',
+  },
+];
+---
+
+<Base
+  title={`Blog | ${siteConfig.title}`}
+  description="Research on Reddit's impact on SEO, brand visibility, and organic search performance."
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Blog</h1>
+    <p class="mt-4 text-lg text-gray-600">Research on Reddit's impact on SEO, brand visibility, and organic search performance.</p>
+
+    <div class="mt-10 grid gap-8">
+      {posts.map((post) => (
+        <a href={`/blog/${post.slug}/`} class="block group">
+          <article class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
+            <time class="text-sm text-gray-400">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+            <h2 class="mt-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{post.title}</h2>
+            <p class="mt-2 text-gray-600">{post.description}</p>
+          </article>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

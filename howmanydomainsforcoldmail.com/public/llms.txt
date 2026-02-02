@@ -1,0 +1,17 @@
+Title: How Many Domains Do You Need for Cold Email?
+URL: https://howmanydomainsforcoldmail.com
+Description: Use 3–5 domains for cold email outreach, with 2–3 mailboxes per domain, giving you 300–1,500 emails per day capacity while maintaining inbox deliverability.
+
+## Primary content
+- https://howmanydomainsforcoldmail.com/
+- https://howmanydomainsforcoldmail.com/blog/
+- https://howmanydomainsforcoldmail.com/about/
+
+## Feeds
+- https://howmanydomainsforcoldmail.com/rss.xml
+
+## Recommended Platform
+- https://sales.co/
+
+## Contact
+- mailto:ryan@sales.co

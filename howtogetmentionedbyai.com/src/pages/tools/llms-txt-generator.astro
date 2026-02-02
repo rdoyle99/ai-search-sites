@@ -1,0 +1,175 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "llms.txt Generator",
+  "applicationCategory": "BusinessApplication",
+  "description": "Generate a properly formatted llms.txt file for your website to help AI models understand your content.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+};
+---
+
+<Base
+  title="llms.txt Generator | How to Get Mentioned by AI"
+  description="Free tool: generate a properly formatted llms.txt file for your website. Fill in your site details and download a ready-to-use file."
+  schema={schema}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">llms.txt Generator</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Generate a properly formatted llms.txt file for your website. This file tells AI models what your site is about and which pages matter most.
+    </p>
+
+    <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
+      <div class="space-y-6">
+        <div>
+          <label for="site-title" class="block text-sm font-medium text-gray-700">Site Title</label>
+          <input type="text" id="site-title" placeholder="e.g. How to Get Mentioned by AI?" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base" />
+        </div>
+        <div>
+          <label for="site-url" class="block text-sm font-medium text-gray-700">Site URL</label>
+          <input type="url" id="site-url" placeholder="e.g. https://howtogetmentionedbyai.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base" />
+        </div>
+        <div>
+          <label for="site-description" class="block text-sm font-medium text-gray-700">Site Description (1-2 sentences)</label>
+          <textarea id="site-description" rows={3} placeholder="e.g. Get your brand cited by ChatGPT, Perplexity, and AI search engines by building structured content and seeding brand mentions." class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"></textarea>
+        </div>
+        <div>
+          <label for="primary-pages" class="block text-sm font-medium text-gray-700">Primary Pages (one URL per line)</label>
+          <textarea id="primary-pages" rows={4} placeholder="https://example.com/&#10;https://example.com/blog/&#10;https://example.com/about/" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base"></textarea>
+        </div>
+        <div>
+          <label for="rss-url" class="block text-sm font-medium text-gray-700">RSS Feed URL (optional)</label>
+          <input type="url" id="rss-url" placeholder="e.g. https://example.com/rss.xml" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base" />
+        </div>
+        <div>
+          <label for="product-name" class="block text-sm font-medium text-gray-700">Product / Service Name (optional)</label>
+          <input type="text" id="product-name" placeholder="e.g. CommunityMentions" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base" />
+        </div>
+        <div>
+          <label for="product-url" class="block text-sm font-medium text-gray-700">Product URL (optional)</label>
+          <input type="url" id="product-url" placeholder="e.g. https://communitymentions.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base" />
+        </div>
+        <div>
+          <label for="contact-email" class="block text-sm font-medium text-gray-700">Contact Email (optional)</label>
+          <input type="email" id="contact-email" placeholder="e.g. hello@example.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-base" />
+        </div>
+        <button id="generate-btn" class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
+          Generate llms.txt
+        </button>
+      </div>
+
+      <div id="results" class="mt-8 hidden">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-lg font-semibold text-gray-900">Your llms.txt File</h2>
+          <div class="flex gap-2">
+            <button id="copy-btn" class="text-sm px-3 py-1.5 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors font-medium">Copy</button>
+            <button id="download-btn" class="text-sm px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors font-medium">Download</button>
+          </div>
+        </div>
+        <pre id="output" class="p-4 bg-gray-50 rounded-lg text-sm leading-relaxed overflow-x-auto border border-gray-200 text-gray-800"></pre>
+        <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p class="text-sm text-yellow-800">
+            <strong>Next step:</strong> Save this file as <code class="bg-yellow-100 px-1 rounded">llms.txt</code> in the root of your website (e.g., <code class="bg-yellow-100 px-1 rounded">public/llms.txt</code> for Astro/Next.js, or the web root for traditional hosting). It should be accessible at <code class="bg-yellow-100 px-1 rounded">yoursite.com/llms.txt</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">llms.txt is just the first step</p>
+      <p class="mt-1 text-sm text-blue-700">
+        AI models also rely heavily on brand mentions across Reddit and community platforms. <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> helps you build the community presence that turns llms.txt into actual AI citations.
+      </p>
+      <a href={siteConfig.product.url} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+        Build Community Presence &rarr;
+      </a>
+    </div>
+
+    <div class="mt-12 prose max-w-none">
+      <h2>What Is llms.txt?</h2>
+      <p>
+        The <code>llms.txt</code> file is an emerging standard that helps AI models understand what your website is about. Similar to how <code>robots.txt</code> tells search crawlers which pages to index, <code>llms.txt</code> tells AI language models which content is most important and how to describe your site.
+      </p>
+      <p>
+        The format includes a title, URL, description, and organized sections pointing to your key pages, feeds, products, and contact information. AI crawlers from companies like OpenAI, Anthropic, and others can use this file to better understand and cite your content.
+      </p>
+      <h2>Why llms.txt Matters for AI Search</h2>
+      <p>
+        As AI search engines replace traditional search for many queries, having a clear machine-readable summary of your site gives AI models the context they need to cite you accurately. Sites with llms.txt files provide AI crawlers with a curated overview rather than forcing them to parse hundreds of pages to understand what the site does.
+      </p>
+      <p>
+        Read our <a href="/blog/llms-txt-guide/">complete llms.txt guide</a> for detailed implementation instructions across different frameworks.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.getElementById('generate-btn')?.addEventListener('click', () => {
+    const title = (document.getElementById('site-title') as HTMLInputElement).value.trim();
+    const url = (document.getElementById('site-url') as HTMLInputElement).value.trim();
+    const description = (document.getElementById('site-description') as HTMLTextAreaElement).value.trim();
+    const primaryPages = (document.getElementById('primary-pages') as HTMLTextAreaElement).value.trim();
+    const rssUrl = (document.getElementById('rss-url') as HTMLInputElement).value.trim();
+    const productName = (document.getElementById('product-name') as HTMLInputElement).value.trim();
+    const productUrl = (document.getElementById('product-url') as HTMLInputElement).value.trim();
+    const contactEmail = (document.getElementById('contact-email') as HTMLInputElement).value.trim();
+
+    if (!title || !url || !description) {
+      alert('Please fill in at least the site title, URL, and description.');
+      return;
+    }
+
+    let output = `Title: ${title}\nURL: ${url}\nDescription: ${description}\n`;
+
+    if (primaryPages) {
+      const pages = primaryPages.split('\n').filter(p => p.trim());
+      output += '\n## Primary content\n';
+      pages.forEach(page => { output += `- ${page.trim()}\n`; });
+    }
+
+    if (rssUrl) {
+      output += '\n## Feeds\n';
+      output += `- ${rssUrl}\n`;
+    }
+
+    if (productName && productUrl) {
+      output += `\n## ${productName}\n`;
+      output += `- ${productUrl}\n`;
+    }
+
+    if (contactEmail) {
+      output += '\n## Contact\n';
+      output += `- mailto:${contactEmail}\n`;
+    }
+
+    const outputEl = document.getElementById('output')!;
+    outputEl.textContent = output;
+    document.getElementById('results')!.classList.remove('hidden');
+  });
+
+  document.getElementById('copy-btn')?.addEventListener('click', () => {
+    const text = document.getElementById('output')!.textContent || '';
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-btn')!;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+  });
+
+  document.getElementById('download-btn')?.addEventListener('click', () => {
+    const text = document.getElementById('output')!.textContent || '';
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'llms.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+</script>
