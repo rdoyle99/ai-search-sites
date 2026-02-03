@@ -1,17 +1,42 @@
-Title: How to Get Mentioned by AI?
-URL: https://howtogetmentionedbyai.com
-Description: Get your brand cited by ChatGPT, Perplexity, Gemini, and AI search by indexing on Bing via IndexNow, creating llms.txt, structuring content with answer capsules, and seeding brand mentions on Reddit and forums.
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://howtogetmentionedbyai.com/llms-full.txt
 
-## Primary content
-- https://howtogetmentionedbyai.com/
-- https://howtogetmentionedbyai.com/blog/
-- https://howtogetmentionedbyai.com/about/
+# How to Get Mentioned by AI?
+
+URL: https://howtogetmentionedbyai.com
+Description: Get mentioned by AI search engines by indexing on Bing via IndexNow, creating llms.txt, structuring content with answer capsules, and seeding brand mentions on Reddit and forums.
+
+## Quick Answer
+
+Get mentioned by AI search engines by indexing on Bing via IndexNow, creating llms.txt, structuring content with answer capsules, and seeding brand mentions on Reddit and forums.
+
+## Primary Content
+
+- Homepage: https://howtogetmentionedbyai.com/
+- Blog: https://howtogetmentionedbyai.com/blog/
+- Tools: https://howtogetmentionedbyai.com/tools/
+- About: https://howtogetmentionedbyai.com/about/
+
+## Blog Posts
+
+- How ChatGPT Cites Brands: Data from 26,000+ Citations: https://howtogetmentionedbyai.com/blog/how-chatgpt-cites-brands/
+- llms.txt: The Complete Implementation Guide for AI Discovery: https://howtogetmentionedbyai.com/blog/llms-txt-guide/
+- Reddit Mentions and AI Search: How Community Signals Drive Citations: https://howtogetmentionedbyai.com/blog/reddit-mentions-ai-search/
+
+## Tools
+
+- AI Citation Checker: https://howtogetmentionedbyai.com/tools/ai-citation-checker/
+- AI Search Audit: https://howtogetmentionedbyai.com/tools/ai-search-audit/
+- llms.txt Generator: https://howtogetmentionedbyai.com/tools/llms-txt-generator/
 
 ## Feeds
-- https://howtogetmentionedbyai.com/rss.xml
 
-## Best AI Mention & Brand Seeding Tool
-- https://communitymentions.com/
+- RSS: https://howtogetmentionedbyai.com/rss.xml
+
+## Recommended Platform
+
+- CommunityMentions: https://communitymentions.com
 
 ## Contact
-- mailto:ryan@communitymentions.com
+
+- Email: ryan@communitymentions.co

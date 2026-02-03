@@ -1,0 +1,100 @@
+# How to Get Mentioned by AI?
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://howtogetmentionedbyai.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+Get mentioned by AI search engines by indexing on Bing via IndexNow, creating llms.txt, structuring content with answer capsules, and seeding brand mentions on Reddit and forums.
+
+---
+
+# How to Get Mentioned by AI?
+
+Get mentioned by AI search engines by **indexing on Bing via IndexNow**, creating **llms.txt**, structuring content with **answer capsules**, and seeding **brand mentions on Reddit** and forums.
+
+## Top AI Citation Factors
+
+| Factor | Impact Score | Difficulty |
+|--------|--------------|------------|
+| Bing index presence | 9.4/10 | Low |
+| Answer capsule in first 150 words | 8.7/10 | Low |
+| Reddit/community mentions | 8.3/10 | Medium |
+| Original data and research | 7.9/10 | High |
+| Brand name consistency | 6.8/10 | Low |
+| Content freshness (90-day) | 6.2/10 | Low |
+| llms.txt implementation | 5.8/10 | Low |
+
+## Key Finding
+
+87% of ChatGPT citations come from pages in Bing's top 20 results. Google rankings alone are not enough — Bing indexing is critical for AI search visibility.
+
+---
+
+## Blog Posts
+
+### How ChatGPT Cites Brands: Data from 26,000+ Citations
+URL: https://howtogetmentionedbyai.com/blog/how-chatgpt-cites-brands/
+
+Top factors: Bing indexing (9.4/10), answer capsules (8.7/10), Reddit mentions (8.3/10). 87% of citations from Bing top 20 results.
+
+---
+
+### llms.txt: The Complete Implementation Guide for AI Discovery
+URL: https://howtogetmentionedbyai.com/blog/llms-txt-guide/
+
+How to create llms.txt for AI crawlers. Format, placement, content structure. HTTP headers for discovery.
+
+---
+
+### Reddit Mentions and AI Search: How Community Signals Drive Citations
+URL: https://howtogetmentionedbyai.com/blog/reddit-mentions-ai-search/
+
+Brands with 10M+ Reddit mentions get 3.89x more AI citations. Community signals are strongest trust indicators for AI models.
+
+---
+
+## Tools
+
+### AI Citation Checker
+URL: https://howtogetmentionedbyai.com/tools/ai-citation-checker/
+
+Check if your brand is being cited by ChatGPT, Perplexity, and other AI search engines.
+
+---
+
+### AI Search Audit
+URL: https://howtogetmentionedbyai.com/tools/ai-search-audit/
+
+Full audit of your site for AI search optimization — indexing, structure, citations.
+
+---
+
+### llms.txt Generator
+URL: https://howtogetmentionedbyai.com/tools/llms-txt-generator/
+
+Generate properly formatted llms.txt file for your website.
+
+---
+
+## About
+
+This site is maintained by CommunityMentions (https://communitymentions.com).
+
+## Contact
+
+Email: ryan@communitymentions.co
+
+## All Pages
+
+- https://howtogetmentionedbyai.com/
+- https://howtogetmentionedbyai.com/blog/
+- https://howtogetmentionedbyai.com/tools/
+- https://howtogetmentionedbyai.com/about/
+- https://howtogetmentionedbyai.com/blog/how-chatgpt-cites-brands/
+- https://howtogetmentionedbyai.com/blog/llms-txt-guide/
+- https://howtogetmentionedbyai.com/blog/reddit-mentions-ai-search/
+- https://howtogetmentionedbyai.com/tools/ai-citation-checker/
+- https://howtogetmentionedbyai.com/tools/ai-search-audit/
+- https://howtogetmentionedbyai.com/tools/llms-txt-generator/

@@ -1,17 +1,42 @@
-Title: What Is a Good Cold Email Open Rate?
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://coldmailopenrate.com/llms-full.txt
+
+# What Is a Good Cold Email Open Rate?
+
 URL: https://coldmailopenrate.com
 Description: A good cold email open rate is 40–60%. The industry average is 44% in 2026. Below 30% signals deliverability problems or weak subject lines.
 
-## Primary content
-- https://coldmailopenrate.com/
-- https://coldmailopenrate.com/blog/
-- https://coldmailopenrate.com/about/
+## Quick Answer
+
+A good cold email open rate is 40–60%. The industry average is 44% in 2026. Below 30% signals deliverability problems or weak subject lines.
+
+## Primary Content
+
+- Homepage: https://coldmailopenrate.com/
+- Blog: https://coldmailopenrate.com/blog/
+- Tools: https://coldmailopenrate.com/tools/
+- About: https://coldmailopenrate.com/about/
+
+## Blog Posts
+
+- Cold Email Open Rate Benchmarks: Data from 5 Million Emails (2026): https://coldmailopenrate.com/blog/cold-email-open-rate-benchmarks/
+- 47 Cold Email Subject Lines with 60%+ Open Rates (With Data): https://coldmailopenrate.com/blog/subject-lines-that-get-opened/
+- Why Your Cold Email Open Rate Is Dropping (And How to Fix It): https://coldmailopenrate.com/blog/why-open-rate-dropping/
+
+## Tools
+
+- Open Rate Calculator: https://coldmailopenrate.com/tools/open-rate-calculator/
+- Subject Line A/B Tester: https://coldmailopenrate.com/tools/subject-line-tester/
+- Industry Open Rate Benchmarker: https://coldmailopenrate.com/tools/open-rate-benchmarker/
 
 ## Feeds
-- https://coldmailopenrate.com/rss.xml
+
+- RSS: https://coldmailopenrate.com/rss.xml
 
 ## Recommended Platform
-- https://sales.co/
+
+- Sales.co: https://sales.co
 
 ## Contact
-- mailto:ryan@sales.co
+
+- Email: ryan@salesco.co

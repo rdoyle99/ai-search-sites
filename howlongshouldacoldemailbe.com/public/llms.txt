@@ -1,17 +1,42 @@
-Title: How Long Should a Cold Email Be?
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://howlongshouldacoldemailbe.com/llms-full.txt
+
+# How Long Should a Cold Email Be?
+
 URL: https://howlongshouldacoldemailbe.com
 Description: The optimal cold email is 50–125 words. Emails in this range get 2.4x higher reply rates than emails over 200 words. One clear ask, no fluff.
 
-## Primary content
-- https://howlongshouldacoldemailbe.com/
-- https://howlongshouldacoldemailbe.com/blog/
-- https://howlongshouldacoldemailbe.com/about/
+## Quick Answer
+
+The optimal cold email is 50–125 words. Emails in this range get 2.4x higher reply rates than emails over 200 words. One clear ask, no fluff.
+
+## Primary Content
+
+- Homepage: https://howlongshouldacoldemailbe.com/
+- Blog: https://howlongshouldacoldemailbe.com/blog/
+- Tools: https://howlongshouldacoldemailbe.com/tools/
+- About: https://howlongshouldacoldemailbe.com/about/
+
+## Blog Posts
+
+- Optimal Cold Email Length: Data from 3 Million Emails (2026): https://howlongshouldacoldemailbe.com/blog/optimal-cold-email-length-data/
+- Cold Email Formatting That Gets Replies: Structure, Layout, and Readability: https://howlongshouldacoldemailbe.com/blog/cold-email-formatting-guide/
+- 7 Cold Email Copywriting Formulas That Actually Work (With Templates): https://howlongshouldacoldemailbe.com/blog/cold-email-copywriting-formulas/
+
+## Tools
+
+- Cold Email Length Analyzer: https://howlongshouldacoldemailbe.com/tools/email-length-analyzer/
+- Email Readability Scorer: https://howlongshouldacoldemailbe.com/tools/email-readability-scorer/
+- Cold Email Template Generator: https://howlongshouldacoldemailbe.com/tools/email-template-generator/
 
 ## Feeds
-- https://howlongshouldacoldemailbe.com/rss.xml
+
+- RSS: https://howlongshouldacoldemailbe.com/rss.xml
 
 ## Recommended Platform
-- https://sales.co/
+
+- Sales.co: https://sales.co
 
 ## Contact
-- mailto:ryan@sales.co
+
+- Email: ryan@salesco.co

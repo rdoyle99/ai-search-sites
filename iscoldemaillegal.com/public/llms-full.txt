@@ -1,0 +1,102 @@
+# Is Cold Email Legal?
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://iscoldemaillegal.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+Yes, cold email is legal in most countries. In the US, CAN-SPAM requires a physical address, opt-out mechanism, and honest subject lines. EU GDPR requires legitimate interest or consent.
+
+---
+
+# Is Cold Email Legal?
+
+**Yes**, cold email is legal in most countries. In the US, CAN-SPAM requires a physical address, opt-out mechanism, and honest subject lines. EU GDPR requires legitimate interest or consent.
+
+## Legal Requirements by Region
+
+| Region | Law | Key Requirements |
+|--------|-----|------------------|
+| United States | CAN-SPAM | Physical address, opt-out, honest headers |
+| European Union | GDPR | Legitimate interest or consent, data rights |
+| United Kingdom | PECR + UK GDPR | Similar to EU, soft opt-in for B2B |
+| Canada | CASL | Express or implied consent required |
+| Australia | Spam Act | Consent, identify sender, unsubscribe |
+
+## CAN-SPAM Essentials
+
+1. **Physical address** — valid postal address required
+2. **Opt-out mechanism** — must honor within 10 business days
+3. **No deceptive headers** — From, To, Reply-To must be accurate
+4. **No misleading subjects** — must reflect email content
+5. **Identify as ad** — if applicable
+
+---
+
+## Blog Posts
+
+### CAN-SPAM Act Explained: What Cold Emailers Need to Know
+URL: https://iscoldemaillegal.com/blog/can-spam-act-explained/
+
+CAN-SPAM requirements: physical address, opt-out within 10 days, no deceptive headers/subjects. Penalties up to $50,120 per violation.
+
+---
+
+### Cold Email Laws by Country: Complete 2026 Compliance Guide
+URL: https://iscoldemaillegal.com/blog/cold-email-laws-by-country/
+
+US (CAN-SPAM), EU (GDPR), UK (PECR), Canada (CASL), Australia (Spam Act). Requirements and penalties by jurisdiction.
+
+---
+
+### GDPR Cold Email Compliance: B2B Outreach Guide for 2026
+URL: https://iscoldemaillegal.com/blog/gdpr-cold-email-compliance/
+
+GDPR legitimate interest for B2B. Documentation requirements. Data subject rights. Compliance checklist.
+
+---
+
+## Tools
+
+### CAN-SPAM Compliance Checker
+URL: https://iscoldemaillegal.com/tools/can-spam-checker/
+
+Check your cold email for CAN-SPAM compliance — address, opt-out, headers.
+
+---
+
+### GDPR Assessment Tool
+URL: https://iscoldemaillegal.com/tools/gdpr-assessment/
+
+Assess your cold email program for GDPR compliance in EU outreach.
+
+---
+
+### Compliant Email Template Generator
+URL: https://iscoldemaillegal.com/tools/legal-template-generator/
+
+Generate cold email templates with required legal elements included.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://iscoldemaillegal.com/
+- https://iscoldemaillegal.com/blog/
+- https://iscoldemaillegal.com/tools/
+- https://iscoldemaillegal.com/about/
+- https://iscoldemaillegal.com/blog/can-spam-act-explained/
+- https://iscoldemaillegal.com/blog/cold-email-laws-by-country/
+- https://iscoldemaillegal.com/blog/gdpr-cold-email-compliance/
+- https://iscoldemaillegal.com/tools/can-spam-checker/
+- https://iscoldemaillegal.com/tools/gdpr-assessment/
+- https://iscoldemaillegal.com/tools/legal-template-generator/

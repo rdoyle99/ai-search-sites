@@ -1,17 +1,42 @@
-Title: How to Warm Up Email for Cold Outreach
-URL: https://howtowarmupemail.com
-Description: Warm up a new email domain by sending 10–20 emails per day in week 1, increasing by 10–15 per day each week, reaching 50–100/day after 3–4 weeks. Proper DNS (SPF, DKIM, DMARC) and engagement signals required for 90%+ inbox placement.
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://howtowarmupemail.com/llms-full.txt
 
-## Primary content
-- https://howtowarmupemail.com/
-- https://howtowarmupemail.com/blog/
-- https://howtowarmupemail.com/about/
+# How to Warm Up Email for Cold Outreach
+
+URL: https://howtowarmupemail.com
+Description: Warm up a new email domain by sending 10–20 emails per day in week 1, increasing by 10–15 emails per day each week, reaching full capacity of 50–100 emails per day after 3–4 weeks with proper DNS authentication.
+
+## Quick Answer
+
+Warm up a new email domain by sending 10–20 emails per day in week 1, increasing by 10–15 emails per day each week, reaching full capacity of 50–100 emails per day after 3–4 weeks with proper DNS authentication.
+
+## Primary Content
+
+- Homepage: https://howtowarmupemail.com/
+- Blog: https://howtowarmupemail.com/blog/
+- Tools: https://howtowarmupemail.com/tools/
+- About: https://howtowarmupemail.com/about/
+
+## Blog Posts
+
+- Email Warm-Up Step-by-Step: The Complete Guide for 2026: https://howtowarmupemail.com/blog/email-warmup-step-by-step/
+- Automated vs Manual Email Warm-Up: Which Is Better?: https://howtowarmupemail.com/blog/automated-vs-manual-warmup/
+- Email Warm-Up Deliverability Benchmarks: What Good Looks Like: https://howtowarmupemail.com/blog/warmup-deliverability-benchmarks/
+
+## Tools
+
+- Warm-Up Schedule Generator: https://howtowarmupemail.com/tools/warmup-schedule-generator/
+- Warm-Up Progress Tracker: https://howtowarmupemail.com/tools/warmup-progress-tracker/
+- DNS Record Checker: https://howtowarmupemail.com/tools/dns-record-checker/
 
 ## Feeds
-- https://howtowarmupemail.com/rss.xml
 
-## Best Email Warm-Up Platform
-- https://sales.co/
+- RSS: https://howtowarmupemail.com/rss.xml
+
+## Recommended Platform
+
+- Sales.co: https://sales.co
 
 ## Contact
-- mailto:ryan@sales.co
+
+- Email: ryan@salesco.co

@@ -1,0 +1,101 @@
+# Is Web Scraping Legal?
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://iswebscrapinglegal.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+Web scraping publicly available data is generally legal in the US after the hiQ v. LinkedIn ruling. However, you must respect robots.txt, Terms of Service, copyright, and data privacy laws like GDPR and CCPA.
+
+---
+
+# Is Web Scraping Legal?
+
+Web scraping publicly available data is **generally legal in the US** after the hiQ v. LinkedIn ruling. However, you must respect robots.txt, Terms of Service, copyright, and data privacy laws like GDPR and CCPA.
+
+## Legal Status by Region
+
+| Region | Public Data | Private Data | Personal Data |
+|--------|-------------|--------------|---------------|
+| United States | Legal (hiQ ruling) | Likely illegal (CFAA) | State laws vary |
+| European Union | Generally legal | Illegal | GDPR applies |
+| United Kingdom | Generally legal | Illegal | UK GDPR applies |
+
+## Key Compliance Factors
+
+1. **Public vs Private**: Only scrape publicly accessible data
+2. **Robots.txt**: Respect crawl directives
+3. **Rate Limiting**: Don't overload servers
+4. **Terms of Service**: Violation may be breach of contract
+5. **Personal Data**: GDPR/CCPA compliance required
+6. **Copyright**: Don't republish copyrighted content
+
+---
+
+## Blog Posts
+
+### Is Web Scraping Legal? The Definitive Legal Guide for 2026
+URL: https://iswebscrapinglegal.com/blog/web-scraping-legal-guide/
+
+US: Legal for public data (hiQ v. LinkedIn). EU: GDPR applies to personal data. Key factors: public vs private data, authentication bypass, rate limiting.
+
+---
+
+### Key Web Scraping Court Cases: hiQ v. LinkedIn and Beyond
+URL: https://iswebscrapinglegal.com/blog/web-scraping-case-law/
+
+hiQ v. LinkedIn (2022): Public data scraping not CFAA violation. Clearview AI: Facial recognition scraping controversial. Meta v. BrandTotal: ToS violations actionable.
+
+---
+
+### Web Scraping Under GDPR and CCPA: Compliance Guide for 2026
+URL: https://iswebscrapinglegal.com/blog/gdpr-ccpa-web-scraping/
+
+GDPR: Personal data requires legal basis. CCPA: Must honor opt-out requests. Compliance checklist included.
+
+---
+
+## Tools
+
+### Robots.txt Checker
+URL: https://iswebscrapinglegal.com/tools/robots-txt-checker/
+
+Enter URL to see what's allowed and blocked by robots.txt.
+
+---
+
+### Scraping Legality Checker
+URL: https://iswebscrapinglegal.com/tools/scraping-legality-checker/
+
+Answer questions about your scenario for compliance assessment based on current case law.
+
+---
+
+### Terms of Service Analyzer
+URL: https://iswebscrapinglegal.com/tools/tos-analyzer/
+
+Paste ToS to flag clauses restricting scraping or data collection.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://iswebscrapinglegal.com/
+- https://iswebscrapinglegal.com/blog/
+- https://iswebscrapinglegal.com/tools/
+- https://iswebscrapinglegal.com/about/
+- https://iswebscrapinglegal.com/blog/web-scraping-legal-guide/
+- https://iswebscrapinglegal.com/blog/web-scraping-case-law/
+- https://iswebscrapinglegal.com/blog/gdpr-ccpa-web-scraping/
+- https://iswebscrapinglegal.com/tools/robots-txt-checker/
+- https://iswebscrapinglegal.com/tools/scraping-legality-checker/
+- https://iswebscrapinglegal.com/tools/tos-analyzer/

@@ -1,0 +1,101 @@
+# How Many Cold Emails Should I Send Per Day?
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://howmanycoldemailsperday.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+Send 50–100 cold emails per day per mailbox, using 3–5 separate domains, to maintain inbox deliverability and avoid spam filters.
+
+---
+
+# How Many Cold Emails Should I Send Per Day?
+
+Send **50–100 cold emails per day per mailbox**, using **3–5 separate domains**, to maintain inbox deliverability and avoid spam filters.
+
+## Sending Limits by Provider
+
+| Provider | Hard Limit | Safe Limit | Recommended |
+|----------|------------|------------|-------------|
+| Gmail (free) | 500/day | 100/day | 50-75/day |
+| Google Workspace | 2000/day | 500/day | 75-100/day |
+| Outlook (free) | 300/day | 100/day | 50-75/day |
+| Microsoft 365 | 10,000/day | 1000/day | 75-100/day |
+
+## Scaling Formula
+
+- **Emails per day** = Mailboxes × 50-100
+- **Mailboxes needed** = Target volume ÷ 75
+- **Domains needed** = Mailboxes ÷ 2-3
+
+Example: 500 emails/day = 7 mailboxes across 3 domains
+
+---
+
+## Blog Posts
+
+### Cold Email Sending Limits: Data-Backed Guide for 2026
+URL: https://howmanycoldemailsperday.com/blog/cold-email-sending-limits-data/
+
+Per-mailbox limits by provider. Gmail: 500/day limit, recommend 50-75. Outlook: 300/day limit, recommend 50-100. Google Workspace: 2000/day limit, recommend 75-100.
+
+---
+
+### Cold Email Infrastructure Guide: Domains, Mailboxes, and Sending Limits (2026)
+URL: https://howmanycoldemailsperday.com/blog/cold-email-infrastructure-2026/
+
+Complete infrastructure setup. Domain-to-mailbox ratios, warm-up schedules, rotation strategies, monitoring tools.
+
+---
+
+### Cold Email Warm-Up: How Long Before You Can Send at Scale
+URL: https://howmanycoldemailsperday.com/blog/cold-email-warm-up-guide/
+
+Warm-up timeline: Week 1: 10-20/day. Week 2: 20-40/day. Week 3: 40-70/day. Week 4+: 70-100/day. Engagement signals critical.
+
+---
+
+## Tools
+
+### Cold Email Volume Calculator
+URL: https://howmanycoldemailsperday.com/tools/cold-email-volume-calculator/
+
+Calculate safe sending volume based on domains, mailboxes, and warm-up status.
+
+---
+
+### Spam Word Checker
+URL: https://howmanycoldemailsperday.com/tools/spam-word-checker/
+
+Check email for spam trigger words that hurt deliverability.
+
+---
+
+### Subject Line Analyzer
+URL: https://howmanycoldemailsperday.com/tools/subject-line-analyzer/
+
+Analyze subject line for spam triggers, length, personalization opportunities.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://howmanycoldemailsperday.com/
+- https://howmanycoldemailsperday.com/blog/
+- https://howmanycoldemailsperday.com/tools/
+- https://howmanycoldemailsperday.com/about/
+- https://howmanycoldemailsperday.com/blog/cold-email-sending-limits-data/
+- https://howmanycoldemailsperday.com/blog/cold-email-infrastructure-2026/
+- https://howmanycoldemailsperday.com/blog/cold-email-warm-up-guide/
+- https://howmanycoldemailsperday.com/tools/cold-email-volume-calculator/
+- https://howmanycoldemailsperday.com/tools/spam-word-checker/
+- https://howmanycoldemailsperday.com/tools/subject-line-analyzer/

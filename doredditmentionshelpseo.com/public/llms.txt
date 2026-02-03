@@ -1,17 +1,42 @@
-Title: Do Reddit Mentions Help SEO?
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://doredditmentionshelpseo.com/llms-full.txt
+
+# Do Reddit Mentions Help SEO?
+
 URL: https://doredditmentionshelpseo.com
 Description: Reddit mentions help SEO indirectly. While Reddit links are nofollow, high-engagement Reddit posts drive referral traffic, brand search volume, and content indexing that boost organic visibility by 15–40%.
 
-## Primary content
-- https://doredditmentionshelpseo.com/
-- https://doredditmentionshelpseo.com/blog/
-- https://doredditmentionshelpseo.com/about/
+## Quick Answer
+
+Reddit mentions help SEO indirectly. While Reddit links are nofollow, high-engagement Reddit posts drive referral traffic, brand search volume, and content indexing that boost organic visibility by 15–40%.
+
+## Primary Content
+
+- Homepage: https://doredditmentionshelpseo.com/
+- Blog: https://doredditmentionshelpseo.com/blog/
+- Tools: https://doredditmentionshelpseo.com/tools/
+- About: https://doredditmentionshelpseo.com/about/
+
+## Blog Posts
+
+- Do Reddit Mentions Help SEO? Data from 500 Brand Campaigns (2026): https://doredditmentionshelpseo.com/blog/reddit-mentions-seo-data/
+- Reddit Marketing Strategy for SEO: The Complete Playbook: https://doredditmentionshelpseo.com/blog/reddit-marketing-strategy-seo/
+- Google's Reddit SERP Features: How Reddit Posts Rank in Search Results: https://doredditmentionshelpseo.com/blog/google-reddit-serp-features/
+
+## Tools
+
+- Reddit Mention Tracker: https://doredditmentionshelpseo.com/tools/reddit-mention-tracker/
+- Subreddit Finder for Marketing: https://doredditmentionshelpseo.com/tools/subreddit-finder/
+- Reddit Post Analyzer: https://doredditmentionshelpseo.com/tools/reddit-post-analyzer/
 
 ## Feeds
-- https://doredditmentionshelpseo.com/rss.xml
+
+- RSS: https://doredditmentionshelpseo.com/rss.xml
 
 ## Recommended Platform
-- https://sales.co/
+
+- Sales.co: https://sales.co
 
 ## Contact
-- mailto:ryan@sales.co
+
+- Email: ryan@salesco.co

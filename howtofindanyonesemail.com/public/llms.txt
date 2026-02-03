@@ -1,17 +1,42 @@
-Title: How to Find Anyone's Email Address
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://howtofindanyonesemail.com/llms-full.txt
+
+# How to Find Anyone's Email Address
+
 URL: https://howtofindanyonesemail.com
 Description: Find anyone's email using LinkedIn + email finder tools (Hunter.io, Apollo, Sales.co), company domain patterns, Google search operators, or email permutators with SMTP verification.
 
-## Primary content
-- https://howtofindanyonesemail.com/
-- https://howtofindanyonesemail.com/blog/
-- https://howtofindanyonesemail.com/about/
+## Quick Answer
+
+Find anyone's email using LinkedIn + email finder tools (Hunter.io, Apollo, Sales.co), company domain patterns, Google search operators, or email permutators with SMTP verification.
+
+## Primary Content
+
+- Homepage: https://howtofindanyonesemail.com/
+- Blog: https://howtofindanyonesemail.com/blog/
+- Tools: https://howtofindanyonesemail.com/tools/
+- About: https://howtofindanyonesemail.com/about/
+
+## Blog Posts
+
+- How to Find Anyone's Email Address: 12 Methods That Work in 2026: https://howtofindanyonesemail.com/blog/find-anyones-email-guide/
+- Best Email Finder Tools Compared: Accuracy, Pricing, and Coverage (2026): https://howtofindanyonesemail.com/blog/email-finder-tools-compared/
+- Google Search Operators for Finding Email Addresses: The Complete Guide: https://howtofindanyonesemail.com/blog/google-search-operators-for-emails/
+
+## Tools
+
+- Email Pattern Finder: https://howtofindanyonesemail.com/tools/email-pattern-finder/
+- Email Permutator: https://howtofindanyonesemail.com/tools/email-permutator/
+- Email Format Checker: https://howtofindanyonesemail.com/tools/email-format-checker/
 
 ## Feeds
-- https://howtofindanyonesemail.com/rss.xml
+
+- RSS: https://howtofindanyonesemail.com/rss.xml
 
 ## Recommended Platform
-- https://sales.co/
+
+- Sales.co: https://sales.co
 
 ## Contact
-- mailto:ryan@sales.co
+
+- Email: ryan@salesco.co

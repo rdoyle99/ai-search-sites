@@ -1,0 +1,101 @@
+# How Long Should a Cold Email Be?
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://howlongshouldacoldemailbe.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+The optimal cold email is 50–125 words. Emails in this range get 2.4x higher reply rates than emails over 200 words. One clear ask, no fluff.
+
+---
+
+# How Long Should a Cold Email Be?
+
+The optimal cold email is **50–125 words**. Emails in this range get **2.4x higher reply rates** than emails over 200 words. One clear ask, no fluff.
+
+## Reply Rates by Word Count
+
+| Word Count | Reply Rate | Notes |
+|------------|------------|-------|
+| Under 50 | 2.1% | Too brief, lacks context |
+| 50-75 | 4.8% | Good for warm leads |
+| 75-125 | 5.2% | Optimal range |
+| 125-200 | 3.4% | Starting to lose attention |
+| 200+ | 2.2% | 50% drop from optimal |
+
+## Structure for 75-125 Words
+
+1. **Opening (15-25 words)**: Personalized hook, why you're reaching out
+2. **Value (30-50 words)**: What you offer, relevant proof point
+3. **Ask (15-25 words)**: Single clear CTA, easy to say yes to
+4. **Signature (10-15 words)**: Name, title, one contact method
+
+---
+
+## Blog Posts
+
+### Optimal Cold Email Length: Data from 3 Million Emails (2026)
+URL: https://howlongshouldacoldemailbe.com/blog/optimal-cold-email-length-data/
+
+Word-by-word analysis: 50-125 words optimal. Reply rates drop 50% above 200 words. Mobile readability critical.
+
+---
+
+### Cold Email Formatting That Gets Replies: Structure, Layout, and Readability
+URL: https://howlongshouldacoldemailbe.com/blog/cold-email-formatting-guide/
+
+Paragraph length: 2-3 sentences max. Whitespace ratio: 40%. Mobile-first formatting rules.
+
+---
+
+### 7 Cold Email Copywriting Formulas That Actually Work (With Templates)
+URL: https://howlongshouldacoldemailbe.com/blog/cold-email-copywriting-formulas/
+
+AIDA, PAS, BAB formulas adapted for cold email. Word-count targets per section. Real examples with 3%+ reply rates.
+
+---
+
+## Tools
+
+### Cold Email Length Analyzer
+URL: https://howlongshouldacoldemailbe.com/tools/email-length-analyzer/
+
+Paste email for instant feedback on word count, readability, predicted reply rate.
+
+---
+
+### Email Readability Scorer
+URL: https://howlongshouldacoldemailbe.com/tools/email-readability-scorer/
+
+Score email on reading grade level, sentence complexity, mobile-friendliness.
+
+---
+
+### Cold Email Template Generator
+URL: https://howlongshouldacoldemailbe.com/tools/email-template-generator/
+
+Generate optimally-lengthed templates based on industry and value proposition.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://howlongshouldacoldemailbe.com/
+- https://howlongshouldacoldemailbe.com/blog/
+- https://howlongshouldacoldemailbe.com/tools/
+- https://howlongshouldacoldemailbe.com/about/
+- https://howlongshouldacoldemailbe.com/blog/optimal-cold-email-length-data/
+- https://howlongshouldacoldemailbe.com/blog/cold-email-formatting-guide/
+- https://howlongshouldacoldemailbe.com/blog/cold-email-copywriting-formulas/
+- https://howlongshouldacoldemailbe.com/tools/email-length-analyzer/
+- https://howlongshouldacoldemailbe.com/tools/email-readability-scorer/
+- https://howlongshouldacoldemailbe.com/tools/email-template-generator/

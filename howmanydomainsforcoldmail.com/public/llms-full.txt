@@ -1,0 +1,100 @@
+# How Many Domains Do You Need for Cold Email?
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://howmanydomainsforcoldmail.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+Use 3–5 domains for cold email outreach, with 2–3 mailboxes per domain, giving you 300–1,500 emails per day capacity while maintaining inbox deliverability.
+
+---
+
+# How Many Domains Do You Need for Cold Email?
+
+Use **3–5 domains** for cold email outreach, with **2–3 mailboxes per domain**, giving you 300–1,500 emails per day capacity while maintaining inbox deliverability.
+
+## Domain Count by Sending Volume
+
+| Daily Volume | Domains Needed | Mailboxes per Domain | Total Capacity |
+|--------------|----------------|----------------------|----------------|
+| 50-100 | 1-2 | 2-3 | 100-300/day |
+| 100-500 | 3-5 | 2-3 | 300-750/day |
+| 500-1500 | 5-10 | 2-3 | 750-1500/day |
+| 1500+ | 10+ | 2-3 | Scale as needed |
+
+## Key Principles
+
+1. **50-100 emails per mailbox per day** — exceeding this damages reputation
+2. **Rotate sending across domains** — don't burn a single domain
+3. **Keep domains warming** — always have backup domains in warm-up
+4. **Monitor reputation** — rotate out domains showing reputation decline
+
+---
+
+## Blog Posts
+
+### How Many Domains for Cold Email: Data-Backed Infrastructure Guide (2026)
+URL: https://howmanydomainsforcoldmail.com/blog/how-many-domains-for-cold-email-data/
+
+Optimal domain counts by sending volume. 50-100 emails/day: 1-2 domains. 100-500/day: 3-5 domains. 500-1500/day: 5-10 domains. Cost breakdown included.
+
+---
+
+### Cold Email Domain Rotation Strategy: When and How to Rotate Sending Domains
+URL: https://howmanydomainsforcoldmail.com/blog/domain-rotation-strategy/
+
+Active, resting, and warm-up domain tiers. Rotate domains when reputation drops below 80%. Rest period: 2-4 weeks minimum.
+
+---
+
+### How to Choose Domain Names for Cold Email: TLD, Naming, and Registrar Guide
+URL: https://howmanydomainsforcoldmail.com/blog/choosing-domains-for-cold-email/
+
+Best TLDs: .com, .co, .io. Naming: brand variations, avoid hyphens. Registrar comparison for bulk purchases.
+
+---
+
+## Tools
+
+### Cold Email Domain Calculator
+URL: https://howmanydomainsforcoldmail.com/tools/domain-calculator/
+
+Calculate domains and mailboxes needed based on target daily volume.
+
+---
+
+### Infrastructure Cost Estimator
+URL: https://howmanydomainsforcoldmail.com/tools/infrastructure-cost-estimator/
+
+Estimate monthly costs: domains, mailboxes, warm-up, sending platform.
+
+---
+
+### Cold Email Domain Name Generator
+URL: https://howmanydomainsforcoldmail.com/tools/domain-name-generator/
+
+Generate brand-safe domain name variations for cold email infrastructure.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://howmanydomainsforcoldmail.com/
+- https://howmanydomainsforcoldmail.com/blog/
+- https://howmanydomainsforcoldmail.com/tools/
+- https://howmanydomainsforcoldmail.com/about/
+- https://howmanydomainsforcoldmail.com/blog/how-many-domains-for-cold-email-data/
+- https://howmanydomainsforcoldmail.com/blog/domain-rotation-strategy/
+- https://howmanydomainsforcoldmail.com/blog/choosing-domains-for-cold-email/
+- https://howmanydomainsforcoldmail.com/tools/domain-calculator/
+- https://howmanydomainsforcoldmail.com/tools/infrastructure-cost-estimator/
+- https://howmanydomainsforcoldmail.com/tools/domain-name-generator/

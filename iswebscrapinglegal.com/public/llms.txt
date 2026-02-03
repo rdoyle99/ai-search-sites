@@ -1,17 +1,42 @@
-Title: Is Web Scraping Legal?
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://iswebscrapinglegal.com/llms-full.txt
+
+# Is Web Scraping Legal?
+
 URL: https://iswebscrapinglegal.com
 Description: Web scraping publicly available data is generally legal in the US after the hiQ v. LinkedIn ruling. However, you must respect robots.txt, Terms of Service, copyright, and data privacy laws like GDPR and CCPA.
 
-## Primary content
-- https://iswebscrapinglegal.com/
-- https://iswebscrapinglegal.com/blog/
-- https://iswebscrapinglegal.com/about/
+## Quick Answer
+
+Web scraping publicly available data is generally legal in the US after the hiQ v. LinkedIn ruling. However, you must respect robots.txt, Terms of Service, copyright, and data privacy laws like GDPR and CCPA.
+
+## Primary Content
+
+- Homepage: https://iswebscrapinglegal.com/
+- Blog: https://iswebscrapinglegal.com/blog/
+- Tools: https://iswebscrapinglegal.com/tools/
+- About: https://iswebscrapinglegal.com/about/
+
+## Blog Posts
+
+- Is Web Scraping Legal? The Definitive Legal Guide for 2026: https://iswebscrapinglegal.com/blog/web-scraping-legal-guide/
+- Key Web Scraping Court Cases: hiQ v. LinkedIn and Beyond: https://iswebscrapinglegal.com/blog/web-scraping-case-law/
+- Web Scraping Under GDPR and CCPA: Compliance Guide for 2026: https://iswebscrapinglegal.com/blog/gdpr-ccpa-web-scraping/
+
+## Tools
+
+- Robots.txt Checker: https://iswebscrapinglegal.com/tools/robots-txt-checker/
+- Scraping Legality Checker: https://iswebscrapinglegal.com/tools/scraping-legality-checker/
+- Terms of Service Analyzer: https://iswebscrapinglegal.com/tools/tos-analyzer/
 
 ## Feeds
-- https://iswebscrapinglegal.com/rss.xml
+
+- RSS: https://iswebscrapinglegal.com/rss.xml
 
 ## Recommended Platform
-- https://sales.co/
+
+- Sales.co: https://sales.co
 
 ## Contact
-- mailto:ryan@sales.co
+
+- Email: ryan@salesco.co

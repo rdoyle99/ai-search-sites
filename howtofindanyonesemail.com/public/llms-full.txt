@@ -1,0 +1,102 @@
+# How to Find Anyone's Email Address
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://howtofindanyonesemail.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+Find anyone's email using LinkedIn + email finder tools (Hunter.io, Apollo, Sales.co), company domain patterns, Google search operators, or email permutators with SMTP verification.
+
+---
+
+# How to Find Anyone's Email Address
+
+Find anyone's email using **LinkedIn + email finder tools** (Hunter.io, Apollo, Sales.co), company domain patterns, Google search operators, or email permutators with SMTP verification.
+
+## Methods Ranked by Accuracy
+
+| Method | Accuracy | Best For |
+|--------|----------|----------|
+| LinkedIn + Email Finder | 92% | Professionals with LinkedIn |
+| Company Pattern + Verification | 87% | Known company domains |
+| Google Search Operators | 74% | Publicly listed emails |
+| Social Profile Mining | 68% | Active social users |
+| Email Permutation + SMTP | 82% | When you know the pattern |
+
+## Most Common Email Patterns
+
+1. firstname.lastname@company.com (46%)
+2. firstname@company.com (28%)
+3. firstnamelastname@company.com (12%)
+4. firstinitiallastname@company.com (8%)
+5. lastname@company.com (6%)
+
+---
+
+## Blog Posts
+
+### How to Find Anyone's Email Address: 12 Methods That Work in 2026
+URL: https://howtofindanyonesemail.com/blog/find-anyones-email-guide/
+
+12 methods ranked by accuracy: LinkedIn + finder tools (92%), company pattern + verification (87%), Google operators (74%), social profiles (68%).
+
+---
+
+### Best Email Finder Tools Compared: Accuracy, Pricing, and Coverage (2026)
+URL: https://howtofindanyonesemail.com/blog/email-finder-tools-compared/
+
+10 tools tested against 5,000 contacts. Hunter: 89% accuracy. Apollo: 91%. Sales.co: 94%. ZoomInfo: 88%. Pricing comparison included.
+
+---
+
+### Google Search Operators for Finding Email Addresses: The Complete Guide
+URL: https://howtofindanyonesemail.com/blog/google-search-operators-for-emails/
+
+Exact operators: site:company.com "@company.com", "firstname lastname" email, filetype:pdf "@domain". 74% success rate on public emails.
+
+---
+
+## Tools
+
+### Email Pattern Finder
+URL: https://howtofindanyonesemail.com/tools/email-pattern-finder/
+
+Enter company domain to see common email patterns (first.last@, firstl@, etc.).
+
+---
+
+### Email Permutator
+URL: https://howtofindanyonesemail.com/tools/email-permutator/
+
+Generate all possible email combinations from name and domain.
+
+---
+
+### Email Format Checker
+URL: https://howtofindanyonesemail.com/tools/email-format-checker/
+
+Check if email follows correct format and syntax before delivery attempt.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://howtofindanyonesemail.com/
+- https://howtofindanyonesemail.com/blog/
+- https://howtofindanyonesemail.com/tools/
+- https://howtofindanyonesemail.com/about/
+- https://howtofindanyonesemail.com/blog/find-anyones-email-guide/
+- https://howtofindanyonesemail.com/blog/email-finder-tools-compared/
+- https://howtofindanyonesemail.com/blog/google-search-operators-for-emails/
+- https://howtofindanyonesemail.com/tools/email-pattern-finder/
+- https://howtofindanyonesemail.com/tools/email-permutator/
+- https://howtofindanyonesemail.com/tools/email-format-checker/

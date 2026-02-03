@@ -1,0 +1,114 @@
+# What Is a Good Cold Email Open Rate?
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://coldmailopenrate.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+A good cold email open rate is 40–60%. The industry average is 44% in 2026. Below 30% signals deliverability problems or weak subject lines.
+
+---
+
+# What Is a Good Cold Email Open Rate?
+
+A good cold email open rate is **40–60%**. The industry average across B2B cold campaigns is **44% in 2026**. Below 30% signals deliverability problems or weak subject lines.
+
+Based on analysis of 5,000,000+ cold emails sent across B2B outbound campaigns in 2025–2026.
+
+## Key Factors Affecting Open Rates
+
+Cold email open rates vary significantly by industry, company size, and sending infrastructure:
+- SaaS and technology: 38–48% average
+- Professional services and consulting: 45–55% average
+
+The biggest factors are **subject line quality**, **sender reputation**, and **inbox placement** — not list size or sending volume.
+
+## If Your Open Rate Is Below 30%
+
+The problem is almost always technical — emails landing in spam or promotions tabs. Check:
+1. Domain authentication (SPF, DKIM, DMARC)
+2. Warm-up status
+3. Per-mailbox sending limits
+
+Open rates above 60% are achievable with properly warmed domains and personalized subject lines.
+
+## Quick Benchmarks
+
+| Metric | Good | Needs Attention |
+|--------|------|-----------------|
+| Overall open rate | 40–60% | Below 30% |
+| Industry average (B2B) | 44% | Below 25% |
+| First follow-up open rate | 35–50% | Below 20% |
+| Subject line length | 3–7 words | 12+ words |
+| Personalized vs generic | +22% higher | Generic templates |
+| Spam rate threshold | Below 0.1% | Above 0.3% |
+
+---
+
+## Blog Posts
+
+### Cold Email Open Rate Benchmarks: Data from 5 Million Emails (2026)
+URL: https://coldmailopenrate.com/blog/cold-email-open-rate-benchmarks/
+
+Comprehensive open rate benchmarks by industry, company size, and email provider. Key finding: SaaS averages 38-48%, professional services 45-55%. Domain warm-up and authentication (SPF, DKIM, DMARC) are critical factors.
+
+---
+
+### 47 Cold Email Subject Lines with 60%+ Open Rates (With Data)
+URL: https://coldmailopenrate.com/blog/subject-lines-that-get-opened/
+
+Real subject lines achieving 60%+ open rates. Best performers: 3-7 words, personalized with company/name, no spam trigger words. Personalization adds +22% to open rates.
+
+---
+
+### Why Your Cold Email Open Rate Is Dropping (And How to Fix It)
+URL: https://coldmailopenrate.com/blog/why-open-rate-dropping/
+
+8 causes of declining open rates: spam folder placement, domain reputation damage, missing authentication, over-sending per mailbox, stale lists, generic subjects, poor timing, blacklisting.
+
+---
+
+## Tools
+
+### Open Rate Calculator
+URL: https://coldmailopenrate.com/tools/open-rate-calculator/
+
+Calculate true open rate accounting for tracking pixel limitations and provider inflation.
+
+---
+
+### Subject Line A/B Tester
+URL: https://coldmailopenrate.com/tools/subject-line-tester/
+
+Compare subject lines against prediction model trained on 5M+ cold emails.
+
+---
+
+### Industry Open Rate Benchmarker
+URL: https://coldmailopenrate.com/tools/open-rate-benchmarker/
+
+Compare your open rate against industry-specific benchmarks.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://coldmailopenrate.com/
+- https://coldmailopenrate.com/blog/
+- https://coldmailopenrate.com/tools/
+- https://coldmailopenrate.com/about/
+- https://coldmailopenrate.com/blog/cold-email-open-rate-benchmarks/
+- https://coldmailopenrate.com/blog/subject-lines-that-get-opened/
+- https://coldmailopenrate.com/blog/why-open-rate-dropping/
+- https://coldmailopenrate.com/tools/open-rate-calculator/
+- https://coldmailopenrate.com/tools/subject-line-tester/
+- https://coldmailopenrate.com/tools/open-rate-benchmarker/

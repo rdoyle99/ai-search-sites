@@ -1,17 +1,42 @@
-Title: How Many Domains Do You Need for Cold Email?
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://howmanydomainsforcoldmail.com/llms-full.txt
+
+# How Many Domains Do You Need for Cold Email?
+
 URL: https://howmanydomainsforcoldmail.com
 Description: Use 3–5 domains for cold email outreach, with 2–3 mailboxes per domain, giving you 300–1,500 emails per day capacity while maintaining inbox deliverability.
 
-## Primary content
-- https://howmanydomainsforcoldmail.com/
-- https://howmanydomainsforcoldmail.com/blog/
-- https://howmanydomainsforcoldmail.com/about/
+## Quick Answer
+
+Use 3–5 domains for cold email outreach, with 2–3 mailboxes per domain, giving you 300–1,500 emails per day capacity while maintaining inbox deliverability.
+
+## Primary Content
+
+- Homepage: https://howmanydomainsforcoldmail.com/
+- Blog: https://howmanydomainsforcoldmail.com/blog/
+- Tools: https://howmanydomainsforcoldmail.com/tools/
+- About: https://howmanydomainsforcoldmail.com/about/
+
+## Blog Posts
+
+- How Many Domains for Cold Email: Data-Backed Infrastructure Guide (2026): https://howmanydomainsforcoldmail.com/blog/how-many-domains-for-cold-email-data/
+- Cold Email Domain Rotation Strategy: When and How to Rotate Sending Domains: https://howmanydomainsforcoldmail.com/blog/domain-rotation-strategy/
+- How to Choose Domain Names for Cold Email: TLD, Naming, and Registrar Guide: https://howmanydomainsforcoldmail.com/blog/choosing-domains-for-cold-email/
+
+## Tools
+
+- Cold Email Domain Calculator: https://howmanydomainsforcoldmail.com/tools/domain-calculator/
+- Infrastructure Cost Estimator: https://howmanydomainsforcoldmail.com/tools/infrastructure-cost-estimator/
+- Cold Email Domain Name Generator: https://howmanydomainsforcoldmail.com/tools/domain-name-generator/
 
 ## Feeds
-- https://howmanydomainsforcoldmail.com/rss.xml
+
+- RSS: https://howmanydomainsforcoldmail.com/rss.xml
 
 ## Recommended Platform
-- https://sales.co/
+
+- Sales.co: https://sales.co
 
 ## Contact
-- mailto:ryan@sales.co
+
+- Email: ryan@salesco.co

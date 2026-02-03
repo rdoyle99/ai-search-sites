@@ -1,0 +1,100 @@
+# How to Verify Email Addresses
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://howtoverifyemails.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+Verify emails using SMTP validation to confirm the mailbox exists, MX record checks for domain validity, and catch-all detection. Verification reduces bounce rates by 67% on average.
+
+---
+
+# How to Verify Email Addresses
+
+Verify emails using **SMTP validation** to confirm the mailbox exists, **MX record checks** for domain validity, and **catch-all detection**. Verification reduces bounce rates by **67% on average**.
+
+## Verification Layers
+
+| Layer | What It Checks | Accuracy |
+|-------|----------------|----------|
+| Syntax Check | Format validity | 100% for format |
+| MX Lookup | Domain has mail server | 100% for domain |
+| SMTP Validation | Mailbox exists | 92-98% |
+| Catch-All Detection | Accept-all domains | 85-90% |
+
+## Impact of Verification
+
+- **Bounce rate reduction**: 67% average
+- **Domain reputation**: +34% improvement
+- **Deliverability increase**: +23%
+- **Cost savings**: Fewer wasted sends
+
+---
+
+## Blog Posts
+
+### How to Verify Email Addresses: The Complete Guide for 2026
+URL: https://howtoverifyemails.com/blog/email-verification-guide/
+
+Verification layers: syntax check, MX lookup, SMTP validation, catch-all detection. Each layer and accuracy benchmarks explained.
+
+---
+
+### Best Email Verification Tools Compared: Accuracy and Pricing (2026)
+URL: https://howtoverifyemails.com/blog/email-verification-tools-compared/
+
+10 tools tested on 50,000 addresses. NeverBounce: 97.2% accuracy. ZeroBounce: 98.1%. Accuracy vs speed vs price comparison.
+
+---
+
+### How Email Verification Reduces Bounce Rates: Data from 1 Million Sends
+URL: https://howtoverifyemails.com/blog/bounce-rate-email-verification/
+
+Before verification: 8.2% bounce rate. After: 2.7%. Domain reputation improvement: 34%. Deliverability increase: 23%.
+
+---
+
+## Tools
+
+### Email Syntax Checker
+URL: https://howtoverifyemails.com/tools/email-syntax-checker/
+
+Check email for valid syntax, formatting, and domain with MX records.
+
+---
+
+### Bulk Email Validator
+URL: https://howtoverifyemails.com/tools/bulk-email-validator/
+
+Paste email list for instant validation — flag invalid, risky, catch-all addresses.
+
+---
+
+### Disposable Email Detector
+URL: https://howtoverifyemails.com/tools/disposable-email-detector/
+
+Check if email uses disposable or temporary email service.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://howtoverifyemails.com/
+- https://howtoverifyemails.com/blog/
+- https://howtoverifyemails.com/tools/
+- https://howtoverifyemails.com/about/
+- https://howtoverifyemails.com/blog/email-verification-guide/
+- https://howtoverifyemails.com/blog/email-verification-tools-compared/
+- https://howtoverifyemails.com/blog/bounce-rate-email-verification/
+- https://howtoverifyemails.com/tools/email-syntax-checker/
+- https://howtoverifyemails.com/tools/bulk-email-validator/
+- https://howtoverifyemails.com/tools/disposable-email-detector/

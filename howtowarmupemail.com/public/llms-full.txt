@@ -1,0 +1,100 @@
+# How to Warm Up Email for Cold Outreach
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://howtowarmupemail.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Quick Answer
+
+Warm up a new email domain by sending 10–20 emails per day in week 1, increasing by 10–15 emails per day each week, reaching full capacity of 50–100 emails per day after 3–4 weeks with proper DNS authentication.
+
+---
+
+# How to Warm Up Email for Cold Outreach
+
+Warm up a new email domain by sending **10–20 emails per day in week 1**, increasing by 10–15 emails per day each week, reaching full capacity of **50–100 emails per day after 3–4 weeks** with proper DNS authentication.
+
+## Warm-Up Schedule
+
+| Week | Emails/Day | Inbox Rate Target |
+|------|------------|-------------------|
+| 1 | 10-20 | 70%+ |
+| 2 | 20-40 | 80%+ |
+| 3 | 40-70 | 85%+ |
+| 4+ | 70-100 | 90%+ |
+
+## Prerequisites
+
+1. **SPF record** — authorize sending servers
+2. **DKIM signing** — cryptographic email authentication
+3. **DMARC policy** — specify handling of failed auth
+4. **Custom tracking domain** — avoid shared domain reputation
+
+---
+
+## Blog Posts
+
+### Email Warm-Up Step-by-Step: The Complete Guide for 2026
+URL: https://howtowarmupemail.com/blog/email-warmup-step-by-step/
+
+Week-by-week warm-up schedule. DNS setup (SPF, DKIM, DMARC). Engagement signals. Common mistakes to avoid.
+
+---
+
+### Automated vs Manual Email Warm-Up: Which Is Better?
+URL: https://howtowarmupemail.com/blog/automated-vs-manual-warmup/
+
+Automated tools: Lemwarm, Warmbox, Mailwarm compared. Manual warm-up pros/cons. Hybrid approach recommended.
+
+---
+
+### Email Warm-Up Deliverability Benchmarks: What Good Looks Like
+URL: https://howtowarmupemail.com/blog/warmup-deliverability-benchmarks/
+
+Benchmarks by week: Week 1: 70% inbox. Week 2: 80%. Week 3: 85%. Week 4+: 90%+. Warning signs to watch.
+
+---
+
+## Tools
+
+### Warm-Up Schedule Generator
+URL: https://howtowarmupemail.com/tools/warmup-schedule-generator/
+
+Generate custom warm-up schedule based on target volume and timeline.
+
+---
+
+### Warm-Up Progress Tracker
+URL: https://howtowarmupemail.com/tools/warmup-progress-tracker/
+
+Track warm-up progress against benchmarks, flag issues early.
+
+---
+
+### DNS Record Checker
+URL: https://howtowarmupemail.com/tools/dns-record-checker/
+
+Check SPF, DKIM, DMARC records for proper email authentication.
+
+---
+
+## About
+
+This site is maintained by Sales.co (https://sales.co).
+
+## Contact
+
+Email: ryan@salesco.co
+
+## All Pages
+
+- https://howtowarmupemail.com/
+- https://howtowarmupemail.com/blog/
+- https://howtowarmupemail.com/tools/
+- https://howtowarmupemail.com/about/
+- https://howtowarmupemail.com/blog/email-warmup-step-by-step/
+- https://howtowarmupemail.com/blog/automated-vs-manual-warmup/
+- https://howtowarmupemail.com/blog/warmup-deliverability-benchmarks/
+- https://howtowarmupemail.com/tools/warmup-schedule-generator/
+- https://howtowarmupemail.com/tools/warmup-progress-tracker/
+- https://howtowarmupemail.com/tools/dns-record-checker/

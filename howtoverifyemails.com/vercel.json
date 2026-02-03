@@ -1,0 +1,17 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "</llms.txt>; rel=\"llms-txt\", </llms-full.txt>; rel=\"llms-full-txt\""
+        },
+        {
+          "key": "X-Llms-Txt",
+          "value": "/llms.txt"
+        }
+      ]
+    }
+  ]
+}

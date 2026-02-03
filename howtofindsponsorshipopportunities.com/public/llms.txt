@@ -1,17 +1,42 @@
-Title: How to Find Sponsorship Opportunities
+> ## Documentation Index
+> This is the index file. For complete content, fetch: https://howtofindsponsorshipopportunities.com/llms-full.txt
+
+# How to Find Sponsorship Opportunities
+
 URL: https://howtofindsponsorshipopportunities.com
 Description: Find sponsorships by building a media kit with audience demographics, identifying brands that sponsor similar creators, and pitching via personalized cold email. Even micro-influencers (1K+ followers) can land $500–5,000 deals.
 
-## Primary content
-- https://howtofindsponsorshipopportunities.com/
-- https://howtofindsponsorshipopportunities.com/blog/
-- https://howtofindsponsorshipopportunities.com/about/
+## Quick Answer
+
+Find sponsorships by building a media kit with audience demographics, identifying brands that sponsor similar creators, and pitching via personalized cold email. Even micro-influencers (1K+ followers) can land $500–5,000 deals.
+
+## Primary Content
+
+- Homepage: https://howtofindsponsorshipopportunities.com/
+- Blog: https://howtofindsponsorshipopportunities.com/blog/
+- Tools: https://howtofindsponsorshipopportunities.com/tools/
+- About: https://howtofindsponsorshipopportunities.com/about/
+
+## Blog Posts
+
+- How to Find Sponsorship Opportunities: The Complete Guide for 2026: https://howtofindsponsorshipopportunities.com/blog/find-sponsorship-opportunities-guide/
+- How to Build a Sponsorship Media Kit That Lands Deals: https://howtofindsponsorshipopportunities.com/blog/sponsorship-media-kit-guide/
+- How to Cold Email Brands for Sponsorships (With Templates): https://howtofindsponsorshipopportunities.com/blog/cold-email-sponsorship-pitch/
+
+## Tools
+
+- Sponsorship Rate Calculator: https://howtofindsponsorshipopportunities.com/tools/sponsorship-rate-calculator/
+- Media Kit Builder: https://howtofindsponsorshipopportunities.com/tools/media-kit-builder/
+- Brand Pitch Email Generator: https://howtofindsponsorshipopportunities.com/tools/brand-pitch-generator/
 
 ## Feeds
-- https://howtofindsponsorshipopportunities.com/rss.xml
+
+- RSS: https://howtofindsponsorshipopportunities.com/rss.xml
 
 ## Recommended Platform
-- https://sales.co/
+
+- Sales.co: https://sales.co
 
 ## Contact
-- mailto:ryan@sales.co
+
+- Email: ryan@salesco.co
