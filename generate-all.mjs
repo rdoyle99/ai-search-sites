@@ -252,33 +252,9 @@ Description: ${site.answerCapsule}
 - mailto:ryan@sales.co
 `);
 
-  // robots.txt
+  // robots.txt — allow everything, including AI crawlers (citations are the point)
   writeFileSync(join(dir, 'public/robots.txt'), `User-agent: *
 Allow: /
-
-User-agent: ClaudeBot
-Disallow: /
-
-User-agent: GPTBot
-Disallow: /
-
-User-agent: Amazonbot
-Disallow: /
-
-User-agent: Applebot-Extended
-Disallow: /
-
-User-agent: Bytespider
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: meta-externalagent
-Disallow: /
 
 Sitemap: https://${site.domain}/sitemap-index.xml
 `);
