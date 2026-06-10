@@ -53,6 +53,15 @@ const pageSchema = schema || defaultSchema;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- GA4 -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XRJFJV2LJN"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XRJFJV2LJN');
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Primary Meta -->
