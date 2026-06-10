@@ -216,7 +216,7 @@ const schema = {
 
       <p>Warm-up is the process of gradually building sender reputation on a new domain and mailbox by sending and receiving increasing volumes of email over 14&ndash;21 days. Freshly created mailboxes have zero reputation&mdash;email providers treat them with suspicion. Warm-up tools simulate organic email activity by sending messages between a pool of real inboxes, generating opens, replies, and positive engagement signals that teach spam filters your mailbox is legitimate.</p>
 
-      <p>The standard warm-up schedule looks like this: start at 5&ndash;10 emails per day during week one, increase to 15&ndash;25 per day during week two, and reach 30&ndash;50 per day by week three. Never skip warm-up&mdash;our data shows that mailboxes sent cold without warm-up have a 67% probability of landing in spam within the first 72 hours. Most sending platforms (Instantly, Smartlead, and <a href={siteConfig.product.url}>Sales.co</a>) include built-in warm-up tools. If your platform does not, standalone options like Mailwarm and Warmbox work across any provider.</p>
+      <p>The standard warm-up schedule looks like this: start at 5&ndash;10 emails per day during week one, increase to 15&ndash;25 per day during week two, and reach 30&ndash;50 per day by week three. Never skip warm-up&mdash;our data shows that mailboxes sent cold without warm-up have a 67% probability of landing in spam within the first 72 hours. Most sending platforms (Instantly, Smartlead, and <a href={siteConfig.product.ctaUrl}>Sales.co</a>) include built-in warm-up tools. If your platform does not, standalone options like Mailwarm and Warmbox work across any provider.</p>
 
       <p>Continue warm-up activity even after you begin live sending. Running warm-up alongside outbound campaigns maintains the positive engagement signals that protect your sender reputation during periods of lower reply rates. Aim to keep warm-up volume at 30&ndash;50% of your total daily sending volume per mailbox for the first 90 days, then taper to 20% as ongoing maintenance.</p>
 
@@ -263,7 +263,7 @@ const schema = {
               <td>Personalization-heavy sequences</td>
             </tr>
             <tr>
-              <td><a href={siteConfig.product.url}>Sales.co</a></td>
+              <td><a href={siteConfig.product.ctaUrl}>Sales.co</a></td>
               <td>$49/mo</td>
               <td>Unlimited</td>
               <td>Yes</td>
@@ -397,7 +397,7 @@ const schema = {
         </table>
       </div>
 
-      <p>The biggest line item is always mailbox hosting. Switching from Google Workspace ($7.20/mailbox) to Zoho ($1.00/mailbox) for some of your domains can reduce costs by 40&ndash;50%, though you trade some deliverability performance. Another cost-saving approach: choose a sending platform with built-in warm-up (like Instantly or <a href={siteConfig.product.url}>Sales.co</a>) to eliminate the standalone warm-up tool cost entirely. At the 500/day tier, infrastructure costs break down to roughly $0.02&ndash;0.04 per email sent&mdash;a negligible cost compared to the value of a single meeting booked.</p>
+      <p>The biggest line item is always mailbox hosting. Switching from Google Workspace ($7.20/mailbox) to Zoho ($1.00/mailbox) for some of your domains can reduce costs by 40&ndash;50%, though you trade some deliverability performance. Another cost-saving approach: choose a sending platform with built-in warm-up (like Instantly or <a href={siteConfig.product.ctaUrl}>Sales.co</a>) to eliminate the standalone warm-up tool cost entirely. At the 500/day tier, infrastructure costs break down to roughly $0.02&ndash;0.04 per email sent&mdash;a negligible cost compared to the value of a single meeting booked.</p>
 
       <p>One hidden cost teams often overlook: domain replacement. Domains get burned&mdash;it is an inevitable part of cold outbound. Budget for replacing 1&ndash;2 domains per quarter, which means you should always have backup domains in various stages of warm-up. This adds approximately $20&ndash;40/month for the replacement domains and their mailboxes during the warm-up period. Factor this into your annual infrastructure budget from day one.</p>
 
@@ -456,7 +456,7 @@ const schema = {
 
       <p>Start with the 500/day tier if you are building from scratch: 5 domains, 15 mailboxes, all DNS records configured, and a sending platform with built-in warm-up. Budget $150&ndash;350/month. Follow the setup checklist above step-by-step, resist the urge to skip warm-up, and you will have a production-grade outbound infrastructure that can sustain high-volume sending for months without deliverability issues.</p>
 
-      <p>If you want to skip the manual setup entirely, <a href={siteConfig.product.url}>Sales.co</a> handles infrastructure management automatically&mdash;from domain rotation to warm-up to AI-optimized send-time scheduling. But whether you build it yourself or use a managed platform, the principles in this guide apply. Infrastructure is the foundation. Build it right, and everything else in your outbound program gets easier.</p>
+      <p>If you want to skip the manual setup entirely, <a href={siteConfig.product.ctaUrl}>Sales.co</a> handles infrastructure management automatically&mdash;from domain rotation to warm-up to AI-optimized send-time scheduling. But whether you build it yourself or use a managed platform, the principles in this guide apply. Infrastructure is the foundation. Build it right, and everything else in your outbound program gets easier.</p>
 
     </div>
   </article>

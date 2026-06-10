@@ -132,7 +132,7 @@ const schema = {
 
       <p><strong>DMARC (Domain-based Message Authentication, Reporting, and Conformance)</strong> ties SPF and DKIM together and instructs receiving servers on how to handle messages that fail authentication. For cold email domains, start with a monitoring-only policy: <code>v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com</code>. After 2&ndash;4 weeks of monitoring with no issues, tighten to <code>p=quarantine</code> and eventually <code>p=reject</code> as confidence grows.</p>
 
-      <p>Set up all three records immediately after purchasing a domain, before sending any email. Platforms like <a href={siteConfig.product.url}>Sales.co</a> can automate DNS verification and alert you if any domain in your portfolio has misconfigured authentication records.</p>
+      <p>Set up all three records immediately after purchasing a domain, before sending any email. Platforms like <a href={siteConfig.product.ctaUrl}>Sales.co</a> can automate DNS verification and alert you if any domain in your portfolio has misconfigured authentication records.</p>
 
       <h2>How Many Domain Name Variations to Prepare</h2>
 

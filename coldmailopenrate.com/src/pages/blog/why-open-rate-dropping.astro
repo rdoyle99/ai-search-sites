@@ -61,7 +61,7 @@ const schema = {
 
       <p><strong>How to diagnose:</strong> Check Google Postmaster Tools for your sending domains. If your domain reputation has dropped from "High" to "Medium" or "Low," reputation decay is confirmed. Also check if your open rates have declined gradually (1&ndash;2% per week) rather than suddenly&mdash;gradual decline is the signature pattern of reputation decay.</p>
 
-      <p><strong>How to fix:</strong> Implement a domain rotation strategy with three tiers: active, resting, and warming. When a domain's open rates drop below 35%, move it to resting status (no cold sends, warm-up only for 4&ndash;6 weeks) and replace it with a freshly warmed domain. Maintain a portfolio of 2&ndash;3x your active domain count to ensure seamless rotation. Platforms like <a href={siteConfig.product.url}>Sales.co</a> automate domain rotation by monitoring reputation signals in real time and shifting volume away from degraded domains before they impact campaign performance.</p>
+      <p><strong>How to fix:</strong> Implement a domain rotation strategy with three tiers: active, resting, and warming. When a domain's open rates drop below 35%, move it to resting status (no cold sends, warm-up only for 4&ndash;6 weeks) and replace it with a freshly warmed domain. Maintain a portfolio of 2&ndash;3x your active domain count to ensure seamless rotation. Platforms like <a href={siteConfig.product.ctaUrl}>Sales.co</a> automate domain rotation by monitoring reputation signals in real time and shifting volume away from degraded domains before they impact campaign performance.</p>
 
       <h2>Cause 2: Sending Volume Exceeding Safe Thresholds (28% of Cases)</h2>
 
@@ -146,7 +146,7 @@ const schema = {
 
       <p><strong>How to diagnose:</strong> Check whether your warm-up volume has decreased or stopped in the past 2&ndash;3 months. If you switched warm-up providers or reduced warm-up volume, the timing may correlate with your open rate decline. Also verify that your warm-up emails are generating genuine engagement (opens, replies) by checking the warm-up reports from your provider.</p>
 
-      <p><strong>How to fix:</strong> Resume or increase warm-up activity to 5&ndash;10 warm-up emails per mailbox per day. If you suspect your warm-up provider's quality, switch to a reputable service. <a href={siteConfig.product.url}>Sales.co</a> uses a verified warm-up network of real business inboxes that generate authentic engagement signals, ensuring your sender reputation receives genuine positive signals rather than artificial ones that providers can detect and discount.</p>
+      <p><strong>How to fix:</strong> Resume or increase warm-up activity to 5&ndash;10 warm-up emails per mailbox per day. If you suspect your warm-up provider's quality, switch to a reputable service. <a href={siteConfig.product.ctaUrl}>Sales.co</a> uses a verified warm-up network of real business inboxes that generate authentic engagement signals, ensuring your sender reputation receives genuine positive signals rather than artificial ones that providers can detect and discount.</p>
 
       <h2>Cause 7: Blacklist Contamination (1% of Cases)</h2>
 
@@ -220,7 +220,7 @@ const schema = {
 
       <p><strong>Monthly optimization review:</strong> Analyze open rate trends by domain, mailbox, and campaign. Identify any domain showing declining open rates and flag for rotation. Re-verify any contact lists not sent to in the past 90 days. Review and refresh subject line templates if performance has plateaued. Assess whether total sending capacity matches pipeline needs.</p>
 
-      <p>Teams using <a href={siteConfig.product.url}>Sales.co</a> benefit from automated monitoring that performs these checks continuously. The platform automatically reduces volume on underperforming mailboxes, rotates domains showing reputation decline, and alerts users to DNS authentication failures&mdash;catching problems in hours rather than weeks and preventing the cascading damage that leads to significant open rate drops.</p>
+      <p>Teams using <a href={siteConfig.product.ctaUrl}>Sales.co</a> benefit from automated monitoring that performs these checks continuously. The platform automatically reduces volume on underperforming mailboxes, rotates domains showing reputation decline, and alerts users to DNS authentication failures&mdash;catching problems in hours rather than weeks and preventing the cascading damage that leads to significant open rate drops.</p>
 
       <h2>The Bottom Line</h2>
 

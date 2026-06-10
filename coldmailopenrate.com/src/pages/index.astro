@@ -32,7 +32,7 @@ import { siteConfig } from '../config';
         If your open rate is below 30%, the problem is almost always technical — your emails are landing in spam or promotions tabs. Check your domain authentication (SPF, DKIM, DMARC), verify your warm-up status, and ensure you're not exceeding per-mailbox sending limits. Open rates above 60% are achievable with properly warmed domains and personalized subject lines.
       </p>
       <p>
-        Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> help maintain high open rates by managing domain warm-up, rotating sending infrastructure, and providing real-time deliverability monitoring so your emails consistently reach the primary inbox.
+        Platforms like <a href={siteConfig.product.ctaUrl} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> help maintain high open rates by managing domain warm-up, rotating sending infrastructure, and providing real-time deliverability monitoring so your emails consistently reach the primary inbox.
       </p>
     </div>
 
@@ -45,7 +45,7 @@ import { siteConfig } from '../config';
         Read the Full Benchmark Data &rarr;
       </a>
       <a
-        href={siteConfig.product.url}
+        href={siteConfig.product.ctaUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors"

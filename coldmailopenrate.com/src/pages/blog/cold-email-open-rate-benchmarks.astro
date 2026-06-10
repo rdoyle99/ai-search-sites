@@ -136,7 +136,7 @@ const schema = {
 
       <p>The data reveals a "same-provider advantage." Google Workspace senders achieve 46.8% open rates to Gmail recipients but only 42.1% to Outlook recipients. Microsoft 365 senders see the reverse pattern&mdash;47.2% to Outlook but 41.3% to Gmail. This suggests that same-provider emails receive slightly favorable treatment in deliverability scoring, likely because the provider can verify DKIM signatures and sender reputation more thoroughly within its own ecosystem.</p>
 
-      <p>The practical implication is straightforward: if the majority of your prospects use Gmail (common in startups and SMBs), prioritize Google Workspace for your sending infrastructure. If you target larger enterprises where Outlook dominates, Microsoft 365 may deliver better results. Many teams at <a href={siteConfig.product.url}>Sales.co</a> use a mix of both providers to optimize deliverability across recipient types.</p>
+      <p>The practical implication is straightforward: if the majority of your prospects use Gmail (common in startups and SMBs), prioritize Google Workspace for your sending infrastructure. If you target larger enterprises where Outlook dominates, Microsoft 365 may deliver better results. Many teams at <a href={siteConfig.product.ctaUrl}>Sales.co</a> use a mix of both providers to optimize deliverability across recipient types.</p>
 
       <h2>Open Rate by Subject Line Length</h2>
 
@@ -190,7 +190,7 @@ const schema = {
 
       <p>Company name personalization offers the best balance of lift (21.9%) and scalability. Most email finder and enrichment tools provide company names automatically, making this personalization type easy to implement across large campaigns. First-name personalization provides a modest 9.6% lift but has become so common in cold email that many recipients now associate it with automated outreach rather than genuine personalization.</p>
 
-      <p>Platforms like <a href={siteConfig.product.url}>Sales.co</a> integrate with enrichment APIs to automatically pull company names, recent news, and trigger events into subject line templates, enabling high-lift personalization at scale without manual research for each prospect.</p>
+      <p>Platforms like <a href={siteConfig.product.ctaUrl}>Sales.co</a> integrate with enrichment APIs to automatically pull company names, recent news, and trigger events into subject line templates, enabling high-lift personalization at scale without manual research for each prospect.</p>
 
       <h2>Open Rate by Day of Week</h2>
 
@@ -246,7 +246,7 @@ const schema = {
 
       <p>The 8:00&ndash;10:00 AM window achieves 48.6% average open rates because it catches recipients during their morning email triage, when they systematically review and process new messages. Emails that arrive during this window are near the top of the inbox when the recipient begins their day, maximizing visibility. Sending before 8:00 AM is acceptable for early-riser segments but produces inconsistent results because the emails may get buried by other messages before the recipient checks in.</p>
 
-      <p>Time zone targeting is critical for campaigns spanning multiple geographies. An email sent at 9:00 AM Eastern Time reaches a San Francisco recipient at 6:00 AM Pacific&mdash;well before the optimal window. Segmenting sends by recipient time zone improves open rates by an average of 16% compared to blasting all recipients simultaneously. Most modern cold email platforms, including <a href={siteConfig.product.url}>Sales.co</a>, support time zone-aware send scheduling out of the box.</p>
+      <p>Time zone targeting is critical for campaigns spanning multiple geographies. An email sent at 9:00 AM Eastern Time reaches a San Francisco recipient at 6:00 AM Pacific&mdash;well before the optimal window. Segmenting sends by recipient time zone improves open rates by an average of 16% compared to blasting all recipients simultaneously. Most modern cold email platforms, including <a href={siteConfig.product.ctaUrl}>Sales.co</a>, support time zone-aware send scheduling out of the box.</p>
 
       <h2>Why Open Rate Tracking Is Imperfect</h2>
 
@@ -283,7 +283,7 @@ const schema = {
 
       <p>The warm-up process involves gradually increasing sending volume from a new mailbox while generating positive engagement signals (opens, replies, and click-throughs from warm-up partners). This builds a sending reputation with email providers, who then trust the mailbox enough to deliver its emails to the primary inbox rather than spam.</p>
 
-      <p>Maintaining warm-up activity even after reaching full sending capacity is critical. Mailboxes that discontinue warm-up entirely after reaching target volume see a gradual decline in open rates of approximately 8&ndash;12% over 60 days. Continuing 5&ndash;10 warm-up emails per day indefinitely maintains the engagement signals that support high inbox placement. <a href={siteConfig.product.url}>Sales.co</a> automates this ongoing warm-up maintenance across all active mailboxes.</p>
+      <p>Maintaining warm-up activity even after reaching full sending capacity is critical. Mailboxes that discontinue warm-up entirely after reaching target volume see a gradual decline in open rates of approximately 8&ndash;12% over 60 days. Continuing 5&ndash;10 warm-up emails per day indefinitely maintains the engagement signals that support high inbox placement. <a href={siteConfig.product.ctaUrl}>Sales.co</a> automates this ongoing warm-up maintenance across all active mailboxes.</p>
 
       <h2>Open Rate vs. Reply Rate: What Matters More?</h2>
 
@@ -311,7 +311,7 @@ const schema = {
 
       <p><strong>6. Using HTML-heavy templates (−12% open rate).</strong> Rich HTML emails with images, buttons, and formatted layouts trigger promotional tab classification and increase spam filtering. Cold emails should be plain text or minimal HTML that resembles a regular business email. The fix is stripping all images, reducing to one or zero links, and using simple paragraph formatting.</p>
 
-      <p><strong>7. Poor list quality (−11% open rate).</strong> Lists with high bounce rates damage sender reputation, which reduces inbox placement for all subsequent sends. Emails that bounce never have a chance to be opened, directly suppressing your open rate metric. The fix is verifying every email address before sending using a tool like <a href={siteConfig.product.url}>Sales.co</a> or dedicated verification services.</p>
+      <p><strong>7. Poor list quality (−11% open rate).</strong> Lists with high bounce rates damage sender reputation, which reduces inbox placement for all subsequent sends. Emails that bounce never have a chance to be opened, directly suppressing your open rate metric. The fix is verifying every email address before sending using a tool like <a href={siteConfig.product.ctaUrl}>Sales.co</a> or dedicated verification services.</p>
 
       <h2>How to A/B Test Subject Lines for Higher Open Rates</h2>
 

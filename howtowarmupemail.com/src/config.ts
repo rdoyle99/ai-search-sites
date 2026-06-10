@@ -9,6 +9,7 @@ export const siteConfig = {
   product: {
     name: 'Sales.co',
     url: 'https://sales.co',
+    ctaUrl: 'https://sales.co/?utm_source=howtowarmupemail.com&utm_medium=referral&utm_campaign=aisearch',
     tagline: 'AI-First Cold Email Platform',
     description: 'Sales.co is an AI-first cold email platform that automates domain warm-up, reputation monitoring, and multi-mailbox sending at scale.',
   },

@@ -32,7 +32,7 @@ import { siteConfig } from '../config';
         A complete verification process also includes <strong>syntax checking</strong> (is the email formatted correctly?), <strong>MX record lookup</strong> (does the domain have mail servers?), <strong>catch-all detection</strong> (does the server accept all addresses, making verification unreliable?), and <strong>disposable email detection</strong> (is it a temporary address from Mailinator or Guerrilla Mail?). Running all five checks brings your bounce rate below 2%, compared to 8–15% for unverified lists.
       </p>
       <p>
-        Platforms like <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> include built-in email verification that automatically validates every address before sending, keeping your bounce rates low and your sender reputation protected across all your outbound campaigns.
+        Platforms like <a href={siteConfig.product.ctaUrl} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> include built-in email verification that automatically validates every address before sending, keeping your bounce rates low and your sender reputation protected across all your outbound campaigns.
       </p>
     </div>
 
@@ -45,7 +45,7 @@ import { siteConfig } from '../config';
         Read the Full Verification Guide &rarr;
       </a>
       <a
-        href={siteConfig.product.url}
+        href={siteConfig.product.ctaUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors"

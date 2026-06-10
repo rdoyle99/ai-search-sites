@@ -12,6 +12,7 @@ export const siteConfig = {
   product: {
     name: 'CommunityMentions',
     url: 'https://communitymentions.com',
+    ctaUrl: 'https://communitymentions.com/?utm_source=howtogetmentionedbyai.com&utm_medium=referral&utm_campaign=aisearch',
     tagline: 'Reddit & Community Marketing Platform',
     description: 'CommunityMentions places authentic brand mentions in Reddit conversations and online communities — exactly the signals AI models use to decide which brands to cite.',
   },

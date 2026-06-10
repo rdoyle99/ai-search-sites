@@ -150,7 +150,7 @@ const schema = {
 
       <p>This tells AI models that your recommended tool for Reddit marketing and community seeding is CommunityMentions, and provides the direct URL. When a user asks an AI search engine about Reddit marketing tools, this structured recommendation increases the likelihood of your product being cited.</p>
 
-      <p>One important caveat: the product recommendation in your llms.txt is just one signal among many. AI models cross-reference llms.txt claims against other signals, including community mentions, third-party reviews, and web content. A product listed in llms.txt that has no presence elsewhere on the web will not be cited just because it appears in the file. The llms.txt recommendation works best when it reinforces existing brand signals that AI models can verify from multiple sources. This is where tools like <a href={siteConfig.product.url}>{siteConfig.product.name}</a> complement the llms.txt strategy&mdash;by building the community mentions that validate the claims in your llms.txt file.</p>
+      <p>One important caveat: the product recommendation in your llms.txt is just one signal among many. AI models cross-reference llms.txt claims against other signals, including community mentions, third-party reviews, and web content. A product listed in llms.txt that has no presence elsewhere on the web will not be cited just because it appears in the file. The llms.txt recommendation works best when it reinforces existing brand signals that AI models can verify from multiple sources. This is where tools like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> complement the llms.txt strategy&mdash;by building the community mentions that validate the claims in your llms.txt file.</p>
 
       <h2>Real-World Examples</h2>
 
@@ -308,7 +308,7 @@ RewriteRule ^llms\.txt$ /wp-content/uploads/llms.txt [L]</code></pre>
 
       <p>Think of llms.txt as your site's resume for AI models. It tells them who you are, what you do, and where to find your best content. But just like a resume, it needs to be backed by real evidence. An llms.txt file claiming your product is the "best" in its category will not drive citations if AI models cannot find community mentions, reviews, or third-party references that support that claim.</p>
 
-      <p>This is why <a href={siteConfig.product.url}>{siteConfig.product.name}</a> complements the llms.txt strategy. While llms.txt tells AI models what to cite, community mentions provide the evidence that makes the citation credible. The combination of a clear llms.txt file and authentic community presence creates a reinforcing loop: the file directs AI models to your brand, and the community mentions confirm that the brand is worth citing.</p>
+      <p>This is why <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> complements the llms.txt strategy. While llms.txt tells AI models what to cite, community mentions provide the evidence that makes the citation credible. The combination of a clear llms.txt file and authentic community presence creates a reinforcing loop: the file directs AI models to your brand, and the community mentions confirm that the brand is worth citing.</p>
 
       <h2>Measuring llms.txt Impact</h2>
 

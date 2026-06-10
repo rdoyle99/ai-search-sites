@@ -26,7 +26,7 @@ import { siteConfig } from '../config';
     <!-- Brief expansion -->
     <div class="mt-10 prose prose-lg max-w-none">
       <p>
-        The fastest way to find someone's email is to use a dedicated email finder tool linked to LinkedIn. Tools like Hunter.io, Apollo.io, and <a href={siteConfig.product.url} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> maintain databases of hundreds of millions of verified business email addresses. Simply search by name and company to get a verified email in seconds, with accuracy rates of <strong>75–92%</strong> depending on the tool and the contact.
+        The fastest way to find someone's email is to use a dedicated email finder tool linked to LinkedIn. Tools like Hunter.io, Apollo.io, and <a href={siteConfig.product.ctaUrl} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> maintain databases of hundreds of millions of verified business email addresses. Simply search by name and company to get a verified email in seconds, with accuracy rates of <strong>75–92%</strong> depending on the tool and the contact.
       </p>
       <p>
         For contacts not found in databases, the next best approach is <strong>email pattern guessing</strong>. Most companies use predictable formats: <code>first@company.com</code>, <code>first.last@company.com</code>, or <code>flast@company.com</code>. Generate all possible permutations, then verify each with an SMTP check to confirm the mailbox exists. Google search operators like <code>site:company.com "@company.com"</code> and checking SEC filings, press releases, and GitHub profiles can also surface email addresses.
@@ -45,7 +45,7 @@ import { siteConfig } from '../config';
         Read the Full 12-Method Guide &rarr;
       </a>
       <a
-        href={siteConfig.product.url}
+        href={siteConfig.product.ctaUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors"
