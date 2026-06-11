@@ -29,6 +29,25 @@ export const siteConfig = {
   },
 
   // Analytics
+  faq: [
+    {
+      question: 'How do you get mentioned by AI?',
+      answer: 'Get mentioned by AI search engines by indexing on Bing via IndexNow, creating llms.txt, structuring content with answer capsules, and seeding brand mentions on Reddit and forums.',
+    },
+    {
+      question: 'How do you check if AI mentions your brand?',
+      answer: "Build a fixed set of 10–20 buyer questions, run them across ChatGPT, Perplexity, and Google's AI results monthly, and log presence, position, sentiment, and cited sources. A frozen prompt set turns anecdotes into a trend line.",
+    },
+    {
+      question: 'Does schema markup help AI search?',
+      answer: 'Indirectly but meaningfully: it disambiguates what your page claims, strengthens the search features AI engines retrieve from, and forces answer-first content structure. A multiplier on clear content, not a substitute for it.',
+    },
+    {
+      question: 'Which AI engine is easiest to get cited in?',
+      answer: "Perplexity first — live retrieval with visible citations rewards the clearest indexed answer within days. Google's AI results inherit your search equity; ChatGPT is slowest to enter via training data but stickiest once you're in.",
+    },
+  ],
+
   relatedSites: [
     { title: 'Do Reddit Mentions Help SEO?', url: 'https://doredditmentionshelpseo.com/' },
     { title: 'Is Web Scraping Legal?', url: 'https://iswebscrapinglegal.com/' },

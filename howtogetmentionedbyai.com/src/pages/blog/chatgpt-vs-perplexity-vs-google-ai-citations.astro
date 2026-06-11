@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ChatGPT vs Perplexity vs Google AI: Where Can You Get Cited First?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="ChatGPT vs Perplexity vs Google AI: Where Can You Get Cited First?"
+  description="Perplexity is the fastest engine to crack (live retrieval, visible citations), Google AI rewards existing search equity, and ChatGPT is the slowest but stickiest. The source mix of each engine and the order to attack them."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">ChatGPT vs Perplexity vs Google AI: Where Can You Get Cited First?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Attack them in order of feedback speed: Perplexity first (live web retrieval with visible citations — new content can be cited within days of indexing), Google's AI results second (they inherit your existing search equity), ChatGPT last (training-data weight makes it slowest to enter and stickiest once you're in). Same inputs everywhere — crawlable answer-first content plus community mentions — but the engines reward them on different clocks.</strong></p>
+
+      <h2>Perplexity: the fast feedback loop</h2>
+
+      <p>Perplexity answers by retrieving live pages and citing them inline, which makes it the most meritocratic surface: you don't need years of authority, you need to be the clearest indexed answer to the specific question. Answer-capsule pages, honest freshness dates, and Bing/IndexNow indexing (Perplexity's retrieval reaches beyond Google) get measured here first. For a new or small brand, Perplexity citations are the leading indicator that your content structure works.</p>
+
+      <h2>Google AI results: search equity, inherited</h2>
+
+      <p>Google's AI features are built on Google's index and ranking systems — pages and SERP features that already perform tend to flow into the AI layer. Two practical consequences: traditional SEO work (including <a href="/blog/does-schema-markup-help-ai-search/">schema markup</a>) is also AI-citation work here, and Reddit punches far above its weight because Google both ranks threads aggressively and licenses Reddit data for AI training — the thread-level dynamics are covered at our sibling site <a href="https://doredditmentionshelpseo.com/">doredditmentionshelpseo.com</a>.</p>
+
+      <h2>ChatGPT: slowest in, stickiest once in</h2>
+
+      <p>ChatGPT's brand knowledge blends model training (where our <a href="/blog/how-chatgpt-cites-brands/">analysis of 26,000+ citations</a> shows community discussion and comparison content dominating), licensed sources including Reddit, and live search for current questions. You can't ship your way into training data this quarter — you accumulate your way in: sustained mentions across forums, comparison posts, and reviews that survive into future training runs. The flip side is durability; brands established in model knowledge get mentioned even when the engine doesn't search.</p>
+
+      <h2>The unified playbook, sequenced</h2>
+
+      <ul>
+        <li><strong>Weeks 1–4:</strong> answer-first pages for your core questions, <a href="/blog/llms-txt-guide/">llms.txt</a>, schema, IndexNow/Bing submission → aimed at Perplexity.</li>
+        <li><strong>Months 1–3:</strong> consolidate Google rankings on those pages; build the Reddit/community presence that feeds both Google's AI layer and everyone's training data.</li>
+        <li><strong>Months 3–12:</strong> the mention graph compounds into ChatGPT's knowledge; keep the <a href="/blog/how-to-check-if-ai-mentions-your-brand/">monthly tracking loop</a> running to watch each engine flip.</li>
+      </ul>
+
+      <p>The common thread across all three clocks is third-party mentions — the input you can't write yourself. That's the half <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> works on: building the community mention footprint that every engine, on every timeline, keeps rewarding.</p>
+
+    </div>
+  </article>
+</Base>

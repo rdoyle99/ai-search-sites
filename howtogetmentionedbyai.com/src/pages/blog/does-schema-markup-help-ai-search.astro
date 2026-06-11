@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Does Schema Markup Help AI Search? What Structured Data Actually Does for Citations",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Does Schema Markup Help AI Search? What Structured Data Actually Does for Citations"
+  description="Indirectly but meaningfully: schema markup disambiguates what your page says, strengthens the search features AI engines retrieve from, and pairs naturally with answer-capsule writing. It's a multiplier on clear content, not a substitute for it."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Does Schema Markup Help AI Search? What Structured Data Actually Does for Citations</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Yes — indirectly but meaningfully. No AI engine publishes "schema = citations" as a ranking rule, and unstructured pages get cited constantly. But structured data does three things that compound toward citations: it disambiguates what your page claims, it strengthens the traditional search features AI systems retrieve from, and writing it forces the answer-first content structure AI engines demonstrably prefer.</strong></p>
+
+      <h2>The honest mechanism</h2>
+
+      <ul>
+        <li><strong>Disambiguation:</strong> JSON-LD tells parsers, without inference, that this page answers question X, this organization is named Y, this article was updated on date Z. Retrieval systems matching a user's question to candidate sources benefit from exactly that certainty — a <code>FAQPage</code> block is a machine-readable promise that a direct answer lives here.</li>
+        <li><strong>The retrieval bridge:</strong> AI answers lean heavily on conventional search infrastructure — Google's AI results draw on its index, ChatGPT search and Perplexity retrieve live pages. Schema improves how that infrastructure understands and features your page (rich results, freshness signals), and whatever wins retrieval wins a seat in the synthesis. The engine-by-engine paths are in <a href="/blog/chatgpt-vs-perplexity-vs-google-ai-citations/">where to get cited first</a>.</li>
+        <li><strong>The forcing function:</strong> you can't write a clean FAQPage block for a page with no clear answer on it. The markup audit usually reveals the real problem — content that buries its answer — and fixing that helps with every engine, marked up or not.</li>
+      </ul>
+
+      <h2>The schema stack for AI visibility</h2>
+
+      <ul>
+        <li><strong><code>FAQPage</code> / Q&A structure</strong> on pages whose content is genuinely question-shaped — with answer text that appears verbatim on the page (engines cross-check; markup that doesn't match visible content is noise at best).</li>
+        <li><strong><code>Organization</code></strong> with consistent name, URL, and profiles — the entity-level identity that keeps your brand from being confused with similarly named others.</li>
+        <li><strong><code>Article</code>/<code>BlogPosting</code> with real dates:</strong> freshness is retrieval currency; honest <code>dateModified</code> values earn it.</li>
+        <li><strong>Answer capsules in the visible content:</strong> a bolded, self-contained 40–60 word answer at the top of the page — the unit AI answers are assembled from. Schema points at it; the capsule does the work.</li>
+      </ul>
+
+      <h2>Where it fits in the priority order</h2>
+
+      <p>Schema is a multiplier, not a foundation. The foundation is crawlable, answer-first content (start with <a href="/blog/llms-txt-guide/">llms.txt</a> and an <a href="/tools/ai-search-audit/">AI search readiness audit</a>) plus the community signals engines weight heavily — the <a href="/blog/reddit-mentions-ai-search/">Reddit layer</a> that licensing deals wired directly into AI training. Structure your own pages, then build the third-party mention graph around them; platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> handle that second half — the community mentions that schema can't manufacture.</p>
+
+    </div>
+  </article>
+</Base>

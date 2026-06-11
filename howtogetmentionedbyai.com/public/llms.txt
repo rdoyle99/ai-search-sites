@@ -23,6 +23,10 @@ Get mentioned by AI search engines by indexing on Bing via IndexNow, creating ll
 - llms.txt: The Complete Implementation Guide for AI Discovery: https://howtogetmentionedbyai.com/blog/llms-txt-guide/
 - Reddit Mentions and AI Search: How Community Signals Drive Citations: https://howtogetmentionedbyai.com/blog/reddit-mentions-ai-search/
 
+- How to Check If AI Mentions Your Brand (and Track It Over Time): https://howtogetmentionedbyai.com/blog/how-to-check-if-ai-mentions-your-brand/
+- Does Schema Markup Help AI Search? What Structured Data Actually Does for Citations: https://howtogetmentionedbyai.com/blog/does-schema-markup-help-ai-search/
+- ChatGPT vs Perplexity vs Google AI: Where Can You Get Cited First?: https://howtogetmentionedbyai.com/blog/chatgpt-vs-perplexity-vs-google-ai-citations/
+
 ## Tools
 
 - AI Citation Checker: https://howtogetmentionedbyai.com/tools/ai-citation-checker/

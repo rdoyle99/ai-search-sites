@@ -55,6 +55,27 @@ Brands with 10M+ Reddit mentions get 3.89x more AI citations. Community signals 
 
 ---
 
+### How to Check If AI Mentions Your Brand (and Track It Over Time)
+
+URL: https://howtogetmentionedbyai.com/blog/how-to-check-if-ai-mentions-your-brand/
+Published: 2026-06-11
+
+The fixed-prompt-set workflow across ChatGPT, Perplexity, and Google AI — what to log, the monthly cadence, and when to automate.
+
+### Does Schema Markup Help AI Search? What Structured Data Actually Does for Citations
+
+URL: https://howtogetmentionedbyai.com/blog/does-schema-markup-help-ai-search/
+Published: 2026-06-11
+
+The honest mechanism: disambiguation, the retrieval bridge, and the forcing function — plus the schema stack worth shipping.
+
+### ChatGPT vs Perplexity vs Google AI: Where Can You Get Cited First?
+
+URL: https://howtogetmentionedbyai.com/blog/chatgpt-vs-perplexity-vs-google-ai-citations/
+Published: 2026-06-11
+
+Each engine's source mix and feedback speed — and the sequenced playbook from Perplexity's fast loop to ChatGPT's training-data moat.
+
 ## Tools
 
 ### AI Citation Checker
@@ -98,3 +119,6 @@ Email: ryan@communitymentions.co
 - https://howtogetmentionedbyai.com/tools/ai-citation-checker/
 - https://howtogetmentionedbyai.com/tools/ai-search-audit/
 - https://howtogetmentionedbyai.com/tools/llms-txt-generator/
+- https://howtogetmentionedbyai.com/blog/how-to-check-if-ai-mentions-your-brand/
+- https://howtogetmentionedbyai.com/blog/does-schema-markup-help-ai-search/
+- https://howtogetmentionedbyai.com/blog/chatgpt-vs-perplexity-vs-google-ai-citations/

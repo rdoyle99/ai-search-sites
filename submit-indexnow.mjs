@@ -59,7 +59,7 @@ const sites = [
   {
     domain: 'howtogetmentionedbyai.com',
     key: 'c9d5e2f8a1b3',
-    blogs: ['how-chatgpt-cites-brands', 'llms-txt-guide', 'reddit-mentions-ai-search'],
+    blogs: ['how-chatgpt-cites-brands', 'llms-txt-guide', 'reddit-mentions-ai-search', 'how-to-check-if-ai-mentions-your-brand', 'does-schema-markup-help-ai-search', 'chatgpt-vs-perplexity-vs-google-ai-citations'],
     tools: ['ai-citation-checker', 'ai-search-audit', 'llms-txt-generator'],
   },
   {

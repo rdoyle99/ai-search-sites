@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Check If AI Mentions Your Brand (and Track It Over Time)",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How to Check If AI Mentions Your Brand (and Track It Over Time)"
+  description="Ask the engines your buyers' questions and log what comes back: a fixed prompt set across ChatGPT, Perplexity, and Google AI, run on a monthly cadence. The manual workflow, what to record, and when to automate it."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How to Check If AI Mentions Your Brand (and Track It Over Time)</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>There's no Search Console for AI answers — you check by asking. Build a fixed set of the questions your buyers actually ask, run them across ChatGPT, Perplexity, and Google's AI results on a regular cadence, and log whether your brand appears, in what position, and with what sentiment. Consistency of the prompt set is what turns anecdotes into a trend line.</strong></p>
+
+      <h2>Build the prompt set first</h2>
+
+      <p>Ten to twenty prompts, written the way real buyers phrase them, frozen so month-over-month results compare cleanly:</p>
+
+      <ul>
+        <li><strong>Category prompts:</strong> "best [your category] tools," "how do I solve [the problem you solve]" — the queries where being mentioned wins new demand.</li>
+        <li><strong>Comparison prompts:</strong> "[you] vs [competitor]," "alternatives to [category leader]" — where sentiment matters as much as presence.</li>
+        <li><strong>Brand prompts:</strong> "what is [your brand]," "is [your brand] legit" — where you check that AI describes you accurately.</li>
+      </ul>
+
+      <p>Our <a href="/tools/ai-citation-checker/">AI citation checker</a> generates a starter prompt set from your brand and target queries.</p>
+
+      <h2>Run it across engines — they disagree</h2>
+
+      <p>Each engine draws on different sources (the full breakdown is in <a href="/blog/chatgpt-vs-perplexity-vs-google-ai-citations/">where to get cited first</a>): Perplexity leans on live web retrieval with visible citations, ChatGPT blends training data with search and licensed sources, Google's AI results draw on its index and SERP features. A brand can be prominent in one and invisible in another — which is diagnostic information, not noise: it tells you whether your gap is crawlability, community presence, or content structure.</p>
+
+      <h2>What to log</h2>
+
+      <ul>
+        <li><strong>Mentioned / not mentioned</strong> per prompt per engine — the core binary.</li>
+        <li><strong>Position and framing:</strong> first recommendation or afterthought? Recommended or merely listed?</li>
+        <li><strong>Sentiment and accuracy:</strong> AI repeating outdated pricing or a wrong positioning sentence is a fixable content problem — usually traceable to what your own site and <a href="/blog/llms-txt-guide/">llms.txt</a> say.</li>
+        <li><strong>Cited sources:</strong> when engines show citations, record <em>which</em> pages earned them — those sources (often Reddit threads and comparison posts, per our <a href="/blog/how-chatgpt-cites-brands/">26,000-citation analysis</a>) are the surface area to grow.</li>
+      </ul>
+
+      <h2>Cadence and automation</h2>
+
+      <p>Monthly is the right manual cadence — AI answers shift with model updates and index refreshes, but not daily. The workflow above costs an hour a month at 15 prompts × 3 engines; past that scale, or past one brand, automation wins. This is exactly the visibility loop <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> runs as a service — tracking where you appear, where competitors do, and which community mentions move the numbers — so the trend line builds itself while you work on the inputs.</p>
+
+    </div>
+  </article>
+</Base>
