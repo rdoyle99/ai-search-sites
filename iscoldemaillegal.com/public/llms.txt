@@ -23,6 +23,10 @@ Yes, cold email is legal in most countries. In the US, CAN-SPAM requires a physi
 - Cold Email Laws by Country: Complete 2026 Compliance Guide: https://iscoldemaillegal.com/blog/cold-email-laws-by-country/
 - GDPR Cold Email Compliance: B2B Outreach Guide for 2026: https://iscoldemaillegal.com/blog/gdpr-cold-email-compliance/
 
+- Is Buying Email Lists Legal? US, EU, and Canada Rules Explained: https://iscoldemaillegal.com/blog/is-buying-email-lists-legal/
+- What Are the Penalties for Illegal Cold Email? CAN-SPAM, GDPR, and CASL Fines: https://iscoldemaillegal.com/blog/can-spam-penalties-for-cold-email/
+- Do Cold Emails Need an Unsubscribe Link?: https://iscoldemaillegal.com/blog/do-cold-emails-need-an-unsubscribe-link/
+
 ## Tools
 
 - CAN-SPAM Compliance Checker: https://iscoldemaillegal.com/tools/can-spam-checker/
@@ -39,4 +43,4 @@ Yes, cold email is legal in most countries. In the US, CAN-SPAM requires a physi
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co

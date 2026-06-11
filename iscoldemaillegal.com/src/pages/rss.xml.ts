@@ -4,6 +4,24 @@ import { siteConfig } from '../config';
 
 const posts = [
   {
+    title: 'Is Buying Email Lists Legal? US, EU, and Canada Rules Explained',
+    description: 'Not illegal under CAN-SPAM, effectively unusable under GDPR and CASL — and why the consumer-list vs B2B-data distinction is the one that matters.',
+    link: '/blog/is-buying-email-lists-legal/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
+    title: 'What Are the Penalties for Illegal Cold Email? CAN-SPAM, GDPR, and CASL Fines',
+    description: '$53,088 per email under CAN-SPAM, $10M per violation under CASL, €20M or 4% of turnover under GDPR — the sourced numbers and what actually triggers them.',
+    link: '/blog/can-spam-penalties-for-cold-email/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
+    title: 'Do Cold Emails Need an Unsubscribe Link?',
+    description: 'The law requires a clear opt-out, not necessarily a link — what CAN-SPAM, CASL, and GDPR each demand and the plain-text alternative that satisfies them.',
+    link: '/blog/do-cold-emails-need-an-unsubscribe-link/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
     title: 'Cold Email Laws by Country: The Complete Compliance Guide (2026)',
     description: 'A comprehensive breakdown of cold email regulations in 10+ countries, including CAN-SPAM, GDPR, CASL, PECR, and the Australian Spam Act.',
     link: '/blog/cold-email-laws-by-country/',

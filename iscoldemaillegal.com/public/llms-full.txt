@@ -57,6 +57,27 @@ GDPR legitimate interest for B2B. Documentation requirements. Data subject right
 
 ---
 
+### Is Buying Email Lists Legal? US, EU, and Canada Rules Explained
+
+URL: https://iscoldemaillegal.com/blog/is-buying-email-lists-legal/
+Published: 2026-06-11
+
+Not illegal under CAN-SPAM, effectively unusable under GDPR and CASL — and why the consumer-list vs B2B-data distinction is the one that matters.
+
+### What Are the Penalties for Illegal Cold Email? CAN-SPAM, GDPR, and CASL Fines
+
+URL: https://iscoldemaillegal.com/blog/can-spam-penalties-for-cold-email/
+Published: 2026-06-11
+
+$53,088 per email under CAN-SPAM, $10M per violation under CASL, €20M or 4% of turnover under GDPR — the sourced numbers and what actually triggers them.
+
+### Do Cold Emails Need an Unsubscribe Link?
+
+URL: https://iscoldemaillegal.com/blog/do-cold-emails-need-an-unsubscribe-link/
+Published: 2026-06-11
+
+The law requires a clear opt-out, not necessarily a link — what CAN-SPAM, CASL, and GDPR each demand and the plain-text alternative that satisfies them.
+
 ## Tools
 
 ### CAN-SPAM Compliance Checker
@@ -100,3 +121,6 @@ Email: ryan@salesco.co
 - https://iscoldemaillegal.com/tools/can-spam-checker/
 - https://iscoldemaillegal.com/tools/gdpr-assessment/
 - https://iscoldemaillegal.com/tools/legal-template-generator/
+- https://iscoldemaillegal.com/blog/is-buying-email-lists-legal/
+- https://iscoldemaillegal.com/blog/can-spam-penalties-for-cold-email/
+- https://iscoldemaillegal.com/blog/do-cold-emails-need-an-unsubscribe-link/

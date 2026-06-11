@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Is Buying Email Lists Legal? US, EU, and Canada Rules Explained",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Is Buying Email Lists Legal? US, EU, and Canada Rules Explained"
+  description="Buying email lists is not illegal under US CAN-SPAM, but purchased consumer lists are effectively unusable under GDPR and CASL because consent doesn't transfer. The B2B distinction matters."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Is Buying Email Lists Legal? US, EU, and Canada Rules Explained</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Buying an email list is not illegal in the United States — CAN-SPAM is an opt-out regime that doesn't require prior consent. But in the EU and Canada, purchased consumer lists are effectively unusable: GDPR consent and CASL consent attach to the company that collected them and don't transfer with a sale. The meaningful legal line is between consumer lists and properly sourced B2B contact data.</strong></p>
+
+      <p>This question gets two confident wrong answers. "It's totally fine" ignores GDPR and CASL. "It's always illegal" isn't true anywhere — no major regime bans the purchase itself. What the law regulates is the <em>sending</em>, and the rules differ sharply by jurisdiction and audience.</p>
+
+      <h2>United States: legal, regulated at the send</h2>
+
+      <p>The <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">CAN-SPAM Act</a> doesn't require consent before emailing someone commercially. It requires honest headers and subject lines, a physical address, a working opt-out honored promptly, and no emailing of addresses you obtained through prohibited harvesting methods. Emailing a purchased list can be fully CAN-SPAM compliant — the penalties (up to $53,088 per email; see our <a href="/blog/can-spam-penalties-for-cold-email/">penalties breakdown</a>) attach to deceptive practices and ignored opt-outs, not to how you sourced the address.</p>
+
+      <p>The real US risk with bought lists is operational: stale addresses, spam traps, and recipients who never engaged tank your deliverability — which is a business problem before it's a legal one.</p>
+
+      <h2>European Union: consent doesn't transfer</h2>
+
+      <p>Under GDPR, an email address tied to an identifiable person is personal data, and you need a lawful basis to process it. Purchased consumer lists almost never qualify: the consent the list broker collected (if any) named <em>them</em>, not you — <a href="https://marketingfuel.co.uk/can-you-legally-buy-email-lists/" target="_blank" rel="noopener noreferrer">UK and EU guidance is consistent</a> that consent must be specific to the sender. For <strong>B2B outreach</strong>, many EU member states allow a legitimate-interest basis for relevant, professional communication with corporate contacts — but you still owe transparency, relevance, and easy objection. Our <a href="/blog/gdpr-cold-email-compliance/">GDPR cold email guide</a> covers the framework in detail.</p>
+
+      <h2>Canada: the strictest regime</h2>
+
+      <p>CASL requires express or implied consent before sending a commercial electronic message, and <a href="https://crtc.gc.ca/eng/com500/faq500.htm" target="_blank" rel="noopener noreferrer">penalties reach $1 million per violation for individuals and $10 million for corporations</a>. Implied consent exists in defined B2B circumstances (a published business address with no no-solicitation notice, an existing business relationship), but a purchased consumer list satisfies none of them. Canada is where bought lists go to become liabilities.</p>
+
+      <h2>The distinction that actually matters: consumer lists vs. B2B data</h2>
+
+      <ul>
+        <li><strong>Consumer email lists</strong> (B2C, personal addresses): compliant use is nearly impossible outside the US, and reputationally costly inside it.</li>
+        <li><strong>B2B contact data</strong> (business roles, corporate addresses, documented sourcing): lawful under CAN-SPAM, defensible under GDPR legitimate interest when outreach is relevant and respectful, and capable of qualifying for CASL's implied consent categories.</li>
+        <li><strong>Provenance is the whole game:</strong> you should be able to answer where every address came from. "A broker sold it to us" is not an answer regulators accept.</li>
+      </ul>
+
+      <p>That's the standard to hold any data provider to. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> exist on the right side of this line: verified B2B contact data with documented, compliant sourcing — not anonymous consumer lists — paired with sending infrastructure that keeps the CAN-SPAM mechanics (opt-out, identification, headers) handled by default.</p>
+
+    </div>
+  </article>
+</Base>

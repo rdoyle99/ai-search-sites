@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Do Cold Emails Need an Unsubscribe Link?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Do Cold Emails Need an Unsubscribe Link?"
+  description="Cold emails must offer a clear way to opt out — CAN-SPAM requires it, CASL requires it, and GDPR's right to object effectively requires it. But it doesn't have to be a link: a plain-text reply opt-out satisfies the law."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Do Cold Emails Need an Unsubscribe Link?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Cold emails must give the recipient a clear, working way to opt out — but it does not have to be a hyperlink. CAN-SPAM requires a "clear and conspicuous" opt-out mechanism honored within 10 business days; a plain-text "reply 'no thanks' and I won't email again" line satisfies it. CASL and GDPR impose equivalent obligations for Canadian and EU recipients.</strong></p>
+
+      <p>The confusion comes from conflating the legal requirement (an opt-out mechanism) with the familiar implementation (the gray footer link). For one-to-one B2B cold email, the footer link isn't legally required — and many senders deliberately avoid it.</p>
+
+      <h2>What CAN-SPAM actually requires</h2>
+
+      <p>The <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">FTC's compliance guide</a> requires commercial email to include a clear and conspicuous explanation of how to opt out of future email, to process opt-outs for at least 30 days after sending, and to honor them within 10 business days. You can't charge a fee, require login, or demand anything beyond an email reply or a single page visit. The statute is mechanism-neutral: a reply-based opt-out in plain text meets the standard, which is why most professional cold email uses a closing line like "Not relevant? Reply 'pass' and you won't hear from me again."</p>
+
+      <p>What's <em>not</em> optional: once someone opts out, every future send to them is a separate violation — at up to $53,088 each under the <a href="/blog/can-spam-penalties-for-cold-email/">2025 penalty schedule</a>. Suppression failures, not missing links, are where senders actually get burned.</p>
+
+      <h2>Canada and the EU raise the bar</h2>
+
+      <p>For Canadian recipients, <a href="https://crtc.gc.ca/eng/com500/faq500.htm" target="_blank" rel="noopener noreferrer">CASL requires</a> every commercial electronic message to include an unsubscribe mechanism that works for at least 60 days and must be honored within 10 days — on top of CASL's consent requirement for the send itself. For EU recipients, GDPR's Article 21 right to object means a B2B cold email sent under legitimate interest must make objecting easy, and an objection is permanent. Our <a href="/blog/gdpr-cold-email-compliance/">GDPR guide</a> and <a href="/blog/cold-email-laws-by-country/">country-by-country breakdown</a> cover both regimes.</p>
+
+      <h2>Link vs. plain-text reply: the practical tradeoff</h2>
+
+      <ul>
+        <li><strong>Plain-text opt-out line:</strong> legally sufficient under CAN-SPAM, reads human, and avoids the list-unsubscribe formatting that can make a one-to-one email look like bulk marketing. The cost: opt-outs arrive as replies you must capture reliably.</li>
+        <li><strong>Unsubscribe link:</strong> automates suppression and is effectively mandatory for anything resembling bulk sending — and mailbox providers' bulk-sender rules (Gmail and Yahoo since 2024) require one-click unsubscribe headers at volume.</li>
+        <li><strong>Either way, suppression is the legal core:</strong> the mechanism only matters if every opt-out lands in a suppression list that covers all your sending domains and mailboxes, permanently.</li>
+      </ul>
+
+      <p>That last point is an infrastructure problem more than a legal one. Sending platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> handle it structurally — opt-out capture and cross-domain suppression built into the sending layer — so the 10-business-day clock never becomes your problem.</p>
+
+    </div>
+  </article>
+</Base>

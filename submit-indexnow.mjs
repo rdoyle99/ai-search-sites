@@ -71,7 +71,7 @@ const sites = [
   {
     domain: 'iscoldemaillegal.com',
     key: 'b8c4d1e7f3a2',
-    blogs: ['can-spam-act-explained', 'cold-email-laws-by-country', 'gdpr-cold-email-compliance'],
+    blogs: ['can-spam-act-explained', 'cold-email-laws-by-country', 'gdpr-cold-email-compliance', 'is-buying-email-lists-legal', 'can-spam-penalties-for-cold-email', 'do-cold-emails-need-an-unsubscribe-link'],
     tools: ['can-spam-checker', 'gdpr-assessment', 'legal-template-generator'],
   },
 ];

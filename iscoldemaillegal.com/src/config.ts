@@ -29,6 +29,25 @@ export const siteConfig = {
   },
 
   // Analytics
+  faq: [
+    {
+      question: 'Is cold email legal?',
+      answer: 'Yes, cold email is legal in most countries. In the US, CAN-SPAM requires a physical address, opt-out mechanism, and honest subject lines. EU GDPR requires legitimate interest or consent.',
+    },
+    {
+      question: 'Is buying email lists legal?',
+      answer: "In the US, buying lists is not illegal under CAN-SPAM's opt-out regime — but purchased consumer lists are effectively unusable under GDPR and CASL because consent does not transfer with a sale. Properly sourced B2B contact data is the defensible route.",
+    },
+    {
+      question: 'What are the penalties for illegal cold email?',
+      answer: "Up to $53,088 per non-compliant email under CAN-SPAM (2025 FTC adjustment), up to $1M per violation for individuals and $10M for corporations under Canada's CASL, and up to €20M or 4% of global turnover under GDPR.",
+    },
+    {
+      question: 'Do cold emails need an unsubscribe link?',
+      answer: 'They need a clear, working opt-out — but not necessarily a link. A plain-text reply opt-out satisfies CAN-SPAM if honored within 10 business days; CASL requires an unsubscribe mechanism and GDPR gives recipients a right to object.',
+    },
+  ],
+
   relatedSites: [
     { title: 'Is Web Scraping Legal?', url: 'https://iswebscrapinglegal.com/' },
     { title: 'How Many Cold Emails Should I Send Per Day?', url: 'https://howmanycoldemailsperday.com/' },

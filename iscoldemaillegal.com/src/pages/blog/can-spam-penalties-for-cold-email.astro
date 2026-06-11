@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What Are the Penalties for Illegal Cold Email? CAN-SPAM, GDPR, and CASL Fines",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="What Are the Penalties for Illegal Cold Email? CAN-SPAM, GDPR, and CASL Fines"
+  description="CAN-SPAM violations cost up to $53,088 per email (2025 FTC adjustment). CASL reaches $10M per violation for businesses. GDPR tops out at €20M or 4% of global turnover. The numbers, sourced."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">What Are the Penalties for Illegal Cold Email? CAN-SPAM, GDPR, and CASL Fines</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Under CAN-SPAM, each non-compliant email is subject to penalties of up to $53,088 — per email, not per campaign. Canada's CASL reaches $1 million per violation for individuals and $10 million for corporations. GDPR authorizes fines up to €20 million or 4% of global annual turnover. The penalty structures differ, but all three price a sloppy campaign far above the cost of doing it right.</strong></p>
+
+      <h2>United States: per-email math</h2>
+
+      <p>The FTC's <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener noreferrer">CAN-SPAM compliance guide</a> states it plainly: "Each separate email in violation of the law is subject to penalties of up to $53,088, and more than one person may be held responsible." That figure is the <a href="https://www.federalregister.gov/documents/2025/01/17/2025-01361/adjustments-to-civil-penalty-amounts" target="_blank" rel="noopener noreferrer">January 2025 inflation adjustment</a> (up from $51,744), and it adjusts annually. The per-email structure is what makes it dangerous: a 1,000-send campaign with a missing opt-out is, on paper, a $53 million exposure.</p>
+
+      <p>In practice, FTC enforcement targets egregious actors — deceptive headers, false subject lines, ignored opt-outs at scale — not B2B senders with honest mechanics and a working unsubscribe. But "we weren't the worst offender" is risk management, not compliance. What triggers violations: misleading From/subject lines, no physical address, missing or non-functional opt-out, ignoring opt-outs past 10 business days, and harvested addresses. Full breakdown in our <a href="/blog/can-spam-act-explained/">CAN-SPAM guide</a>.</p>
+
+      <h2>Canada: the biggest single numbers</h2>
+
+      <p>Canada's CRTC <a href="https://crtc.gc.ca/eng/com500/faq500.htm" target="_blank" rel="noopener noreferrer">states CASL penalties</a> as up to $1 million per violation for individuals and $10 million per violation for corporations. CASL is a consent-first regime — sending without express or implied consent is itself the violation, no deception required. The CRTC has issued multi-hundred-thousand-dollar penalties against ordinary businesses, not just spammers, which is why Canadian sends deserve their own consent audit. See where CASL fits among <a href="/blog/cold-email-laws-by-country/">cold email laws by country</a>.</p>
+
+      <h2>European Union: turnover-scaled fines</h2>
+
+      <p>GDPR's upper tier authorizes fines up to €20 million or 4% of global annual turnover, whichever is higher. Email-marketing enforcement typically lands far below the ceiling, but data protection authorities have fined companies for emailing without a lawful basis, for unprovable consent, and for ignoring objection requests. For B2B cold email, the practical exposure is less the headline fine than the enforcement process itself — a DPA inquiry into your data sourcing is expensive even when it ends without penalty. Compliance framework in our <a href="/blog/gdpr-cold-email-compliance/">GDPR guide</a>.</p>
+
+      <h2>What actually keeps senders safe</h2>
+
+      <ul>
+        <li><strong>Mechanics:</strong> truthful headers and subjects, physical address, one-click or reply opt-out, honored fast — this alone removes most CAN-SPAM exposure.</li>
+        <li><strong>Consent mapping:</strong> know which regime governs each recipient (US opt-out, EU legitimate interest, Canada consent) before the send, not after the complaint.</li>
+        <li><strong>Data provenance:</strong> documented, compliant sourcing — the theme of our <a href="/blog/is-buying-email-lists-legal/">buying-lists analysis</a> — is your first answer to any regulator.</li>
+        <li><strong>Suppression hygiene:</strong> opt-outs and objections must propagate across every mailbox and domain you send from.</li>
+      </ul>
+
+      <p>This is also the strongest argument for running cold email on real infrastructure instead of duct tape. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> build the compliance mechanics — identification, opt-out handling, suppression across domains — into the sending layer, so the per-email penalty math stays theoretical.</p>
+
+    </div>
+  </article>
+</Base>
