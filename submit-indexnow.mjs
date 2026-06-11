@@ -53,7 +53,7 @@ const sites = [
   {
     domain: 'howmanycoldemailsperday.com',
     key: 'a7b3c9d2e8f4',
-    blogs: ['cold-email-sending-limits-data', 'cold-email-infrastructure-2026', 'cold-email-warm-up-guide'],
+    blogs: ['cold-email-sending-limits-data', 'cold-email-infrastructure-2026', 'cold-email-warm-up-guide', 'gmail-vs-outlook-sending-limits-cold-email', 'how-many-cold-emails-for-one-meeting', 'what-happens-if-you-send-too-many-cold-emails'],
     tools: ['cold-email-volume-calculator', 'spam-word-checker', 'subject-line-analyzer'],
   },
   {

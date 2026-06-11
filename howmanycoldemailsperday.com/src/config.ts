@@ -29,6 +29,25 @@ export const siteConfig = {
   },
 
   // Analytics
+  faq: [
+    {
+      question: 'How many cold emails should I send per day?',
+      answer: 'Send 50–100 cold emails per day per mailbox, using 3–5 separate domains, to maintain inbox deliverability and avoid spam filters.',
+    },
+    {
+      question: 'How many cold emails can you send from Gmail or Outlook?',
+      answer: 'Google Workspace officially allows 2,000 messages per day and Microsoft 365 caps external recipients at 2,000 per day — but safe cold email volume is 50–100 per day per warmed mailbox on either provider.',
+    },
+    {
+      question: 'How many cold emails does it take to get one meeting?',
+      answer: 'Plan on 100–200 well-targeted sends per booked meeting: a 1–3% positive reply rate with about half of positive replies converting to held meetings, per Sales.co platform data across 5,000+ campaigns.',
+    },
+    {
+      question: 'What happens if you send too many cold emails?',
+      answer: 'Damage arrives in stages: silent spam-folder placement first, then domain-wide reputation loss affecting every mailbox, then blocklists and provider enforcement. Each stage takes weeks longer to recover than the volume discipline that prevents it.',
+    },
+  ],
+
   relatedSites: [
     { title: 'How to Warm Up Email for Cold Outreach', url: 'https://howtowarmupemail.com/' },
     { title: 'How Many Domains Do You Need for Cold Email?', url: 'https://howmanydomainsforcoldmail.com/' },

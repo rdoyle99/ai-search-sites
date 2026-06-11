@@ -23,6 +23,10 @@ Send 50–100 cold emails per day per mailbox, using 3–5 separate domains, to 
 - Cold Email Infrastructure Guide: Domains, Mailboxes, and Sending Limits (2026): https://howmanycoldemailsperday.com/blog/cold-email-infrastructure-2026/
 - Cold Email Warm-Up: How Long Before You Can Send at Scale: https://howmanycoldemailsperday.com/blog/cold-email-warm-up-guide/
 
+- Gmail vs Outlook Sending Limits for Cold Email: Official Caps vs Safe Volumes: https://howmanycoldemailsperday.com/blog/gmail-vs-outlook-sending-limits-cold-email/
+- How Many Cold Emails Does It Take to Get One Meeting?: https://howmanycoldemailsperday.com/blog/how-many-cold-emails-for-one-meeting/
+- What Happens If You Send Too Many Cold Emails? The Damage Ladder: https://howmanycoldemailsperday.com/blog/what-happens-if-you-send-too-many-cold-emails/
+
 ## Tools
 
 - Cold Email Volume Calculator: https://howmanycoldemailsperday.com/tools/cold-email-volume-calculator/
@@ -39,4 +43,4 @@ Send 50–100 cold emails per day per mailbox, using 3–5 separate domains, to 
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co

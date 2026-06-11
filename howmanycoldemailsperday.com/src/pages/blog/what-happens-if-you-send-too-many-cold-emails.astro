@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What Happens If You Send Too Many Cold Emails? The Damage Ladder",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="What Happens If You Send Too Many Cold Emails? The Damage Ladder"
+  description="Oversending triggers a predictable damage ladder: spam-folder placement, then domain reputation loss, then blocklisting — and recovery takes weeks longer than the warm-up you skipped."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">What Happens If You Send Too Many Cold Emails? The Damage Ladder</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Oversending doesn't fail loudly — it fails in stages: first your open rates sag as mail quietly routes to spam, then the domain's reputation degrades for every mailbox on it, then blocklists and provider enforcement make the domain effectively unusable. Each rung takes days to descend and weeks to climb back. The entire ladder is avoided by the boring rule: 50–100 sends per day per warmed mailbox.</strong></p>
+
+      <h2>Rung 1: silent spam placement</h2>
+
+      <p>The first symptom is statistical, not an error message. Cold mail that exceeds what the mailbox's reputation supports starts landing in spam folders — opens drop 30–50%, replies drop harder, and nothing tells you why. Senders usually respond by sending <em>more</em>, which accelerates the slide. This is also where the 2024 Gmail/Yahoo rules bite: cross a 0.3% spam-complaint rate and filtering stops being probabilistic — the math behind that ceiling is in our sibling analysis of <a href="https://howtowarmupemail.com/blog/gmail-bulk-sender-rules-cold-email/">Gmail's bulk sender rules</a>.</p>
+
+      <h2>Rung 2: domain-level reputation damage</h2>
+
+      <p>Reputation attaches to the sending domain, not just the mailbox. One overdriven mailbox drags down every other mailbox on the same domain — and because filtering decisions weigh domain history heavily, new mailboxes added to a damaged domain start damaged. Sales.co platform data (5,000+ campaigns, 2025–2026) shows the practical threshold clearly: sustained per-mailbox volumes above ~100/day correlate with domain-wide placement decay within two weeks. This is why serious operations spread volume across several domains — the architecture covered at <a href="https://howmanydomainsforcoldmail.com/">howmanydomainsforcoldmail.com</a> — so a mistake costs one domain, not the operation.</p>
+
+      <h2>Rung 3: blocklists and provider enforcement</h2>
+
+      <p>Keep pushing and the failure goes institutional: spam-trap hits and complaint volume land the domain or sending IP on blocklists, mailbox providers begin rejecting (not just filtering) the mail, and the workspace provider may suspend the account for abuse — both Google and Microsoft enforce their caps and acceptable-use rules at this stage. A blocklisted domain for cold email is usually a write-off: the recovery time exceeds the cost of starting a fresh domain and warming it properly.</p>
+
+      <h2>Recovery math (and why prevention wins)</h2>
+
+      <ul>
+        <li><strong>Caught at rung 1:</strong> cut volume by half or more, hold for 1–2 weeks of clean engagement, then re-ramp — essentially a partial <a href="https://howtowarmupemail.com/blog/how-long-does-email-warmup-take/">re-warm</a>.</li>
+        <li><strong>Rung 2:</strong> pause cold sends entirely on the affected domain for 2–4 weeks; rebuild with low-volume engaged traffic before any cold mail resumes.</li>
+        <li><strong>Rung 3:</strong> retire the domain. Audit what broke before pointing a new one at the same list and sequence.</li>
+      </ul>
+
+      <p>Every rung costs more recovery time than the warm-up and volume discipline that prevent it. The structural fix is enforced ceilings rather than willpower: platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> cap per-mailbox volume, distribute sends across domains, and watch the reputation signals — so the ladder never gets a first rung.</p>
+
+    </div>
+  </article>
+</Base>

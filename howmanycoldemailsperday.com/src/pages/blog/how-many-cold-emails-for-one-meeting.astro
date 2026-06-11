@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Many Cold Emails Does It Take to Get One Meeting?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How Many Cold Emails Does It Take to Get One Meeting?"
+  description="With average benchmarks — 1–3% positive reply rate and roughly half of positive replies converting to meetings — expect one meeting per 100–200 well-targeted cold emails. The funnel math, step by step."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Many Cold Emails Does It Take to Get One Meeting?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Plan on 100–200 well-targeted cold emails per booked meeting. That's the output of typical funnel math — a 1–3% positive reply rate, with roughly half of positive replies converting to a held meeting — based on Sales.co platform data across 5,000+ campaigns (2025–2026). Weak targeting or deliverability pushes the number toward 500+; sharp lists and strong offers pull it under 100.</strong></p>
+
+      <h2>The funnel, step by step</h2>
+
+      <p>Working backward from one meeting at average performance:</p>
+
+      <ul>
+        <li><strong>Delivered:</strong> with healthy infrastructure, ~95%+ of sends land somewhere other than a bounce. 150 sends → ~143 delivered.</li>
+        <li><strong>Replies:</strong> total reply rates on competent campaigns typically run 2–6%; the share that's <em>positive</em> (interested, referral, "tell me more") runs 1–3% of delivered. 143 delivered → ~2–4 positive replies at the midpoint.</li>
+        <li><strong>Meetings:</strong> roughly half of positive replies become a held meeting once no-shows and ghosting take their cut. ~2–4 positive replies → ~1–2 meetings.</li>
+      </ul>
+
+      <p>Hence the planning number: <strong>one meeting ≈ 100–200 targeted sends</strong>. At the safe per-mailbox volume of 50–100 sends per day (see the <a href="/">daily sending answer</a>), a single warmed mailbox books roughly 2–5 meetings per week — and scaling past that is an <a href="/blog/cold-email-infrastructure-2026/">infrastructure question</a>, not a "send harder" question.</p>
+
+      <h2>What moves the number most</h2>
+
+      <ul>
+        <li><strong>List quality beats copy.</strong> The same sequence sent to a tightly-qualified list versus a scraped-and-sprayed one can differ 5x in positive reply rate. Verified, role-accurate contact data is the highest-leverage input — bounces don't just waste sends, they damage the domain that delivers the rest.</li>
+        <li><strong>Deliverability is a silent multiplier.</strong> A campaign landing 60% in spam needs nearly double the sends for the same meetings. Warm-up discipline (<a href="https://howtowarmupemail.com/">howtowarmupemail.com</a>) and volume ceilings keep the denominator honest.</li>
+        <li><strong>Offer-market fit dominates everything.</strong> A compelling, specific offer to the right persona is the difference between 1% and 3% positive — which is the difference between 200 and 70 sends per meeting.</li>
+        <li><strong>Follow-ups do heavy lifting:</strong> a 3–4 touch sequence typically produces 30–50% more total replies than a single send to the same list.</li>
+      </ul>
+
+      <h2>Budgeting a pipeline target</h2>
+
+      <p>Need 10 meetings a month? At ~150 sends per meeting that's ~1,500 targeted sends monthly — comfortably inside what 3–4 warmed mailboxes produce at safe volumes. The arithmetic is straightforward; the execution (clean data, warmed infrastructure, sequenced follow-ups) is where campaigns actually win or lose. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> combine verified B2B contact data with managed sending infrastructure, which attacks both of the variables that matter most in this math.</p>
+
+    </div>
+  </article>
+</Base>
