@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Many Brands Should You Pitch to Land One Sponsorship?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How Many Brands Should You Pitch to Land One Sponsorship?"
+  description="Cold sponsorship pitches follow cold email math: with targeted lists and a 3–4 touch sequence, expect one closed deal per 30–80 well-chosen brands. The funnel stage by stage, and what moves each conversion."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Many Brands Should You Pitch to Land One Sponsorship?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Budget 30–80 well-targeted pitches per closed sponsorship. Sponsorship outreach is cold email with a creator twist: reply rates run meaningfully higher than generic B2B cold email when the targeting is tight (you're offering distribution, not asking for a meeting), but deals close slower because budgets are cyclical. The funnel math tells you exactly where your number will land in that range.</strong></p>
+
+      <h2>The funnel, stage by stage</h2>
+
+      <ul>
+        <li><strong>Pitch → reply:</strong> generic spray earns the standard cold-email 1–3% positive (<a href="https://coldmailopenrate.com/blog/what-is-a-good-cold-email-reply-rate/">the benchmarks</a>); tightly-matched pitches to <a href="/blog/find-brands-that-sponsor/">brands already sponsoring your niche</a> run several times higher, because the offer matches a budget that already exists.</li>
+        <li><strong>Reply → negotiation:</strong> roughly half of positive replies progress once they see the <a href="/blog/sponsorship-media-kit-guide/">media kit</a> — audience fit and honest stats do the filtering here.</li>
+        <li><strong>Negotiation → closed:</strong> half-ish again, decided by rate alignment (<a href="/blog/how-much-to-charge-for-sponsorship/">your CPM math</a> vs their benchmark) and timing against their budget cycle.</li>
+        <li><strong>Net:</strong> tight targeting ≈ one deal per ~30–40 pitches; broader lists ≈ one per ~60–80. The spread is almost entirely list quality — the same lesson as every cold channel.</li>
+      </ul>
+
+      <h2>The mechanics that move the numbers</h2>
+
+      <ul>
+        <li><strong>Follow up — briefly.</strong> A 3–4 touch sequence captures 30–50% more replies than a single send (the cross-channel canon at <a href="https://howlongshouldacoldemailbe.com/blog/how-long-should-a-follow-up-email-be/">follow-up length</a>); sponsorship buyers are busy, not uninterested.</li>
+        <li><strong>Keep the pitch short and stats-forward:</strong> 50–125 words, audience numbers up top, rate on request — the <a href="/blog/cold-email-sponsorship-pitch/">templates</a> follow the format the data favors.</li>
+        <li><strong>Verify every address first:</strong> partnership-manager turnover is high, and bounce damage to your sending domain (<a href="https://howtoverifyemails.com/blog/how-often-should-you-verify-email-lists/">the decay math</a>) outlasts any single campaign.</li>
+        <li><strong>Time the cycles:</strong> Q4 spends and January budgets reward pitching in Q3 and early Q1 respectively; a "no" in June is frequently a "yes" in October if you stay politely in the thread.</li>
+      </ul>
+
+      <h2>Working backward from a revenue goal</h2>
+
+      <p>Want one sponsorship per month at tight targeting? That's ~35 quality pitches monthly — roughly two focused hours a week of research plus a managed sequence. Want a sponsor in every send? Multiply accordingly, and the research becomes the bottleneck — which is the point where the contact-finding layer (filtering partnership roles at active sponsor brands, the way platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> do it) converts the two hours of research into a query, and your pitch volume stops being capped by list-building time.</p>
+
+    </div>
+  </article>
+</Base>

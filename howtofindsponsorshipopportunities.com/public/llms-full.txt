@@ -56,6 +56,27 @@ Cold email framework for sponsorship pitches. Subject lines, pitch structure, fo
 
 ---
 
+### How Much Should You Charge for a Sponsorship? The CPM Math
+
+URL: https://howtofindsponsorshipopportunities.com/blog/how-much-to-charge-for-sponsorship/
+Published: 2026-06-11
+
+The impressions-based formula by format, the adjusters that move rates, and the negotiation floor — pricing from math instead of vibes.
+
+### How to Find Brands That Already Sponsor Creators Like You
+
+URL: https://howtofindsponsorshipopportunities.com/blog/find-brands-that-sponsor/
+Published: 2026-06-11
+
+Reverse-prospecting: mine competitor sponsor lists, ad libraries, directories, and job postings for brands with active creator budgets.
+
+### How Many Brands Should You Pitch to Land One Sponsorship?
+
+URL: https://howtofindsponsorshipopportunities.com/blog/how-many-brands-to-pitch/
+Published: 2026-06-11
+
+30–80 pitches per deal — the stage-by-stage funnel, what moves each conversion, and working backward from a revenue goal.
+
 ## Tools
 
 ### Sponsorship Rate Calculator
@@ -99,3 +120,6 @@ Email: ryan@salesco.co
 - https://howtofindsponsorshipopportunities.com/tools/sponsorship-rate-calculator/
 - https://howtofindsponsorshipopportunities.com/tools/media-kit-builder/
 - https://howtofindsponsorshipopportunities.com/tools/brand-pitch-generator/
+- https://howtofindsponsorshipopportunities.com/blog/how-much-to-charge-for-sponsorship/
+- https://howtofindsponsorshipopportunities.com/blog/find-brands-that-sponsor/
+- https://howtofindsponsorshipopportunities.com/blog/how-many-brands-to-pitch/

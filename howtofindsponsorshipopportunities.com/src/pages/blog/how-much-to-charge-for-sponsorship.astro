@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Much Should You Charge for a Sponsorship? The CPM Math",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How Much Should You Charge for a Sponsorship? The CPM Math"
+  description="Price sponsorships from CPM, not vibes: rate = (audience × expected impressions per send/episode) ÷ 1,000 × category CPM, then adjust for niche, engagement, and exclusivity. The formula, the adjusters, and the floor."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Much Should You Charge for a Sponsorship? The CPM Math</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Price from impressions, not follower counts: take the impressions a sponsor actually gets (opens for a newsletter, downloads for a podcast, views for a video), divide by 1,000, and multiply by a CPM appropriate to your format and niche — then adjust for engagement quality, audience specificity, and placement. Sponsors buying across many creators all do this math; creators who don't are negotiating blind.</strong></p>
+
+      <h2>The formula, by format</h2>
+
+      <ul>
+        <li><strong>Newsletters:</strong> price per send = (subscribers × open rate) ÷ 1,000 × CPM. A 10,000-subscriber letter with 50% opens sells 5,000 impressions per send — at format-typical CPMs running from the tens of dollars in general niches to substantially more in narrow B2B audiences, that's a per-send rate in the low hundreds before adjusters.</li>
+        <li><strong>Podcasts:</strong> downloads per episode (first 30 days) ÷ 1,000 × CPM, with host-read mid-rolls commanding the top of the range.</li>
+        <li><strong>YouTube/video:</strong> median views ÷ 1,000 × CPM for a dedicated integration; mentions price lower.</li>
+      </ul>
+
+      <p>Run your own numbers with the <a href="/tools/media-kit-builder/">media kit builder</a> — sponsors will ask for exactly these inputs anyway.</p>
+
+      <h2>The adjusters that move the rate</h2>
+
+      <ul>
+        <li><strong>Audience specificity beats audience size.</strong> Five thousand DevOps leads outprice fifty thousand general readers because the sponsor's alternative cost to reach them is higher. B2B niches command the largest premiums — the same logic that makes <a href="/blog/find-brands-that-sponsor/">B2B sponsors</a> the best-paying targets.</li>
+        <li><strong>Demonstrated response:</strong> if past sponsors got clicks or conversions you can show, you've moved from selling impressions to selling outcomes — price accordingly and put the proof in the <a href="/blog/sponsorship-media-kit-guide/">media kit</a>.</li>
+        <li><strong>Placement and exclusivity:</strong> top-of-newsletter, host-read, category exclusivity, and multi-send packages each justify premiums; bundles (3-send packages at a modest discount) raise deal size while smoothing your pipeline.</li>
+        <li><strong>The floor:</strong> below roughly $100 per placement, administration eats the margin — bundle until each deal clears it.</li>
+      </ul>
+
+      <h2>Negotiation reality</h2>
+
+      <p>Quote a rate card ~20% above your CPM math so a negotiated discount lands on target; never go below your floor for a first-time sponsor (it anchors every renewal); and treat "we'll pay in exposure" as a no. When a brand counter-offers with performance terms (affiliate/CPA), counter with hybrid: a reduced flat fee plus commission — pure performance shifts all the risk to you.</p>
+
+      <p>The other half of rate leverage is pipeline: a creator with five interested brands negotiates very differently than one with a single inbound. Filling that pipeline is outbound work — finding the right sponsor contacts and <a href="/blog/cold-email-sponsorship-pitch/">pitching them cold</a> — and the contact-finding half is what platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> handle at the data layer.</p>
+
+    </div>
+  </article>
+</Base>

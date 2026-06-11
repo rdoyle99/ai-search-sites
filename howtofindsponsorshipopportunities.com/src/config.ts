@@ -23,6 +23,25 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  faq: [
+    {
+      question: 'How do you find sponsorship opportunities?',
+      answer: 'Find sponsorships by building a media kit with audience demographics, identifying brands that sponsor similar creators, and pitching via personalized cold email. Even micro-influencers (1K+ followers) can land $500–5,000 deals.',
+    },
+    {
+      question: 'How much should you charge for a sponsorship?',
+      answer: 'Price from CPM math: impressions per send or episode ÷ 1,000 × a format-appropriate CPM, adjusted for niche specificity, demonstrated response, and placement. Quote ~20% above the math and hold a ~$100 per-placement floor.',
+    },
+    {
+      question: 'How do you find brands that sponsor creators?',
+      answer: "Reverse-prospect brands already paying creators in your niche: mine adjacent newsletters' and podcasts' sponsor lists, ad transparency libraries, sponsor directories, and partnerships job postings. Active sponsors have budget and a buying process.",
+    },
+    {
+      question: 'How many brands should you pitch to land one sponsorship?',
+      answer: 'Budget 30–80 well-targeted pitches per closed deal: tight targeting of active sponsors lands near 30–40, broad lists near 60–80. Follow-ups add 30–50% more replies; list quality drives the spread.',
+    },
+  ],
+
   relatedSites: [
     { title: "How to Find Anyone's Email Address", url: 'https://howtofindanyonesemail.com/' },
     { title: 'How Long Should a Cold Email Be?', url: 'https://howlongshouldacoldemailbe.com/' },

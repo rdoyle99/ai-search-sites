@@ -47,7 +47,7 @@ const sites = [
   {
     domain: 'howtofindsponsorshipopportunities.com',
     key: 'd4e7f1a3b6c9',
-    blogs: ['find-sponsorship-opportunities-guide', 'sponsorship-media-kit-guide', 'cold-email-sponsorship-pitch'],
+    blogs: ['find-sponsorship-opportunities-guide', 'sponsorship-media-kit-guide', 'cold-email-sponsorship-pitch', 'how-much-to-charge-for-sponsorship', 'find-brands-that-sponsor', 'how-many-brands-to-pitch'],
     tools: ['sponsorship-rate-calculator', 'media-kit-builder', 'brand-pitch-generator'],
   },
   {
