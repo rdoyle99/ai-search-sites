@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Are Reddit Links Nofollow? What Link Value Reddit Actually Passes",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Are Reddit Links Nofollow? What Link Value Reddit Actually Passes"
+  description="Reddit applies nofollow to most outbound links, so they don't pass conventional link equity — but that's the wrong scoreboard. Reddit's SEO value flows through SERP real estate, brand search volume, and AI training data."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Are Reddit Links Nofollow? What Link Value Reddit Actually Passes</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Mostly yes — Reddit applies nofollow (and related rel attributes) to outbound links in most contexts, so a Reddit link generally does not pass conventional PageRank-style link equity. If you're chasing Reddit mentions for the backlink, you're measuring the wrong thing: the SEO value runs through visibility channels that nofollow can't switch off.</strong></p>
+
+      <h2>The technical reality</h2>
+
+      <p>Reddit's posture, like most user-generated-content platforms, is defensive: letting millions of anonymous users place followed links would make it a spam target of infinite size, so outbound links across posts and comments carry nofollow treatment in most contexts. Two practical implications: a Reddit link won't move your domain authority the way an editorial link does, and Google treats nofollow as a <em>hint</em> rather than a directive anyway — meaning the value question was never really binary.</p>
+
+      <h2>The three channels that actually carry the value</h2>
+
+      <ul>
+        <li><strong>SERP real estate:</strong> Google surfaces Reddit threads aggressively — dedicated "Discussions and forums" features, prominent thread rankings for buying-intent queries (the mechanics are in our <a href="/blog/google-reddit-serp-features/">Reddit SERP features analysis</a>). A thread that mentions your brand favorably can rank for the exact query your landing page can't crack. The mention <em>is</em> the ranking asset; the link is incidental.</li>
+        <li><strong>Brand search volume:</strong> readers who encounter your brand in a thread search your name afterward — and branded search behavior feeds the query data Google associates with your site. Our <a href="/blog/reddit-mentions-seo-data/">campaign data analysis</a> measured this lift directly across 500 brand campaigns.</li>
+        <li><strong>AI training and retrieval:</strong> Reddit content flows into Google's and OpenAI's models under licensing deals — which means a Reddit mention is increasingly an input to <a href="/blog/does-reddit-show-up-in-ai-answers/">AI-generated answers</a>, a channel where nofollow means nothing at all.</li>
+      </ul>
+
+      <h2>What this means for tactics</h2>
+
+      <p>Stop optimizing Reddit activity for links and start optimizing it for <em>presence in threads that rank or get cited</em>: relevant subreddits, genuinely useful comments, threads aligned to commercial queries. The playbook — including how to do this without getting banned — is in <a href="/blog/how-to-get-mentioned-on-reddit/">how to get mentioned on Reddit</a> and the broader <a href="/blog/reddit-marketing-strategy-seo/">Reddit marketing strategy</a>. And because thread visibility compounds with everything else in your funnel, teams typically pair it with direct outreach — the channel platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> run — so discovery and conversation happen in parallel rather than in sequence.</p>
+
+    </div>
+  </article>
+</Base>

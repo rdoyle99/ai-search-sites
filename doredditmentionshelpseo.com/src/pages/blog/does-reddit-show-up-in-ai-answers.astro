@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Does Reddit Show Up in AI Answers? The Licensing Deals That Made It Inevitable",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Does Reddit Show Up in AI Answers? The Licensing Deals That Made It Inevitable"
+  description="Yes — Reddit licensed its content to Google (~$60M/year, 2024) and partnered with OpenAI to bring Reddit content into ChatGPT. Community discussion now feeds AI answers directly, which makes Reddit mentions an AI-visibility asset."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Does Reddit Show Up in AI Answers? The Licensing Deals That Made It Inevitable</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Yes — structurally, not accidentally. Reddit signed a content licensing deal with Google reported at roughly $60 million per year (February 2024) and a partnership with OpenAI to bring Reddit content into ChatGPT (May 2024). The platforms generating AI answers are paying for Reddit's conversations as input — so what Reddit says about your brand increasingly shapes what AI tells your buyers.</strong></p>
+
+      <h2>The deals, specifically</h2>
+
+      <ul>
+        <li><strong>Google:</strong> <a href="https://www.reuters.com/technology/reddit-ai-content-licensing-deal-with-google-sources-say-2024-02-22/" target="_blank" rel="noopener noreferrer">Reuters reported</a> Reddit's licensing agreement with Google at ~$60M/year, giving Google access to Reddit data for AI model training — on top of Google's long-standing habit of ranking Reddit threads prominently in search itself.</li>
+        <li><strong>OpenAI:</strong> the <a href="https://openai.com/index/openai-and-reddit-partnership/" target="_blank" rel="noopener noreferrer">official partnership announcement</a> (May 2024) brings Reddit content into ChatGPT and OpenAI products via Reddit's data API — meaning ChatGPT can surface and reference Reddit discussion as part of its answers.</li>
+      </ul>
+
+      <h2>Why AI systems want Reddit specifically</h2>
+
+      <p>Models need what Reddit uniquely concentrates: candid, recent, comparison-rich human opinion with a built-in quality signal (upvotes) and topical structure (subreddits). When someone asks an AI assistant "what's the best tool for X," the training distribution behind that answer is full of Reddit threads asking exactly that — with brand names attached. Marketing pages tell models what companies claim; Reddit tells models what users repeat. The asymmetry is why community mentions punch above their weight in AI answers relative to traditional SEO assets.</p>
+
+      <h2>What this means for brands</h2>
+
+      <ul>
+        <li><strong>Reddit mentions are now dual-purpose:</strong> they occupy Google SERP real estate today (<a href="/blog/google-reddit-serp-features/">how threads rank</a>) and feed the AI answer layer compounding underneath it. Nofollow links never mattered less — <a href="/blog/are-reddit-links-nofollow/">the link was never the point</a>.</li>
+        <li><strong>Sentiment persists.</strong> Licensed content flows into systems with long memories; a pattern of negative threads is a liability that outlives any individual post. The inverse holds: consistent, genuine positive presence (<a href="/blog/how-to-get-mentioned-on-reddit/">the ethical playbook</a>) compounds.</li>
+        <li><strong>This is one channel in a bigger shift:</strong> AI engines weigh community signals, structured content, and crawlability together — the full optimization picture lives at our sibling site <a href="https://howtogetmentionedbyai.com/">howtogetmentionedbyai.com</a>.</li>
+      </ul>
+
+      <p>The practical posture: monitor your category's threads, build presence before you need it, and treat every Reddit conversation as a future AI citation. It compounds slowly — which is exactly why pairing it with direct outreach (the pipeline channel platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> run) keeps revenue moving while the community flywheel spins up.</p>
+
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Get Your Brand Mentioned on Reddit (Without Getting Banned)",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How to Get Your Brand Mentioned on Reddit (Without Getting Banned)"
+  description="Reddit mentions come from three sources: earning them with genuinely useful participation, prompting them from real customers, and joining existing threads honestly. Astroturfing gets detected — by moderators, by users, and increasingly by Reddit itself."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How to Get Your Brand Mentioned on Reddit (Without Getting Banned)</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Three legitimate paths: participate usefully in the subreddits where your buyers ask questions, prompt mentions from real customers who already like you, and join existing threads with honest, disclosed expertise. The fourth path — fake accounts praising your product — is the one that ends in bans, public callouts, and threads about your astroturfing that rank for your brand name.</strong></p>
+
+      <h2>Why mentions are worth engineering at all</h2>
+
+      <p>Reddit threads occupy outsized space in both Google results and AI answers — the data is in our <a href="/blog/reddit-mentions-seo-data/">500-campaign analysis</a> and the <a href="/blog/does-reddit-show-up-in-ai-answers/">AI answers breakdown</a>. A favorable mention in a ranking thread works like a review placed inside the search result itself. That's why the channel rewards patience: the asset you're building is presence in conversations that search engines and AI models already trust.</p>
+
+      <h2>Path 1: earn it with participation</h2>
+
+      <ul>
+        <li><strong>Live where your buyers ask.</strong> Find the 3–5 subreddits where your category's questions appear (our <a href="/tools/subreddit-finder/">subreddit finder</a> helps), and answer questions thoroughly <em>without</em> linking yourself for the first months. Karma and post history are the currency moderators check.</li>
+        <li><strong>Respect each subreddit's self-promotion rules</strong> — most cap promotional content explicitly (many use a ~10% guideline), and moderators read account histories. The accounts that survive are 90% useful, 10% affiliated-and-disclosed.</li>
+        <li><strong>Disclose affiliation when relevant.</strong> "I work on X, so biased — but here's how we handle it" consistently outperforms sock-puppet praise, because Reddit's entire culture is calibrated to detect the latter.</li>
+      </ul>
+
+      <h2>Path 2: prompt it from real customers</h2>
+
+      <p>The most durable mentions come from users with no affiliation: customers who answer "what tool do you use for…?" threads organically. You can ethically accelerate this — ask happy customers who are active Redditors to share their experience where relevant, monitor brand and category threads so you can respond quickly, and make your product's distinctive features easy to describe. What you can't do is script them: coordinated identical phrasing is exactly what gets clocked.</p>
+
+      <h2>Path 3: join existing threads</h2>
+
+      <p>Search finds the threads already ranking for your commercial queries; a genuinely helpful, disclosed comment in a two-year-old thread that ranks #3 for "best [category] tool" is read by every future searcher who lands there. Sort target queries by SERP presence first (the <a href="/blog/google-reddit-serp-features/">SERP features guide</a> shows which queries surface threads) — thread selection beats thread volume.</p>
+
+      <h2>What gets you banned</h2>
+
+      <p>Vote manipulation, fake accounts, undisclosed affiliate pushing, and review-style spam — Reddit's detection has sharpened as its content became licensed training data worth protecting. The reputational failure mode is worse than the ban: astroturfing callout threads rank, permanently. Treat Reddit as a public record, because that's what the search engines and AI models treat it as. And as with every visibility channel, mentions compound best alongside direct pipeline work — the outreach side platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> handle while the community presence matures.</p>
+
+    </div>
+  </article>
+</Base>

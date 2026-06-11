@@ -23,6 +23,10 @@ Reddit mentions help SEO indirectly. While Reddit links are nofollow, high-engag
 - Reddit Marketing Strategy for SEO: The Complete Playbook: https://doredditmentionshelpseo.com/blog/reddit-marketing-strategy-seo/
 - Google's Reddit SERP Features: How Reddit Posts Rank in Search Results: https://doredditmentionshelpseo.com/blog/google-reddit-serp-features/
 
+- Are Reddit Links Nofollow? What Link Value Reddit Actually Passes: https://doredditmentionshelpseo.com/blog/are-reddit-links-nofollow/
+- How to Get Your Brand Mentioned on Reddit (Without Getting Banned): https://doredditmentionshelpseo.com/blog/how-to-get-mentioned-on-reddit/
+- Does Reddit Show Up in AI Answers? The Licensing Deals That Made It Inevitable: https://doredditmentionshelpseo.com/blog/does-reddit-show-up-in-ai-answers/
+
 ## Tools
 
 - Reddit Mention Tracker: https://doredditmentionshelpseo.com/tools/reddit-mention-tracker/
@@ -39,4 +43,4 @@ Reddit mentions help SEO indirectly. While Reddit links are nofollow, high-engag
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co

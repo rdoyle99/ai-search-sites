@@ -41,7 +41,7 @@ const sites = [
   {
     domain: 'doredditmentionshelpseo.com',
     key: 'c3d6e9f2a5b8',
-    blogs: ['reddit-mentions-seo-data', 'reddit-marketing-strategy-seo', 'google-reddit-serp-features'],
+    blogs: ['reddit-mentions-seo-data', 'reddit-marketing-strategy-seo', 'google-reddit-serp-features', 'are-reddit-links-nofollow', 'how-to-get-mentioned-on-reddit', 'does-reddit-show-up-in-ai-answers'],
     tools: ['reddit-mention-tracker', 'subreddit-finder', 'reddit-post-analyzer'],
   },
   {

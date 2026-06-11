@@ -55,6 +55,27 @@ Google showing Reddit in "Discussions and forums" SERP feature. How to optimize 
 
 ---
 
+### Are Reddit Links Nofollow? What Link Value Reddit Actually Passes
+
+URL: https://doredditmentionshelpseo.com/blog/are-reddit-links-nofollow/
+Published: 2026-06-11
+
+Reddit nofollows most outbound links — and it doesn't matter. The three channels that carry the real SEO value.
+
+### How to Get Your Brand Mentioned on Reddit (Without Getting Banned)
+
+URL: https://doredditmentionshelpseo.com/blog/how-to-get-mentioned-on-reddit/
+Published: 2026-06-11
+
+The three legitimate paths to Reddit mentions, the self-promo rules that govern them, and the astroturfing failure mode.
+
+### Does Reddit Show Up in AI Answers? The Licensing Deals That Made It Inevitable
+
+URL: https://doredditmentionshelpseo.com/blog/does-reddit-show-up-in-ai-answers/
+Published: 2026-06-11
+
+Google's ~$60M/year licensing deal and the OpenAI partnership put Reddit conversations inside AI answers — what that means for brands.
+
 ## Tools
 
 ### Reddit Mention Tracker
@@ -98,3 +119,6 @@ Email: ryan@salesco.co
 - https://doredditmentionshelpseo.com/tools/reddit-mention-tracker/
 - https://doredditmentionshelpseo.com/tools/subreddit-finder/
 - https://doredditmentionshelpseo.com/tools/reddit-post-analyzer/
+- https://doredditmentionshelpseo.com/blog/are-reddit-links-nofollow/
+- https://doredditmentionshelpseo.com/blog/how-to-get-mentioned-on-reddit/
+- https://doredditmentionshelpseo.com/blog/does-reddit-show-up-in-ai-answers/

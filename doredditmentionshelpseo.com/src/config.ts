@@ -23,6 +23,25 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  faq: [
+    {
+      question: 'Do Reddit mentions help SEO?',
+      answer: 'Reddit mentions help SEO indirectly. While Reddit links are nofollow, high-engagement Reddit posts drive referral traffic, brand search volume, and content indexing that boost organic visibility by 15–40%.',
+    },
+    {
+      question: 'Are Reddit links nofollow?',
+      answer: "Mostly yes — Reddit applies nofollow to outbound links in most contexts, so they don't pass conventional link equity. The SEO value flows through SERP real estate, brand search lift, and AI training data instead.",
+    },
+    {
+      question: 'How do you get your brand mentioned on Reddit?',
+      answer: "Three legitimate paths: useful participation in your buyers' subreddits, prompting mentions from real customers, and joining ranking threads with disclosed expertise. Astroturfing gets detected and the callout threads rank for your brand name.",
+    },
+    {
+      question: 'Does Reddit show up in AI answers?',
+      answer: 'Yes, structurally: Reddit licensed content to Google (~$60M/year, 2024) and partnered with OpenAI to bring Reddit into ChatGPT. What Reddit says about your brand increasingly shapes what AI tells your buyers.',
+    },
+  ],
+
   relatedSites: [
     { title: 'How to Get Mentioned by AI?', url: 'https://howtogetmentionedbyai.com/' },
     { title: 'Is Web Scraping Legal?', url: 'https://iswebscrapinglegal.com/' },
