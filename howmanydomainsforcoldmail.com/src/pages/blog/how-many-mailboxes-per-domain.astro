@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Many Mailboxes Per Domain for Cold Email? The 2–3 Rule",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How Many Mailboxes Per Domain for Cold Email? The 2–3 Rule"
+  description="Run 2–3 sending mailboxes per cold email domain. Fewer wastes the domain's safe capacity; more concentrates risk and starts looking like bulk infrastructure. The reasoning and the per-domain math."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Many Mailboxes Per Domain for Cold Email? The 2–3 Rule</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Run 2–3 sending mailboxes per cold email domain. At 50–100 daily sends per warmed mailbox, that puts each domain at a comfortable 100–300 emails per day — enough to use the domain's capacity, low enough that one mailbox's bad day doesn't define the domain, and structurally unlike the many-mailboxes-one-domain pattern that reads as bulk infrastructure.</strong></p>
+
+      <h2>Why not one mailbox per domain?</h2>
+
+      <p>It works — it's just expensive per unit of volume. The domain is the asset you bought, authenticated, and warmed; a single mailbox caps it at 50–100 sends/day while a sibling mailbox on the same warmed domain adds capacity almost free. One mailbox per domain also makes every campaign hostage to a single sender's reputation hiccup: with 2–3, you can pause one mailbox and keep the domain productive.</p>
+
+      <h2>Why not five or ten?</h2>
+
+      <ul>
+        <li><strong>Risk concentration:</strong> domain reputation aggregates its mailboxes. Ten mailboxes × 75 sends is 750 daily sends riding one domain — a single list-quality mistake now burns 10 warmed mailboxes at once instead of 2–3. The blast-radius logic is the same reason you <a href="/blog/should-you-use-your-main-domain-for-cold-email/">never send from your main domain</a>.</li>
+        <li><strong>Pattern visibility:</strong> many same-aged mailboxes on a young domain, all sending similar mail, is the fingerprint of spam infrastructure. Mailbox providers cluster-detect; modesty per domain keeps you under the pattern.</li>
+        <li><strong>Warm-up bottleneck:</strong> every mailbox needs its own <a href="https://howtowarmupemail.com/blog/how-long-does-email-warmup-take/">2–4 week ramp</a>. Stacking ten on one domain front-loads a month of warm-up into your riskiest asset configuration.</li>
+      </ul>
+
+      <h2>The scaling table</h2>
+
+      <p>Volume targets, translated through the 2–3 rule (per-mailbox volume capped at 50–100/day per <a href="https://howmanycoldemailsperday.com/">the daily-volume answer</a>):</p>
+
+      <ul>
+        <li><strong>~200/day:</strong> 1 domain, 2–3 mailboxes — a starter setup.</li>
+        <li><strong>~500/day:</strong> 2–3 domains, 5–7 mailboxes total.</li>
+        <li><strong>~1,000/day:</strong> 4–5 domains, 10–15 mailboxes — the standard serious-outbound footprint.</li>
+        <li><strong>~2,500+/day:</strong> 10+ domains, 25–35 mailboxes, plus rotation discipline (<a href="/blog/domain-rotation-strategy/">when and how to rotate</a>) and a real suppression system shared across all of them.</li>
+      </ul>
+
+      <p>In Sales.co platform data (2025–2026), the 2–3-mailbox configuration is the stable equilibrium serious senders converge on — enough redundancy to absorb a bad mailbox, not enough density to look like a farm.</p>
+
+      <h2>The operational catch</h2>
+
+      <p>The 2–3 rule multiplies accounts fast: a 1,000/day operation is ~15 mailboxes across ~5 domains, each needing DNS, authentication, warm-up, volume caps, and unified reply/suppression handling. That's the management problem platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> exist to absorb — provisioning and warming the full mailbox grid automatically, then load-balancing campaigns across it so the per-mailbox and per-domain ceilings hold without anyone watching a spreadsheet.</p>
+
+    </div>
+  </article>
+</Base>

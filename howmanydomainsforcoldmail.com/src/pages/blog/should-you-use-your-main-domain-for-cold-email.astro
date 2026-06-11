@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Should You Use Your Main Domain for Cold Email? (No — Here's the Math)",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Should You Use Your Main Domain for Cold Email? (No — Here's the Math)"
+  description="Never send cold email from your primary domain. Cold outreach carries irreducible bounce and complaint risk, and on your main domain that risk lands on invoices, support replies, and every email your company sends."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Should You Use Your Main Domain for Cold Email? (No — Here's the Math)</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>No. Cold email belongs on secondary domains, full stop. Even a well-run cold campaign carries irreducible bounce and spam-complaint risk, and domain reputation is shared by every mailbox on the domain — so a bad cold-email week on your main domain degrades delivery of invoices, support replies, candidate emails, and the CEO's correspondence. Secondary domains cost ~$12 a year; that's the cheapest insurance in B2B.</strong></p>
+
+      <h2>Why the risk is structural, not skill-based</h2>
+
+      <p>You can verify every address and still hit catch-all surprises. You can target perfectly and still catch a grumpy prospect's spam click. Sales.co platform data (5,000+ campaigns, 2025–2026) shows even top-quartile campaigns experiencing nonzero complaint and bounce rates — the floor isn't zero, it's "low." On a dedicated sending domain, that floor is a manageable cost. On your main domain, it compounds against everything else you send: mailbox providers score the <em>domain</em>, and filtering decisions hit transactional mail and one-to-one correspondence alongside the campaigns. The damage sequence is the same <a href="https://howmanycoldemailsperday.com/blog/what-happens-if-you-send-too-many-cold-emails/">ladder</a> oversenders climb — except you've parked your company's email at the bottom of it.</p>
+
+      <h2>The standard architecture</h2>
+
+      <ul>
+        <li><strong>Main domain:</strong> corporate mail, transactional, marketing-to-subscribers. Zero cold email, ever.</li>
+        <li><strong>2–5+ secondary domains</strong> (scaled to volume — the <a href="/">core answer</a> on this site): close lookalikes of your brand (<code>getacme.com</code>, <code>acmehq.com</code>, <code>tryacme.com</code>) so recipients recognize you; the naming and TLD guidance is in <a href="/blog/choosing-domains-for-cold-email/">choosing domains</a>.</li>
+        <li><strong>2–3 mailboxes per secondary domain</strong>, each at 50–100 sends/day after <a href="https://howtowarmupemail.com/">warm-up</a> — the per-domain math in <a href="/blog/how-many-mailboxes-per-domain/">how many mailboxes per domain</a>.</li>
+        <li><strong>Forward the secondaries</strong> to your main site and set reply-to handling so conversations land where your team works.</li>
+        <li><strong>Authenticate everything:</strong> SPF, DKIM, DMARC on every sending domain — the secondaries are real sending infrastructure, not throwaways.</li>
+      </ul>
+
+      <h2>The objections, answered</h2>
+
+      <ul>
+        <li><strong>"Doesn't a lookalike domain hurt trust?"</strong> Recipients judge the message and sender name far more than the domain string; a relevant, well-written email from <code>jane@tryacme.com</code> outperforms a generic blast from the real domain every time. And the reply lands in a real mailbox either way.</li>
+        <li><strong>"Our domain has years of reputation — doesn't that help deliverability?"</strong> It does, which is exactly the asset you'd be gambling. Reputation helps until the first bad cohort; rebuilding a burned primary domain takes months and is sometimes effectively impossible. Asymmetric downside, trivial upside.</li>
+        <li><strong>"Isn't managing five domains a hassle?"</strong> Manually, somewhat. That hassle — buying, authenticating, warming, and load-balancing secondaries — is precisely what infrastructure platforms automate: <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> provisions the entire secondary-domain stack (DNS, mailboxes, warm-up, rotation) so the architecture exists from day one without the spreadsheet.</li>
+      </ul>
+
+    </div>
+  </article>
+</Base>

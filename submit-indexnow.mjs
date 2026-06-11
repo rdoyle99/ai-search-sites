@@ -11,7 +11,7 @@ const sites = [
   {
     domain: 'howmanydomainsforcoldmail.com',
     key: 'c5d8e2f1a3b7',
-    blogs: ['how-many-domains-for-cold-email-data', 'domain-rotation-strategy', 'choosing-domains-for-cold-email'],
+    blogs: ['how-many-domains-for-cold-email-data', 'domain-rotation-strategy', 'choosing-domains-for-cold-email', 'should-you-use-your-main-domain-for-cold-email', 'how-many-mailboxes-per-domain', 'cold-email-infrastructure-cost'],
     tools: ['domain-calculator', 'infrastructure-cost-estimator', 'domain-name-generator'],
   },
   {

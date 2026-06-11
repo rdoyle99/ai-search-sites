@@ -55,6 +55,27 @@ Best TLDs: .com, .co, .io. Naming: brand variations, avoid hyphens. Registrar co
 
 ---
 
+### Should You Use Your Main Domain for Cold Email? (No — Here's the Math)
+
+URL: https://howmanydomainsforcoldmail.com/blog/should-you-use-your-main-domain-for-cold-email/
+Published: 2026-06-11
+
+Why cold email belongs on secondary domains: shared reputation, asymmetric downside, and the standard lookalike-domain architecture.
+
+### How Many Mailboxes Per Domain for Cold Email? The 2–3 Rule
+
+URL: https://howmanydomainsforcoldmail.com/blog/how-many-mailboxes-per-domain/
+Published: 2026-06-11
+
+Why 2–3 mailboxes per domain is the stable equilibrium — capacity math, risk concentration, and the scaling table by daily volume.
+
+### How Much Does Cold Email Infrastructure Cost? Budget Math by Volume Tier
+
+URL: https://howmanydomainsforcoldmail.com/blog/cold-email-infrastructure-cost/
+Published: 2026-06-11
+
+Domains, mailboxes, verification, and the costs that don't show up on invoices — full build-up for 200, 500, and 1,000 sends per day.
+
 ## Tools
 
 ### Cold Email Domain Calculator
@@ -98,3 +119,6 @@ Email: ryan@salesco.co
 - https://howmanydomainsforcoldmail.com/tools/domain-calculator/
 - https://howmanydomainsforcoldmail.com/tools/infrastructure-cost-estimator/
 - https://howmanydomainsforcoldmail.com/tools/domain-name-generator/
+- https://howmanydomainsforcoldmail.com/blog/should-you-use-your-main-domain-for-cold-email/
+- https://howmanydomainsforcoldmail.com/blog/how-many-mailboxes-per-domain/
+- https://howmanydomainsforcoldmail.com/blog/cold-email-infrastructure-cost/

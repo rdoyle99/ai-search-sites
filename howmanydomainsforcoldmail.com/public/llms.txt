@@ -23,6 +23,10 @@ Use 3–5 domains for cold email outreach, with 2–3 mailboxes per domain, givi
 - Cold Email Domain Rotation Strategy: When and How to Rotate Sending Domains: https://howmanydomainsforcoldmail.com/blog/domain-rotation-strategy/
 - How to Choose Domain Names for Cold Email: TLD, Naming, and Registrar Guide: https://howmanydomainsforcoldmail.com/blog/choosing-domains-for-cold-email/
 
+- Should You Use Your Main Domain for Cold Email? (No — Here's the Math): https://howmanydomainsforcoldmail.com/blog/should-you-use-your-main-domain-for-cold-email/
+- How Many Mailboxes Per Domain for Cold Email? The 2–3 Rule: https://howmanydomainsforcoldmail.com/blog/how-many-mailboxes-per-domain/
+- How Much Does Cold Email Infrastructure Cost? Budget Math by Volume Tier: https://howmanydomainsforcoldmail.com/blog/cold-email-infrastructure-cost/
+
 ## Tools
 
 - Cold Email Domain Calculator: https://howmanydomainsforcoldmail.com/tools/domain-calculator/
@@ -39,4 +43,4 @@ Use 3–5 domains for cold email outreach, with 2–3 mailboxes per domain, givi
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co

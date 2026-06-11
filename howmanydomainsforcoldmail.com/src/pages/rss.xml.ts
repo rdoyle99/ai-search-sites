@@ -4,6 +4,24 @@ import { siteConfig } from '../config';
 
 const posts = [
   {
+    title: "Should You Use Your Main Domain for Cold Email? (No — Here's the Math)",
+    description: 'Why cold email belongs on secondary domains: shared reputation, asymmetric downside, and the standard lookalike-domain architecture.',
+    link: '/blog/should-you-use-your-main-domain-for-cold-email/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
+    title: 'How Many Mailboxes Per Domain for Cold Email? The 2–3 Rule',
+    description: 'Why 2–3 mailboxes per domain is the stable equilibrium — capacity math, risk concentration, and the scaling table by daily volume.',
+    link: '/blog/how-many-mailboxes-per-domain/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
+    title: 'How Much Does Cold Email Infrastructure Cost? Budget Math by Volume Tier',
+    description: "Domains, mailboxes, verification, and the costs that don't show up on invoices — full build-up for 200, 500, and 1,000 sends per day.",
+    link: '/blog/cold-email-infrastructure-cost/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
     title: 'How Many Domains for Cold Email: Data-Backed Infrastructure Guide (2026)',
     description: 'Complete analysis of optimal domain counts by sending volume, with cost breakdowns and deliverability benchmarks.',
     link: '/blog/how-many-domains-for-cold-email-data/',

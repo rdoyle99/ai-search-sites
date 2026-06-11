@@ -23,6 +23,25 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  faq: [
+    {
+      question: 'How many domains do you need for cold email?',
+      answer: 'Use 3–5 domains for cold email outreach, with 2–3 mailboxes per domain, giving you 300–1,500 emails per day capacity while maintaining inbox deliverability.',
+    },
+    {
+      question: 'Should you use your main domain for cold email?',
+      answer: 'No — cold email carries irreducible bounce and complaint risk, and domain reputation is shared by every mailbox on it. Send from 2–5 secondary lookalike domains so a bad campaign week never touches your invoices, support replies, and corporate mail.',
+    },
+    {
+      question: 'How many mailboxes per domain for cold email?',
+      answer: "2–3 sending mailboxes per domain. At 50–100 daily sends each, that's 100–300 emails per day per domain — enough to use the domain's capacity, low enough to contain blast radius, and structurally unlike bulk-spam infrastructure.",
+    },
+    {
+      question: 'How much does cold email infrastructure cost?',
+      answer: 'Roughly $10–15/year per domain plus ~$6–7/month per mailbox: a 200/day starter setup runs ~$250–300/year and a 1,000/day operation ~$1,200–1,350/year in raw infrastructure, before software, data, and the 2–4 weeks of warm-up time.',
+    },
+  ],
+
   relatedSites: [
     { title: 'How Many Cold Emails Should I Send Per Day?', url: 'https://howmanycoldemailsperday.com/' },
     { title: 'How to Warm Up Email for Cold Outreach', url: 'https://howtowarmupemail.com/' },

@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Much Does Cold Email Infrastructure Cost? Budget Math by Volume Tier",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How Much Does Cold Email Infrastructure Cost? Budget Math by Volume Tier"
+  description="Cold email infrastructure runs roughly $10–15/year per domain plus ~$6–7/month per mailbox, before sequencing software. The full cost build-up for 200, 500, and 1,000 sends per day — including the costs people forget."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Much Does Cold Email Infrastructure Cost? Budget Math by Volume Tier</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>The raw materials are cheap: domains run ~$10–15/year and standard mailboxes (Google Workspace or Microsoft 365 entry tiers) run ~$6–7 per mailbox per month. The real budget lives in the multiplication — a 1,000/day operation needs ~5 domains and ~15 mailboxes — plus the costs people forget: verification, sequencing software, and the 2–4 weeks of warm-up time before any of it produces pipeline.</strong></p>
+
+      <h2>The unit prices</h2>
+
+      <ul>
+        <li><strong>Domains:</strong> ~$10–15/year each for ordinary .com registrations (registrar pricing and TLD tradeoffs in <a href="/blog/choosing-domains-for-cold-email/">choosing domains</a>).</li>
+        <li><strong>Mailboxes:</strong> ~$6–7/month each on Google Workspace or Microsoft 365 entry plans — the providers whose deliverability you're effectively renting. Cheaper SMTP-only alternatives exist but trade away the inbox reputation that makes cold email land.</li>
+        <li><strong>Verification:</strong> bulk email verification typically prices in fractions of a cent per check — budget for re-verifying on the <a href="https://howtoverifyemails.com/blog/how-often-should-you-verify-email-lists/">30/60/90 cadence</a>, not just once.</li>
+        <li><strong>Sequencer/sending platform:</strong> the widest price range in the stack, from ~$30/month starter tools to platform pricing that bundles data and infrastructure.</li>
+      </ul>
+
+      <h2>Cost build-up by volume tier</h2>
+
+      <p>Using the standard architecture — 2–3 mailboxes per domain at 50–100 sends/day each (<a href="/blog/how-many-mailboxes-per-domain/">the 2–3 rule</a>):</p>
+
+      <ul>
+        <li><strong>~200/day starter:</strong> 1–2 domains (~$25/yr) + 3 mailboxes (~$20/mo) → <strong>roughly $250–300/year</strong> in raw infrastructure.</li>
+        <li><strong>~500/day:</strong> 3 domains (~$40/yr) + 7 mailboxes (~$45–50/mo) → <strong>~$600–650/year</strong>.</li>
+        <li><strong>~1,000/day:</strong> 5 domains (~$65/yr) + 15 mailboxes (~$95–105/mo) → <strong>~$1,200–1,350/year</strong> — before software, data, and verification.</li>
+      </ul>
+
+      <p>Two things stand out in that math. First, infrastructure is not where cold email budgets die — data quality and labor are. Second, the marginal cost of doing it right (secondary domains instead of <a href="/blog/should-you-use-your-main-domain-for-cold-email/">risking your main one</a>, warm-up instead of blasting) rounds to nothing against the cost of burning a domain and starting over.</p>
+
+      <h2>The costs that don't show up on invoices</h2>
+
+      <ul>
+        <li><strong>Warm-up time:</strong> 2–4 weeks per new mailbox before full volume (<a href="https://howtowarmupemail.com/blog/how-long-does-email-warmup-take/">the timeline</a>) — a calendar cost that surprises every first-time operator.</li>
+        <li><strong>Management labor:</strong> DNS records, warm-up schedules, volume caps, suppression sync, and reply routing across 15 mailboxes is real recurring work done by hand.</li>
+        <li><strong>Replacement churn:</strong> domains age out or degrade; rotation (<a href="/blog/domain-rotation-strategy/">strategy here</a>) means the domain count is a flow, not a one-time purchase.</li>
+      </ul>
+
+      <p>Run your own numbers with the <a href="/tools/infrastructure-cost-estimator/">infrastructure cost estimator</a> — and note that the bundled alternative inverts the labor math: platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> include the domain/mailbox provisioning, warm-up, and management layer, so the spreadsheet above collapses into a platform line-item with the labor cost at zero.</p>
+
+    </div>
+  </article>
+</Base>
