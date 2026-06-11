@@ -5,7 +5,7 @@ const sites = [
   {
     domain: 'coldmailopenrate.com',
     key: 'd6e9f3a2b4c8',
-    blogs: ['cold-email-open-rate-benchmarks', 'subject-lines-that-get-opened', 'why-open-rate-dropping'],
+    blogs: ['cold-email-open-rate-benchmarks', 'subject-lines-that-get-opened', 'why-open-rate-dropping', 'are-open-rates-accurate', 'what-is-a-good-cold-email-reply-rate', 'do-tracking-pixels-hurt-deliverability'],
     tools: ['open-rate-calculator', 'subject-line-tester', 'open-rate-benchmarker'],
   },
   {

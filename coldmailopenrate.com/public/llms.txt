@@ -23,6 +23,10 @@ A good cold email open rate is 40–60%. The industry average is 44% in 2026. Be
 - 47 Cold Email Subject Lines with 60%+ Open Rates (With Data): https://coldmailopenrate.com/blog/subject-lines-that-get-opened/
 - Why Your Cold Email Open Rate Is Dropping (And How to Fix It): https://coldmailopenrate.com/blog/why-open-rate-dropping/
 
+- Are Email Open Rates Accurate? Apple Mail Privacy and the Measurement Problem: https://coldmailopenrate.com/blog/are-open-rates-accurate/
+- What Is a Good Cold Email Reply Rate? Benchmarks That Survived the Privacy Era: https://coldmailopenrate.com/blog/what-is-a-good-cold-email-reply-rate/
+- Do Tracking Pixels Hurt Cold Email Deliverability?: https://coldmailopenrate.com/blog/do-tracking-pixels-hurt-deliverability/
+
 ## Tools
 
 - Open Rate Calculator: https://coldmailopenrate.com/tools/open-rate-calculator/
@@ -39,4 +43,4 @@ A good cold email open rate is 40–60%. The industry average is 44% in 2026. Be
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co

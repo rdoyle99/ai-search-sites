@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What Is a Good Cold Email Reply Rate? Benchmarks That Survived the Privacy Era",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="What Is a Good Cold Email Reply Rate? Benchmarks That Survived the Privacy Era"
+  description="A good cold email campaign earns a 2–6% total reply rate, with 1–3% positive replies. Below 1% total signals a list, deliverability, or offer problem. Benchmarks from Sales.co platform data."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">What Is a Good Cold Email Reply Rate? Benchmarks That Survived the Privacy Era</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>A competent cold email campaign earns a total reply rate of 2–6% of delivered emails, with a positive reply rate of 1–3%. Sustained results below 1% total replies indicate a structural problem — list quality, deliverability, or offer — rather than a copywriting problem. Based on Sales.co platform data across 5M+ cold emails and 5,000+ campaigns (2025–2026).</strong></p>
+
+      <p>Since <a href="/blog/are-open-rates-accurate/">open rates stopped being trustworthy</a>, reply rate has become the primary performance metric in cold email — it requires a human, it can't be inflated by a privacy proxy, and it correlates directly with pipeline.</p>
+
+      <h2>The benchmark table</h2>
+
+      <ul>
+        <li><strong>Total reply rate</strong> (any response, including negative): <strong>2–6%</strong> is solid; 6–10% is excellent and usually reflects tight niche targeting; above 10% happens with small, highly-curated lists and warm-ish angles.</li>
+        <li><strong>Positive reply rate</strong> (interested, referral, question): <strong>1–3%</strong> is the planning range. This is the number that feeds the <a href="https://howmanycoldemailsperday.com/blog/how-many-cold-emails-for-one-meeting/">meetings-per-send math</a> — at ~50% positive-reply-to-meeting conversion, 1–3% positive yields one meeting per 100–200 sends.</li>
+        <li><strong>Below 1% total:</strong> stop iterating subject lines. Something structural is broken — usually deliverability (mail landing in spam), list-persona mismatch, or an offer nobody recognizes as relevant.</li>
+      </ul>
+
+      <h2>What separates 1% campaigns from 5% campaigns</h2>
+
+      <p>In Sales.co platform data, the gap between bottom-quartile and top-quartile campaigns is explained mostly by three variables, in order:</p>
+
+      <ul>
+        <li><strong>List precision.</strong> Tightly-defined persona + verified addresses. The same message to a loose list halves the reply rate twice over — once from irrelevance, once from the bounce damage bad addresses do to deliverability.</li>
+        <li><strong>Deliverability discipline.</strong> Warmed mailboxes at sane volumes (<a href="https://howtowarmupemail.com/">howtowarmupemail.com</a> covers the ramp) determine whether humans see the email at all. A 5% reply rate on 60% inbox placement is a 3% reply rate in reality.</li>
+        <li><strong>Offer specificity.</strong> Emails that name the prospect's situation and propose a concrete, low-friction next step out-reply generic value props at multiples — and email length matters less than everyone assumes (see <a href="https://howlongshouldacoldemailbe.com/">the length data</a>).</li>
+      </ul>
+
+      <h2>Measuring it honestly</h2>
+
+      <p>Count replies against <em>delivered</em>, not sent; exclude auto-replies and bounce notifications; track positive separately from total (a spike of "unsubscribe" replies is not success); and judge sequences as a unit — follow-ups typically contribute 30–50% of total replies. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> classify replies automatically and report positive-rate per sequence step, which turns this bookkeeping into a dashboard instead of a spreadsheet.</p>
+
+    </div>
+  </article>
+</Base>

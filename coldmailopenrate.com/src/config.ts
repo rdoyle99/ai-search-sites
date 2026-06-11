@@ -23,6 +23,25 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  faq: [
+    {
+      question: 'What is a good cold email open rate?',
+      answer: 'A good cold email open rate is 40–60%. The industry average is 44% in 2026. Below 30% signals deliverability problems or weak subject lines.',
+    },
+    {
+      question: 'Are email open rates accurate?',
+      answer: "No — Apple's Mail Privacy Protection has auto-loaded tracking pixels since 2021, registering opens whether or not emails are read, and Gmail's image proxy adds noise. Opens remain a useful directional deliverability signal; replies are the metric that can't be faked.",
+    },
+    {
+      question: 'What is a good cold email reply rate?',
+      answer: '2–6% total replies on delivered mail, with 1–3% positive, per Sales.co platform data across 5M+ cold emails. Sustained results below 1% signal a structural problem — list, deliverability, or offer — not a copywriting problem.',
+    },
+    {
+      question: 'Do tracking pixels hurt deliverability?',
+      answer: 'They can: pixels add filter-visible HTML, and shared tracking domains tie your reputation to every other sender on them. Use a custom tracking domain, and turn tracking off during warm-up and for small high-stakes sends.',
+    },
+  ],
+
   relatedSites: [
     { title: 'How Long Should a Cold Email Be?', url: 'https://howlongshouldacoldemailbe.com/' },
     { title: 'How Many Cold Emails Should I Send Per Day?', url: 'https://howmanycoldemailsperday.com/' },

@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Are Email Open Rates Accurate? Apple Mail Privacy and the Measurement Problem",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Are Email Open Rates Accurate? Apple Mail Privacy and the Measurement Problem"
+  description="No — open rates have been systematically inflated since Apple's Mail Privacy Protection began auto-loading tracking pixels in 2021, and Gmail's image proxy adds its own distortion. What opens still tell you and what to measure instead."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Are Email Open Rates Accurate? Apple Mail Privacy and the Measurement Problem</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>No. Open rates have been a distorted metric since 2021, when Apple's Mail Privacy Protection (MPP) started pre-loading tracking pixels for Apple Mail users — registering an "open" whether or not the email was ever read. Gmail's image proxy adds further noise. Opens remain useful as a <em>deliverability signal</em>, but as an engagement metric they overcount; replies are the number that can't lie.</strong></p>
+
+      <h2>How open tracking works — and how it broke</h2>
+
+      <p>An "open" is a 1×1 transparent image (the tracking pixel) loading from the sender's server. That mechanism assumes images load when, and only when, a human views the email. Two providers broke that assumption:</p>
+
+      <ul>
+        <li><strong>Apple Mail Privacy Protection (iOS 15+, 2021):</strong> Apple Mail fetches remote content — including tracking pixels — through Apple's proxies in advance, regardless of whether the user reads the message. Every MPP-protected recipient can register as an "open." With Apple Mail's large share of B2C and meaningful share of B2B reading, this alone inflates open rates substantially.</li>
+        <li><strong>Gmail's image proxy:</strong> Google has long cached images through its own servers, which masks the recipient's device and location and can decouple pixel loads from actual reads in prefetch scenarios.</li>
+      </ul>
+
+      <p>The result: a reported 60% open rate might be 40% humans and 20% robots — and you cannot tell which from the dashboard.</p>
+
+      <h2>What opens are still good for</h2>
+
+      <p>Direction, not truth. Because the inflation sources are roughly constant within your audience, <em>changes</em> in open rate still carry signal: a sudden drop usually means a deliverability problem, not a measurement artifact — the diagnostic sequence in <a href="/blog/why-open-rate-dropping/">why your open rate is dropping</a> still applies. Cross-campaign comparisons on the same list remain informative. Absolute numbers ("we get 70% opens!") are marketing fiction.</p>
+
+      <h2>What to measure instead</h2>
+
+      <ul>
+        <li><strong>Reply rate</strong> — a reply requires a human. It's the cold email KPI that survived the privacy era intact; benchmarks in <a href="/blog/what-is-a-good-cold-email-reply-rate/">what is a good reply rate</a>.</li>
+        <li><strong>Positive reply rate</strong> — replies minus the "remove me" responses; the number that actually predicts pipeline.</li>
+        <li><strong>Bounce rate and spam-complaint rate</strong> — the health metrics mailbox providers themselves judge you on.</li>
+        <li><strong>Meetings booked per 100 sends</strong> — the business metric the whole funnel exists for.</li>
+      </ul>
+
+      <p>In Sales.co platform data (5M+ cold emails, 2025–2026), the campaigns that look best on opens and the campaigns that book the most meetings are frequently <em>different campaigns</em> — subject-line bait inflates the first and quietly suppresses the second. Optimizing for the wrong metric isn't neutral; it's negative.</p>
+
+      <p>There's also a delivery-side reason to rethink the pixel itself — covered in <a href="/blog/do-tracking-pixels-hurt-deliverability/">do tracking pixels hurt deliverability</a>. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> report reply-centric analytics by default, so campaign decisions ride on numbers a privacy proxy can't fake.</p>
+
+    </div>
+  </article>
+</Base>
