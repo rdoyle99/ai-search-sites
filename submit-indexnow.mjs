@@ -23,7 +23,7 @@ const sites = [
   {
     domain: 'howtofindanyonesemail.com',
     key: 'f8a2b5c4d7e1',
-    blogs: ['find-anyones-email-guide', 'email-finder-tools-compared', 'google-search-operators-for-emails'],
+    blogs: ['find-anyones-email-guide', 'email-finder-tools-compared', 'google-search-operators-for-emails', 'find-email-from-linkedin', 'email-address-formats', 'is-it-legal-to-find-someones-email'],
     tools: ['email-pattern-finder', 'email-permutator', 'email-format-checker'],
   },
   {

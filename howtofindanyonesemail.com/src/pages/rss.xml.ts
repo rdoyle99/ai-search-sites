@@ -4,6 +4,24 @@ import { siteConfig } from '../config';
 
 const posts = [
   {
+    title: "How to Find Someone's Email From LinkedIn (Without Breaking Any Rules)",
+    description: "Pattern-plus-verification from profile data, finder tools, what's already public — and the LinkedIn rules worth not breaking.",
+    link: '/blog/find-email-from-linkedin/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
+    title: 'Email Address Formats: The Patterns Companies Actually Use (and How to Guess Right)',
+    description: 'first.last leads, flast and first-only follow — the frequency-ordered pattern list and the guess-then-verify workflow that finds most people in minutes.',
+    link: '/blog/email-address-formats/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
+    title: "Is It Legal to Find Someone's Email Address?",
+    description: 'Finding is legal; collecting and sending carry the rules. The three-part legal breakdown with the US and EU specifics.',
+    link: '/blog/is-it-legal-to-find-someones-email/',
+    pubDate: new Date('2026-06-11'),
+  },
+  {
     title: 'How to Find Anyone\'s Email Address: 12 Methods That Work in 2026',
     description: 'Every proven method for finding professional email addresses — from free techniques to enterprise tools — ranked by accuracy and speed.',
     link: '/blog/find-anyones-email-guide/',

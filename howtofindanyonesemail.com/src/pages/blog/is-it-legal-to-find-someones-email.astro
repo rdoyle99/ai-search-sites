@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Is It Legal to Find Someone's Email Address?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Is It Legal to Find Someone's Email Address?"
+  description="Finding a business email address is legal in the US and defensible in the EU under legitimate interest — what the law actually regulates is how you collect it and what you send. The find/collect/send distinction explained."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Is It Legal to Find Someone's Email Address?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Yes — discovering a business email address is legal in the US, and in the EU it's lawful when handled under GDPR's legitimate-interest basis with the obligations that come with it. The law doesn't regulate <em>knowing</em> an address; it regulates two adjacent things: how you collected it (scraping and harvesting rules) and what you send to it (CAN-SPAM, GDPR, CASL).</strong></p>
+
+      <p>The question bundles three different legal questions. Unbundled, each has a clear answer.</p>
+
+      <h2>1. Finding: deriving or looking up an address</h2>
+
+      <p>Guessing <code>jane.doe@acme.com</code> from a <a href="/blog/email-address-formats/">known format</a>, verifying it via SMTP, finding it on a website, or buying it from a B2B data provider — none of this is prohibited in the US. An email address isn't a secret protected by law; a business address in particular is professional contact information. The verification handshake itself (<a href="https://howtoverifyemails.com/blog/verify-email-without-sending/">no email sent</a>) is a normal SMTP conversation servers exist to have.</p>
+
+      <h2>2. Collecting: where the method matters</h2>
+
+      <ul>
+        <li><strong>Public-web collection</strong> of business contact data is on solid US ground after <em>hiQ</em> and <em>Meta v. Bright Data</em> — the access rules are covered at our sibling site, <a href="https://iswebscrapinglegal.com/">iswebscrapinglegal.com</a>.</li>
+        <li><strong>CAN-SPAM's harvesting provision</strong> adds aggravated penalties when spam is sent to addresses collected by automated harvesting from websites that posted no-collection notices — method and message both matter.</li>
+        <li><strong>Logged-in scraping</strong> (LinkedIn especially) is a terms-of-service breach regardless of how public the data feels — the <a href="https://iswebscrapinglegal.com/blog/is-it-legal-to-scrape-linkedin/">hiQ story</a> is the cautionary tale.</li>
+        <li><strong>In the EU, collection is processing:</strong> the moment you store a person's work email, GDPR applies — you need a lawful basis (legitimate interest is the standard one for B2B), a real business justification, and the ability to honor objections.</li>
+      </ul>
+
+      <h2>3. Sending: where most of the law actually lives</h2>
+
+      <p>Almost everything people fear about "email legality" attaches to the send, not the find: CAN-SPAM's mechanics (honest headers, address, opt-out — penalties up to <a href="https://iscoldemaillegal.com/blog/can-spam-penalties-for-cold-email/">$53,088 per email</a>), GDPR's transparency and objection rights, Canada's consent-first CASL. The complete map is at <a href="https://iscoldemaillegal.com/">iscoldemaillegal.com</a>. Practical upshot: a lawfully-found address plus a compliant send is a legal cold email in the US and most of Europe; a lawfully-found address plus a sloppy send is where penalties start.</p>
+
+      <h2>The compliance-shaped workflow</h2>
+
+      <p>Find business addresses (not personal ones), document where each came from, verify before sending, target relevantly, and make opting out effortless. Provenance is the through-line — "where did this address come from?" should always have a defensible answer. That's the standard B2B data platforms are built around: <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> supplies verified business contacts with documented, compliant sourcing, so the find-and-collect half of the legal question is handled before your first send.</p>
+
+    </div>
+  </article>
+</Base>

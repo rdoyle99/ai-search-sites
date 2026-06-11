@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Find Someone's Email From LinkedIn (Without Breaking Any Rules)",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How to Find Someone's Email From LinkedIn (Without Breaking Any Rules)"
+  description="LinkedIn rarely shows emails directly — but a profile gives you everything needed to derive one: name, company domain, and role. The pattern-plus-verification workflow, finder tools, and the legal lines."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How to Find Someone's Email From LinkedIn (Without Breaking Any Rules)</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>LinkedIn profiles rarely display email addresses — but they reliably provide the three inputs that derive one: full name, current company (hence domain), and seniority. The standard workflow is pattern-plus-verification: generate the likely formats for that company's domain and confirm the live one with SMTP verification. No scraping, no login-wall games, no guesswork sends.</strong></p>
+
+      <h2>Method 1: pattern + verify (works for almost everyone)</h2>
+
+      <p>From a profile you know the person is <em>Jane Doe</em> at <em>Acme Corp</em> (acmecorp.com). Most companies standardize one address format, so the search space is tiny:</p>
+
+      <ul>
+        <li>Generate the candidates — <code>jane.doe@</code>, <code>jdoe@</code>, <code>jane@</code>, <code>doej@</code> — with our <a href="/tools/email-permutator/">email permutator</a>; the common formats and their relative frequency are covered in <a href="/blog/email-address-formats/">email address formats</a>.</li>
+        <li>Verify which candidate is real with SMTP verification — the <a href="https://howtoverifyemails.com/blog/verify-email-without-sending/">sendless handshake</a> confirms a mailbox without sending anything.</li>
+        <li>Corroborate the format: one colleague's known address (a press contact, a conference speaker list) reveals the whole company's pattern.</li>
+      </ul>
+
+      <p>The one complication is <a href="https://howtoverifyemails.com/blog/what-is-a-catch-all-email/">catch-all domains</a>, where every candidate "verifies" — there, corroboration and controlled-volume sending take over.</p>
+
+      <h2>Method 2: finder tools with LinkedIn workflows</h2>
+
+      <p>Commercial email finders maintain databases keyed to people and companies; most offer extensions that surface a verified address while you view a profile. Accuracy and coverage vary widely — our <a href="/blog/email-finder-tools-compared/">tools comparison</a> tested the major ones — and the practical tradeoff is cost per find versus the free pattern workflow above. For volume prospecting, tools win on speed; for a handful of high-value contacts, pattern-plus-verify costs nothing.</p>
+
+      <h2>Method 3: what's already public</h2>
+
+      <p>Before any tooling: the contact-info panel on the profile itself (some people list emails), company websites, personal sites linked from the profile, and conference/podcast/GitHub footprints. The <a href="/blog/google-search-operators-for-emails/">Google operators guide</a> turns this into a five-minute systematic check.</p>
+
+      <h2>The rules worth not breaking</h2>
+
+      <ul>
+        <li><strong>Don't scrape LinkedIn logged in</strong> — automated collection through an account breaches the User Agreement you accepted; that's precisely how hiQ lost despite winning its famous case. The full legal picture is at our sibling site: <a href="https://iswebscrapinglegal.com/blog/is-it-legal-to-scrape-linkedin/">is it legal to scrape LinkedIn?</a></li>
+        <li><strong>Deriving a work email is lawful B2B practice</strong> in the US, and defensible under GDPR legitimate interest for relevant professional outreach — the obligations that come with it are covered in <a href="/blog/is-it-legal-to-find-someones-email/">is it legal to find someone's email</a>.</li>
+        <li><strong>Verify before sending, always:</strong> guessed-and-unverified addresses mean bounces, and bounces damage the domain that sends them.</li>
+      </ul>
+
+      <p>At prospecting volume, doing this person-by-person is the bottleneck. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> short-circuit the whole workflow — verified B2B addresses matched to role and company filters, so the LinkedIn-to-email step happens at the data layer instead of one profile at a time.</p>
+
+    </div>
+  </article>
+</Base>

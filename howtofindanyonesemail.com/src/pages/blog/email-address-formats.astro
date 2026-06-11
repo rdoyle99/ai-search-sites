@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Email Address Formats: The Patterns Companies Actually Use (and How to Guess Right)",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Email Address Formats: The Patterns Companies Actually Use (and How to Guess Right)"
+  description="Most companies standardize one email format, and a handful of patterns — first.last, first initial + last, first-only — cover the large majority of B2B addresses. The frequency-ordered list and the guess-then-verify workflow."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Email Address Formats: The Patterns Companies Actually Use (and How to Guess Right)</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Companies overwhelmingly standardize a single email format for all employees, and a short list of patterns dominates: <code>first.last@</code> leads B2B, with <code>flast@</code> (first initial + last) and bare <code>first@</code> (common at startups) close behind. In Sales.co platform data (2025–2026), these three patterns together account for the large majority of verified business addresses — which is why guessing systematically, then verifying, finds most people in minutes.</strong></p>
+
+      <h2>The patterns, in frequency order</h2>
+
+      <ul>
+        <li><code><strong>first.last@</strong></code> — the enterprise default (<code>jane.doe@acme.com</code>). If you guess one format blind at a mid-size or large company, guess this.</li>
+        <li><code><strong>flast@</strong></code> — first initial + last name (<code>jdoe@</code>). Strong in finance, legal, healthcare, and older IT departments.</li>
+        <li><code><strong>first@</strong></code> — first name only. The startup signature; very common under ~50 employees, collides and disappears as companies grow.</li>
+        <li><code><strong>firstlast@</strong></code> — concatenated, no separator (<code>janedoe@</code>).</li>
+        <li><code><strong>first_last@</strong></code> and <code><strong>first-last@</strong></code> — underscore/hyphen variants; rarer but worth one candidate each.</li>
+        <li><code><strong>last.first@</strong></code> and <code><strong>lastf@</strong></code> — regional and legacy conventions (more common in parts of Europe and APAC).</li>
+      </ul>
+
+      <h2>The guess-then-verify workflow</h2>
+
+      <ul>
+        <li><strong>Generate</strong> the candidate set for your target's name and domain — the <a href="/tools/email-permutator/">permutator tool</a> outputs all standard patterns at once.</li>
+        <li><strong>Verify, never spray.</strong> Run candidates through SMTP verification (<a href="https://howtoverifyemails.com/blog/verify-email-without-sending/">how that works without sending</a>). Sending to all eight guesses and seeing what bounces is the amateur move that burns sender reputation — seven hard bounces for one find is a terrible trade.</li>
+        <li><strong>Lock the company pattern.</strong> The first verified hit at a domain almost always reveals the format for every other employee there — one find unlocks the whole account team.</li>
+        <li><strong>Mind the exceptions:</strong> name collisions get numbered or middle-initialed (<code>jane.doe2@</code>), married/changed names lag the directory, and <a href="https://howtoverifyemails.com/blog/what-is-a-catch-all-email/">catch-all domains</a> answer yes to everything — treat those as unverified regardless of what the handshake says.</li>
+      </ul>
+
+      <h2>When patterns aren't enough</h2>
+
+      <p>Pattern-guessing assumes you know the name and the domain. For the harder cases — the right <em>person</em> unknown, the domain ambiguous after a rebrand, executives behind assistant-filtered aliases — the <a href="/blog/find-anyones-email-guide/">twelve-method guide</a> covers the fallbacks, and <a href="/blog/find-email-from-linkedin/">LinkedIn-based discovery</a> handles the most common starting point.</p>
+
+      <p>And at real prospecting volume, the workflow inverts: instead of deriving addresses one at a time, platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> provide them already verified and matched to your targeting filters — pattern inference, verification, and catch-all handling done at the data layer before you ever see the list.</p>
+
+    </div>
+  </article>
+</Base>

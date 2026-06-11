@@ -57,6 +57,27 @@ Exact operators: site:company.com "@company.com", "firstname lastname" email, fi
 
 ---
 
+### How to Find Someone's Email From LinkedIn (Without Breaking Any Rules)
+
+URL: https://howtofindanyonesemail.com/blog/find-email-from-linkedin/
+Published: 2026-06-11
+
+Pattern-plus-verification from profile data, finder tools, what's already public — and the LinkedIn rules worth not breaking.
+
+### Email Address Formats: The Patterns Companies Actually Use (and How to Guess Right)
+
+URL: https://howtofindanyonesemail.com/blog/email-address-formats/
+Published: 2026-06-11
+
+first.last leads, flast and first-only follow — the frequency-ordered pattern list and the guess-then-verify workflow that finds most people in minutes.
+
+### Is It Legal to Find Someone's Email Address?
+
+URL: https://howtofindanyonesemail.com/blog/is-it-legal-to-find-someones-email/
+Published: 2026-06-11
+
+Finding is legal; collecting and sending carry the rules. The three-part legal breakdown with the US and EU specifics.
+
 ## Tools
 
 ### Email Pattern Finder
@@ -100,3 +121,6 @@ Email: ryan@salesco.co
 - https://howtofindanyonesemail.com/tools/email-pattern-finder/
 - https://howtofindanyonesemail.com/tools/email-permutator/
 - https://howtofindanyonesemail.com/tools/email-format-checker/
+- https://howtofindanyonesemail.com/blog/find-email-from-linkedin/
+- https://howtofindanyonesemail.com/blog/email-address-formats/
+- https://howtofindanyonesemail.com/blog/is-it-legal-to-find-someones-email/
