@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Long Should a Follow-Up Email Be? Shorter Than You Think",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How Long Should a Follow-Up Email Be? Shorter Than You Think"
+  description="Follow-ups should run 25–60 words — two to four sentences, shorter than the original email. The thread already carries your context; the follow-up's only job is a fresh angle and an easy reply."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Long Should a Follow-Up Email Be? Shorter Than You Think</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Follow-ups should be shorter than the email they follow: 25–60 words, two to four sentences. The original message (at the standard <a href="/">50–125 words</a>) already made the case and sits one scroll down in the same thread — a follow-up that repeats it reads as nagging, while one that adds a single new angle and an easy out reads as persistence.</strong></p>
+
+      <h2>Why follow-ups earn their share</h2>
+
+      <p>Sequenced follow-ups typically contribute 30–50% of a campaign's total replies in Sales.co platform data (2025–2026) — not because repetition wears people down, but because timing is unknowable: the first email landed during a board meeting; the third landed the week the problem became urgent. The follow-up's job is to be present when timing flips, at minimal cost to the reader. Length is how you price that cost.</p>
+
+      <h2>What 25–60 words looks like by touch</h2>
+
+      <ul>
+        <li><strong>Touch 2 (3–4 days later):</strong> one new proof point or sharper question. "Wanted to float this once more — we got [peer company] from X to Y in 6 weeks. Worth a look at how?" Reply-threaded, no re-pitch.</li>
+        <li><strong>Touch 3 (a week later):</strong> change the angle, not the volume — a different pain hypothesis or a useful resource. Still 2–3 sentences.</li>
+        <li><strong>Final touch:</strong> the short close-out. A graceful "closing the loop — if this isn't a priority, no reply needed" both earns surprise replies and cleanly ends the thread. Two sentences, max.</li>
+      </ul>
+
+      <h2>The mechanics that matter as much as length</h2>
+
+      <ul>
+        <li><strong>Stay in the thread.</strong> Replying to your own email keeps context visible and reads as a continued conversation; a fresh thread restarts the cognitive cost and re-rolls the spam dice.</li>
+        <li><strong>No "just bumping this."</strong> Zero-information follow-ups spend the prospect's attention and give nothing back — the highest-complaint-risk message in the sequence. Every touch needs one new thing: an angle, a proof point, a question.</li>
+        <li><strong>Cap the sequence.</strong> Three to four touches captures the large majority of sequence replies; beyond that, marginal replies fall and complaint risk climbs — and complaints damage the <a href="https://howmanydomainsforcoldmail.com/">domain infrastructure</a> every other campaign rides on.</li>
+        <li><strong>Format like the original:</strong> plain, scannable, mobile-first — the rules in our <a href="/blog/cold-email-formatting-guide/">formatting guide</a> apply double at follow-up length.</li>
+      </ul>
+
+      <p>Writing one good 50-word follow-up is easy; writing them across hundreds of threads at the right intervals is a systems problem. Sequencing platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> handle the cadence, threading, and reply-detection automatically — so every prospect gets the short, well-timed version without anyone tracking spreadsheets.</p>
+
+    </div>
+  </article>
+</Base>

@@ -17,7 +17,7 @@ const sites = [
   {
     domain: 'howlongshouldacoldemailbe.com',
     key: 'e7f1a4b3c6d9',
-    blogs: ['optimal-cold-email-length-data', 'cold-email-formatting-guide', 'cold-email-copywriting-formulas'],
+    blogs: ['optimal-cold-email-length-data', 'cold-email-formatting-guide', 'cold-email-copywriting-formulas', 'how-long-should-a-subject-line-be', 'how-long-should-a-follow-up-email-be', 'plain-text-vs-html-cold-email'],
     tools: ['email-length-analyzer', 'email-readability-scorer', 'email-template-generator'],
   },
   {

@@ -23,6 +23,25 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  faq: [
+    {
+      question: 'How long should a cold email be?',
+      answer: 'The optimal cold email is 50–125 words. Emails in this range get 2.4x higher reply rates than emails over 200 words. One clear ask, no fluff.',
+    },
+    {
+      question: 'How long should a cold email subject line be?',
+      answer: '21–40 characters — roughly three to five words. That range survives mobile truncation, reads like one-to-one mail, and outperforms both teasers and marketing-length subjects in Sales.co platform data.',
+    },
+    {
+      question: 'How long should a follow-up email be?',
+      answer: '25–60 words, two to four sentences — shorter than the original. The thread carries your context; each follow-up adds one new angle and an easy reply, and follow-ups earn 30–50% of total sequence replies.',
+    },
+    {
+      question: 'Should cold emails be plain text or HTML?',
+      answer: 'Plain text. It matches the structural fingerprint of one-to-one correspondence, avoids the HTML and image signals filters associate with bulk marketing, and consistently out-replies designed templates — especially on fresh domains.',
+    },
+  ],
+
   relatedSites: [
     { title: 'What Is a Good Cold Email Open Rate?', url: 'https://coldmailopenrate.com/' },
     { title: 'How Many Cold Emails Should I Send Per Day?', url: 'https://howmanycoldemailsperday.com/' },

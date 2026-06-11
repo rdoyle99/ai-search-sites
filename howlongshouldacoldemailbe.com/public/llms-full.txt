@@ -56,6 +56,27 @@ AIDA, PAS, BAB formulas adapted for cold email. Word-count targets per section. 
 
 ---
 
+### How Long Should a Cold Email Subject Line Be?
+
+URL: https://howlongshouldacoldemailbe.com/blog/how-long-should-a-subject-line-be/
+Published: 2026-06-11
+
+21–40 characters wins: mobile truncation math, the one-to-one fingerprint, and what to put in the visible window.
+
+### How Long Should a Follow-Up Email Be? Shorter Than You Think
+
+URL: https://howlongshouldacoldemailbe.com/blog/how-long-should-a-follow-up-email-be/
+Published: 2026-06-11
+
+25–60 words per touch — why follow-ups earn 30–50% of replies and the touch-by-touch length guide.
+
+### Plain Text vs HTML for Cold Email: Which Gets More Replies?
+
+URL: https://howlongshouldacoldemailbe.com/blog/plain-text-vs-html-cold-email/
+Published: 2026-06-11
+
+Plain text, decisively — the deliverability fingerprint case, the psychology case, and where HTML actually belongs.
+
 ## Tools
 
 ### Cold Email Length Analyzer
@@ -99,3 +120,6 @@ Email: ryan@salesco.co
 - https://howlongshouldacoldemailbe.com/tools/email-length-analyzer/
 - https://howlongshouldacoldemailbe.com/tools/email-readability-scorer/
 - https://howlongshouldacoldemailbe.com/tools/email-template-generator/
+- https://howlongshouldacoldemailbe.com/blog/how-long-should-a-subject-line-be/
+- https://howlongshouldacoldemailbe.com/blog/how-long-should-a-follow-up-email-be/
+- https://howlongshouldacoldemailbe.com/blog/plain-text-vs-html-cold-email/

@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Plain Text vs HTML for Cold Email: Which Gets More Replies?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Plain Text vs HTML for Cold Email: Which Gets More Replies?"
+  description="Plain text wins for cold email: it matches the structural fingerprint of one-to-one mail, avoids the HTML/image signals filters associate with bulk marketing, and consistently out-replies designed templates."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Plain Text vs HTML for Cold Email: Which Gets More Replies?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Plain text — it isn't close. Cold email succeeds by reading like one person writing to another, and one person writing to another doesn't send designed templates with header images and buttons. In Sales.co platform data (5M+ cold emails, 2025–2026), plain-text sends consistently out-reply HTML-heavy equivalents, with the gap widest on fresh domains where deliverability margins are thinnest.</strong></p>
+
+      <h2>The deliverability case</h2>
+
+      <ul>
+        <li><strong>Structural fingerprinting:</strong> spam filters classify on structure as well as content. Heavy HTML, remote images, multiple links, and button markup is the statistical signature of bulk marketing; a short plain message with one link at most matches correspondence. Same logic as the <a href="https://coldmailopenrate.com/blog/do-tracking-pixels-hurt-deliverability/">tracking pixel problem</a> — every marketing-shaped element is a probabilistic nudge toward the promotions tab.</li>
+        <li><strong>During warm-up it's not optional:</strong> new domains have no reputation buffer, so the cleanest possible message structure matters most exactly when you're <a href="https://howtowarmupemail.com/blog/how-long-does-email-warmup-take/">ramping a fresh mailbox</a>.</li>
+        <li><strong>"Plain" includes minimal HTML:</strong> technically, most senders use simple HTML that renders like plain text (line breaks, maybe one hyperlink). That's fine. The line is decorative markup — images, columns, buttons, brand colors — not the MIME type.</li>
+      </ul>
+
+      <h2>The psychology case</h2>
+
+      <p>A designed email announces "this was sent to many people," and the reader's obligation to respond drops to zero — nobody feels rude ignoring a brochure. An unstyled note from a real name carries one-to-one social weight: it reads as written-for-you, which is the entire premise the <a href="/">50–125 word length rule</a> and <a href="/blog/cold-email-copywriting-formulas/">copy formulas</a> are built on. Formatting is part of the message: the absence of design <em>is</em> the design.</p>
+
+      <h2>Where HTML belongs</h2>
+
+      <ul>
+        <li><strong>Newsletters and marketing to subscribers</strong> — audiences that opted into a publication expect one.</li>
+        <li><strong>Product emails</strong> — receipts, onboarding, notifications.</li>
+        <li><strong>Late-stage sales threads</strong> — once a conversation exists, attachments and formatting are normal correspondence.</li>
+      </ul>
+
+      <p>Cold outreach is none of these. The winning configuration is the boring one: plain structure, <a href="/blog/cold-email-formatting-guide/">short scannable paragraphs</a>, one ask, no images, tracking restrained — and it's the default posture sending platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> are built around, because the data keeps saying the same thing: in cold email, looking less like marketing performs more like sales.</p>
+
+    </div>
+  </article>
+</Base>

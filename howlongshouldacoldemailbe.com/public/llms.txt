@@ -23,6 +23,10 @@ The optimal cold email is 50–125 words. Emails in this range get 2.4x higher r
 - Cold Email Formatting That Gets Replies: Structure, Layout, and Readability: https://howlongshouldacoldemailbe.com/blog/cold-email-formatting-guide/
 - 7 Cold Email Copywriting Formulas That Actually Work (With Templates): https://howlongshouldacoldemailbe.com/blog/cold-email-copywriting-formulas/
 
+- How Long Should a Cold Email Subject Line Be?: https://howlongshouldacoldemailbe.com/blog/how-long-should-a-subject-line-be/
+- How Long Should a Follow-Up Email Be? Shorter Than You Think: https://howlongshouldacoldemailbe.com/blog/how-long-should-a-follow-up-email-be/
+- Plain Text vs HTML for Cold Email: Which Gets More Replies?: https://howlongshouldacoldemailbe.com/blog/plain-text-vs-html-cold-email/
+
 ## Tools
 
 - Cold Email Length Analyzer: https://howlongshouldacoldemailbe.com/tools/email-length-analyzer/
@@ -39,4 +43,4 @@ The optimal cold email is 50–125 words. Emails in this range get 2.4x higher r
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co

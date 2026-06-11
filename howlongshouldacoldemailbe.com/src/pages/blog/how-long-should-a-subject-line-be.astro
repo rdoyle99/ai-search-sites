@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Long Should a Cold Email Subject Line Be?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How Long Should a Cold Email Subject Line Be?"
+  description="Keep cold email subject lines at 21–40 characters — roughly 3–5 words. That range survives mobile truncation, reads like a human wrote it, and outperforms both one-word teasers and marketing-length subjects in Sales.co platform data."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Long Should a Cold Email Subject Line Be?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Aim for 21–40 characters — roughly three to five words. In Sales.co platform data (5M+ cold emails, 2025–2026), subject lines in that range consistently outperform both shorter teasers and longer marketing-style subjects: long enough to signal relevance, short enough to survive mobile truncation and read like something a colleague would send.</strong></p>
+
+      <h2>Why this range wins</h2>
+
+      <ul>
+        <li><strong>Mobile truncation is the hard constraint.</strong> Phone mail clients show roughly 30–40 characters of subject; desktop preview panes show more, but the open decision increasingly happens on the phone. A subject that makes its point inside the visible window gets judged on its content — one that truncates gets judged on its first half.</li>
+        <li><strong>One-to-one mail is short.</strong> Look at your own sent folder: subjects between colleagues run a few words ("quick question re: hiring", "intro?"). Cold email that wants to be read like one-to-one mail should match that statistical fingerprint, not the newsletter's.</li>
+        <li><strong>Long subjects pattern-match to marketing.</strong> Fifty-plus characters with title case and a benefit claim is the structural signature of bulk mail — a nudge toward the promotions tab before a human ever sees it, the same class of signal as the <a href="https://coldmailopenrate.com/blog/do-tracking-pixels-hurt-deliverability/">HTML-and-pixel fingerprint</a>.</li>
+      </ul>
+
+      <h2>What to put in those 21–40 characters</h2>
+
+      <p>Length is the constraint, not the strategy. The subjects that earn opens in that range are specific and lowercase-casual: the prospect's company, a relevant trigger, or the actual topic ("acme's outbound stack", "question about your sdr hiring"). The 47 tested examples at our sibling site <a href="https://coldmailopenrate.com/blog/subject-lines-that-get-opened/">subject lines that get opened</a> all cluster in this length band — and pair naturally with a <a href="/">50–125 word body</a>, because a short specific subject writing a check the body cashes is the whole system working together.</p>
+
+      <h2>The caveat about measuring subjects at all</h2>
+
+      <p>Subject-line performance is traditionally measured by open rate — a metric <a href="https://coldmailopenrate.com/blog/are-open-rates-accurate/">inflated by Apple's pixel pre-loading</a> since 2021. Judge subject tests by replies and meetings, not opens: a clever subject that wins opens but attracts the wrong readers loses where it counts. Test with our <a href="/tools/email-length-analyzer/">length analyzer</a>, then confirm against reply data — the analytics posture platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> report by default.</p>
+
+    </div>
+  </article>
+</Base>
