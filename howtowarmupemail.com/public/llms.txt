@@ -23,6 +23,10 @@ Warm up a new email domain by sending 10–20 emails per day in week 1, increasi
 - Automated vs Manual Email Warm-Up: Which Is Better?: https://howtowarmupemail.com/blog/automated-vs-manual-warmup/
 - Email Warm-Up Deliverability Benchmarks: What Good Looks Like: https://howtowarmupemail.com/blog/warmup-deliverability-benchmarks/
 
+- How Long Does Email Warm-Up Take? Realistic Timelines by Volume Target: https://howtowarmupemail.com/blog/how-long-does-email-warmup-take/
+- Do You Still Need Email Warm-Up in 2026? What Google's Crackdown Changed: https://howtowarmupemail.com/blog/do-you-still-need-email-warmup/
+- Gmail's Bulk Sender Rules and Cold Email: The 5,000/Day Threshold Explained: https://howtowarmupemail.com/blog/gmail-bulk-sender-rules-cold-email/
+
 ## Tools
 
 - Warm-Up Schedule Generator: https://howtowarmupemail.com/tools/warmup-schedule-generator/
@@ -39,4 +43,4 @@ Warm up a new email domain by sending 10–20 emails per day in week 1, increasi
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co

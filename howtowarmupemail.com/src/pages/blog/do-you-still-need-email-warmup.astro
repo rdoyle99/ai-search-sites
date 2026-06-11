@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Do You Still Need Email Warm-Up in 2026? What Google's Crackdown Changed",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Do You Still Need Email Warm-Up in 2026? What Google's Crackdown Changed"
+  description="Yes — but the tooling changed. Google cut off API-based warmup for Gmail accounts and warmup pools are increasingly detectable. The practice that survives: gradual volume ramps with real engagement."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Do You Still Need Email Warm-Up in 2026? What Google's Crackdown Changed</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Yes — warming up new domains and mailboxes is still mandatory for cold email in 2026. What changed is <em>how</em>: Google cut off the Gmail API access that automated warmup tools relied on, and pool-based fake engagement is increasingly detectable. The practice that survives the crackdown is the original one — gradual volume ramps with genuine engagement.</strong></p>
+
+      <p>"Is warm-up dead?" became a real question because the most visible form of it — automated warmup pools — got kneecapped. It's worth separating the practice from the product.</p>
+
+      <h2>What Google actually did</h2>
+
+      <p>Starting in 2023, Google moved against third-party warmup services that used Gmail API access to fake engagement between accounts — tools sending automated emails from your account and auto-opening, auto-replying, and auto-archiving from others. Several vendors <a href="https://www.saleshandy.com/blog/we-are-shutting-down-our-email-warm-up-services-for-google-accounts/" target="_blank" rel="noopener noreferrer">publicly shut down their Google-account warmup services</a> in response, and industry analyses were blunt that <a href="https://www.growbots.com/blog/google-bans-cold-email-warmup/" target="_blank" rel="noopener noreferrer">API-based warmup violated Google's policies</a>. Pool-based warmup that survives does so by routing around the API — and mailbox providers keep getting better at spotting the signature: the same cluster of inboxes opening and replying to each other in predictable patterns.</p>
+
+      <h2>Why the practice still matters</h2>
+
+      <p>None of this changed the underlying mechanism. Mailbox providers score sending domains and mailboxes on history: a domain with no history that starts blasting 200 cold emails a day looks exactly like a spammer spinning up infrastructure, because that's what spammers do. Reputation is earned gradually — which is the entire argument for the <a href="/blog/how-long-does-email-warmup-take/">2–4 week ramp</a>. Sales.co platform data across 5,000+ campaigns (2025–2026) continues to show warmed domains reaching ~94% inbox placement by day 21–28, while unwarmed domains start in the spam folder and stay there.</p>
+
+      <p>The 2024 <a href="https://support.google.com/a/answer/14229414?hl=en" target="_blank" rel="noopener noreferrer">Gmail and Yahoo bulk-sender rules</a> raised the stakes further: authentication (SPF, DKIM, DMARC) and sub-0.3% spam rates are now hard requirements at volume — details in our <a href="/blog/gmail-bulk-sender-rules-cold-email/">bulk-sender rules breakdown</a>. A domain that skips warm-up and catches early spam complaints can blow through that threshold in its first week.</p>
+
+      <h2>What replaces the warmup pool</h2>
+
+      <ul>
+        <li><strong>The ramp itself:</strong> graduated volume increases over 2–4 weeks (the <a href="/tools/warmup-schedule-generator/">schedule generator</a> builds one per mailbox).</li>
+        <li><strong>Real engagement first:</strong> week-one sends go to colleagues, existing contacts, and genuinely interested recipients — humans who actually open and reply.</li>
+        <li><strong>Infrastructure-level distribution:</strong> more domains and mailboxes at low per-mailbox volume instead of one mailbox pushed hard — see <a href="https://howmanydomainsforcoldmail.com/">how many domains you need</a>.</li>
+        <li><strong>Authentication before the first send:</strong> SPF, DKIM, DMARC verified (<a href="/tools/dns-record-checker/">DNS checker</a>) so every warm-up email actually builds reputation.</li>
+      </ul>
+
+      <p>This is also where managed infrastructure earns its keep: platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> run warm-up at the infrastructure level — provisioning, authentication, ramp schedules, and volume ceilings handled across every mailbox — without leaning on the API tricks Google shut down.</p>
+
+    </div>
+  </article>
+</Base>

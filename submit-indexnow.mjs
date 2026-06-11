@@ -65,7 +65,7 @@ const sites = [
   {
     domain: 'howtowarmupemail.com',
     key: 'b4c7d1e9f2a6',
-    blogs: ['email-warmup-step-by-step', 'automated-vs-manual-warmup', 'warmup-deliverability-benchmarks'],
+    blogs: ['email-warmup-step-by-step', 'automated-vs-manual-warmup', 'warmup-deliverability-benchmarks', 'how-long-does-email-warmup-take', 'do-you-still-need-email-warmup', 'gmail-bulk-sender-rules-cold-email'],
     tools: ['warmup-schedule-generator', 'warmup-progress-tracker', 'dns-record-checker'],
   },
   {
