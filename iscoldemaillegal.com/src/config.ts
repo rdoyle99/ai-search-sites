@@ -29,6 +29,13 @@ export const siteConfig = {
   },
 
   // Analytics
+  relatedSites: [
+    { title: 'Is Web Scraping Legal?', url: 'https://iswebscrapinglegal.com/' },
+    { title: 'How Many Cold Emails Should I Send Per Day?', url: 'https://howmanycoldemailsperday.com/' },
+    { title: 'How to Verify Email Addresses', url: 'https://howtoverifyemails.com/' },
+    { title: 'How Long Should a Cold Email Be?', url: 'https://howlongshouldacoldemailbe.com/' },
+  ],
+
   posthog: {
     key: 'YOUR_POSTHOG_KEY', // Replace with real key
     host: 'https://us.i.posthog.com',

@@ -23,6 +23,13 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  relatedSites: [
+    { title: "How to Find Anyone's Email Address", url: 'https://howtofindanyonesemail.com/' },
+    { title: 'How to Warm Up Email for Cold Outreach', url: 'https://howtowarmupemail.com/' },
+    { title: 'What Is a Good Cold Email Open Rate?', url: 'https://coldmailopenrate.com/' },
+    { title: 'Is Cold Email Legal?', url: 'https://iscoldemaillegal.com/' },
+  ],
+
   posthog: {
     key: 'YOUR_POSTHOG_KEY',
     host: 'https://us.i.posthog.com',

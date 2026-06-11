@@ -29,6 +29,13 @@ export const siteConfig = {
   },
 
   // Analytics
+  relatedSites: [
+    { title: 'Do Reddit Mentions Help SEO?', url: 'https://doredditmentionshelpseo.com/' },
+    { title: 'Is Web Scraping Legal?', url: 'https://iswebscrapinglegal.com/' },
+    { title: 'How to Find Sponsorship Opportunities', url: 'https://howtofindsponsorshipopportunities.com/' },
+    { title: 'What Is a Good Cold Email Open Rate?', url: 'https://coldmailopenrate.com/' },
+  ],
+
   posthog: {
     key: 'YOUR_POSTHOG_KEY', // Replace with real key
     host: 'https://us.i.posthog.com',

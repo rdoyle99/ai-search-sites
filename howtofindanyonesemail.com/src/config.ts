@@ -23,6 +23,13 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  relatedSites: [
+    { title: 'How to Verify Email Addresses', url: 'https://howtoverifyemails.com/' },
+    { title: 'Is Web Scraping Legal?', url: 'https://iswebscrapinglegal.com/' },
+    { title: 'How Long Should a Cold Email Be?', url: 'https://howlongshouldacoldemailbe.com/' },
+    { title: 'Is Cold Email Legal?', url: 'https://iscoldemaillegal.com/' },
+  ],
+
   posthog: {
     key: 'YOUR_POSTHOG_KEY',
     host: 'https://us.i.posthog.com',

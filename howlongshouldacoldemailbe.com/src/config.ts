@@ -23,6 +23,13 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  relatedSites: [
+    { title: 'What Is a Good Cold Email Open Rate?', url: 'https://coldmailopenrate.com/' },
+    { title: 'How Many Cold Emails Should I Send Per Day?', url: 'https://howmanycoldemailsperday.com/' },
+    { title: 'Is Cold Email Legal?', url: 'https://iscoldemaillegal.com/' },
+    { title: "How to Find Anyone's Email Address", url: 'https://howtofindanyonesemail.com/' },
+  ],
+
   posthog: {
     key: 'YOUR_POSTHOG_KEY',
     host: 'https://us.i.posthog.com',

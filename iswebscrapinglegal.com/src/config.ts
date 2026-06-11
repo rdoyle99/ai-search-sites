@@ -23,6 +23,13 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  relatedSites: [
+    { title: 'Is Cold Email Legal?', url: 'https://iscoldemaillegal.com/' },
+    { title: "How to Find Anyone's Email Address", url: 'https://howtofindanyonesemail.com/' },
+    { title: 'How to Verify Email Addresses', url: 'https://howtoverifyemails.com/' },
+    { title: 'Do Reddit Mentions Help SEO?', url: 'https://doredditmentionshelpseo.com/' },
+  ],
+
   posthog: {
     key: 'YOUR_POSTHOG_KEY',
     host: 'https://us.i.posthog.com',

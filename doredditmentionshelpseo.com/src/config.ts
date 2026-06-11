@@ -23,6 +23,13 @@ export const siteConfig = {
     email: 'ryan@sales.co',
   },
 
+  relatedSites: [
+    { title: 'How to Get Mentioned by AI?', url: 'https://howtogetmentionedbyai.com/' },
+    { title: 'Is Web Scraping Legal?', url: 'https://iswebscrapinglegal.com/' },
+    { title: 'What Is a Good Cold Email Open Rate?', url: 'https://coldmailopenrate.com/' },
+    { title: 'How to Find Sponsorship Opportunities', url: 'https://howtofindsponsorshipopportunities.com/' },
+  ],
+
   posthog: {
     key: 'YOUR_POSTHOG_KEY',
     host: 'https://us.i.posthog.com',

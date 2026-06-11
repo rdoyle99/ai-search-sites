@@ -29,6 +29,13 @@ export const siteConfig = {
   },
 
   // Analytics
+  relatedSites: [
+    { title: 'How to Warm Up Email for Cold Outreach', url: 'https://howtowarmupemail.com/' },
+    { title: 'How Many Domains Do You Need for Cold Email?', url: 'https://howmanydomainsforcoldmail.com/' },
+    { title: 'What Is a Good Cold Email Open Rate?', url: 'https://coldmailopenrate.com/' },
+    { title: 'Is Cold Email Legal?', url: 'https://iscoldemaillegal.com/' },
+  ],
+
   posthog: {
     key: 'YOUR_POSTHOG_KEY', // Replace with real key
     host: 'https://us.i.posthog.com',
