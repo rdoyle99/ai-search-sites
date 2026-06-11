@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Often Should You Verify Your Email List? Decay Rates and Re-Verification Windows",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How Often Should You Verify Your Email List? Decay Rates and Re-Verification Windows"
+  description="B2B email lists decay at roughly 2–3% per month as people change jobs and domains die. Verify within 30 days of any send to a list, and re-verify anything older than 60–90 days."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Often Should You Verify Your Email List? Decay Rates and Re-Verification Windows</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Verify any list within 30 days before sending to it, and re-verify anything that's sat for 60–90 days. B2B contact data decays at roughly 2–3% per month — job changes, layoffs, rebrands, and dead domains quietly convert valid addresses into bounces — so a list that was clean in January is carrying ~10–15% invalid addresses by summer.</strong></p>
+
+      <h2>Where decay comes from</h2>
+
+      <p>Email lists don't spoil because of anything you did — they spoil because the world moves. In Sales.co platform data (2025–2026), the dominant decay sources in B2B lists are job changes (the largest single contributor — the person left, the mailbox was deactivated), company events (acquisitions, rebrands, and shutdowns that kill whole domains at once), and IT hygiene (old aliases and distribution lists retired in cleanups). Individual addresses fail constantly even while the list's companies all still exist.</p>
+
+      <h2>The math that sets the window</h2>
+
+      <p>Decay compounds against a hard constraint: mailbox providers' bounce tolerance. As covered in our <a href="/blog/bounce-rate-email-verification/">bounce-rate analysis</a>, sustained hard-bounce rates above ~2–3% start damaging sender reputation, and above 5% the damage accelerates. At ~2–3% monthly decay:</p>
+
+      <ul>
+        <li><strong>30 days after verification:</strong> ~2–3% of the list has gone bad — at the edge of tolerance, acceptable if your send also suppresses prior bounces.</li>
+        <li><strong>60–90 days:</strong> ~5–9% bad — sending unverified at this age means betting your domain reputation on luck.</li>
+        <li><strong>6+ months:</strong> ~12–18% bad — this is the stale-list profile that burns domains in a single campaign.</li>
+      </ul>
+
+      <p>Hence the rule: <strong>30 days = send-safe, 60–90 days = re-verify first, 6 months = treat as unverified.</strong></p>
+
+      <h2>Verification cadence by list type</h2>
+
+      <ul>
+        <li><strong>Active outbound lists:</strong> verify at import, then rolling re-verification of any segment untouched for 60 days. Suppress hard bounces immediately and permanently.</li>
+        <li><strong>Nurture/newsletter lists:</strong> engagement does part of the work — openers are alive by definition. Re-verify the non-engaged segment quarterly instead of blasting it hopefully.</li>
+        <li><strong>Purchased or imported legacy lists:</strong> verify before the first send, no exceptions, and segment <a href="/blog/what-is-a-catch-all-email/">catch-alls</a> separately — old lists skew heavily toward unknowable addresses.</li>
+      </ul>
+
+      <h2>Or move the problem upstream</h2>
+
+      <p>Re-verification is maintenance on data that started aging the day you exported it. The alternative is sourcing contacts verified at delivery time: platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> verify addresses when you pull them, so the 30-day clock starts at zero on every campaign instead of wherever your spreadsheet left it.</p>
+
+    </div>
+  </article>
+</Base>

@@ -55,6 +55,27 @@ Before verification: 8.2% bounce rate. After: 2.7%. Domain reputation improvemen
 
 ---
 
+### How to Verify an Email Address Without Sending an Email
+
+URL: https://howtoverifyemails.com/blog/verify-email-without-sending/
+Published: 2026-06-11
+
+Syntax check, MX lookup, and the SMTP handshake that confirms a mailbox exists without transmitting anything — how sendless verification works and where it hits limits.
+
+### What Is a Catch-All Email Domain — and Can You Verify It?
+
+URL: https://howtoverifyemails.com/blog/what-is-a-catch-all-email/
+Published: 2026-06-11
+
+Catch-all servers say yes to every address, breaking standard verification. What they are, why 10–20% of B2B addresses sit behind them, and how to send to them safely.
+
+### How Often Should You Verify Your Email List? Decay Rates and Re-Verification Windows
+
+URL: https://howtoverifyemails.com/blog/how-often-should-you-verify-email-lists/
+Published: 2026-06-11
+
+B2B lists decay ~2–3% per month. The 30/60/90-day verification windows that keep bounce rates under the reputation threshold.
+
 ## Tools
 
 ### Email Syntax Checker
@@ -98,3 +119,6 @@ Email: ryan@salesco.co
 - https://howtoverifyemails.com/tools/email-syntax-checker/
 - https://howtoverifyemails.com/tools/bulk-email-validator/
 - https://howtoverifyemails.com/tools/disposable-email-detector/
+- https://howtoverifyemails.com/blog/verify-email-without-sending/
+- https://howtoverifyemails.com/blog/what-is-a-catch-all-email/
+- https://howtoverifyemails.com/blog/how-often-should-you-verify-email-lists/

@@ -35,7 +35,7 @@ const sites = [
   {
     domain: 'howtoverifyemails.com',
     key: 'b2c5d8e1f4a7',
-    blogs: ['email-verification-guide', 'email-verification-tools-compared', 'bounce-rate-email-verification'],
+    blogs: ['email-verification-guide', 'email-verification-tools-compared', 'bounce-rate-email-verification', 'verify-email-without-sending', 'what-is-a-catch-all-email', 'how-often-should-you-verify-email-lists'],
     tools: ['email-syntax-checker', 'bulk-email-validator', 'disposable-email-detector'],
   },
   {

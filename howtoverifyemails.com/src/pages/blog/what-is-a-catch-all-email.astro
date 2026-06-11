@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What Is a Catch-All Email Domain — and Can You Verify It?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="What Is a Catch-All Email Domain — and Can You Verify It?"
+  description="A catch-all domain accepts mail for every address, so SMTP verification can't distinguish real mailboxes from fake ones. What catch-alls are, why ~10–20% of B2B addresses sit behind them, and how to send to them safely."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">What Is a Catch-All Email Domain — and Can You Verify It?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>A catch-all (or accept-all) domain is configured to accept email for <em>any</em> address at that domain — real or not. That breaks standard SMTP verification: the server answers "mailbox exists" for everything, so a verifier can't tell <code>jane@company.com</code> from <code>asdfgh@company.com</code>. These addresses aren't bad — they're <em>unknowable</em> in advance, and they need their own sending strategy.</strong></p>
+
+      <h2>Why companies run catch-alls</h2>
+
+      <p>Catch-all configuration ensures nothing sent to the company is lost to a typo or a departed employee — <code>sales@</code>, <code>saless@</code>, and <code>former-employee@</code> all land somewhere an admin can see. It's common at agencies, law firms, and companies that route mail through filtering services. In Sales.co platform data (2025–2026), roughly 10–20% of B2B addresses in a typical prospect list sit behind catch-all domains — too large a slice to discard, too risky to treat as verified.</p>
+
+      <h2>Why verification comes back "unknown"</h2>
+
+      <p>Standard <a href="/blog/verify-email-without-sending/">sendless verification</a> works by asking the mail server whether a specific mailbox exists during the SMTP handshake. A catch-all server says yes to every <code>RCPT TO</code> — the answer carries no information. Honest verifiers therefore return a third status: not <em>valid</em>, not <em>invalid</em>, but <strong>accept-all / risky</strong>. A tool that marks catch-all addresses as simply "valid" is overstating what it knows — one of the differences that shows up in <a href="/blog/email-verification-tools-compared/">verifier accuracy comparisons</a>.</p>
+
+      <h2>How to send to catch-alls without burning your domain</h2>
+
+      <ul>
+        <li><strong>Segment them explicitly.</strong> Valid, invalid, catch-all — three lists, three policies. Never mix catch-alls into your "verified" sends where their bounce behavior pollutes clean traffic.</li>
+        <li><strong>Cap their share per campaign.</strong> Keeping catch-alls under ~20–30% of any day's volume bounds the worst-case bounce contribution to your domain's reputation — the failure mode described in our <a href="/blog/bounce-rate-email-verification/">bounce-rate analysis</a>.</li>
+        <li><strong>Prefer corroborated catch-alls.</strong> An address that also matches the company's known pattern (<code>first.last@</code>), appears on the website, or carries an active LinkedIn profile is far more likely real than a guessed permutation. Corroboration replaces the SMTP answer you can't get.</li>
+        <li><strong>Let engagement confirm.</strong> A reply or open converts an unknowable address into a known-good one; a hard bounce removes it. Catch-alls verify themselves in flight — at controlled volume.</li>
+      </ul>
+
+      <h2>The data-layer shortcut</h2>
+
+      <p>The catch-all problem is fundamentally a data-provenance problem: a guessed permutation behind a catch-all is a coin flip, while an address observed in the wild is probably real. That's why starting from verified, corroborated contact data — the way platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> source it — shrinks the unknowable slice before verification even runs, and the sending layer can throttle whatever risk remains.</p>
+
+    </div>
+  </article>
+</Base>

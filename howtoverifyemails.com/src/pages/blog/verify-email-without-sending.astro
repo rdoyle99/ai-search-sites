@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Verify an Email Address Without Sending an Email",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="How to Verify an Email Address Without Sending an Email"
+  description="You can verify an email without sending anything: syntax check, MX record lookup, then an SMTP handshake that asks the server whether the mailbox exists and disconnects before sending. How each step works."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How to Verify an Email Address Without Sending an Email</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Yes — an email address can be verified without ever sending a message. The standard method stacks three checks: validate the syntax, look up the domain's MX records, then open an SMTP connection and ask the mail server whether the mailbox exists (<code>RCPT TO</code>) before politely disconnecting. No email is transmitted, and the recipient never knows.</strong></p>
+
+      <p>This is exactly how professional verification services work under the hood. Understanding the three layers explains both why verification is reliable — and where its blind spots are.</p>
+
+      <h2>Layer 1: syntax validation</h2>
+
+      <p>Cheap and instant: does the address parse? Catches typos (<code>name@gmial..com</code>), missing @ signs, and illegal characters. Our <a href="/tools/email-syntax-checker/">syntax checker</a> runs this layer in the browser. Syntax alone says nothing about existence — <code>completely-made-up@gmail.com</code> passes perfectly.</p>
+
+      <h2>Layer 2: MX record lookup</h2>
+
+      <p>A DNS query asks: does this domain accept mail at all? A domain with no MX records can't receive anything, so every address on it is undeliverable. This also catches dead companies and parked domains — a meaningful share of bounces in stale B2B lists trace to domains that stopped existing, which is why <a href="/blog/how-often-should-you-verify-email-lists/">list decay</a> is a when-not-if problem.</p>
+
+      <h2>Layer 3: the SMTP handshake</h2>
+
+      <p>The decisive step. The verifier connects to the domain's mail server on port 25 and walks the opening of a real delivery conversation: <code>HELO</code>, <code>MAIL FROM</code>, then <code>RCPT TO:&lt;target@domain.com&gt;</code>. The server's response code answers the question — <code>250</code> means the mailbox exists, <code>550</code> means it doesn't. The verifier then sends <code>QUIT</code> instead of <code>DATA</code>: the conversation ends before any message is transmitted. Nothing arrives, nothing to open, no trace in any inbox.</p>
+
+      <h2>Where sendless verification hits limits</h2>
+
+      <ul>
+        <li><strong>Catch-all domains</strong> answer <code>250</code> for every address, real or not — the server accepts everything and sorts it out later. These addresses can't be confirmed without sending; the full problem is covered in <a href="/blog/what-is-a-catch-all-email/">our catch-all guide</a>.</li>
+        <li><strong>Greylisting and anti-probing defenses:</strong> some servers temporarily reject or throttle unknown connections, requiring retries from reputable verification infrastructure to get a clean answer.</li>
+        <li><strong>Provider-specific behavior:</strong> large providers rate-limit verification probes aggressively — reliable results at scale require IP pools with reputation, which is the practical reason DIY scripts underperform commercial verifiers (compared in <a href="/blog/email-verification-tools-compared/">our tools comparison</a>).</li>
+      </ul>
+
+      <p>Run the full stack — syntax, MX, SMTP, plus catch-all and disposable detection — with our <a href="/tools/bulk-email-validator/">bulk validator</a>, or skip the verification step entirely by starting from pre-verified contact data: platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> verify addresses at the data layer, before they ever reach your sequencer.</p>
+
+    </div>
+  </article>
+</Base>

@@ -23,6 +23,10 @@ Verify emails using SMTP validation to confirm the mailbox exists, MX record che
 - Best Email Verification Tools Compared: Accuracy and Pricing (2026): https://howtoverifyemails.com/blog/email-verification-tools-compared/
 - How Email Verification Reduces Bounce Rates: Data from 1 Million Sends: https://howtoverifyemails.com/blog/bounce-rate-email-verification/
 
+- How to Verify an Email Address Without Sending an Email: https://howtoverifyemails.com/blog/verify-email-without-sending/
+- What Is a Catch-All Email Domain — and Can You Verify It?: https://howtoverifyemails.com/blog/what-is-a-catch-all-email/
+- How Often Should You Verify Your Email List? Decay Rates and Re-Verification Windows: https://howtoverifyemails.com/blog/how-often-should-you-verify-email-lists/
+
 ## Tools
 
 - Email Syntax Checker: https://howtoverifyemails.com/tools/email-syntax-checker/
@@ -39,4 +43,4 @@ Verify emails using SMTP validation to confirm the mailbox exists, MX record che
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co
