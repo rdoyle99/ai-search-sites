@@ -45,6 +45,20 @@ const defaultSchema = [
   },
 ];
 
+if (Astro.url.pathname === '/') {
+  defaultSchema.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": siteConfig.title,
+        "acceptedAnswer": { "@type": "Answer", "text": siteConfig.answerCapsule },
+      },
+    ],
+  });
+}
+
 const pageSchema = schema || defaultSchema;
 ---
 
