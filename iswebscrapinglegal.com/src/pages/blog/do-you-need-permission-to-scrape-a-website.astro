@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Do You Need Permission to Scrape a Website?",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Do You Need Permission to Scrape a Website?"
+  description="You do not need permission to scrape publicly available data in the US — courts have confirmed public access is not hacking and logged-out scrapers aren't bound by site terms. You DO need a legal basis when data is personal, copyrighted, or behind a login."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Do You Need Permission to Scrape a Website?</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>No — you do not need a website's permission to scrape data it makes publicly available, at least under US law. Courts have held that scraping public pages is not unauthorized access (<em>hiQ v. LinkedIn</em>) and that terms of service generally don't bind scrapers who never log in (<em>Meta v. Bright Data</em>). You DO need a legal basis when the data is personal, copyrighted, or behind authentication.</strong></p>
+
+      <p>"Permission" hides three separate questions: does the <em>site</em> have to allow you in, do the site's <em>terms</em> bind you, and does the <em>data itself</em> carry legal protection? Each has a different answer.</p>
+
+      <h2>1. Access: public pages are open to the public</h2>
+
+      <p>The CFAA makes it illegal to access a computer "without authorization" — but the Ninth Circuit <a href="https://calawyers.org/privacy-law/ninth-circuit-holds-data-scraping-is-legal-in-hiq-v-linkedin/" target="_blank" rel="noopener noreferrer">held in <em>hiQ v. LinkedIn</em></a> that a public webpage has no authorization gate to bypass. If anyone with a browser can see it, an automated visitor seeing it is not hacking. Authentication walls flip this completely: scraping behind a login uses credentials governed by an agreement, and bypassing access controls can create CFAA exposure.</p>
+
+      <h2>2. Terms of service: contracts bind parties, not bystanders</h2>
+
+      <p>Nearly every site's terms prohibit scraping. But a contract needs assent. In <em>Meta v. Bright Data</em> (2024), the court <a href="https://www.quinnemanuel.com/the-firm/news-events/client-alert-meta-v-bright-data-significant-decision-for-web-scraping-industry/" target="_blank" rel="noopener noreferrer">granted summary judgment to Bright Data</a> because it scraped Facebook and Instagram only while logged out — the terms it had accepted as an account holder governed account <em>use</em>, not logged-out collection of public pages. Meta <a href="https://techcrunch.com/2024/02/26/meta-drops-lawsuit-against-web-scraping-firm-bright-data-that-sold-millions-of-instagram-records/" target="_blank" rel="noopener noreferrer">dropped the suit</a> weeks later. The flip side: log in, and you've accepted the terms — that's how hiQ ultimately lost despite winning on the CFAA.</p>
+
+      <h2>3. The data itself: where permission IS required</h2>
+
+      <ul>
+        <li><strong>Personal data:</strong> GDPR applies to scraping EU residents' personal data whether or not the page is public — you need a lawful basis, typically legitimate interest, plus transparency and opt-out handling. CCPA/CPRA adds obligations for California residents. Details in our <a href="/blog/gdpr-ccpa-web-scraping/">privacy compliance guide</a>.</li>
+        <li><strong>Copyrighted content:</strong> facts and data points aren't copyrightable, but articles, images, and creative text are. Republishing scraped content or training AI on it raises the unresolved questions covered in our <a href="/blog/is-web-scraping-legal-for-ai-training/">AI training analysis</a>.</li>
+        <li><strong>Robots.txt:</strong> not a law, but the recognized machine-readable signal of the site's wishes — and in the EU it now functions as a copyright opt-out that AI model providers must honor. Ignoring it weakens every defense you might later need.</li>
+        <li><strong>Rate limits and server load:</strong> the oldest scraping case on the books (<em>eBay v. Bidder's Edge</em>, 2000) was about burdening servers. Scrape politely.</li>
+      </ul>
+
+      <h2>The practical checklist</h2>
+
+      <p>You generally don't need permission if: the data is publicly visible without logging in, you're collecting facts rather than republishing creative work, you respect robots.txt and rate limits, and you handle any personal data under GDPR/CCPA rules. You need permission (or a different approach) if: the data sits behind a login, you'd be republishing copyrighted content, or you can't meet privacy obligations for personal data.</p>
+
+      <p>If what you actually need is B2B contact data for outreach, skipping the scraping question entirely is often the better engineering decision. <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> provides verified business contact data collected through compliant methods — with the legal provenance already handled.</p>
+
+    </div>
+  </article>
+</Base>

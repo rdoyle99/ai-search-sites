@@ -56,6 +56,27 @@ GDPR: Personal data requires legal basis. CCPA: Must honor opt-out requests. Com
 
 ---
 
+### Is It Legal to Scrape LinkedIn? What hiQ v. LinkedIn Actually Decided
+
+URL: https://iswebscrapinglegal.com/blog/is-it-legal-to-scrape-linkedin/
+Published: 2026-06-11
+
+Scraping public LinkedIn profiles logged out is not a CFAA violation — but logged-in scraping breaches the User Agreement. The full hiQ story, explained.
+
+### Is Web Scraping Legal for AI Training? NYT v. OpenAI, the EU AI Act, and Opt-Outs
+
+URL: https://iswebscrapinglegal.com/blog/is-web-scraping-legal-for-ai-training/
+Published: 2026-06-11
+
+US copyright suits over AI training are unresolved while the EU permits text and data mining with machine-readable opt-outs. Where the law stands in 2026.
+
+### Do You Need Permission to Scrape a Website?
+
+URL: https://iswebscrapinglegal.com/blog/do-you-need-permission-to-scrape-a-website/
+Published: 2026-06-11
+
+Public data needs no permission in the US — but personal, copyrighted, and login-gated data carry obligations. The three questions that decide it.
+
 ## Tools
 
 ### Robots.txt Checker
@@ -99,3 +120,6 @@ Email: ryan@salesco.co
 - https://iswebscrapinglegal.com/tools/robots-txt-checker/
 - https://iswebscrapinglegal.com/tools/scraping-legality-checker/
 - https://iswebscrapinglegal.com/tools/tos-analyzer/
+- https://iswebscrapinglegal.com/blog/is-it-legal-to-scrape-linkedin/
+- https://iswebscrapinglegal.com/blog/is-web-scraping-legal-for-ai-training/
+- https://iswebscrapinglegal.com/blog/do-you-need-permission-to-scrape-a-website/

@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Is Web Scraping Legal for AI Training? NYT v. OpenAI, the EU AI Act, and Opt-Outs",
+  "author": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "publisher": { "@type": "Organization", "name": "Sales.co", "url": "https://sales.co" },
+  "datePublished": "2026-06-11T00:00:00.000Z",
+  "dateModified": "2026-06-11T00:00:00.000Z",
+};
+---
+
+<Base
+  title="Is Web Scraping Legal for AI Training? NYT v. OpenAI, the EU AI Act, and Opt-Outs"
+  description="Scraping public data for AI training sits in active legal flux: US copyright suits like NYT v. OpenAI are unresolved, while the EU permits commercial text and data mining unless rightsholders opt out."
+  schema={schema}
+  articleDate="2026-06-11"
+  articleModified="2026-06-11"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400">June 11, 2026</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Is Web Scraping Legal for AI Training? NYT v. OpenAI, the EU AI Act, and Opt-Outs</h1>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Scraping public web data to train AI models is legally unsettled in the US — the major copyright lawsuits, led by <em>New York Times v. OpenAI</em>, are still being litigated. In the EU, the rule is clearer: commercial text and data mining is permitted under the DSM Directive unless the rightsholder has opted out in a machine-readable way, and the AI Act requires model providers to honor those opt-outs.</strong></p>
+
+      <p>This is the newest and fastest-moving corner of web scraping law. The cases that defined scraping over the last decade — hiQ, Bright Data — were about <em>access</em>: who may collect public data. The AI-training fight is about <em>use</em>: what you may do with copyrighted content after collecting it. Different statutes, different defendants, different outcomes so far.</p>
+
+      <h2>The US: copyright is the battleground</h2>
+
+      <p>In December 2023, <a href="https://www.nytimes.com/2023/12/27/business/media/new-york-times-open-ai-microsoft-lawsuit.html" target="_blank" rel="noopener noreferrer">The New York Times sued OpenAI and Microsoft</a>, alleging that millions of Times articles were used to train GPT models without permission. The core copyright claims survived OpenAI's motion to dismiss in 2025, and the case remains in active litigation — <a href="https://hls.harvard.edu/today/does-chatgpt-violate-new-york-times-copyrights/" target="_blank" rel="noopener noreferrer">legal scholars describe it</a> as the first big test of fair use for AI training. Dozens of parallel suits from authors, artists, and music publishers are working through the courts on the same theory.</p>
+
+      <p>Until appellate courts rule on fair use for training, US law gives no settled answer. What <em>is</em> settled: the access cases still apply. Scraping public pages while logged out is not a CFAA violation (<em>hiQ</em>), and platform terms generally cannot bind logged-out scrapers (<em>Meta v. Bright Data</em>, 2024). The open question is what copyright law says about the training itself.</p>
+
+      <h2>The EU: permitted, with a machine-readable off switch</h2>
+
+      <p>The EU answered by statute instead of litigation. Article 4 of the DSM Copyright Directive permits commercial <strong>text and data mining (TDM)</strong> — which European courts and regulators treat as covering web scraping for AI training — <a href="https://iapp.org/news/a/the-eu-ai-act-and-copyrights-compliance" target="_blank" rel="noopener noreferrer">unless the rightsholder has expressly reserved their rights</a> in a machine-readable format. German courts applied the TDM exceptions in the first AI-dataset case, <em>Kneschke v. LAION</em> (<a href="https://www.lewissilkin.com/en/insights/2024/10/07/how-to-opt-out-your-images-from-use-in-ai-training" target="_blank" rel="noopener noreferrer">Hamburg, 2024</a>), and subsequent European decisions have <a href="https://legalblogs.wolterskluwer.com/copyright-blog/third-european-court-decision-on-the-general-purpose-tdm-exception-is-out/" target="_blank" rel="noopener noreferrer">confirmed that scraping is a form of TDM</a>.</p>
+
+      <p>The AI Act builds on this: Article 53(1)(c) requires providers of general-purpose AI models to maintain a copyright policy that <a href="https://openfuture.eu/wp-content/uploads/2024/05/240516considerations_of_opt-out_compliance_policies.pdf" target="_blank" rel="noopener noreferrer">identifies and honors TDM opt-outs</a>. In practice, robots.txt directives and similar machine-readable signals have become the de facto opt-out mechanism — which is why AI labs publish dedicated crawler user-agents and why publishers increasingly block them.</p>
+
+      <h2>Practical rules in 2026</h2>
+
+      <ul>
+        <li><strong>Training a model on scraped copyrighted content:</strong> high-risk in the US until the fair-use cases resolve; permitted in the EU only where no machine-readable opt-out exists.</li>
+        <li><strong>Honoring robots.txt is no longer just etiquette</strong> — in the EU it feeds directly into AI Act compliance obligations.</li>
+        <li><strong>Factual and public business data remains the safest category:</strong> facts aren't copyrightable, and the access precedents protect collecting them from public pages.</li>
+        <li><strong>B2B contact data for outreach is not AI-training data</strong> — it's governed by the privacy rules in our <a href="/blog/gdpr-ccpa-web-scraping/">GDPR/CCPA guide</a>, not the copyright fight.</li>
+      </ul>
+
+      <p>For sales teams, the takeaway is reassuring: using compliantly collected business contact data, the way platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> provide it, sits in the well-settled category — factual, public-source business data — far from the unresolved copyright questions around model training.</p>
+
+    </div>
+  </article>
+</Base>

@@ -23,6 +23,10 @@ Web scraping publicly available data is generally legal in the US after the hiQ 
 - Key Web Scraping Court Cases: hiQ v. LinkedIn and Beyond: https://iswebscrapinglegal.com/blog/web-scraping-case-law/
 - Web Scraping Under GDPR and CCPA: Compliance Guide for 2026: https://iswebscrapinglegal.com/blog/gdpr-ccpa-web-scraping/
 
+- Is It Legal to Scrape LinkedIn? What hiQ v. LinkedIn Actually Decided: https://iswebscrapinglegal.com/blog/is-it-legal-to-scrape-linkedin/
+- Is Web Scraping Legal for AI Training? NYT v. OpenAI, the EU AI Act, and Opt-Outs: https://iswebscrapinglegal.com/blog/is-web-scraping-legal-for-ai-training/
+- Do You Need Permission to Scrape a Website?: https://iswebscrapinglegal.com/blog/do-you-need-permission-to-scrape-a-website/
+
 ## Tools
 
 - Robots.txt Checker: https://iswebscrapinglegal.com/tools/robots-txt-checker/
@@ -39,4 +43,4 @@ Web scraping publicly available data is generally legal in the US after the hiQ 
 
 ## Contact
 
-- Email: ryan@salesco.co
+- Email: ryan@sales.co

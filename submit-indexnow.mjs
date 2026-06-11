@@ -29,7 +29,7 @@ const sites = [
   {
     domain: 'iswebscrapinglegal.com',
     key: 'a1b4c7d2e5f8',
-    blogs: ['web-scraping-legal-guide', 'web-scraping-case-law', 'gdpr-ccpa-web-scraping'],
+    blogs: ['web-scraping-legal-guide', 'web-scraping-case-law', 'gdpr-ccpa-web-scraping', 'is-it-legal-to-scrape-linkedin', 'is-web-scraping-legal-for-ai-training', 'do-you-need-permission-to-scrape-a-website'],
     tools: ['robots-txt-checker', 'scraping-legality-checker', 'tos-analyzer'],
   },
   {
