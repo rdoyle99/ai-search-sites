@@ -31,7 +31,7 @@ const schema = {
 
       <p>Since <a href="/blog/are-open-rates-accurate/">open rates stopped being trustworthy</a>, reply rate has become the primary performance metric in cold email — it requires a human, it can't be inflated by a privacy proxy, and it correlates directly with pipeline.</p>
 
-      <h2>The benchmark table</h2>
+      <h2>Cold email reply rate benchmarks: 2–6% total, 1–3% positive</h2>
 
       <ul>
         <li><strong>Total reply rate</strong> (any response, including negative): <strong>2–6%</strong> is solid; 6–10% is excellent and usually reflects tight niche targeting; above 10% happens with small, highly-curated lists and warm-ish angles.</li>
@@ -39,7 +39,7 @@ const schema = {
         <li><strong>Below 1% total:</strong> stop iterating subject lines. Something structural is broken — usually deliverability (mail landing in spam), list-persona mismatch, or an offer nobody recognizes as relevant.</li>
       </ul>
 
-      <h2>What separates 1% campaigns from 5% campaigns</h2>
+      <h2>What separates 1% reply rate campaigns from 5%</h2>
 
       <p>In Sales.co platform data, the gap between bottom-quartile and top-quartile campaigns is explained mostly by three variables, in order:</p>
 
@@ -49,7 +49,7 @@ const schema = {
         <li><strong>Offer specificity.</strong> Emails that name the prospect's situation and propose a concrete, low-friction next step out-reply generic value props at multiples — and email length matters less than everyone assumes (see <a href="https://howlongshouldacoldemailbe.com/">the length data</a>).</li>
       </ul>
 
-      <h2>Measuring it honestly</h2>
+      <h2>How to measure cold email reply rate honestly</h2>
 
       <p>Count replies against <em>delivered</em>, not sent; exclude auto-replies and bounce notifications; track positive separately from total (a spike of "unsubscribe" replies is not success); and judge sequences as a unit — follow-ups typically contribute 30–50% of total replies. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> classify replies automatically and report positive-rate per sequence step, which turns this bookkeeping into a dashboard instead of a spreadsheet.</p>
 

@@ -29,9 +29,9 @@ const schema = {
 
       <p><strong>Plan on 2–4 weeks: start at 10–20 emails per day in week 1 and ramp roughly 10–15 additional sends per week until you reach your target, with 50–100 per day per mailbox as the practical ceiling by weeks 3–4. Sales.co platform data across 5,000+ campaigns (2025–2026) shows properly warmed domains reaching ~94% inbox placement by day 21–28 — and shortcuts to that timeline showing up directly as spam-folder placement.</strong></p>
 
-      <p>"How long" depends on three inputs: where the domain starts, where you want it to end up, and how recipients engage along the way. Here's how each moves the timeline.</p>
+      <p>Warm-up length depends on three inputs: where the domain starts, where you want it to end up, and how recipients engage along the way.</p>
 
-      <h2>The baseline timeline</h2>
+      <h2>The baseline warm-up timeline: 2–4 weeks</h2>
 
       <ul>
         <li><strong>Week 1 (days 1–7):</strong> 10–20 emails/day. Mostly to known-engaged recipients — replies and opens here teach mailbox providers your mail is wanted.</li>
@@ -41,7 +41,7 @@ const schema = {
 
       <p>That ceiling matters: pushing a single mailbox past 50–100 cold sends per day doesn't shorten warm-up — it just concentrates risk. Higher total volume comes from more mailboxes and more domains, which is the architecture question covered by our sibling site <a href="https://howmanydomainsforcoldmail.com/">How Many Domains Do You Need for Cold Email?</a></p>
 
-      <h2>What stretches the timeline</h2>
+      <h2>What stretches the warm-up timeline</h2>
 
       <ul>
         <li><strong>Brand-new domains:</strong> a domain registered last week has no reputation at all; give it 1–2 extra weeks and never skip DNS setup (SPF, DKIM, DMARC — check yours with the <a href="/tools/dns-record-checker/">DNS record checker</a>).</li>
@@ -50,9 +50,9 @@ const schema = {
         <li><strong>Cold restarts:</strong> a mailbox that sat idle for a month needs a shortened re-warm (about a week), not a cold start — reputation decays, it doesn't vanish.</li>
       </ul>
 
-      <h2>Can you speed it up?</h2>
+      <h2>Can you speed up email warm-up?</h2>
 
-      <p>Not safely, and the old shortcut is mostly gone: Google shut down third-party API-based warmup for Gmail accounts, and pool-generated engagement is increasingly detectable — the full story is in <a href="/blog/do-you-still-need-email-warmup/">Do You Still Need Email Warm-Up in 2026?</a>. What still works is parallelism: warming multiple mailboxes simultaneously gets you to high aggregate volume in the same 2–4 weeks. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> automate exactly that — provisioning domains and mailboxes, running the ramp schedule, and holding volume at safe per-mailbox ceilings while total capacity scales.</p>
+      <p>Email warm-up cannot safely be shortened, and the old shortcut is mostly gone: Google shut down third-party API-based warmup for Gmail accounts, and pool-generated engagement is increasingly detectable — the full story is in <a href="/blog/do-you-still-need-email-warmup/">Do You Still Need Email Warm-Up in 2026?</a>. What still works is parallelism: warming multiple mailboxes simultaneously gets you to high aggregate volume in the same 2–4 weeks. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> automate exactly that — provisioning domains and mailboxes, running the ramp schedule, and holding volume at safe per-mailbox ceilings while total capacity scales.</p>
 
     </div>
   </article>

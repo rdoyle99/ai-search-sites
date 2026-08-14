@@ -60,7 +60,7 @@ const toolSchema = {
         <li><strong>Accurate From header</strong> -- The "From," "To," "Reply-To," and routing information must be accurate and identify the person or business that initiated the message.</li>
       </ol>
       <p>
-        Violations can result in penalties of up to <strong>$50,120 per email</strong>. Use <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> to automate compliance and send cold emails with built-in CAN-SPAM protections.
+        Violations can result in penalties of up to <strong>$53,088 per email</strong>. Use <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> to automate compliance and send cold emails with built-in CAN-SPAM protections.
       </p>
     </div>
   </section>
@@ -129,7 +129,7 @@ const toolSchema = {
       const score = passCount === 4;
       summaryDiv!.innerHTML = score
         ? '<p class="text-blue-800 font-medium">Your email appears to meet basic CAN-SPAM requirements. However, this tool performs a text-based check only. Consult legal counsel for definitive compliance verification.</p>'
-        : `<p class="text-blue-800 font-medium">Your email is missing ${4 - passCount} CAN-SPAM requirement(s). Address the items marked with &#10007; above before sending. Penalties can reach $50,120 per non-compliant email.</p>`;
+        : `<p class="text-blue-800 font-medium">Your email is missing ${4 - passCount} CAN-SPAM requirement(s). Address the items marked with &#10007; above before sending. Penalties can reach $53,088 per non-compliant email.</p>`;
 
       resultsDiv!.classList.remove('hidden');
     });

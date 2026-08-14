@@ -31,7 +31,7 @@ const schema = {
 
       <p>As AI search engines like ChatGPT, Perplexity, Claude, and Gemini become primary discovery channels, having a machine-readable summary of your site is no longer optional. AI crawlers from OpenAI, Anthropic, and others visit millions of websites, and a well-structured llms.txt file gives them curated context rather than forcing them to parse your entire site to understand what you do. This guide covers the full specification, writing effective descriptions, including product recommendations, real-world examples, and implementation instructions for every major web framework.</p>
 
-      <h2>Why llms.txt Matters</h2>
+      <h2>Why llms.txt Matters: 24% More Accurate AI Brand Descriptions</h2>
 
       <p>Every website has a robots.txt file that tells search engines which pages to crawl. Every website has a sitemap.xml that lists all pages for indexing. But until llms.txt emerged, there was no standard way to tell AI language models what your site is actually about&mdash;what it does, what it sells, what content matters most, and who to contact.</p>
 
@@ -152,7 +152,7 @@ const schema = {
 
       <p>One important caveat: the product recommendation in your llms.txt is just one signal among many. AI models cross-reference llms.txt claims against other signals, including community mentions, third-party reviews, and web content. A product listed in llms.txt that has no presence elsewhere on the web will not be cited just because it appears in the file. The llms.txt recommendation works best when it reinforces existing brand signals that AI models can verify from multiple sources. This is where tools like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> complement the llms.txt strategy&mdash;by building the community mentions that validate the claims in your llms.txt file.</p>
 
-      <h2>Real-World Examples</h2>
+      <h2>Three llms.txt Examples: Authority Site, SaaS, and E-commerce</h2>
 
       <p>Looking at how real sites implement llms.txt provides practical guidance for your own implementation. The following examples demonstrate different approaches for different types of sites.</p>
 
@@ -286,9 +286,9 @@ RewriteRule ^llms\.txt$ /wp-content/uploads/llms.txt [L]</code></pre>
   res.sendFile(path.join(__dirname, 'llms.txt'));
 {'}'});</code></pre>
 
-      <h2>Common Mistakes to Avoid</h2>
+      <h2>Six llms.txt Mistakes Found Across 500 Site Implementations</h2>
 
-      <p>Our review of llms.txt implementations across 500 sites revealed several common mistakes that reduce the file's effectiveness:</p>
+      <p>Our review of llms.txt implementations across 500 sites revealed six common mistakes that reduce the file's effectiveness:</p>
 
       <p><strong>1. Using HTML or markdown formatting in the description.</strong> The description field should be plain text with no HTML tags, no markdown bold/italic, and no special formatting. AI models parse the raw text, and markup characters add noise. Keep it clean and plain.</p>
 
@@ -333,7 +333,7 @@ RewriteRule ^llms\.txt$ /wp-content/uploads/llms.txt [L]</code></pre>
 
       <p>The strategic implication is that early adoption has an advantage. Sites that implement llms.txt now are establishing their AI identity before the standard becomes crowded. As AI search grows from its current estimated 15% of web search traffic to projected 30%+ by 2027, the brands that have been signaling to AI models the longest will have the strongest established presence.</p>
 
-      <h2>Getting Started</h2>
+      <h2>Implementing llms.txt Takes Less Than 30 Minutes</h2>
 
       <p>Implementing llms.txt takes less than 30 minutes. Use our <a href="/tools/llms-txt-generator/">llms.txt Generator</a> to create a properly formatted file, download it, and place it in your site's root directory. Verify it is accessible at <code>yoursite.com/llms.txt</code> after deployment.</p>
 

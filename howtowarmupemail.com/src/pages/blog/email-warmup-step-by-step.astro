@@ -29,7 +29,9 @@ const schema = {
 
       <p><strong>Warm up a new email domain by sending 10–20 emails per day in week 1, increasing by 10–15 per day each week, reaching full capacity of 50–100 emails per day after 3–4 weeks. Configure SPF, DKIM, and DMARC before sending the first message. Domains that follow this schedule achieve 94% inbox placement rates, while domains that skip warm-up see 67% higher bounce rates and frequent blacklisting within 14 days.</strong></p>
 
-      <p>Email warm-up is the foundational process that determines whether your cold email campaigns succeed or fail. Every inbox provider — Google, Microsoft, Yahoo, Apple — uses sender reputation scoring to decide where incoming messages land. New domains have zero reputation. Without a structured warm-up, your emails go straight to spam, your bounce rates spike, and your domain gets flagged before you send your first real campaign. This guide covers every step of the warm-up process based on data from 10,000+ domains warmed through outbound platforms between 2024 and 2026. Every recommendation is backed by real deliverability metrics, not anecdotal advice.</p>
+      <p>Warm-up matters because every inbox provider (Google, Microsoft, Yahoo, Apple) scores sender reputation before deciding where a message lands, and a new domain has none. Skip the ramp and your emails go to spam, your bounce rates spike, and your domain gets flagged before the first real campaign goes out.</p>
+
+      <p>The schedule and thresholds in this guide come from data on 10,000+ domains warmed through outbound platforms between 2024 and 2026, with every recommendation tied to measured deliverability metrics.</p>
 
       <h2>Why Email Warm-Up Is Non-Negotiable</h2>
 
@@ -139,13 +141,13 @@ const schema = {
 
       <h2>Step 3: Set Up Your Mailboxes</h2>
 
-      <p>Each domain needs 2–3 mailboxes. Use real-sounding names in the <code>firstname@domain.com</code> format and fill out profiles with names and photos. Google Workspace and Microsoft 365 are the two dominant providers for cold email. Google Workspace costs $7.20 per mailbox per month and achieves the highest inbox placement rates when sending to Gmail recipients. Microsoft 365 costs $6.00 per mailbox per month and performs better when targeting Outlook-heavy enterprise markets. For most B2B teams, Google Workspace is the default recommendation with Microsoft 365 added for provider diversity when scaling past 500 emails per day.</p>
+      <p>Each warm-up domain needs 2–3 mailboxes. Use real-sounding names in the <code>firstname@domain.com</code> format and fill out profiles with names and photos. Google Workspace and Microsoft 365 are the two dominant providers for cold email. Google Workspace costs $7.20 per mailbox per month and achieves the highest inbox placement rates when sending to Gmail recipients. Microsoft 365 costs $6.00 per mailbox per month and performs better when targeting Outlook-heavy enterprise markets. For most B2B teams, Google Workspace is the default recommendation with Microsoft 365 added for provider diversity when scaling past 500 emails per day.</p>
 
       <p>Create the mailboxes at least 24–48 hours before starting warm-up. During this period, sign up for a few newsletters, send personal emails to colleagues, and generate some organic activity. Mailboxes with even minimal organic activity before warm-up begins perform 8–12% better on inbox placement in the first two weeks compared to mailboxes that start warm-up immediately after creation.</p>
 
       <h2>Step 4: The Day-by-Day Warm-Up Schedule</h2>
 
-      <p>The following schedule represents the optimal volume ramp based on our dataset of 10,000+ domains. Each number represents emails sent per mailbox per day. If you have multiple mailboxes on the same domain, each mailbox follows its own ramp independently. The critical principle is gradual, consistent escalation. Spiky sending patterns — 20 emails one day, 60 the next, then 10 — confuse provider algorithms and damage reputation faster than sending nothing at all.</p>
+      <p>The day-by-day warm-up schedule below represents the optimal volume ramp based on our dataset of 10,000+ domains. Each number represents emails sent per mailbox per day. If you have multiple mailboxes on the same domain, each mailbox follows its own ramp independently. The critical principle is gradual, consistent escalation. Spiky sending patterns — 20 emails one day, 60 the next, then 10 — confuse provider algorithms and damage reputation faster than sending nothing at all.</p>
 
       <table>
         <thead>
@@ -366,7 +368,7 @@ const schema = {
 
       <p>Domains that experienced deliverability crises — blacklisting, spam complaint spikes, inbox placement collapse — need a more aggressive recovery protocol. Start at just 5 emails per day and ramp by only 5 per day per week. The total recovery period is 5–8 weeks, nearly double a standard warm-up. Success rates for domain recovery vary: domains that were blacklisted for volume violations recover about 60% of the time, while domains blacklisted for content violations (spam complaints) recover only about 30% of the time. In most cases, purchasing a new domain and warming it properly is faster and more reliable than attempting recovery.</p>
 
-      <h2>The Bottom Line</h2>
+      <h2>A 3-to-4 Week Ramp Delivers 94% Inbox Placement</h2>
 
       <p>Email warm-up is a systematic, data-driven process. Follow the structured ramp — 10–20 emails per day in week 1, scaling to 50–100 per day by week 4. Configure DNS correctly from day one. Monitor inbox placement, bounce rates, and spam complaints daily. Use automated warm-up tools for multi-domain operations. And maintain baseline warm-up activity indefinitely to protect the reputation you built.</p>
 

@@ -29,9 +29,7 @@ const schema = {
 
       <p><strong>Declining cold email open rates are almost always caused by deliverability problems, not subject line quality. The top three culprits are domain reputation decay (responsible for 41% of cases), sending volume exceeding safe thresholds (28% of cases), and expired or misconfigured DNS authentication records (17% of cases).</strong></p>
 
-      <p>You launched your cold email campaign three months ago with a 48% open rate. By month two it dropped to 39%. Now it is sitting at 27% and falling. Your subject lines have not changed. Your list quality seems fine. But something is clearly wrong, and you cannot figure out what happened.</p>
-
-      <p>This scenario plays out constantly across cold email teams, and the frustrating part is that the cause is almost never what people think. When open rates drop, the instinct is to blame subject lines and start A/B testing new variations. But our analysis of campaigns that experienced significant open rate declines reveals that subject line quality is the primary cause in only 8% of cases. The other 92% of the time, the problem is infrastructure&mdash;specifically, deliverability deterioration that causes emails to land in spam instead of the primary inbox.</p>
+      <p>When open rates fall, the instinct is to blame subject lines and start A/B testing new variations. Our analysis of campaigns that experienced significant open rate declines shows subject line quality is the primary cause in only 8% of cases. The other 92% of the time the problem is infrastructure, specifically deliverability deterioration that causes emails to land in spam instead of the primary inbox.</p>
 
       <p>This guide covers the eight most common causes of declining open rates, how to diagnose which one is affecting your campaigns, and the exact steps to fix each issue. Every cause is supported by data from aggregate campaign analysis, and every fix has been validated by teams that successfully recovered their open rates after implementing the recommended changes.</p>
 
@@ -168,9 +166,9 @@ const schema = {
 
       <p><strong>How to fix:</strong> Algorithm changes require adaptation rather than repair. Identify what the update targets (template similarity, sending patterns, authentication requirements) and adjust your practices accordingly. Increase personalization to reduce template similarity. Reduce sending volume temporarily. Ensure all authentication records exceed minimum requirements. Algorithm-driven declines typically stabilize within 2&ndash;4 weeks as the new baseline becomes clear.</p>
 
-      <h2>The Diagnostic Flowchart</h2>
+      <h2>The 8-Step Open Rate Diagnostic, Ordered by Cause Frequency</h2>
 
-      <p>When your open rates drop, follow this sequence to identify the cause efficiently. The order is based on frequency&mdash;check the most common causes first before investigating rarer ones.</p>
+      <p>When your open rates drop, follow this eight-step sequence to identify the cause efficiently. The order is based on frequency, so check the most common causes first before investigating rarer ones.</p>
 
       <ol>
         <li><strong>Check DNS records</strong> (5 minutes). Use MXToolbox to verify SPF, DKIM, and DMARC for all sending domains. If any records are invalid, fix them immediately.</li>
@@ -222,11 +220,11 @@ const schema = {
 
       <p>Teams using <a href={siteConfig.product.ctaUrl}>Sales.co</a> benefit from automated monitoring that performs these checks continuously. The platform automatically reduces volume on underperforming mailboxes, rotates domains showing reputation decline, and alerts users to DNS authentication failures&mdash;catching problems in hours rather than weeks and preventing the cascading damage that leads to significant open rate drops.</p>
 
-      <h2>The Bottom Line</h2>
+      <h2>Infrastructure Causes 92% of Open Rate Declines, Not Subject Lines</h2>
 
       <p>Declining open rates are a symptom, not a disease. The disease is almost always an infrastructure problem&mdash;domain reputation decay, excessive sending volume, DNS authentication failures, or list quality deterioration. Subject line optimization, while valuable, is the correct response in only 8% of cases. Fix the infrastructure first, and open rates recover. Ignore the infrastructure and optimize subject lines, and you will burn time tweaking copy while your emails continue landing in spam.</p>
 
-      <p>Follow the diagnostic flowchart, fix the most common causes first, and implement the monitoring systems that prevent future declines. Cold email is an infrastructure-first channel. Treat it that way, and your open rates will take care of themselves.</p>
+      <p>Check DNS authentication and blacklists first, then sending volume and domain reputation, and only test new subject lines once every infrastructure check comes back clean. Cold email is an infrastructure-first channel. Treat it that way, and your open rates will take care of themselves.</p>
 
     </div>
   </article>

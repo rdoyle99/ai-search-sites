@@ -27,15 +27,15 @@ const schema = {
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p>The single most consequential infrastructure decision in cold email is how many sending domains you operate. Get it wrong and you either cap your growth at a fraction of your potential, or you burn through domains faster than you can replace them. Most teams stumble into one extreme or the other because the advice online is vague&mdash;"use multiple domains" tells you nothing actionable.</p>
+      <p>Most B2B cold email operations need 3&ndash;5 sending domains with 2&ndash;3 mailboxes on each, which supports 300&ndash;1,500 emails per day at strong deliverability. Solo founders sending 100 emails per day need 2 domains; agencies running outbound for 20 clients can need 40 or more.</p>
 
-      <p>We analyzed sending patterns from thousands of outbound campaigns across the Sales.co platform in 2025&ndash;2026, cross-referenced with deliverability data from major email providers. The result is a comprehensive, data-backed framework for determining exactly how many domains you need based on your sending volume, risk tolerance, and growth trajectory. Every recommendation below is tied to real performance data.</p>
+      <p>We analyzed sending patterns from thousands of outbound campaigns across the Sales.co platform in 2025&ndash;2026, cross-referenced with deliverability data from major email providers. Every recommendation below is tied to real performance data, and covers how many domains you need based on sending volume, risk tolerance, and growth trajectory.</p>
 
-      <h2>The Short Answer</h2>
+      <h2>Use 3&ndash;5 domains with 2&ndash;3 mailboxes each for 300&ndash;1,500 sends a day</h2>
 
       <p><strong>Use 3&ndash;5 domains for most B2B cold email operations, with 2&ndash;3 mailboxes per domain. This supports 300&ndash;1,500 emails per day while maintaining strong deliverability.</strong></p>
 
-      <p>But the short answer only applies to a specific scenario&mdash;a mid-stage sales team sending 500&ndash;1,000 cold emails per day. If you are a solo founder sending 100 emails per day, you need 2 domains. If you are an agency managing outbound for 20 clients, you may need 40+. The optimal domain count is a function of volume, and the math is precise.</p>
+      <p>That 3&ndash;5 domain range fits one specific scenario: a mid-stage sales team sending 500&ndash;1,000 cold emails per day. If you are a solo founder sending 100 emails per day, you need 2 domains. If you are an agency managing outbound for 20 clients, you may need 40+. The optimal domain count is a function of volume, and the math is precise.</p>
 
       <h2>Why Multiple Domains Matter</h2>
 
@@ -164,7 +164,7 @@ const schema = {
 
       <h2>Infrastructure Scaling: Real-World Examples</h2>
 
-      <p>Abstract recommendations only go so far. Here are three real-world infrastructure configurations based on common team sizes and volume requirements.</p>
+      <p>Here are three real-world cold email infrastructure configurations, sized by common team stages and volume requirements.</p>
 
       <p><strong>Solo founder / Early-stage startup (100&ndash;200 emails/day):</strong> 2 domains, 2 mailboxes each, 4 total mailboxes. Sends per mailbox: 25&ndash;50. Total monthly cost: approximately $25 (domains + Google Workspace). This configuration is simple to manage manually and provides enough capacity to generate 20&ndash;40 qualified conversations per month at typical reply rates.</p>
 
@@ -174,7 +174,7 @@ const schema = {
 
       <h2>Common Domain Mistakes</h2>
 
-      <p><strong>1. Using your primary domain for cold email.</strong> This is the most dangerous mistake. If your cold email domain gets blacklisted and it is your company's primary domain, you lose your website email, transactional email, and existing customer communications. Always use separate domains purchased specifically for outbound.</p>
+      <p><strong>1. Using your primary domain for cold email.</strong> Sending cold outreach from your primary company domain is the most dangerous mistake on this list. If your cold email domain gets blacklisted and it is your company's primary domain, you lose your website email, transactional email, and existing customer communications. Always use separate domains purchased specifically for outbound.</p>
 
       <p><strong>2. Buying the cheapest TLDs.</strong> Domains on .xyz, .info, and .click TLDs save a few dollars per year but deliver 15&ndash;23% lower inbox placement rates. The savings are negligible; the deliverability cost is substantial.</p>
 
@@ -196,7 +196,7 @@ const schema = {
 
       <p><strong>Blacklist monitoring</strong> checks your sending domains and IPs against major blacklist databases (Spamhaus, Barracuda, SURBL, and others). Being listed on any major blacklist drops inbox placement to near zero for that domain. Free tools like MXToolbox can check blacklist status, but automated monitoring that alerts you immediately on listing is worth the investment at scale.</p>
 
-      <h2>The Bottom Line</h2>
+      <h2>Domain portfolio formula: daily volume divided by 150, plus reserve</h2>
 
       <p>Domain infrastructure for cold email follows a simple formula: determine your daily volume target, divide by 150 (the safe per-domain capacity with 2 mailboxes at 75 sends each), round up, and add 30&ndash;50% for rotation reserve. The result is your total domain portfolio size.</p>
 

@@ -45,7 +45,7 @@ const schema = {
 
       <p>Each engine draws on different sources (the full breakdown is in <a href="/blog/chatgpt-vs-perplexity-vs-google-ai-citations/">where to get cited first</a>): Perplexity leans on live web retrieval with visible citations, ChatGPT blends training data with search and licensed sources, Google's AI results draw on its index and SERP features. A brand can be prominent in one and invisible in another — which is diagnostic information, not noise: it tells you whether your gap is crawlability, community presence, or content structure.</p>
 
-      <h2>What to log</h2>
+      <h2>What to log for every prompt and engine</h2>
 
       <ul>
         <li><strong>Mentioned / not mentioned</strong> per prompt per engine — the core binary.</li>
@@ -54,7 +54,7 @@ const schema = {
         <li><strong>Cited sources:</strong> when engines show citations, record <em>which</em> pages earned them — those sources (often Reddit threads and comparison posts, per our <a href="/blog/how-chatgpt-cites-brands/">26,000-citation analysis</a>) are the surface area to grow.</li>
       </ul>
 
-      <h2>Cadence and automation</h2>
+      <h2>Monthly is the right manual cadence for AI mention checks</h2>
 
       <p>Monthly is the right manual cadence — AI answers shift with model updates and index refreshes, but not daily. The workflow above costs an hour a month at 15 prompts × 3 engines; past that scale, or past one brand, automation wins. This is exactly the visibility loop <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> runs as a service — tracking where you appear, where competitors do, and which community mentions move the numbers — so the trend line builds itself while you work on the inputs.</p>
 

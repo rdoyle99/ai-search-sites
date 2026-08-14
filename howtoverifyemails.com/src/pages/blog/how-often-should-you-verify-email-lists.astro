@@ -29,11 +29,11 @@ const schema = {
 
       <p><strong>Verify any list within 30 days before sending to it, and re-verify anything that's sat for 60–90 days. B2B contact data decays at roughly 2–3% per month — job changes, layoffs, rebrands, and dead domains quietly convert valid addresses into bounces — so a list that was clean in January is carrying ~10–15% invalid addresses by summer.</strong></p>
 
-      <h2>Where decay comes from</h2>
+      <h2>Where email list decay comes from</h2>
 
       <p>Email lists don't spoil because of anything you did — they spoil because the world moves. In Sales.co platform data (2025–2026), the dominant decay sources in B2B lists are job changes (the largest single contributor — the person left, the mailbox was deactivated), company events (acquisitions, rebrands, and shutdowns that kill whole domains at once), and IT hygiene (old aliases and distribution lists retired in cleanups). Individual addresses fail constantly even while the list's companies all still exist.</p>
 
-      <h2>The math that sets the window</h2>
+      <h2>The math behind the 30-day re-verification window</h2>
 
       <p>Decay compounds against a hard constraint: mailbox providers' bounce tolerance. As covered in our <a href="/blog/bounce-rate-email-verification/">bounce-rate analysis</a>, sustained hard-bounce rates above ~2–3% start damaging sender reputation, and above 5% the damage accelerates. At ~2–3% monthly decay:</p>
 
@@ -53,7 +53,7 @@ const schema = {
         <li><strong>Purchased or imported legacy lists:</strong> verify before the first send, no exceptions, and segment <a href="/blog/what-is-a-catch-all-email/">catch-alls</a> separately — old lists skew heavily toward unknowable addresses.</li>
       </ul>
 
-      <h2>Or move the problem upstream</h2>
+      <h2>Skip re-verification by sourcing verified contact data</h2>
 
       <p>Re-verification is maintenance on data that started aging the day you exported it. The alternative is sourcing contacts verified at delivery time: platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> verify addresses when you pull them, so the 30-day clock starts at zero on every campaign instead of wherever your spreadsheet left it.</p>
 

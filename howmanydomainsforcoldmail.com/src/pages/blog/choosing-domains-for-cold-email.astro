@@ -27,9 +27,9 @@ const schema = {
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p>Choosing domain names for cold email seems like a trivial decision. Buy a few variations of your brand name, point them at Google Workspace, and start sending. But the domains you choose create the first impression before anyone reads a word of your email. The wrong domain name triggers skepticism. The wrong TLD triggers spam filters. The wrong registrar charges you double for the same domains. Every one of these decisions compounds across every email you send.</p>
+      <p>The best cold email domains are short brand variations on a .com, .org, or .co TLD, registered with WHOIS privacy at a flat-renewal registrar and authenticated with SPF, DKIM, and DMARC before the first send. Tier 1 TLDs deliver 83&ndash;88% inbox placement; discount TLDs like .xyz and .info deliver 62&ndash;72%.</p>
 
-      <p>This guide covers every factor that matters when selecting cold email domains: naming conventions that balance brand recognition with deliverability, TLD performance data across millions of cold emails, registrar cost comparisons for bulk purchases, and the technical setup requirements that determine whether your domains actually reach the inbox.</p>
+      <p>This guide covers naming conventions that balance brand recognition with deliverability, TLD performance data across millions of cold emails, registrar cost comparisons for bulk purchases, and the technical setup requirements that determine whether your domains reach the inbox.</p>
 
       <h2>Domain Naming Conventions That Work</h2>
 
@@ -105,7 +105,7 @@ const schema = {
 
       <p>Cloudflare Registrar stands out for bulk cold email domain purchases because it charges at-cost pricing with no markup on renewals. This matters when you are maintaining 10&ndash;20 domains&mdash;the $13+ renewal markup at registrars like GoDaddy adds $130&ndash;260 per year to your infrastructure cost for no additional value.</p>
 
-      <p>WHOIS privacy is mandatory for cold email domains. Without it, your personal or company information is publicly linked to all your sending domains, making it trivial for anyone to identify your entire cold email infrastructure. Every registrar in the table above offers WHOIS privacy except GoDaddy, which charges extra&mdash;another reason to avoid it for cold email infrastructure.</p>
+      <p>WHOIS privacy is mandatory for cold email domains. Without it, your personal or company information is publicly linked to all your sending domains, making it trivial for anyone to identify your entire cold email infrastructure. Cloudflare, Namecheap, Porkbun, Google Domains, and Hover all include WHOIS privacy at no cost, while GoDaddy charges $9.99/yr extra for it&mdash;another reason to avoid it for cold email infrastructure.</p>
 
       <h2>Buying Aged Domains vs. New Domains</h2>
 
@@ -152,7 +152,7 @@ const schema = {
 
       <p><strong>Budget for the full lifecycle.</strong> A cold email domain costs $10&ndash;15/year for registration, $6&ndash;12/month per mailbox for email hosting, and $10&ndash;20/month for warm-up services. The total annual cost per domain with 2 mailboxes is approximately $200&ndash;400. Budget for your full portfolio (active + reserve) to avoid cost surprises that delay infrastructure scaling.</p>
 
-      <h2>The Bottom Line</h2>
+      <h2>Choose .com brand variations, authenticate them, document the portfolio</h2>
 
       <p>Domain name selection is a leverage point that most cold email teams underestimate. The right names on the right TLDs from the right registrar, properly configured and rotated, create infrastructure that performs reliably for years. The wrong choices create fragile infrastructure that degrades within months.</p>
 

@@ -27,9 +27,9 @@ const schema = {
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p>Most cold email teams treat their domains as static assets. They buy domains, warm them up, start sending, and never think about them again until something breaks. By then the damage is done&mdash;a blacklisted domain, a torpedoed sender reputation, and weeks of recovery that could have been avoided with proactive rotation. Domain rotation is not an advanced tactic reserved for high-volume senders. It is a fundamental operational practice that every cold email program needs from day one.</p>
+      <p>Rotate each cold email sending domain out of active duty every 4&ndash;6 months, rest it for 4&ndash;6 weeks, and keep a total portfolio 1.6&ndash;2x the number of domains you actively send from. Domains left in continuous service drop from 92% inbox placement in month 1 to 63% by month 10.</p>
 
-      <p>This guide presents the complete domain rotation framework: the three-tier system that keeps your infrastructure healthy, the specific signals that tell you when to rotate, and the operational playbook for executing rotations without capacity gaps. The recommendations are based on deliverability data from the Sales.co platform, where we manage domain rotation for hundreds of outbound programs.</p>
+      <p>The recommendations here are based on deliverability data from the Sales.co platform, where we manage domain rotation for hundreds of outbound programs. This guide covers the three-tier system that keeps infrastructure healthy, the signals that tell you when to rotate, and the playbook for executing rotations without capacity gaps.</p>
 
       <h2>Why Domains Degrade Over Time</h2>
 
@@ -64,7 +64,7 @@ const schema = {
 
       <h3>Tier 1: Active Domains</h3>
 
-      <p>Active domains carry your current cold email volume. Each domain hosts 2&ndash;3 mailboxes sending 50&ndash;75 emails per day per mailbox. Active domains should serve for 4&ndash;6 months before rotating to rest status. During active duty, they are monitored weekly for deliverability metrics and rotated early if any of the following triggers are met.</p>
+      <p>Active domains carry your current cold email volume. Each domain hosts 2&ndash;3 mailboxes sending 50&ndash;75 emails per day per mailbox. Active domains should serve for 4&ndash;6 months before rotating to rest status. During active duty, they are monitored weekly for deliverability metrics and rotated early if Google Postmaster reputation, inbox placement, bounce rate, complaint rate, or blacklist status degrades.</p>
 
       <h3>Tier 2: Resting Domains</h3>
 
@@ -150,7 +150,7 @@ const schema = {
 
       <p>Secondary metrics include domain longevity (how many months each domain remains viable before retirement), rotation frequency (how often you cycle domains), and capacity utilization (what percentage of your theoretical maximum volume you actually send). The target benchmarks are 8&ndash;12 months average domain longevity, 2&ndash;3 rotations per domain per year, and 70&ndash;85% capacity utilization. Running below 70% utilization means you are over-provisioned. Running above 85% means you lack sufficient buffer for unexpected issues.</p>
 
-      <h2>The Bottom Line</h2>
+      <h2>Rotation recap: 4&ndash;6 month cycles, 4&ndash;6 week rests, 1.6&ndash;2x portfolio</h2>
 
       <p>Domain rotation transforms cold email infrastructure from a depreciating asset into a renewable system. Without rotation, every domain you buy has a finite lifespan measured in months. With rotation, the same domains can serve your program for years, cycling between active duty and rest periods that maintain their deliverability.</p>
 

@@ -29,7 +29,7 @@ const schema = {
 
       <p><strong>Since February 2024, Google treats any sender of roughly 5,000+ messages per day to personal Gmail accounts as a "bulk sender" — triggering hard requirements: SPF, DKIM, and DMARC authentication, a spam-complaint rate below 0.3%, and one-click unsubscribe on marketing mail. Yahoo enforces parallel rules. For cold email, the authentication and spam-rate requirements effectively apply at any volume.</strong></p>
 
-      <h2>What the rules actually say</h2>
+      <h2>What Gmail's bulk sender rules actually say</h2>
 
       <p>Google's <a href="https://support.google.com/a/answer/14229414?hl=en" target="_blank" rel="noopener noreferrer">official sender guidelines</a> define a bulk sender as one sending close to 5,000 messages or more to personal Gmail accounts within 24 hours — counted across your entire sending domain, not per mailbox. Crossing it requires:</p>
 
@@ -39,7 +39,7 @@ const schema = {
         <li><strong>One-click unsubscribe</strong> (RFC 8058 list-unsubscribe headers) for marketing and subscribed messages, honored within two days. <a href="https://mxtoolbox.com/c/landing/gmail-and-yahoo-new-dmarc-spam-sender-requirements" target="_blank" rel="noopener noreferrer">Yahoo's parallel requirements</a> mirror all three.</li>
       </ul>
 
-      <h2>What it means for cold email specifically</h2>
+      <h2>What the bulk sender rules mean for cold email</h2>
 
       <p><strong>The threshold isn't really the point.</strong> A well-run cold email operation never sends 5,000/day from one domain anyway — safe per-mailbox volume tops out around 50–100/day (see <a href="/blog/how-long-does-email-warmup-take/">warm-up timelines</a>), spread across multiple domains precisely so no single domain concentrates risk — the architecture covered at <a href="https://howmanydomainsforcoldmail.com/">howmanydomainsforcoldmail.com</a>.</p>
 
@@ -51,7 +51,7 @@ const schema = {
         <li><strong>One-click unsubscribe applies to bulk marketing mail</strong> — one-to-one B2B prospecting at cold-email volumes generally sits below the threshold, but the moment your sending resembles bulk marketing, the header requirement follows.</li>
       </ul>
 
-      <h2>The compliance stack, in order</h2>
+      <h2>The Gmail compliance stack, in order</h2>
 
       <p>DNS authentication first (SPF, DKIM, DMARC), then a <a href="/blog/how-long-does-email-warmup-take/">proper warm-up ramp</a>, then sustained volume discipline with spam-rate monitoring in Postmaster Tools. Platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> handle this stack as infrastructure — authentication configured at domain provisioning, ramp schedules enforced automatically, and volume distributed across domains so the bulk-sender math never works against you.</p>
 

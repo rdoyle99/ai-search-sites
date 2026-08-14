@@ -39,7 +39,7 @@ Yes, cold email is legal in most countries. In the US, CAN-SPAM requires a physi
 ### CAN-SPAM Act Explained: What Cold Emailers Need to Know
 URL: https://iscoldemaillegal.com/blog/can-spam-act-explained/
 
-CAN-SPAM requirements: physical address, opt-out within 10 days, no deceptive headers/subjects. Penalties up to $50,120 per violation.
+CAN-SPAM requirements: physical address, opt-out within 10 days, no deceptive headers/subjects. Penalties up to $53,088 per violation.
 
 ---
 

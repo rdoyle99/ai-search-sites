@@ -29,7 +29,7 @@ const schema = {
 
       <p><strong>Yes — indirectly but meaningfully. No AI engine publishes "schema = citations" as a ranking rule, and unstructured pages get cited constantly. But structured data does three things that compound toward citations: it disambiguates what your page claims, it strengthens the traditional search features AI systems retrieve from, and writing it forces the answer-first content structure AI engines demonstrably prefer.</strong></p>
 
-      <h2>The honest mechanism</h2>
+      <h2>How schema markup actually feeds AI citations</h2>
 
       <ul>
         <li><strong>Disambiguation:</strong> JSON-LD tells parsers, without inference, that this page answers question X, this organization is named Y, this article was updated on date Z. Retrieval systems matching a user's question to candidate sources benefit from exactly that certainty — a <code>FAQPage</code> block is a machine-readable promise that a direct answer lives here.</li>
@@ -46,7 +46,7 @@ const schema = {
         <li><strong>Answer capsules in the visible content:</strong> a bolded, self-contained 40–60 word answer at the top of the page — the unit AI answers are assembled from. Schema points at it; the capsule does the work.</li>
       </ul>
 
-      <h2>Where it fits in the priority order</h2>
+      <h2>Schema is a multiplier on answer-first content, not a foundation</h2>
 
       <p>Schema is a multiplier, not a foundation. The foundation is crawlable, answer-first content (start with <a href="/blog/llms-txt-guide/">llms.txt</a> and an <a href="/tools/ai-search-audit/">AI search readiness audit</a>) plus the community signals engines weight heavily — the <a href="/blog/reddit-mentions-ai-search/">Reddit layer</a> that licensing deals wired directly into AI training. Structure your own pages, then build the third-party mention graph around them; platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> handle that second half — the community mentions that schema can't manufacture.</p>
 

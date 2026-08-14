@@ -27,12 +27,12 @@ const schema = {
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p>Cold email deliverability lives or dies on infrastructure. You can write the best copy in the world, but if your DNS is misconfigured, your domains are fresh, or your mailboxes are burning out, your messages land in spam. Based on infrastructure audits of 500+ outbound sales teams in 2025&ndash;2026, this guide walks through every layer of a production-grade cold email stack&mdash;from domain purchasing to sending platform selection to scaling beyond 1,000 emails per day.</p>
+      <p>A production-grade cold email infrastructure in 2026 is 3&ndash;5 secondary domains, 2&ndash;3 mailboxes per domain, SPF, DKIM and DMARC records on every domain, a warm-up tool, and a sending platform that rotates and throttles automatically. Expect $150&ndash;400 per month at typical B2B volume.</p>
 
-      <p>Whether you are launching outbound for the first time or rebuilding a burned infrastructure, this is the reference you need. Every recommendation below is backed by real deliverability data, cost benchmarks, and the latest provider enforcement rules for 2026.</p>
+      <p>Based on infrastructure audits of 500+ outbound sales teams in 2025&ndash;2026, this guide walks through every layer of that stack, from domain purchasing to sending platform selection to scaling beyond 1,000 emails per day. Every recommendation is backed by real deliverability data, cost benchmarks, and the latest provider enforcement rules for 2026.</p>
 
       <!-- ============================================================ -->
-      <h2 id="the-short-answer">The Short Answer</h2>
+      <h2 id="cold-email-infrastructure-requirements">Cold email infrastructure needs 3&ndash;5 domains and 2&ndash;3 mailboxes each</h2>
 
       <p><strong>A complete cold email infrastructure requires 3&ndash;5 domains, 2&ndash;3 mailboxes per domain, properly configured DNS (SPF, DKIM, DMARC), a warm-up tool, and a sending platform that handles rotation and throttling.</strong></p>
 
@@ -437,9 +437,9 @@ const schema = {
       <p>Do not rush this timeline. Teams that compress the warm-up period or skip the gradual ramp consistently burn through infrastructure faster and spend more money long-term replacing damaged domains. The 3&ndash;4 week investment upfront saves months of deliverability headaches downstream.</p>
 
       <!-- ============================================================ -->
-      <h2 id="what-changed-in-2026">What Changed in 2026?</h2>
+      <h2 id="what-changed-for-cold-email-infrastructure-in-2026">What Changed for Cold Email Infrastructure in 2026</h2>
 
-      <p>Several significant changes in 2026 affect how cold email infrastructure should be built and maintained compared to previous years. These changes come from both email provider policy updates and shifts in the broader deliverability ecosystem.</p>
+      <p>Four provider changes in 2026 affect how cold email infrastructure should be built and maintained: Google's hourly rate limits, Microsoft's DMARC enforcement, longer domain aging requirements, and AI-based content filtering. These changes come from both email provider policy updates and shifts in the broader deliverability ecosystem.</p>
 
       <p><strong>Google's stricter per-sender rate limits:</strong> As of February 2026, Google Workspace enforces tighter per-mailbox sending velocity limits. Accounts that send more than 75 outbound messages within a single hour now trigger temporary throttling, even if daily totals remain under the 2,000 limit. This means sending platforms need more granular hourly throttling, not just daily caps. Platforms that only manage daily limits may inadvertently trip these hourly thresholds during peak sending windows.</p>
 
@@ -450,11 +450,11 @@ const schema = {
       <p><strong>AI-based content filtering:</strong> Provider spam filters now incorporate large language models that evaluate email content for "bulk prospecting patterns" with higher accuracy than previous keyword-based systems. Templated emails with obvious mail-merge personalization (first name and company name inserted into a generic template) now trigger spam filters more frequently. Infrastructure alone cannot solve this&mdash;but strong infrastructure gives your messages the best chance of reaching the inbox where content quality determines engagement.</p>
 
       <!-- ============================================================ -->
-      <h2 id="the-bottom-line">The Bottom Line</h2>
+      <h2 id="cold-email-infrastructure-recap">Cold email infrastructure recap: 5 domains, 15 mailboxes, $150&ndash;350/mo</h2>
 
       <p>Cold email infrastructure in 2026 is more complex than ever, but the fundamentals remain consistent: buy multiple domains, set up authenticated mailboxes, configure every DNS record correctly, warm up patiently, and use a platform that automates rotation and throttling. The teams that invest 3&ndash;4 weeks in proper setup consistently outperform teams that cut corners by 2&ndash;3x on deliverability, reply rates, and meetings booked.</p>
 
-      <p>Start with the 500/day tier if you are building from scratch: 5 domains, 15 mailboxes, all DNS records configured, and a sending platform with built-in warm-up. Budget $150&ndash;350/month. Follow the setup checklist above step-by-step, resist the urge to skip warm-up, and you will have a production-grade outbound infrastructure that can sustain high-volume sending for months without deliverability issues.</p>
+      <p>Start with the 500/day tier if you are building from scratch: 5 domains, 15 mailboxes, all DNS records configured, and a sending platform with built-in warm-up. Budget $150&ndash;350/month. Follow the four-week setup checklist in this guide step-by-step, resist the urge to skip warm-up, and you will have a production-grade outbound infrastructure that can sustain high-volume sending for months without deliverability issues.</p>
 
       <p>If you want to skip the manual setup entirely, <a href={siteConfig.product.ctaUrl}>Sales.co</a> handles infrastructure management automatically&mdash;from domain rotation to warm-up to AI-optimized send-time scheduling. But whether you build it yourself or use a managed platform, the principles in this guide apply. Infrastructure is the foundation. Build it right, and everything else in your outbound program gets easier.</p>
 

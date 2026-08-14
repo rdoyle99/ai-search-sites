@@ -31,18 +31,18 @@ const schema = {
 
       <p>The most expensive misreading in cold email is treating provider limits as permission. The caps exist for legitimate transactional and internal mail; deliverability systems judge cold outreach by entirely different math.</p>
 
-      <h2>The official numbers</h2>
+      <h2>The official caps: 2,000 messages a day on Gmail and Outlook</h2>
 
       <ul>
         <li><strong>Google Workspace:</strong> the <a href="https://knowledge.workspace.google.com/admin/gmail/gmail-sending-limits-in-google-workspace" target="_blank" rel="noopener noreferrer">official sending limits</a> are 2,000 messages per rolling 24 hours per account (500 on trial accounts, 1,500 for mail merge), with up to 10,000 recipient-counts per day.</li>
         <li><strong>Microsoft 365 / Exchange Online:</strong> <a href="https://learn.microsoft.com/en-us/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits" target="_blank" rel="noopener noreferrer">Microsoft's limits documentation</a> sets a 10,000-recipient daily rate limit and 30 messages per minute — and Microsoft's <a href="https://techcommunity.microsoft.com/blog/exchange/exchange-online-to-introduce-external-recipient-rate-limit/4114733" target="_blank" rel="noopener noreferrer">External Recipient Rate Limit</a> caps <em>external</em> recipients specifically at 2,000 per day. Cold email is, by definition, all external.</li>
       </ul>
 
-      <h2>Why the safe number is 20–40x lower</h2>
+      <h2>Why safe cold email volume is 20–40x below the provider caps</h2>
 
       <p>Provider caps are enforcement ceilings, not reputation guidance. Mailbox providers score cold mail on engagement: a mailbox sending 1,500 cold emails a day generates bounce and complaint volume that trips spam classification long before it trips the official cap. Sales.co platform data across 5,000+ campaigns (2025–2026) consistently shows per-mailbox cold volume above ~100/day correlating with inbox-placement decay, while 50–100/day on warmed mailboxes holds placement steady. The ramp to get there safely is a 2–4 week warm-up — covered in depth at our sibling site <a href="https://howtowarmupemail.com/">howtowarmupemail.com</a>.</p>
 
-      <h2>Volume comes from architecture, not throttle settings</h2>
+      <h2>Cold email volume comes from mailbox architecture, not throttle settings</h2>
 
       <p>If your pipeline needs 1,000 sends a day, the answer is not one mailbox at 1,000 — it's 10–15 mailboxes across 4–5 domains at 50–100 each. That keeps every individual sender under the engagement radar, isolates damage when a domain degrades, and never approaches either provider's enforcement ceiling. The domain math lives at <a href="https://howmanydomainsforcoldmail.com/">howmanydomainsforcoldmail.com</a>, and the consequences of ignoring it are catalogued in <a href="/blog/what-happens-if-you-send-too-many-cold-emails/">what happens when you send too many</a>.</p>
 

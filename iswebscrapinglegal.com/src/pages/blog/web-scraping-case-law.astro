@@ -27,11 +27,9 @@ const schema = {
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>The legal landscape of web scraping has been shaped by a series of landmark court cases, from the 2000 eBay v. Bidder's Edge ruling through the 2022 hiQ v. LinkedIn decision. Each case established specific legal principles that together form the current legal framework for scraping in 2026.</strong></p>
+      <p><strong>Web scraping law was built case by case, from the 2000 eBay v. Bidder's Edge ruling through the 2022 hiQ v. LinkedIn decision. Seven cases do most of the work: eBay v. Bidder's Edge, Feist v. Rural Telephone, hiQ Labs v. LinkedIn, Van Buren v. United States, Meta v. Bright Data, Ryanair v. PR Aviation, and the Clearview AI privacy cases.</strong></p>
 
-      <p>Understanding web scraping law requires understanding the cases that created it. Unlike many areas of technology law that are governed primarily by statute, web scraping law has been built almost entirely through litigation. Companies that scraped data got sued, courts issued rulings, and those rulings became the precedent that governs future scraping activity. The result is a body of case law that is sometimes contradictory, often nuanced, and always evolving.</p>
-
-      <p>This article analyzes every major web scraping court case chronologically, explaining the facts, the legal arguments, the court's reasoning, and the practical implications for scraping operations in 2026. Together, these cases tell the story of how web scraping went from legally ambiguous to largely protected for public data.</p>
+      <p>Unlike areas of technology law governed primarily by statute, scraping law came almost entirely from litigation: companies scraped data, got sued, and those rulings became the precedent. This article covers each case chronologically with the facts, the court's reasoning, and the practical implications for scraping operations in 2026.</p>
 
       <h2>eBay v. Bidder's Edge (2000) — The Trespass Foundation</h2>
 
@@ -51,7 +49,7 @@ const schema = {
       <strong>Ruling:</strong> Facts and factual compilations without creative selection are not copyrightable<br/>
       <strong>Key principle:</strong> "Sweat of the brow" does not create copyright protection</p>
 
-      <p>While not technically a web scraping case, Feist is the most important case for understanding the copyright dimension of scraping. Rural Telephone published a white pages directory. Feist copied some of the listings for use in its own directory. Rural sued for copyright infringement, arguing that the labor invested in compiling the directory gave it copyright protection.</p>
+      <p>Feist Publications v. Rural Telephone Service is not technically a web scraping case, but it is the most important case for understanding the copyright dimension of scraping. Rural Telephone published a white pages directory. Feist copied some of the listings for use in its own directory. Rural sued for copyright infringement, arguing that the labor invested in compiling the directory gave it copyright protection.</p>
 
       <p>The Supreme Court rejected this "sweat of the brow" doctrine, ruling that copyright requires originality. Facts themselves are not copyrightable, and compilations of facts are only copyrightable if they involve creative selection, coordination, or arrangement. A simple alphabetical listing of names and phone numbers does not meet this threshold.</p>
 
@@ -84,7 +82,7 @@ const schema = {
       <strong>Ruling:</strong> CFAA "exceeds authorized access" applies only to accessing data off-limits through an access gate<br/>
       <strong>Key principle:</strong> Misuse of authorized access is not a CFAA violation</p>
 
-      <p>While Van Buren was a criminal case (not about web scraping), it fundamentally changed how the CFAA is interpreted. Nathan Van Buren, a police officer, used his authorized access to a law enforcement database to look up a license plate in exchange for a bribe. The government charged him under the CFAA for "exceeding authorized access."</p>
+      <p>Van Buren v. United States was a criminal case rather than a web scraping case, but it fundamentally changed how the CFAA is interpreted. Nathan Van Buren, a police officer, used his authorized access to a law enforcement database to look up a license plate in exchange for a bribe. The government charged him under the CFAA for "exceeding authorized access."</p>
 
       <p>The Supreme Court ruled 6&ndash;3 that "exceeds authorized access" means accessing information on a computer that the user is not entitled to access at all&mdash;not accessing information for an unauthorized purpose. Van Buren had legitimate access to the database; using it for the wrong reason was not a CFAA violation (though it may violate other laws).</p>
 
@@ -143,7 +141,7 @@ const schema = {
 
       <p>This ruling makes the EU legal environment more restrictive for scrapers than the US. While the CFAA may not apply to public data scraping (per hiQ), EU contract law gives website operators a viable legal tool to restrict scraping through their Terms of Service.</p>
 
-      <h2>Summary: What Current Case Law Tells Us</h2>
+      <h2>Six Principles Current Web Scraping Case Law Establishes</h2>
 
       <table>
         <thead>
@@ -175,7 +173,7 @@ const schema = {
 
       <p><strong>Regardless of jurisdiction:</strong> Respect robots.txt, implement rate limiting, do not circumvent access controls, do not scrape behind login walls, do not reproduce copyrighted creative content, and document your compliance efforts. These practices reduce legal risk across all jurisdictions and demonstrate good faith if ever challenged.</p>
 
-      <h2>The Bottom Line</h2>
+      <h2>US Case Law Protects Public-Data Scraping, Privacy Law Limits Its Use</h2>
 
       <p>The trajectory of web scraping case law over the past 25 years has moved consistently toward greater protection for scraping public data. The hiQ ruling is the high-water mark, establishing that public data scraping does not violate the CFAA. Van Buren narrowed the CFAA further. Meta v. Bright Data extended these principles to social media.</p>
 

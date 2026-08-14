@@ -29,7 +29,7 @@ const schema = {
 
       <p><strong>They can. An open-tracking pixel inserts a remote image URL that spam filters inspect — and if that URL points to your sending platform's <em>shared</em> tracking domain, your deliverability is chained to the reputation of every other customer using it. The fix hierarchy: use a custom tracking domain, or for small high-stakes sends, turn open tracking off and measure replies.</strong></p>
 
-      <h2>Three ways the pixel costs you</h2>
+      <h2>Three ways the tracking pixel costs you deliverability</h2>
 
       <ul>
         <li><strong>Shared-domain guilt by association.</strong> Most sequencers default to a tracking domain shared across their customer base. When any cohort of those customers spams, blocklists and filters learn the domain — and your perfectly-behaved campaign inherits the suspicion. This is the single largest pixel-related deliverability risk in practice; Sales.co platform data (2025–2026) shows campaigns on shared tracking domains underperforming custom-domain equivalents on inbox placement.</li>
@@ -37,7 +37,7 @@ const schema = {
         <li><strong>The data is degraded anyway.</strong> Post-MPP, the metric the pixel buys is <a href="/blog/are-open-rates-accurate/">systematically inflated</a> — you're spending deliverability risk on a number you can't fully trust.</li>
       </ul>
 
-      <h2>The decision framework</h2>
+      <h2>When to use a custom tracking domain and when to turn tracking off</h2>
 
       <ul>
         <li><strong>Default: custom tracking domain.</strong> If you track opens, CNAME the tracking host to your own subdomain (e.g. <code>t.yourdomain.com</code>) so your reputation is yours alone. Every serious sending platform supports this; configuring it is a ten-minute task that removes the worst risk.</li>
@@ -46,9 +46,9 @@ const schema = {
         <li><strong>Link tracking deserves the same scrutiny:</strong> rewritten URLs through shared redirect domains carry identical guilt-by-association risk — custom-domain them or use bare links.</li>
       </ul>
 
-      <h2>The configuration that wins</h2>
+      <h2>The tracking setup that protects deliverability</h2>
 
-      <p>Custom tracking domain, pixel off during warm-up, reply-centric reporting, and link rewriting only where a custom domain backs it. That combination keeps the analytics you act on and sheds the risks you don't get paid for. It's also the default posture platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> ship with — per-customer tracking domains and reply-based analytics — so the pixel question is answered in the infrastructure instead of debated per campaign.</p>
+      <p>The cold email tracking setup that protects deliverability is a custom tracking domain, the pixel off during warm-up, reply-centric reporting, and link rewriting only where a custom domain backs it. That combination keeps the analytics you act on and sheds the risks you don't get paid for. It's also the default posture platforms like <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> ship with — per-customer tracking domains and reply-based analytics — so the pixel question is answered in the infrastructure instead of debated per campaign.</p>
 
     </div>
   </article>

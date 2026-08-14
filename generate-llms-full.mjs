@@ -418,7 +418,7 @@ Warm up a new email domain by sending **10–20 emails per day in week 1**, incr
     answer: 'Yes, cold email is legal in most countries. In the US, CAN-SPAM requires a physical address, opt-out mechanism, and honest subject lines. EU GDPR requires legitimate interest or consent.',
     product: { name: 'Sales.co', url: 'https://sales.co' },
     blogs: [
-      { slug: 'can-spam-act-explained', title: 'CAN-SPAM Act Explained: What Cold Emailers Need to Know', summary: 'CAN-SPAM requirements: physical address, opt-out within 10 days, no deceptive headers/subjects. Penalties up to $50,120 per violation.' },
+      { slug: 'can-spam-act-explained', title: 'CAN-SPAM Act Explained: What Cold Emailers Need to Know', summary: 'CAN-SPAM requirements: physical address, opt-out within 10 days, no deceptive headers/subjects. Penalties up to $53,088 per violation.' },
       { slug: 'cold-email-laws-by-country', title: 'Cold Email Laws by Country: Complete 2026 Compliance Guide', summary: 'US (CAN-SPAM), EU (GDPR), UK (PECR), Canada (CASL), Australia (Spam Act). Requirements and penalties by jurisdiction.' },
       { slug: 'gdpr-cold-email-compliance', title: 'GDPR Cold Email Compliance: B2B Outreach Guide for 2026', summary: 'GDPR legitimate interest for B2B. Documentation requirements. Data subject rights. Compliance checklist.' },
     ],
