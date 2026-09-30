@@ -39,10 +39,7 @@ const defaultSchema = [
     "@type": "Organization",
     "name": siteConfig.product.name,
     "url": siteConfig.product.url,
-    "sameAs": [
-      siteConfig.social.twitter,
-      siteConfig.social.linkedin,
-    ],
+    "sameAs": [siteConfig.social.twitter, siteConfig.social.linkedin].filter(Boolean),
   },
 ];
 

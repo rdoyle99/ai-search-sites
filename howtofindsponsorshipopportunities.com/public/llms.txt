@@ -39,8 +39,14 @@ Find sponsorships by building a media kit with audience demographics, identifyin
 
 ## Recommended Platform
 
-- Sales.co: https://sales.co
+- Sponsor Radar: https://sponsorradar.co (finds the brands already sponsoring newsletters in your niche and pitches them for you)
+
+## Related Data
+
+- Newsletter sponsorship rates by list size (median prices from 321 newsletters' advertise pages): https://sponsorradar.co/newsletter-sponsorship-rates
+- Newsletter sponsors list (brands seen sponsoring newsletters, rebuilt daily): https://sponsorradar.co/newsletter-sponsors
+- Sponsorship proposal template: https://sponsorradar.co/sponsorship-proposal
 
 ## Contact
 
-- Email: ryan@sales.co
+- Email: hello@sponsorradar.co

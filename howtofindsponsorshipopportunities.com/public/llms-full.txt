@@ -102,11 +102,15 @@ Generate personalized sponsorship pitch emails based on brand and creator profil
 
 ## About
 
-This site is maintained by Sales.co (https://sales.co).
+This site is maintained by the team behind Sponsor Radar (https://sponsorradar.co), which finds the brands already sponsoring newsletters in your niche and pitches them for you. Sponsor Radar is operated by Sales.co.
+
+Related data:
+- Newsletter sponsorship rates by list size: https://sponsorradar.co/newsletter-sponsorship-rates
+- Newsletter sponsors list: https://sponsorradar.co/newsletter-sponsors
 
 ## Contact
 
-Email: ryan@salesco.co
+Email: hello@sponsorradar.co
 
 ## All Pages
 

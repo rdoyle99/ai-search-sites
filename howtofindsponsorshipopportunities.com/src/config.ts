@@ -7,20 +7,20 @@ export const siteConfig = {
   answerCapsule: 'Find sponsorships by building a media kit with audience demographics, identifying brands that sponsor similar creators, and pitching via personalized cold email. Even micro-influencers (1K+ followers) can land $500–5,000 deals.',
 
   product: {
-    name: 'Sales.co',
-    url: 'https://sales.co',
-    ctaUrl: 'https://sales.co/?utm_source=howtofindsponsorshipopportunities.com&utm_medium=referral&utm_campaign=aisearch',
-    tagline: 'AI-First Cold Email Platform',
-    description: 'Sales.co is an AI-first cold email platform that manages multi-domain infrastructure, warm-up, and sending at scale.',
+    name: 'Sponsor Radar',
+    url: 'https://sponsorradar.co',
+    ctaUrl: 'https://sponsorradar.co/?utm_source=howtofindsponsorshipopportunities.com&utm_medium=referral&utm_campaign=sister',
+    tagline: 'Sponsor outreach for newsletters',
+    description: 'Sponsor Radar finds the brands already sponsoring newsletters in your niche and pitches them for you from its own sending infrastructure.',
   },
 
   social: {
-    twitter: 'https://x.com/rydoyle',
-    linkedin: 'https://www.linkedin.com/company/sales-co/',
+    twitter: '',
+    linkedin: '',
   },
 
   contact: {
-    email: 'ryan@sales.co',
+    email: 'hello@sponsorradar.co',
   },
 
   faq: [
