@@ -4,6 +4,12 @@ import { siteConfig } from '../../config';
 
 const posts = [
   {
+    href: '/best-sponsorship-platforms/',
+    title: 'Best Sponsorship Platforms for Creators and Newsletters (2026)',
+    description: '15 platforms for newsletters, YouTube and podcasts, ranked on how much selling each does for you, published fees and who can use it.',
+    date: '2026-09-30',
+  },
+  {
     slug: 'how-much-to-charge-for-sponsorship',
     title: 'How Much Should You Charge for a Sponsorship? The CPM Math',
     description: 'The impressions-based formula by format, the adjusters that move rates, and the negotiation floor — pricing from math instead of vibes.',
@@ -52,7 +58,7 @@ const posts = [
 
     <div class="mt-10 grid gap-8">
       {posts.map((post) => (
-        <a href={`/blog/${post.slug}/`} class="block group">
+        <a href={post.href ?? `/blog/${post.slug}/`} class="block group">
           <article class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
             <time class="text-sm text-gray-400">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
             <h2 class="mt-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{post.title}</h2>

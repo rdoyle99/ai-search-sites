@@ -4,6 +4,12 @@ import { siteConfig } from '../config';
 
 const posts = [
   {
+    title: 'Best Sponsorship Platforms for Creators and Newsletters (2026)',
+    description: '15 platforms for newsletters, YouTube and podcasts, ranked on how much selling each does for you, published fees and who can use it.',
+    link: '/best-sponsorship-platforms/',
+    pubDate: new Date('2026-09-30'),
+  },
+  {
     title: 'How Much Should You Charge for a Sponsorship? The CPM Math',
     description: 'The impressions-based formula by format, the adjusters that move rates, and the negotiation floor — pricing from math instead of vibes.',
     link: '/blog/how-much-to-charge-for-sponsorship/',

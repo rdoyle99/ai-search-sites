@@ -1,0 +1,485 @@
+---
+import Base from '../layouts/Base.astro';
+import { siteConfig } from '../config';
+
+const PAGE_URL = `${siteConfig.url}/best-sponsorship-platforms/`;
+const DATE_ISO = '2026-09-30';
+const DATE_LABEL = 'September 30, 2026';
+
+// Scores: sell = how much of the selling it does for you, price = price and fees as published, access = who can use it.
+// Each is 0 to 3 and every score is explained in the rubric table below. Facts come from the vendor's own pages
+// (Sponsor Radar's from sponsorradar.co/company and /llms.txt), read on the date shown on each card.
+const options = [
+  {
+    id: 'sponsor-radar', name: 'Sponsor Radar', url: siteConfig.product.ctaUrl, schemaUrl: siteConfig.product.url,
+    channels: 'Newsletters', read: '30 September 2026',
+    sell: 'Emails brands for you every day from its own mailboxes. You close the deal.', sellScore: 3,
+    price: '$20 in free credits (200 emails), then 10¢ per email sent. No commission or rev-share.', priceScore: 3,
+    access: 'Newsletters on any platform, no subscriber minimum. Adult newsletters are refused.', accessScore: 3,
+    summary: 'Paste a newsletter URL and Sponsor Radar lists the brands that sponsored similar newsletters, finds the person who buys the ads and drafts the pitch. After checkout it emails those brands every day, 50 new brands a day by default (you set 25 to 100), and introduces you when one replies.',
+    priceNote: 'Initial emails and follow-ups both count. It invoices daily for your first few days, then weekly, never more than $50 at a time. The credit is the only free part, because there is no trial.',
+    limit: 'It covers newsletters only, so it does nothing for YouTube or podcasts. It charges per email sent, its guarantee covers a first sponsor reply inside 30 days and does not cover a closed deal, and you close every deal yourself.',
+    sources: [
+      ['https://sponsorradar.co/company', 'Sponsor Radar company facts'],
+      ['https://sponsorradar.co/llms.txt', 'Sponsor Radar llms.txt'],
+    ],
+  },
+  {
+    id: 'hecto', name: 'Hecto', url: 'https://www.hecto.io/', schemaUrl: 'https://www.hecto.io/',
+    channels: 'Newsletters', read: '29 September 2026',
+    sell: 'Brands search the marketplace and book your listed packages.', sellScore: 2,
+    price: 'Free to list, no monthly fee. 5% of each booking plus Stripe charges. Prices are in pounds.', priceScore: 3,
+    access: 'Newsletters, no minimum stated.', accessScore: 3,
+    summary: 'A newsletter ad marketplace where you list ad packages with upfront prices, and brands book and pay through a Hecto checkout. You can also send buyers straight to your own Hecto checkout link.',
+    limit: 'It takes 5% of every booking and publishes no figures on how many buyers use it.',
+    sources: [
+      ['https://www.hecto.io/pricing', 'Hecto pricing'],
+      ['https://www.hecto.io/', 'Hecto homepage'],
+    ],
+  },
+  {
+    id: 'mediapact', name: 'MediaPact', url: 'https://mediapact.ai', schemaUrl: 'https://mediapact.ai',
+    channels: 'Newsletters, sponsored content, podcasts', read: '29 and 30 September 2026',
+    sell: 'Brands and agencies book the placements you list.', sellScore: 2,
+    price: 'Free to list. 10% of each completed deal up to $100,000 a month in sales, less above that.', priceScore: 3,
+    access: 'No minimum stated.', accessScore: 3,
+    summary: 'A marketplace for flat-fee media. You list newsletter sponsorships and other placements once, buyers send offers, and insertion orders and payments run through the platform.',
+    limit: 'It takes 10% of each completed deal, and its own Paved comparison page says some workflows are still being polished.',
+    sources: [
+      ['https://mediapact.ai/terms-of-service', 'MediaPact terms (commission)'],
+      ['https://mediapact.ai/llms.txt', 'MediaPact overview'],
+      ['https://mediapact.ai/compare/paved/', 'MediaPact vs Paved'],
+    ],
+  },
+  {
+    id: 'youtube-creator-partnerships', name: 'YouTube Creator Partnerships', url: 'https://support.google.com/youtube/answer/9385307', schemaUrl: 'https://support.google.com/youtube/answer/9385307',
+    channels: 'YouTube', read: '30 September 2026',
+    sell: 'Brands find eligible channels and send inquiries to the Creator Partnerships tab in YouTube Studio.', sellScore: 2,
+    price: 'No fee listed on its help page. You sign with the brand and the brand pays you.', priceScore: 3,
+    access: 'YouTube Partner Program members aged 18 or older, no active Community Guidelines strikes, in a listed country that includes the US.', accessScore: 2,
+    summary: "YouTube's own brand-deal feature. Eligible Partner Program creators become discoverable to brands and get a media kit built from their channel insights. You set desired rates for long-form videos and Shorts, and you answer each brand inquiry with Interested or Not interested. If you choose Interested, YouTube shares your contact details with the brand, and you negotiate and sign the deal with the brand directly.",
+    limit: 'The help page describes brands finding you and sending inquiries, and describes no way to pitch brands from the tab. It is limited to Partner Program channels in listed countries, and the amounts on an inquiry come from the advertiser and are not final offers.',
+    sources: [
+      ['https://support.google.com/youtube/answer/9385307', 'YouTube Help: Get started with YouTube Creator Partnerships'],
+    ],
+  },
+  {
+    id: 'collabstr', name: 'Collabstr', url: 'https://collabstr.com/creator', schemaUrl: 'https://collabstr.com/creator',
+    channels: 'Instagram, TikTok, YouTube, UGC, X, Twitch, Amazon', read: '30 September 2026',
+    sell: 'Brands hire you from your profile, or you apply to campaigns they post.', sellScore: 2,
+    price: 'Free to join. Creators pay a 15% fee on their payout.', priceScore: 2,
+    access: 'No audience minimum stated on its creator page.', accessScore: 3,
+    summary: 'A marketplace where brands hire creators by the deliverable. Collabstr holds the funds in escrow until you deliver and the brand approves, then pays out in your local currency through PayPal, Venmo, bank transfer and other methods.',
+    limit: 'It keeps 15% of your payout, and most listings on its search page are Instagram, TikTok and UGC work. Its platform filter has no newsletter or podcast option.',
+    sources: [
+      ['https://collabstr.com/creator', 'Collabstr for creators'],
+      ['https://collabstr.com/pricing', 'Collabstr pricing and FAQ'],
+      ['https://collabstr.com/influencers', 'Collabstr creator search'],
+    ],
+  },
+  {
+    id: 'passionfroot', name: 'Passionfroot', url: 'https://www.passionfroot.me/creators', schemaUrl: 'https://www.passionfroot.me/creators',
+    channels: 'Newsletters, YouTube, LinkedIn, X, Instagram, TikTok, podcasts', read: '30 September 2026',
+    sell: 'Brands book your storefront or find you in its network, or you apply to its Live Campaigns board.', sellScore: 2,
+    price: 'Free for creators, no monthly fee. 15% of deals Passionfroot brings you, nothing on deals you bring.', priceScore: 2,
+    access: 'Any channel listed, no minimum stated. Its brands are B2B, across tech, SaaS, AI and finance.', accessScore: 3,
+    summary: 'A free storefront and media kit with a calendar, booking forms, messaging and payments, a brand network that sends deals to creators, and a Live Campaigns board you can apply to. It charges you nothing on deals you bring yourself and takes 15% of deals it matches.',
+    limit: 'Deals from its network cost 15% on every booking with that brand and have to be paid on the platform, and brands only reach you if they find your storefront or its network matches you with them.',
+    sources: [
+      ['https://www.passionfroot.me/creator-pricing', 'Passionfroot creator pricing'],
+      ['https://www.passionfroot.me/creators', 'Passionfroot for creators'],
+      ['https://help.passionfroot.me/en/articles/11552638-pricing', 'Passionfroot pricing help article'],
+      ['https://help.passionfroot.me/en/articles/11552849-getting-paid-on-passionfroot', 'Passionfroot getting paid'],
+    ],
+  },
+  {
+    id: 'paved', name: 'Paved', url: 'https://www.paved.com/publishers', schemaUrl: 'https://www.paved.com/publishers',
+    channels: 'Newsletters', read: '30 September 2026',
+    sell: 'Brands book the placements you list, and its ad network fills spare slots with pay-per-click ads.', sellScore: 3,
+    price: 'Free to join. A revenue share on Marketplace sponsorships and a platform fee on Ad Network clicks; neither rate is published.', priceScore: 2,
+    access: 'Marketplace needs 50,000+ subscribers. Booker, its booking page, takes any list size.', accessScore: 1,
+    summary: 'A newsletter ad marketplace and pay-per-click ad network. Brands book the placements you list at flat fees, the network can fill spare slots automatically with per-click ads, and Paved handles invoicing, contracts and payouts. Booker, its free booking page, is open to any list size (Stripe adds 2.9%).',
+    limit: 'The Marketplace needs 50,000 subscribers and the Ad Network 50,000 subscribers or 1 million monthly impressions, depending on which Paved page you read. Neither fee rate is published, and Ad Network payouts run net-60 after a $1,000 minimum.',
+    sources: [
+      ['https://www.paved.com/publishers', 'Paved publishers page'],
+      ['https://www.paved.com/booker', 'Paved Booker'],
+      ['https://www.paved.com/help/articles/8124196-sign-up-as-a-paved-publisher', 'Paved minimum subscribers'],
+      ['https://www.paved.com/help/en/articles/15656064-how-to-monetize-your-newsletter-with-sponsorships-on-paved', 'Paved Marketplace and Ad Network guide'],
+      ['https://www.paved.com/help/articles/8135146-ad-network-payouts-for-publishers', 'Paved payouts'],
+    ],
+  },
+  {
+    id: 'beehiiv-ad-network', name: 'beehiiv Ad Network', url: 'https://www.beehiiv.com/ad-network', schemaUrl: 'https://www.beehiiv.com/ad-network',
+    channels: 'Newsletters sent through beehiiv', read: '29 September 2026',
+    sell: 'beehiiv finds the advertisers; you pick the offers to run.', sellScore: 3,
+    price: 'Needs a paid beehiiv plan: Scale from $43 a month billed yearly ($49 monthly). Its cut is not published.', priceScore: 1,
+    access: 'Newsletters sent through beehiiv on a paid plan, no subscriber minimum stated. Not on the free Launch plan.', accessScore: 2,
+    summary: "beehiiv's built-in network. Publishers on a paid plan get a feed of advertiser offers, choose the ones to run, and are paid on a CPM or cost-per-click basis each month. It is non-exclusive, so you can sell your own sponsors alongside it.",
+    limit: "It only works for newsletters sent through beehiiv, on a paid plan, with a Stripe Express account. beehiiv does not publish its cut or share the advertisers' contacts.",
+    sources: [
+      ['https://www.beehiiv.com/ad-network', 'beehiiv Ad Network page'],
+      ['https://www.beehiiv.com/pricing', 'beehiiv pricing'],
+      ['https://www.beehiiv.com/support/article/17507491038231-ad-network-faq', 'beehiiv Ad Network FAQ'],
+    ],
+  },
+  {
+    id: 'kit-newsletter-sponsorships', name: 'Kit Newsletter Sponsorships', url: 'https://kit.com/features/newsletter-sponsorships', schemaUrl: 'https://kit.com/features/newsletter-sponsorships',
+    channels: 'Newsletters sent through Kit', read: '29 September 2026',
+    sell: 'Kit finds the campaigns; you approve every ad.', sellScore: 3,
+    price: 'Needs a paid Kit plan: Creator from $33 a month billed yearly. Kit keeps 23.5% of ad revenue.', priceScore: 1,
+    access: 'Newsletters sent through Kit on a paid plan, no subscriber minimum stated.', accessScore: 2,
+    summary: "Kit's built-in sponsorship network. Kit matches creators on paid plans with brand campaigns, you approve and style every ad, and you are paid per verified click, with no minimum before a payout.",
+    limit: 'It only works for newsletters sent through Kit on a paid plan, Kit keeps 23.5% of the ad revenue, and payouts come 45 days after the end of the month.',
+    sources: [
+      ['https://kit.com/features/newsletter-sponsorships', 'Kit feature page'],
+      ['https://kit.com/pricing', 'Kit pricing'],
+      ['https://help.kit.com/en/articles/8532157-monetizing-your-emails-with-kit-newsletter-sponsorships', 'Kit fee and payouts'],
+    ],
+  },
+  {
+    id: 'sponsorships-ai', name: 'Sponsorships.ai', url: 'https://sponsorships.ai', schemaUrl: 'https://sponsorships.ai',
+    channels: 'Newsletters, podcasts, YouTube, events', read: '29 September 2026',
+    sell: 'Brands browse your listing, and you can pitch the open opportunities they post.', sellScore: 2,
+    price: '$15 a month, or $90 a year, for Starter. 0% commission. No free plan.', priceScore: 1,
+    access: 'No minimum audience stated.', accessScore: 3,
+    summary: 'A paid-membership marketplace where creators list their audience and rate card for brands to browse, with deal, deliverable and invoice tracking. It takes no commission, brands pay you directly, and you can pitch the open opportunities brands post.',
+    limit: 'There is no free plan, and it does not verify the rates or audience figures creators publish, so brands see what each creator claims.',
+    sources: [
+      ['https://sponsorships.ai/', 'Sponsorships.ai homepage, plans and FAQ'],
+    ],
+  },
+  {
+    id: 'sponsorcal', name: 'SponsorCal', url: 'https://sponsorcal.com', schemaUrl: 'https://sponsorcal.com',
+    channels: 'Newsletters (Ghost integration)', read: '29 September 2026',
+    sell: 'You bring every sponsor. It takes the booking and the payment.', sellScore: 0,
+    price: 'No subscription. 5% of each booking, Stripe fees included.', priceScore: 3,
+    access: 'Newsletters, no minimum stated.', accessScore: 3,
+    summary: 'A booking page for newsletter sponsorships. Sponsors pick a date, pay upfront through Stripe and upload their assets before your deadline, you approve every ad, and slot limits stop two sponsors buying the same placement.',
+    limit: 'It does not bring sponsors. Its own page says it is not a marketplace, so you sell every slot yourself.',
+    sources: [
+      ['https://sponsorcal.com/', 'SponsorCal homepage and pricing'],
+    ],
+  },
+  {
+    id: 'libsyn-ads', name: 'Libsyn Ads', url: 'https://advertising.libsyn.com/monetize-your-podcast', schemaUrl: 'https://advertising.libsyn.com/monetize-your-podcast',
+    channels: 'Podcasts', read: '30 September 2026',
+    sell: 'Advertisers order ad buys from your listing and you approve or deny each one. Libsyn sets up the listing and handles orders.', sellScore: 2,
+    price: 'Free to apply. Libsyn splits ad revenue 70/30 and you keep 70%. No other fees.', priceScore: 2,
+    access: 'Podcasts with 20,000+ downloads per episode. Its application also lists an IAB certified hosting provider.', accessScore: 1,
+    summary: "A podcast ad marketplace. After you apply (applications are reviewed in 3 to 5 business days), Libsyn's team helps you create a listing, sets ad costs with you and verifies your reach. You approve or deny each ad buy, and Libsyn pays out once it has collected from the advertiser.",
+    limit: 'It needs 20,000 downloads per episode and keeps 30% of ad revenue. Libsyn says it may take a month or two before your first ad buy, and payouts typically take 30 to 60 days and always happen within 90.',
+    sources: [
+      ['https://advertising.libsyn.com/monetize-your-podcast', 'Libsyn Ads for podcasters'],
+    ],
+  },
+  {
+    id: 'sponsorgap', name: 'SponsorGap', url: 'https://sponsorgap.com', schemaUrl: 'https://sponsorgap.com',
+    channels: 'Newsletters, with podcast and YouTube sponsor pages', read: '29 September 2026',
+    sell: 'You pitch from its sponsor database. Its managed plans run outreach for you.', sellScore: 1,
+    price: '$39, $89 or $199 a month, with 7 days of full access and no card. Managed outreach is $999 a month plus a 10% success fee, or $2,999 a month.', priceScore: 1,
+    access: 'Newsletters first, no minimum stated.', accessScore: 3,
+    summary: 'A database of brands that buy newsletter ads, with ad history, an outreach tracker, competitor alerts and a slot marketplace that takes no commission. The FAQ puts contact data (the email and LinkedIn of the person who controls the budget) on the $89 plan and up. On the self-serve plans you send every email yourself.',
+    limit: 'On the self-serve plans you write and send each pitch, and its own pages disagree on which plan includes contacts: the pricing page lists basic contact information on the $39 plan, and the FAQ says contact data starts at $89.',
+    sources: [
+      ['https://sponsorgap.com/pricing', 'SponsorGap pricing'],
+      ['https://sponsorgap.com/help', 'SponsorGap FAQ'],
+      ['https://sponsorgap.com/', 'SponsorGap homepage'],
+    ],
+  },
+  {
+    id: 'sponsorradar-com', name: 'SponsorRadar (sponsorradar.com)', url: 'https://sponsorradar.com', schemaUrl: 'https://sponsorradar.com',
+    channels: 'YouTube', read: '30 September 2026',
+    sell: 'You pitch. It suggests brands that pay channels like yours and drafts the pitch, sent from your own Gmail.', sellScore: 1,
+    price: 'Free plan for one channel. Creator Pro is $1 for 7 days, then $29 a month (its page shows $59 crossed out).', priceScore: 1,
+    access: 'Any YouTuber, one channel per plan, no subscriber minimum stated.', accessScore: 3,
+    summary: "A different company from Sponsor Radar (sponsorradar.co), with a near-identical name. SponsorRadar is a YouTube sponsorship database, and its homepage counts 20.4K+ brands, 1.4M+ sponsorships and 100K+ channels indexed. The free plan reads your own videos for sponsor segments, estimates what a sponsored video on your channel should cost and builds a media kit at one link. Creator Pro adds brands that sponsor channels like yours, contact lookups and pitch drafts.",
+    limit: "It covers YouTube only, and its counts of brands, sponsorships and channels are its own figures. Pitches go out from your own Gmail, so you send and follow up yourself.",
+    sources: [
+      ['https://sponsorradar.com', 'SponsorRadar homepage and plans'],
+      ['https://sponsorradar.co/company', "Sponsor Radar's note that the two are not affiliated"],
+    ],
+  },
+  {
+    id: 'who-sponsors-stuff', name: 'Who Sponsors Stuff', url: 'https://site.whosponsorsstuff.com/', schemaUrl: 'https://site.whosponsorsstuff.com/',
+    channels: 'Newsletters', read: '30 September 2026',
+    sell: 'You pitch from its sponsor database.', sellScore: 1,
+    price: 'Free plan with about 10% of the database and no contacts. Sales Pro is price on request.', priceScore: 0,
+    access: 'Newsletters, no minimum stated.', accessScore: 3,
+    summary: 'A searchable database of companies that sponsor newsletters, run by Email Revenue Solutions, a firm that sells newsletter ads for publishers. Its site says it tracks 500+ newsletters and holds direct contact information for 10,000+ sponsors. Sales Pro adds decision-maker contacts, the ads brands ran with their landing pages and tracking codes, CSV downloads and alerts, with unlimited seats.',
+    limit: 'Sales Pro has no published price, the free plan shows no contacts, and its terms give no refunds on cancellation.',
+    sources: [
+      ['https://site.whosponsorsstuff.com/', 'Who Sponsors Stuff Sales Pro page'],
+      ['https://signup.whosponsorsstuff.com/', 'Who Sponsors Stuff plans'],
+      ['https://site.whosponsorsstuff.com/terms', 'Who Sponsors Stuff terms'],
+    ],
+  },
+];
+
+const ranked = options
+  .map((o) => ({ ...o, total: o.sellScore + o.priceScore + o.accessScore }))
+  .sort((a, b) =>
+    b.total - a.total ||
+    b.sellScore - a.sellScore ||
+    b.priceScore - a.priceScore ||
+    b.accessScore - a.accessScore ||
+    a.name.localeCompare(b.name, 'en', { sensitivity: 'base' })
+  )
+  .map((o, i) => ({ ...o, rank: i + 1 }));
+
+const first = ranked[0];
+const second = ranked[1];
+const third = ranked[2];
+
+const notScored = [
+  { name: 'Wellput', text: 'A managed pay-per-click network that takes US newsletters with 20,000+ subscribers.', source: ['https://www.wellput.io/publishers/', 'Wellput publishers page'], read: '29 September 2026' },
+  { name: 'Sponsy', text: 'Software for running the sponsors you already have; it does not find them. Free with $5 per booked slot after the first 5, Pro from $49 a month.', source: ['https://getsponsy.com/pricing', 'Sponsy pricing'], read: '29 September 2026' },
+  { name: 'SponsorLeads', text: 'A daily list of companies sponsoring newsletters, from $97 a month, with no free plan.', source: ['https://getsponsorleads.com/', 'SponsorLeads homepage'], read: '29 September 2026' },
+  { name: 'BuySellAds (Carbon)', text: 'An ad-sales team that pitches your inventory to sponsors. Its fee and who qualifies are not published; you apply.', source: ['https://www.buysellads.com/publishers', 'BuySellAds publishers page'], read: '29 September 2026' },
+  { name: 'Swapstack', text: 'beehiiv bought it in September 2023, and the Swapstack app no longer loads.', source: ['https://www.beehiiv.com/blog/beehiiv-acquires-swapstack', "beehiiv's announcement"], read: '29 September 2026' },
+];
+
+const faq = [
+  {
+    question: 'Where can you currently launch creator sponsorships?',
+    answer: 'It depends on your channel. Newsletters can use Sponsor Radar, Hecto, MediaPact, Passionfroot, or the networks built into beehiiv and Kit. YouTube channels in the Partner Program get the Creator Partnerships tab in YouTube Studio, and Collabstr and Passionfroot also take YouTube creators. Podcasts can list on MediaPact, Passionfroot or Sponsorships.ai at any size, or on Libsyn Ads from 20,000 downloads per episode.',
+  },
+  {
+    question: 'Where to find sponsorship opportunities for high-viewership content?',
+    answer: 'Larger audiences unlock more options. Paved lists newsletters with 50,000 or more subscribers on its Marketplace, Libsyn Ads takes podcasts from 20,000 downloads per episode and lets you keep 70% of ad revenue, and YouTube Creator Partnerships shows eligible Partner Program channels to brands, which then send inquiries to you.',
+  },
+  {
+    question: 'Is there a tool that matches brands with sponsorship opportunities based on audience demographics and goals?',
+    answer: 'Several match brands to creators. Passionfroot has a brand network and a Live Campaigns board and charges 15% on deals it matches. beehiiv and Kit match advertisers to newsletters on paid plans. YouTube Creator Partnerships lets brands discover eligible channels. Sponsor Radar lists the brands that sponsored newsletters similar to yours and emails them for you at 10¢ per email.',
+  },
+  {
+    question: 'Which sponsorship platforms are free for creators to join?',
+    answer: 'Passionfroot, Hecto, MediaPact, Collabstr, Paved and Libsyn Ads are free to join and take a cut of deals: 15% on deals Passionfroot brings you, 5% at Hecto, 10% at MediaPact, 15% of payouts at Collabstr and 30% of ad revenue at Libsyn Ads. Paved does not publish its rates. YouTube Creator Partnerships lists no fee. Sponsor Radar gives $20 in credits, which covers 200 emails, then charges 10¢ per email.',
+  },
+  {
+    question: 'How many subscribers do you need to join a newsletter sponsorship platform?',
+    answer: 'Many publish no minimum, including Sponsor Radar, Hecto, SponsorCal, MediaPact, SponsorGap and Passionfroot. Paved asks for 50,000 subscribers on its Marketplace, though its Booker booking page takes any list size. beehiiv and Kit publish no minimum for their networks and require a paid plan on their own platform.',
+  },
+  {
+    question: 'Is sponsorradar.com the same company as sponsorradar.co?',
+    answer: 'No. Sponsor Radar (sponsorradar.co) pitches brands to sponsor newsletters and is operated by Sales.co. SponsorRadar (sponsorradar.com) is a different company that runs a YouTube sponsorship database. Sponsor Radar states on its company page that the two are not affiliated.',
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Sponsorship Platforms for Creators and Newsletters (2026)",
+    "mainEntityOfPage": PAGE_URL,
+    "author": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
+    "publisher": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
+    "datePublished": DATE_ISO,
+    "dateModified": DATE_ISO,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Best sponsorship platforms for creators and newsletters (2026)",
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "numberOfItems": ranked.length,
+    "itemListElement": ranked.map((o) => ({
+      "@type": "ListItem",
+      "position": o.rank,
+      "name": o.name,
+      "url": o.schemaUrl,
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.map((f) => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+    })),
+  },
+];
+
+const rubric = [
+  {
+    criterion: 'Selling done for you',
+    s3: 'It finds advertisers and fills slots, or sends the pitches to brands for you',
+    s2: 'Brands find you through a listing, network or storefront and you handle the deal',
+    s1: 'It gives you the list and you do the pitching',
+    s0: 'You bring every sponsor; it manages bookings or paperwork',
+  },
+  {
+    criterion: 'Price and fees as published',
+    s3: 'Free to start; no cut, or a published cut of 10% or less',
+    s2: 'Free to start; the cut is above 10% or is not published',
+    s1: 'Needs a paid plan with a published price',
+    s0: 'Needs a plan with no published price',
+  },
+  {
+    criterion: 'Who can use it',
+    s3: 'No audience minimum stated and no single platform required',
+    s2: "No minimum, but you must use one platform's paid plan or meet a program or country rule",
+    s1: 'States an audience minimum',
+    s0: 'Closed to new users (no option scored this)',
+  },
+];
+
+const description = `${ranked.length} sponsorship platforms for newsletters, YouTube and podcasts, ranked on selling done for you, published fees and who can use them. Read Sept 29 to 30, 2026.`;
+---
+
+<Base
+  title="Best Sponsorship Platforms for Creators and Newsletters (2026)"
+  description={description}
+  schema={schema}
+  articleDate={DATE_ISO}
+  articleModified={DATE_ISO}
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <time class="text-sm text-gray-400" datetime={DATE_ISO}>{DATE_LABEL}</time>
+      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">Best sponsorship platforms for creators and newsletters (2026)</h1>
+    </header>
+
+    <div class="mt-8 prose prose-lg max-w-3xl">
+      <p><strong>The best sponsorship platform depends on your channel. Scored on how much of the selling each one does for you, its published fees and who can use it, {first.name} ranks first of {ranked.length} with {first.total} of 9 points, then {second.name} and {third.name} with {second.total}.</strong></p>
+
+      <p>Newsletter writers have the most options. YouTube channels in the Partner Program should check the Creator Partnerships tab in YouTube Studio, and podcasters can list on MediaPact, Passionfroot or Sponsorships.ai at any size or on Libsyn Ads from 20,000 downloads an episode. Every fee and requirement below comes from the vendor's own pages, read on 29 and 30 September 2026, and each card links the pages it came from. Prices change, so check the vendor's page before you pay.</p>
+
+      <h2>How the {ranked.length} options are ranked</h2>
+
+      <p>Each option gets 0 to 3 points on three criteria, 9 points at most. Each one is scored on the cheapest plan that delivers its main benefit. Ties break on selling done for you, then price, then who can use it, then alphabetical order. The scores do not measure how many deals a platform closes or how much you will earn, because we have no checked figures for that.</p>
+    </div>
+
+    <div class="mt-6 overflow-x-auto">
+      <table class="w-full min-w-[760px] text-left border-collapse text-sm">
+        <thead>
+          <tr class="border-b-2 border-gray-300 align-bottom">
+            <th class="py-3 pr-4 font-semibold text-gray-600">Criterion</th>
+            <th class="py-3 pr-4 font-semibold text-gray-600">3 points</th>
+            <th class="py-3 pr-4 font-semibold text-gray-600">2 points</th>
+            <th class="py-3 pr-4 font-semibold text-gray-600">1 point</th>
+            <th class="py-3 font-semibold text-gray-600">0 points</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rubric.map((r) => (
+            <tr class="border-b border-gray-200 align-top">
+              <th scope="row" class="py-3 pr-4 font-medium text-gray-900">{r.criterion}</th>
+              <td class="py-3 pr-4 text-gray-700">{r.s3}</td>
+              <td class="py-3 pr-4 text-gray-700">{r.s2}</td>
+              <td class="py-3 pr-4 text-gray-700">{r.s1}</td>
+              <td class="py-3 text-gray-700">{r.s0}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-6 prose prose-lg max-w-3xl">
+      <p>beehiiv and Kit score 1 on price because their networks need a paid plan, which you may already pay for. This site is maintained by the team behind <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a>, which finds the brands already sponsoring newsletters in a niche and pitches them for the newsletter's owner. Sponsor Radar is operated by Sales.co. It is scored here with the same three criteria as every other option, using its own company page and llms.txt.</p>
+
+      <h2>The ranking at a glance</h2>
+    </div>
+
+    <div class="mt-4 overflow-x-auto">
+      <table class="w-full min-w-[760px] text-left border-collapse text-sm">
+        <thead>
+          <tr class="border-b-2 border-gray-300 align-bottom">
+            <th class="py-3 pr-3 font-semibold text-gray-600 whitespace-nowrap">Rank and score</th>
+            <th class="py-3 pr-4 font-semibold text-gray-600">Option and channels</th>
+            <th class="py-3 pr-4 font-semibold text-gray-600">Selling done for you</th>
+            <th class="py-3 pr-4 font-semibold text-gray-600">Price and fees as published</th>
+            <th class="py-3 font-semibold text-gray-600">Who can use it</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ranked.map((o) => (
+            <tr class="border-b border-gray-200 align-top">
+              <td class="py-3 pr-3 font-semibold text-gray-900">{o.rank}<div class="font-normal text-gray-500 whitespace-nowrap">{o.total} of 9</div></td>
+              <td class="py-3 pr-4">
+                <a href={`#${o.id}`} class="font-semibold text-blue-600 hover:text-blue-800">{o.name}</a>
+                <div class="text-gray-500">{o.channels}</div>
+              </td>
+              <td class="py-3 pr-4 text-gray-700"><strong class="text-gray-900">{o.sellScore}</strong> {o.sell}</td>
+              <td class="py-3 pr-4 text-gray-700"><strong class="text-gray-900">{o.priceScore}</strong> {o.price}</td>
+              <td class="py-3 text-gray-700"><strong class="text-gray-900">{o.accessScore}</strong> {o.access}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-10 prose prose-lg max-w-3xl">
+      <h2>Which option fits your channel</h2>
+
+      <p>The ranking mixes channels, so pick the highest-ranked option that works for yours.</p>
+
+      <ul>
+        <li><strong>Newsletter on beehiiv or Kit.</strong> Try the built-in network first: beehiiv Scale is from $43 a month billed yearly, Kit Creator from $33 a month billed yearly with Kit keeping 23.5% of ad revenue.</li>
+        <li><strong>Newsletter on any platform.</strong> Sponsor Radar emails brands for you at 10¢ per email after $20 in credits, while Hecto (5%) and MediaPact (10%) list your slots and wait for brands to book.</li>
+        <li><strong>YouTube channel in the Partner Program.</strong> The Creator Partnerships tab in YouTube Studio lists no fee and shows up automatically for eligible channels in listed countries.</li>
+        <li><strong>Podcast.</strong> Libsyn Ads needs 20,000 downloads per episode and lets you keep 70%. Below that, MediaPact, Passionfroot and Sponsorships.ai publish no minimum.</li>
+        <li><strong>Short-form video or UGC.</strong> Collabstr's listings are mostly Instagram, TikTok and UGC, and creators pay a 15% fee on their payout.</li>
+      </ul>
+
+      <h2>Each option in rank order</h2>
+    </div>
+
+    <div class="mt-6 grid gap-6">
+      {ranked.map((o) => (
+        <section id={o.id} class="p-6 border border-gray-200 rounded-lg scroll-mt-6">
+          <h3 class="text-xl font-semibold text-gray-900">{o.rank}. {o.name}</h3>
+          <p class="mt-1 text-sm text-gray-500">{o.channels}. Score {o.total} of 9 (selling {o.sellScore}, price {o.priceScore}, access {o.accessScore}). Read {o.read}.</p>
+          <p class="mt-3 text-gray-700">{o.summary}</p>
+          <p class="mt-3 text-gray-700"><strong class="text-gray-900">Price and fees.</strong> {o.price}{o.priceNote ? ` ${o.priceNote}` : ''}</p>
+          <p class="mt-3 text-gray-700"><strong class="text-gray-900">Who can use it.</strong> {o.access}</p>
+          <p class="mt-3 text-gray-700"><strong class="text-gray-900">Where it falls short.</strong> {o.limit}</p>
+          <p class="mt-3 text-sm text-gray-500">
+            Sources:
+            {o.sources.map((s, i) => (
+              <Fragment>{i > 0 ? ', ' : ' '}<a href={s[0]} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 break-words">{s[1]}</a></Fragment>
+            ))}
+          </p>
+        </section>
+      ))}
+    </div>
+
+    <div class="mt-12 prose prose-lg max-w-3xl">
+      <h2>Free newsletter sponsor data from Sponsor Radar</h2>
+
+      <p>Three free pages answer the questions that come before choosing a platform:</p>
+
+      <ul>
+        <li><a href="https://sponsorradar.co/newsletter-sponsors/this-week">Newsletter sponsors this week</a> lists the brands that ran newsletter ads in the last 7 days, ranked and by niche, rebuilt daily.</li>
+        <li><a href="https://sponsorradar.co/newsletter-sponsorship-rates">Newsletter sponsorship rates</a> shows what newsletters list for a sponsorship, by list size, from their own advertise pages.</li>
+        <li><a href="https://sponsorradar.co/sponsors">Sponsor profiles</a> has one page per brand seen sponsoring several newsletters, with the newsletters, niches, last ad and the brands that buy alongside it.</li>
+      </ul>
+
+      <h2>Read but not scored</h2>
+
+      <p>These were read for this page and left out of the ranking.</p>
+
+      <ul>
+        {notScored.map((n) => (
+          <li><strong>{n.name}.</strong> {n.text} (<a href={n.source[0]} target="_blank" rel="noopener noreferrer">{n.source[1]}</a>, read {n.read}.)</li>
+        ))}
+      </ul>
+
+      <h2>Questions about sponsorship platforms</h2>
+    </div>
+
+    <div class="mt-4 max-w-3xl">
+      {faq.map((f) => (
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900">{f.question}</h3>
+          <p class="mt-2 text-gray-600">{f.answer}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 max-w-3xl p-6 border border-gray-200 rounded-lg">
+      <p class="text-gray-700">If you send a newsletter, <a href={siteConfig.product.ctaUrl} class="text-blue-600 hover:text-blue-800 font-medium">{siteConfig.product.name}</a> shows the brands that sponsored similar newsletters and the person at each one who buys the ads.</p>
+      <p class="mt-3 text-sm text-gray-500">See also: <a href="/blog/find-sponsorship-opportunities-guide/" class="text-blue-600 hover:text-blue-800">how to find sponsorship opportunities</a>, <a href="/blog/how-much-to-charge-for-sponsorship/" class="text-blue-600 hover:text-blue-800">how much to charge for a sponsorship</a> and <a href="/tools/sponsorship-rate-calculator/" class="text-blue-600 hover:text-blue-800">the sponsorship rate calculator</a>. Corrections: <a href={`mailto:${siteConfig.contact.email}`} class="text-blue-600 hover:text-blue-800">{siteConfig.contact.email}</a>.</p>
+    </div>
+  </article>
+</Base>
