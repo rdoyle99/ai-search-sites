@@ -1,55 +1,181 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { siteConfig } from '../../config';
+import Byline from '../../components/Byline.astro';
+import { articleSchema, faqSchema } from '../../lib/article';
+import { PITCHES, SR } from '../../data/sr-stats';
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How Many Brands Should You Pitch to Land One Sponsorship?",
-  "author": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "publisher": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "datePublished": "2026-06-11T00:00:00.000Z",
-  "dateModified": "2026-06-11T00:00:00.000Z",
-};
+const f = (n: number) => n.toLocaleString('en-US');
+const T = PITCHES.timing;
+const { seen, none } = PITCHES.evidence;
+const perDay = Math.round(PITCHES.pitchesPerYes / 30);
+const goals = [1, 2, 4].map((n) => {
+  const month = n * PITCHES.pitchesPerYes;
+  return { n, month, day: Math.round(month / 30) };
+});
+
+const title = `How Many Brands to Pitch: ${PITCHES.pitchesPerYes} First Pitches Per Yes`;
+const description = `In Sponsor Radar's outreach for ${PITCHES.newsletters} newsletters, ${PITCHES.yeses} yeses took ${f(PITCHES.sent)} first pitches: about ${PITCHES.pitchesPerYes} per yes. The funnel, the targeting gap and the math.`;
+const h1 = 'How Many Brands Should You Pitch to Land One Sponsorship?';
+const path = '/blog/how-many-brands-to-pitch/';
+
+const faq = [
+  {
+    q: 'How many brands should I pitch to get one sponsorship?',
+    a: `In Sponsor Radar's automated outreach for ${PITCHES.newsletters} newsletters, it took about ${PITCHES.pitchesPerYes} first pitches per brand that said yes (${PITCHES.yeses} yeses from ${f(PITCHES.sent)} pitches, ${PITCHES.window}). A yes is an interested first answer, not a signed deal, and a hand-written, well-targeted pitch may need fewer.`,
+  },
+  {
+    q: 'What is a good reply rate for sponsorship pitches?',
+    a: `Sponsor Radar's automated pitches got a ${PITCHES.replyRate} reply rate (${PITCHES.replies} of ${f(PITCHES.sent)}). Brands with a newsletter ad on record replied at ${seen.rate} and brands with none at ${none.rate}. There is no benchmark here for hand-written pitches.`,
+  },
+  {
+    q: 'How many sponsorship pitches should I send per day?',
+    a: `To expect about one yes a month at ${PITCHES.pitchesPerYes} pitches per yes, send about ${perDay} a day (${PITCHES.pitchesPerYes} divided by 30 days). That is arithmetic from Sponsor Radar's rates, not a promise, and your rate may differ.`,
+  },
+  {
+    q: 'How long should I wait before judging a batch of sponsorship pitches?',
+    a: `About 7 days. In Sponsor Radar's pitches, ${T.within7d} of replies arrived within 7 days (${T.n} of the ${PITCHES.replies} replies, those with a reply time after the send), and the median reply came after ${T.medianHours} hours.`,
+  },
+];
 ---
 
 <Base
-  title="How Many Brands Should You Pitch to Land One Sponsorship?"
-  description="Cold sponsorship pitches follow cold email math: with targeted lists and a 3–4 touch sequence, expect one closed deal per 30–80 well-chosen brands. The funnel stage by stage, and what moves each conversion."
-  schema={schema}
+  title={title}
+  description={description}
+  schema={[articleSchema({ headline: h1, description, path, published: '2026-06-11', modified: '2026-10-02' }), faqSchema(faq)]}
   articleDate="2026-06-11"
-  articleModified="2026-06-11"
+  articleModified="2026-10-02"
 >
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <header>
-      <time class="text-sm text-gray-400">June 11, 2026</time>
-      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Many Brands Should You Pitch to Land One Sponsorship?</h1>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
+      <div class="mt-2"><Byline published="2026-06-11" modified="2026-10-02" /></div>
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>Budget 30–80 well-targeted pitches per closed sponsorship. Sponsorship outreach is cold email with a creator twist: reply rates run meaningfully higher than generic B2B cold email when the targeting is tight (you're offering distribution, not asking for a meeting), but deals close slower because budgets are cyclical. The funnel math tells you exactly where your number will land in that range.</strong></p>
+      <p><strong>In Sponsor Radar's outreach for {PITCHES.newsletters} newsletters, it took about {PITCHES.pitchesPerYes} first pitches per brand that said yes: {PITCHES.yeses} yeses from {f(PITCHES.sent)} pitches, {PITCHES.window}. A yes is an interested first answer, not a signed deal, so your count per paid sponsorship is likely higher.</strong></p>
 
-      <h2>The funnel, stage by stage</h2>
+      <p>Each of those pitches was one short, automated email to one brand, sent from Sponsor Radar's mailboxes for a newsletter. The numbers were read on {PITCHES.read} from each brand's first answer. They are not hand-written pitches, and they are not a promise for yours.</p>
 
-      <ul>
-        <li><strong>Pitch → reply:</strong> generic spray earns the standard cold-email 1–3% positive (<a href="https://coldmailopenrate.com/blog/what-is-a-good-cold-email-reply-rate/">the benchmarks</a>); tightly-matched pitches to <a href="/blog/find-brands-that-sponsor/">brands already sponsoring your niche</a> run several times higher, because the offer matches a budget that already exists.</li>
-        <li><strong>Reply → negotiation:</strong> roughly half of positive replies progress once they see the <a href="/blog/sponsorship-media-kit-guide/">media kit</a> — audience fit and honest stats do the filtering here.</li>
-        <li><strong>Negotiation → closed:</strong> half-ish again, decided by rate alignment (<a href="/blog/how-much-to-charge-for-sponsorship/">your CPM math</a> vs their benchmark) and timing against their budget cycle.</li>
-        <li><strong>Net:</strong> tight targeting ≈ one deal per ~30–40 pitches; broader lists ≈ one per ~60–80. The spread is almost entirely list quality — the same lesson as every cold channel.</li>
-      </ul>
+      <h2>What does the sponsorship outreach funnel look like?</h2>
 
-      <h2>The mechanics that move the numbers</h2>
+      <p>It has three stages: {f(PITCHES.sent)} pitches, {PITCHES.replies} replies ({PITCHES.replyRate} of pitches) and {PITCHES.yeses} yeses ({PITCHES.yesPer1000} per 1,000 pitches). {PITCHES.yeses} of the {PITCHES.replies} replies were yeses.</p>
 
-      <ul>
-        <li><strong>Follow up — briefly.</strong> A 3–4 touch sequence captures 30–50% more replies than a single send (the cross-channel canon at <a href="https://howlongshouldacoldemailbe.com/blog/how-long-should-a-follow-up-email-be/">follow-up length</a>); sponsorship buyers are busy, not uninterested.</li>
-        <li><strong>Keep the pitch short and stats-forward:</strong> 50–125 words, audience numbers up top, rate on request — the <a href="/blog/cold-email-sponsorship-pitch/">templates</a> follow the format the data favors.</li>
-        <li><strong>Verify every address first:</strong> partnership-manager turnover is high, and bounce damage to your sending domain (<a href="https://howtoverifyemails.com/blog/how-often-should-you-verify-email-lists/">the decay math</a>) outlasts any single campaign.</li>
-        <li><strong>Time the cycles:</strong> Q4 spends and January budgets reward pitching in Q3 and early Q1 respectively; a "no" in June is frequently a "yes" in October if you stay politely in the thread.</li>
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Count</th>
+            <th>Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>First pitches sent</td>
+            <td>{f(PITCHES.sent)} (to {f(PITCHES.brands)} brands, for {PITCHES.newsletters} newsletters)</td>
+            <td>Not applicable</td>
+          </tr>
+          <tr>
+            <td>Replies</td>
+            <td>{PITCHES.replies}</td>
+            <td>{PITCHES.replyRate} of pitches</td>
+          </tr>
+          <tr>
+            <td>Yeses (interested first answer)</td>
+            <td>{PITCHES.yeses}</td>
+            <td>{PITCHES.yesPer1000} per 1,000 pitches, about {PITCHES.pitchesPerYes} pitches per yes</td>
+          </tr>
+        </tbody>
+      </table>
 
-      <h2>Working backward from a revenue goal</h2>
+      <p>Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}. Sponsor Radar does not have close data on these yeses, so the funnel stops at the yes.</p>
 
-      <p>Want one sponsorship per month at tight targeting? That's ~35 quality pitches monthly — roughly two focused hours a week of research plus a managed sequence. Want a sponsor in every send? Multiply accordingly, and the research becomes the bottleneck — which is the point to hand off the list-building. For newsletters, <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> finds the brands already sponsoring newsletters like yours and sends the pitches from its own mailboxes, so your pitch volume stops being capped by research time.</p>
+      <h2>Why does pitching brands with a newsletter ad on record get about twice the replies?</h2>
+
+      <p>Brands with a newsletter ad on record replied at {seen.rate}, against {none.rate} for brands with none: about twice the rate. One likely reason: a brand that already buys newsletter ads has a budget and a process for them.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Brands pitched</th>
+            <th>Pitches</th>
+            <th>Replies</th>
+            <th>Reply rate</th>
+            <th>Yeses</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{seen.label}</td>
+            <td>{f(seen.sent)}</td>
+            <td>{seen.replies}</td>
+            <td>{seen.rate}</td>
+            <td>{seen.yeses}</td>
+          </tr>
+          <tr>
+            <td>{none.label}</td>
+            <td>{f(none.sent)}</td>
+            <td>{none.replies}</td>
+            <td>{none.rate}</td>
+            <td>{none.yeses}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}. Compare the reply rates. The yes counts ({seen.yeses} and {none.yeses}) are too small to compare as rates. This is a comparison, not an experiment: brands that already buy newsletter ads may also differ in size or activity, so targeting may not be the whole gap. To build a list of brands that already sponsor, see <a href="/blog/find-brands-that-sponsor/">how to find brands that sponsor</a>.</p>
+
+      <h2>How many pitches do you need to send for your sponsorship goal?</h2>
+
+      <p>Multiply your goal by {PITCHES.pitchesPerYes}. One yes a month means about {PITCHES.pitchesPerYes} pitches a month, or about {perDay} a day over a 30-day month ({PITCHES.pitchesPerYes} divided by 30 is {(PITCHES.pitchesPerYes / 30).toFixed(1)}).</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Yeses you want in a month</th>
+            <th>Pitches a month (yeses &times; {PITCHES.pitchesPerYes})</th>
+            <th>Pitches a day (divided by 30)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {goals.map((g) => (
+            <tr>
+              <td>{g.n}</td>
+              <td>{f(g.month)}</td>
+              <td>About {g.day}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <p>This is arithmetic from Sponsor Radar's rates, not a promise. Your list, your pitch and your niche will move it. If you send on weekdays only, the daily number goes up.</p>
+
+      <h2>What does a "yes" mean, and how many yeses become paid sponsorships?</h2>
+
+      <p>A yes means the brand's first answer was interested. It is not a signed deal. A paid sponsorship still needs a price and a date both sides agree on, and Sponsor Radar does not have data on how many of the {PITCHES.yeses} yeses turned into one. So {PITCHES.pitchesPerYes} is pitches per yes, not pitches per paid sponsorship, and the per-deal number is likely higher by an amount we have not measured.</p>
+
+      <p>A yes still has to agree on a price. Check your number against <a href="/blog/how-much-to-charge-for-sponsorship/">what to charge for a sponsorship</a> before you reply to one, and have a <a href="/blog/sponsorship-media-kit-guide/">media kit</a> ready to send.</p>
+
+      <h2>Will a hand-written pitch need fewer than {PITCHES.pitchesPerYes} pitches per yes?</h2>
+
+      <p>It may. Sponsor Radar's pitches were one short automated email each. A pitch that names the brand's own product, offers one dated placement and goes to the person who owns the budget could do better, and the reply gap above is one reason to think targeting matters. There are no numbers here for hand-written pitches, so use {PITCHES.pitchesPerYes} as a baseline for automated outreach, not as a forecast.</p>
+
+      <p>Log every pitch with its date and outcome so you can replace this baseline with your own ratio. Send a first batch of 100 targeted pitches, wait 7 days, then divide the replies by 100, and set your daily volume from that rate. The <a href="/blog/cold-email-sponsorship-pitch/">sponsorship email templates</a> are written to be short, and the <a href="/blog/sponsorship-follow-up-email/">follow-up templates</a> cover the second email.</p>
+
+      <h2>How long should you wait before judging a batch of pitches?</h2>
+
+      <p>Wait about 7 days. {T.within7d} of replies to Sponsor Radar's pitches arrived within 7 days ({T.n} of the {PITCHES.replies} replies, those with a reply time after the send), and the median reply came after {T.medianHours} hours, so a batch is readable after a week and not after a day. Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}.</p>
+
+      <h2>Can you send this many pitches without writing each one?</h2>
+
+      <p>For newsletters, yes. <a href={SR.cta('how-many-brands')}>Sponsor Radar</a> sends pitches to 50 new brands a day by default, from its own mailboxes, so your volume does not depend on how many emails you have time to write.</p>
+
+      <h2>Questions about how many brands to pitch</h2>
+
+      {faq.map((item) => (
+        <>
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </>
+      ))}
 
     </div>
   </article>

@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import EmailCapture from '../components/EmailCapture.astro';
 import { siteConfig } from '../config';
+import { ORG_ID } from '../lib/article';
 
 interface Props {
   title: string;
@@ -37,6 +38,7 @@ const defaultSchema = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": ORG_ID,
     "name": siteConfig.product.name,
     "url": siteConfig.product.url,
     "sameAs": [siteConfig.social.twitter, siteConfig.social.linkedin].filter(Boolean),

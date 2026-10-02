@@ -1,0 +1,196 @@
+---
+import Base from '../../layouts/Base.astro';
+import Byline from '../../components/Byline.astro';
+import { articleSchema, faqSchema } from '../../lib/article';
+import { PITCHES, SR } from '../../data/sr-stats';
+
+const f = (n: number) => n.toLocaleString('en-US');
+const T = PITCHES.timing;
+const left = (share: string) => `${100 - parseInt(share, 10)}%`;
+
+const title = 'Sponsorship Follow-Up Email Templates: Wait 3 to 7 Days';
+const description = `Sponsorship follow-up email templates and timing: ${T.within7d} of brand replies to Sponsor Radar's pitches came within 7 days. When to send, how many, what to say.`;
+const h1 = 'Sponsorship Follow-Up Email: Templates and When to Send';
+const path = '/blog/sponsorship-follow-up-email/';
+
+const faq = [
+  {
+    q: 'How long should you wait before following up on a sponsorship email?',
+    a: `Wait 3 to 7 days. In Sponsor Radar's automated first pitches, ${T.within24h} of brand replies arrived within 24 hours, ${T.within3d} within 3 days and ${T.within7d} within 7 days (${T.n} of ${PITCHES.replies} replies with a reply time, ${PITCHES.window}). By day 3, most of the replies that were coming had come.`,
+  },
+  {
+    q: 'How many times should you follow up on a sponsorship email?',
+    a: 'One or two times, in the same thread, then stop. Sponsor Radar\'s data covers first pitches only, so the limit of two is a judgment call, not a measured result. After the second follow-up, note when the brand plans its next sponsorship budget and write once more then.',
+  },
+  {
+    q: 'What are the best practices for a sponsorship follow-up email?',
+    a: 'Reply in the same thread, wait 3 to 7 days, keep it to a few lines, add one new fact or one easier question, ask who handles sponsorships if you are not sure you have the right person, and stop after two follow-ups.',
+  },
+  {
+    q: 'How do you follow up with a brand manager after sending a sponsorship pitch?',
+    a: 'Reply to your original email after 3 to 7 days. Restate the offer in one sentence with the date, and ask one easy question, such as whether the offer fits or who else should see it. If the brand manager is the wrong person, ask who handles sponsorships.',
+  },
+  {
+    q: 'What should you do if a brand says "not now"?',
+    a: 'Thank them, ask when they plan their next sponsorship budget, and set a reminder for that date. Write once more then, with one new fact, instead of following up again now.',
+  },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+  schema={[articleSchema({ headline: h1, description, path, published: '2026-10-02', modified: '2026-10-02' }), faqSchema(faq)]}
+  articleDate="2026-10-02"
+  articleModified="2026-10-02"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
+      <div class="mt-2"><Byline published="2026-10-02" modified="2026-10-02" /></div>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Follow up 3 to 7 days after your first sponsorship email, in the same thread, and stop after two follow-ups. In Sponsor Radar's automated pitches to brands, {T.within24h} of replies came within 24 hours and {T.within7d} within 7 days, so a brand that is silent after a week is unlikely to answer the first email.</strong></p>
+
+      <p>Those timings run from Sponsor Radar's automated first pitch to each brand's first answer, for newsletters: {f(PITCHES.sent)} pitches to {f(PITCHES.brands)} brands for {PITCHES.newsletters} newsletters, {PITCHES.window}, read {PITCHES.read}. They are not a creator's hand-written pitches, and your list and niche will shift the numbers. The page below turns them into a send date and five templates. For the first email itself, see the <a href="/blog/cold-email-sponsorship-pitch/">sponsorship email template</a>.</p>
+
+      <h2>When should you follow up on a sponsorship email?</h2>
+
+      <p>Follow up 3 to 7 days after the first email. The reply timing shows why not sooner: waiting 24 hours means you write while a good share of the replies you will ever get are still on the way.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Time after the first pitch</th>
+            <th>Replies that had arrived</th>
+            <th>Replies still to come (100% minus the share arrived)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>24 hours</td>
+            <td>{T.within24h}</td>
+            <td>{left(T.within24h)}</td>
+          </tr>
+          <tr>
+            <td>3 days</td>
+            <td>{T.within3d}</td>
+            <td>{left(T.within3d)}</td>
+          </tr>
+          <tr>
+            <td>7 days</td>
+            <td>{T.within7d}</td>
+            <td>{left(T.within7d)}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}, {T.n} of the {PITCHES.replies} replies (those with a reply time after the send). The median reply arrived {T.medianHours} hours after the send.</p>
+
+      <p>Read the table like this. At 24 hours, {left(T.within24h)} of the replies were still to come, so a day-one follow-up lands on a brand that may be about to answer. At 3 days, {left(T.within3d)} were still to come. At 7 days, {left(T.within7d)}. Follow up on day 3 if your offer is tied to a date that is filling up. Follow up on day 7 if it is not. If your email went out late on a Friday, start counting on Monday.</p>
+
+      <h2>How many times should you follow up on a sponsorship email?</h2>
+
+      <p>Follow up one or two times, then stop. Sponsor Radar's data covers first pitches only, so it does not show how much a follow-up adds. The limit of two is a judgment call, not a measured result.</p>
+
+      <p>The reasoning: the first follow-up reaches a busy reader who meant to answer. The second gives them an easy way to say no or point you to someone else. After that, more emails read as pressure, and you want the door open for the next budget cycle. Space the second follow-up about a week after the first. After the second, put the brand on a calendar for their next budget cycle and write once more then (template 5 below).</p>
+
+      <h2>Sponsorship follow-up email templates</h2>
+
+      <p>Reply to your own sent email so the original sits under your note. Keep each follow-up to a few lines, and fill every bracket with something true.</p>
+
+      <h3>1. After no reply (day 3 to 7)</h3>
+
+      <blockquote>
+        <p><strong>Subject:</strong> Re: [your original subject]</p>
+        <p>Hi [First name],</p>
+        <p>Following up on my note from [day] about [Brand] sponsoring [Channel]. In case it got buried: [the offer in one sentence, with the date].</p>
+        <p>If you aren't the right person, who should I send it to? And if it isn't a fit, a quick "no" helps me too.</p>
+        <p>Thanks,<br />[Your name]</p>
+      </blockquote>
+
+      <p>Second and last follow-up, about a week later: "I'll stop here so I don't fill your inbox. If a [month] slot in [Channel] is ever useful, reply to this thread and I'll send the details."</p>
+
+      <h3>2. After they ask you to "send more info"</h3>
+
+      <p>They are interested. Answer fast, with the offer and the next step, not a long essay.</p>
+
+      <blockquote>
+        <p><strong>Subject:</strong> Re: [their subject]</p>
+        <p>Hi [First name],</p>
+        <p>Thanks for asking. Here is what [Brand] would get: [placement and format], sent to [audience size and who they are] on [date]. My media kit has the audience data, past results and rates: [link].</p>
+        <p>The next open slot is [date]. Want me to hold it for [Brand]?</p>
+        <p>Thanks,<br />[Your name]</p>
+      </blockquote>
+
+      <p>The <a href="/blog/sponsorship-media-kit-guide/">sponsorship media kit guide</a> covers what the kit should show.</p>
+
+      <h3>3. After they asked for rates, or you sent the media kit and heard nothing</h3>
+
+      <blockquote>
+        <p><strong>Subject:</strong> Re: [your subject]</p>
+        <p>Hi [First name],</p>
+        <p>Checking that the media kit and rates reached you. The short version: [package] at [price], running [date].</p>
+        <p>If the price is the sticking point, tell me your budget and I'll see what [smaller package or shorter placement] I can offer.</p>
+        <p>Thanks,<br />[Your name]</p>
+      </blockquote>
+
+      <p>Before you write this one, check your price against <a href="/blog/how-much-to-charge-for-sponsorship/">what to charge for a sponsorship</a>, and have a smaller option ready from your <a href="/blog/sponsorship-packages/">sponsorship packages</a>.</p>
+
+      <h3>4. After they say "not now"</h3>
+
+      <p>Do not push. Ask for the date, then use it.</p>
+
+      <blockquote>
+        <p><strong>Subject:</strong> Re: [their subject]</p>
+        <p>Hi [First name],</p>
+        <p>Thanks for letting me know. When does [Brand] plan its next round of sponsorships? I'll write again then and not before.</p>
+        <p>If someone else handles it, I'm happy to send them a short note.</p>
+        <p>Thanks,<br />[Your name]</p>
+      </blockquote>
+
+      <h3>5. Checking in before their next budget cycle</h3>
+
+      <p>Use a fresh subject here, because months have passed.</p>
+
+      <blockquote>
+        <p><strong>Subject:</strong> [Brand] sponsorship for [quarter or month]</p>
+        <p>Hi [First name],</p>
+        <p>In [month] you said [Brand] would look at sponsorships again around [time]. I'm filling [period]'s [issues, episodes or videos] now, and [what is open].</p>
+        <p>Since we last spoke: [one new true fact: audience growth, a result, something you launched]. Want the updated media kit?</p>
+        <p>Thanks,<br />[Your name]</p>
+      </blockquote>
+
+      <h2>What should a sponsorship follow-up email subject line be?</h2>
+
+      <p>Reply in the same thread, so the subject stays "Re: [your original subject]". The brand then sees your first email under your note, and you don't have to re-explain who you are. Change the subject only when months have passed, as in template 5.</p>
+
+      <p>Skip subjects that carry no information, such as "Just checking in" or "Bumping this up". Put the date or the offer in the first line of the email instead.</p>
+
+      <h2>What should you avoid in a sponsorship follow-up?</h2>
+
+      <ul>
+        <li><strong>Following up the next day.</strong> At 24 hours, {left(T.within24h)} of the replies were still to come.</li>
+        <li><strong>Sending a third follow-up.</strong> Two is the limit. Then wait for their next budget cycle.</li>
+        <li><strong>Blaming them.</strong> "I haven't heard back from you" reads as a complaint. State the offer again instead.</li>
+        <li><strong>Resending the same email.</strong> Add one new fact, a date or an easier question each time.</li>
+        <li><strong>Chasing a "no".</strong> Thank them, and if they said "not now", ask when to try again.</li>
+      </ul>
+
+      <h2>Can someone else send the sponsorship follow-ups for you?</h2>
+
+      <p>Yes, if you run a newsletter. <a href={SR.cta('follow-up-email')}>Sponsor Radar</a> finds brands that sponsored similar newsletters and sends the pitches and follow-ups from its own mailboxes, so you are not tracking send dates by hand. For how many brands to write to in the first place, see <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a>.</p>
+
+      <h2>Sponsorship follow-up email questions</h2>
+
+      {faq.map((item) => (
+        <>
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </>
+      ))}
+
+    </div>
+  </article>
+</Base>

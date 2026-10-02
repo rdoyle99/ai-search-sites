@@ -1,0 +1,521 @@
+---
+import Base from '../../layouts/Base.astro';
+import Byline from '../../components/Byline.astro';
+import { articleSchema, faqSchema } from '../../lib/article';
+import { RATES, SR } from '../../data/sr-stats';
+
+const PATH = '/blog/sponsorship-packages/';
+const PUBLISHED = '2026-10-02';
+const MODIFIED = '2026-10-02';
+const TITLE = 'Sponsorship Packages and Levels: Tiers With Real Prices';
+const H1 = 'Sponsorship Packages and Levels: How to Build and Price Tiers';
+
+// Placement ratios are display strings in sr-stats ('59%', '40%', '2.31 times'). Parse them so each number is written once.
+const second = RATES.placements.find((p) => p.name.startsWith('Second'))!;
+const classified = RATES.placements.find((p) => p.name.startsWith('Classified'))!;
+const dedicated = RATES.placements.find((p) => p.name.startsWith('Dedicated'))!;
+const F_SECOND = parseFloat(second.median) / 100;
+const F_CLASSIFIED = parseFloat(classified.median) / 100;
+const F_DEDICATED = parseFloat(dedicated.median);
+const F_BUNDLE = 1 + F_SECOND;
+const BUNDLE_PCT = Math.round(F_BUNDLE * 100) + '%';
+const ISSUES = 4; // the multi-issue package is 4 x the main slot, with no discount (our data has no discount figure)
+const MIN_LIST = 500; // sr-stats.ts: RATES covers newsletters with "a list size of 500+" on their advertise page
+
+const lowerOf = (label: string) => (/^under/i.test(label) ? 0 : Number((label.match(/[\d,]+/) as RegExpMatchArray)[0].replace(/,/g, '')));
+const rows = RATES.rows.map((r) => ({ size: r.size, lower: lowerOf(r.size), n: r.n, median: r.median, medianSubs: r.medianSubs }));
+
+// Tier definitions shared by the server-rendered example and the in-page builder (passed to the script as data-config).
+const TIER_DEFS = [
+  { name: 'Bronze: classified or text ad', rule: `${classified.median} of the main slot`, mult: F_CLASSIFIED, label: classified.median, exact: false },
+  { name: 'Silver: main slot', rule: 'The main slot', mult: 1, label: '100%', exact: true },
+  { name: 'Add-on: main slot plus a second slot', rule: `100% + ${second.median} = ${BUNDLE_PCT} of the main slot`, mult: F_BUNDLE, label: BUNDLE_PCT, exact: false },
+  { name: 'Gold: dedicated send', rule: `${dedicated.median} the main slot`, mult: F_DEDICATED, label: String(F_DEDICATED), exact: false },
+  { name: `Platinum: ${ISSUES} issues, main slot in each`, rule: `${ISSUES} × the main slot, no discount`, mult: ISSUES, label: String(ISSUES), exact: false },
+];
+const CONFIG = { min: MIN_LIST, rows: rows.map((r) => ({ size: r.size, lower: r.lower, n: r.n, median: r.median })), tiers: TIER_DEFS };
+
+// Same logic runs in the page script below. Keep the two copies identical.
+function round5(x) { return Math.round(x / 5 + 1e-9) * 5; }
+function plain(x) {
+  var cents = Math.round(x * 100 + 1e-6);
+  if (cents % 100 === 0) return (cents / 100).toLocaleString('en-US');
+  return (cents / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function money(x) { return '$' + plain(x); }
+function pickRow(cfg, size) {
+  var row = cfg.rows[0];
+  for (var i = 0; i < cfg.rows.length; i++) { if (size >= cfg.rows[i].lower) row = cfg.rows[i]; }
+  return row;
+}
+function resultHtml(cfg, sizeRaw, priceRaw) {
+  var sizeTxt = String(sizeRaw).trim();
+  var priceTxt = String(priceRaw).trim();
+  var size = sizeTxt === '' ? NaN : Number(sizeTxt);
+  var price = priceTxt === '' ? NaN : Number(priceTxt);
+  var msg = function (t) { return '<p class="text-sm text-gray-600">' + t + '</p>'; };
+  var main, note;
+  if (priceTxt !== '') {
+    if (!(isFinite(price) && price > 0)) return msg('Enter the main-slot price as a number above zero, or leave it blank to use the median for your list size.');
+    main = price;
+    note = 'Main slot used: <strong>' + money(main) + '</strong>, the price you entered.';
+    if (isFinite(size) && size > 0 && size >= cfg.min) {
+      var cmp = pickRow(cfg, size);
+      note += ' For comparison, the median for lists of ' + cmp.size.toLowerCase() + ' subscribers is ' + money(cmp.median) + '.';
+    }
+  } else {
+    if (!(isFinite(size) && size > 0)) return msg('Enter your list size as a number to see tiers. Add a main-slot price if you already have one.');
+    if (size < cfg.min) return msg('Sponsor Radar\'s rate data starts at ' + cfg.min.toLocaleString('en-US') + ' subscribers. Enter your own main-slot price to build tiers.');
+    var row = pickRow(cfg, size);
+    main = row.median;
+    note = 'Main slot used: <strong>' + money(main) + '</strong>, the median main-slot price for lists of ' + row.size.toLowerCase() + ' subscribers (n = ' + row.n + ').';
+  }
+  var body = '';
+  for (var i = 0; i < cfg.tiers.length; i++) {
+    var t = cfg.tiers[i];
+    var raw = main * t.mult;
+    var out = t.exact ? main : round5(raw);
+    var math = t.exact ? money(main) : money(main) + ' × ' + t.label + ' = ' + money(raw) + (money(out) !== money(raw) ? ', rounded to ' + money(out) : '');
+    body += '<tr class="border-b border-gray-100">'
+      + '<td class="py-2 pr-4 font-medium text-gray-900">' + t.name + '</td>'
+      + '<td class="py-2 pr-4 text-gray-600">' + t.rule + '</td>'
+      + '<td class="py-2 pr-4 text-gray-600">' + math + '</td>'
+      + '<td class="py-2 text-right font-semibold text-gray-900">' + money(out) + '</td>'
+      + '</tr>';
+  }
+  return '<p class="text-sm text-gray-700">' + note + '</p>'
+    + '<div class="mt-3 overflow-x-auto"><table class="w-full text-sm text-left">'
+    + '<thead><tr class="border-b border-gray-200 text-gray-500">'
+    + '<th class="py-2 pr-4 font-semibold">Package</th><th class="py-2 pr-4 font-semibold">Price rule</th><th class="py-2 pr-4 font-semibold">Math</th><th class="py-2 text-right font-semibold">Price</th>'
+    + '</tr></thead><tbody>' + body + '</tbody></table></div>';
+}
+
+const EXAMPLE_SIZE = RATES.rows[1].medianSubs; // 10,000: the median list size in the 5,000 to 19,999 bracket
+const initialResult = resultHtml(CONFIG, String(EXAMPLE_SIZE), '');
+
+// Package examples by list size: main-slot median x each ratio, rounded to the nearest $5.
+const byRow = rows.map((r) => ({
+  ...r,
+  classified: round5(r.median * F_CLASSIFIED),
+  bundle: round5(r.median * F_BUNDLE),
+  dedicated: round5(r.median * F_DEDICATED),
+  issues: round5(r.median * ISSUES),
+}));
+const ex = byRow[1];
+const exRaw = {
+  classified: ex.median * F_CLASSIFIED,
+  bundle: ex.median * F_BUNDLE,
+  dedicated: ex.median * F_DEDICATED,
+  issues: ex.median * ISSUES,
+};
+const top = byRow[byRow.length - 1];
+
+const TEMPLATE = `SPONSORSHIP PACKAGES: [YOUR NAME OR BRAND], [YEAR]
+
+ABOUT
+[One sentence: what you publish or run, and who reads, listens, watches or attends.]
+
+AUDIENCE (as of [DATE], source: [your email platform, podcast host or analytics])
+- Size: [subscribers, listeners, followers or attendees]
+- Average reach: [opens, downloads or views per issue, episode or video]
+- Who they are: [job titles or interests, and top countries]
+
+PACKAGE 1: BRONZE, [NAME OF PLACEMENT]
+- Includes: [what the sponsor gets, where it appears, how many times]
+- Price: $[amount]
+
+PACKAGE 2: SILVER, [NAME OF PLACEMENT]
+- Includes: [what the sponsor gets, where it appears, how many times]
+- Price: $[amount]
+
+PACKAGE 3: GOLD, [NAME OF PLACEMENT]
+- Includes: [what the sponsor gets, where it appears, how many times]
+- Price: $[amount]
+
+PACKAGE 4: PLATINUM (OPTIONAL), [NAME OF PLACEMENT]
+- Includes: [what the sponsor gets, where it appears, how many times]
+- Price: $[amount]
+
+TERMS
+- Booking: [how far ahead, and the deadline for the sponsor's copy and links]
+- Payment: [when the invoice is due, and any deposit]
+- Exclusivity: [whether competitors are blocked, and for how long]
+- Reporting: [the numbers you send after the placement runs]
+- Changes and cancellations: [your policy]
+
+CONTACT
+[Name, email, link to your media kit]`;
+
+const faq = [
+  {
+    q: 'What are sponsorship levels?',
+    a: 'Sponsorship levels are the named steps in a sponsorship package, each with its own deliverables and price, such as Bronze, Silver, Gold and Platinum. Levels and tiers mean the same thing. A sponsor picks one level, and each higher level adds placements, reach or exclusivity.',
+  },
+  {
+    q: 'How many sponsorship tiers should you offer?',
+    a: 'Offer two to four. Three is easy for a sponsor to compare and for you to price. Add a fourth only when it adds something new, such as a multi-issue package. Tiers that differ only in price give a sponsor no reason to choose between them.',
+  },
+  {
+    q: 'What should you name sponsorship tiers?',
+    a: 'Name each tier by what the sponsor gets, then add a level word if you want one. For a newsletter: classified, main slot, dedicated send. For an event or nonprofit: title or presenting sponsor, then Gold, Silver and Bronze. Metal names are widely understood, so a sponsor does not need them explained.',
+  },
+  {
+    q: 'How do you price a sponsorship package?',
+    a: `Start from one price, your main slot, and price every other tier as a ratio of it. In Sponsor Radar's read of ${RATES.n} newsletters' rate cards (${RATES.read}), a classified lists at a median ${classified.median} of the main slot, a second slot at ${second.median}, and a dedicated send at ${dedicated.median}. At a ${money(ex.median)} main slot, the median for lists of ${ex.size.toLowerCase()} subscribers, that is ${money(ex.classified)} for a classified and ${money(ex.dedicated)} for a dedicated send.`,
+  },
+  {
+    q: 'What is a sponsor kit?',
+    a: 'A sponsor kit, also called a sponsorship kit, is the document or page you send a sponsor: who you reach, the packages and prices on offer, past results and how to book. It overlaps with a media kit. The difference is that a sponsor kit leads with the packages and their prices.',
+  },
+  {
+    q: 'How much is a gold sponsorship?',
+    a: `It depends on what you sell. For a newsletter, a gold tier built as a dedicated send lists at a median ${dedicated.median} the main slot in Sponsor Radar's read of ${RATES.n} rate cards: about ${money(ex.dedicated)} at a ${money(ex.median)} main slot and ${money(top.dedicated)} at a ${money(top.median)} main slot. For an event or nonprofit there is no data on this page. Price gold from what it costs you to deliver and what the sponsor would pay to reach the same people another way.`,
+  },
+];
+
+const DESCRIPTION = `Sponsorship packages, levels and tiers priced from ${RATES.n} newsletter rate cards: a classified lists at ${classified.median} of the main slot, a dedicated send at ${dedicated.median}.`;
+---
+
+<Base
+  title={TITLE}
+  description={DESCRIPTION}
+  schema={[articleSchema({ headline: H1, description: DESCRIPTION, path: PATH, published: PUBLISHED, modified: MODIFIED }), faqSchema(faq)]}
+  articleDate={PUBLISHED}
+  articleModified={MODIFIED}
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{H1}</h1>
+      <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>A sponsorship package is a priced bundle of deliverables. Offer two to four tiers and price them from your main slot. In Sponsor Radar's read of {RATES.n} newsletter rate cards ({RATES.read}), a second slot lists at a median {second.median} of that newsletter's main slot, a classified at {classified.median}, and a dedicated send at {dedicated.median}.</strong></p>
+
+      <p>The newsletter tiers below are priced from real rate cards, with the arithmetic shown. The event tiers are structure only, because we have no event prices to average.</p>
+
+      <h2>What goes in a sponsorship package?</h2>
+
+      <p>A sponsorship package holds four things: the deliverables, the audience proof, the price and the terms. Leave one out and the sponsor has to email you to find it, or moves on to a seller who listed it.</p>
+
+      <ul>
+        <li><strong>Deliverables.</strong> What the sponsor gets, where it appears and how many times: a classified in one issue, a host-read ad in two episodes, a logo on the event site and a speaking slot.</li>
+        <li><strong>Audience proof.</strong> Size, average reach per piece and who the audience is, with a date and where the number came from.</li>
+        <li><strong>Price.</strong> One number per tier. "Rates on request" makes the sponsor do the work you should have done.</li>
+        <li><strong>Terms.</strong> Booking deadline, when the invoice is due, whether competitors are blocked, and what you report back.</li>
+      </ul>
+
+      <p>In the media kit layout this site recommends, packages sit on page 5. The <a href="/blog/sponsorship-media-kit-guide/">sponsorship media kit guide</a> covers the other six pages. Newsletter owners can skip the blank page: Sponsor Radar's <a href={SR.proposalUrl}>sponsorship proposal template</a> prices packages for your exact list size.</p>
+
+      <h2>What are sponsorship levels, and what do you name them?</h2>
+
+      <p>Sponsorship levels are the named steps in a package, each with its own deliverables and price. The words levels and tiers mean the same thing. The names people use fall into three groups: metal names (Bronze, Silver, Gold, Platinum), role names (Presenting sponsor, Supporting sponsor) and the naming-rights name (Title sponsor, as in "Event Name presented by Brand").</p>
+
+      <p>Name each tier by what the sponsor gets, then add a metal name in front if you like it. "Gold: dedicated send" tells a buyer more than "Gold" alone. The tables show both kinds of structure. The first is for a newsletter or creator, with prices. The second is for an event or nonprofit, structure only.</p>
+
+      <h3>Tier structure for a newsletter or creator</h3>
+
+      <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Newsletter</th>
+            <th>Price rule</th>
+            <th>At a {money(ex.median)} main slot</th>
+            <th>Podcast or video (structure only)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bronze</td>
+            <td>Classified or text ad</td>
+            <td>{money(ex.median)} &times; {classified.median}</td>
+            <td>{money(exRaw.classified)}, rounded to {money(ex.classified)}</td>
+            <td>A short mention or pre-roll</td>
+          </tr>
+          <tr>
+            <td>Silver</td>
+            <td>Main slot in one issue</td>
+            <td>The main slot</td>
+            <td>{money(ex.median)}</td>
+            <td>A host-read mid-roll or a video integration</td>
+          </tr>
+          <tr>
+            <td>Gold</td>
+            <td>Dedicated send</td>
+            <td>{money(ex.median)} &times; {F_DEDICATED}</td>
+            <td>{money(exRaw.dedicated)}, rounded to {money(ex.dedicated)}</td>
+            <td>A dedicated episode or video</td>
+          </tr>
+          <tr>
+            <td>Platinum</td>
+            <td>Main slot in {ISSUES} issues</td>
+            <td>{ISSUES} &times; {money(ex.median)}, no discount</td>
+            <td>{money(exRaw.issues)}</td>
+            <td>A multi-episode run</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Prices appear only for the newsletter column because newsletters are what Sponsor Radar's data covers. The {ex.size.toLowerCase()} subscriber bracket has a median main slot of {money(ex.median)} (n = {ex.n}). Source: Sponsor Radar's read of {RATES.n} newsletters' <a href={SR.ratesUrl}>advertise pages</a>, {RATES.read}. A multi-issue package here is the main slot times {ISSUES}, because the data has no discount figure. If you offer a discount, write the number on the package.</p>
+
+      <h3>Tier structure for an event or nonprofit</h3>
+
+      <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Role</th>
+            <th>What to put in it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Title or presenting sponsor</td>
+            <td>One sponsor, name attached to the event or program</td>
+            <td>Naming ("Event Name presented by Brand"), top logo placement, a speaking or demo slot, the most tickets, first call on renewal</td>
+          </tr>
+          <tr>
+            <td>Gold</td>
+            <td>A few sponsors at the top of the list</td>
+            <td>Large logo on signage and the event site, a booth or table, tickets, a social post</td>
+          </tr>
+          <tr>
+            <td>Silver</td>
+            <td>The middle of the list</td>
+            <td>Medium logo, fewer tickets, a mention in the program</td>
+          </tr>
+          <tr>
+            <td>Bronze or supporting</td>
+            <td>The entry level, open to many sponsors</td>
+            <td>Logo on the site and in the program, one social post, a thank-you at the event</td>
+          </tr>
+          <tr>
+            <td>In-kind</td>
+            <td>Goods or services instead of cash</td>
+            <td>Recognition equal to the cash tier whose value it matches</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>No dollar amounts appear in this table on purpose. Sponsor Radar's rate data is newsletter-only, so there are no event rate cards to average. Price event levels from three things: what it costs you to deliver the benefits, what the sponsor would pay to reach the same people another way, and what sponsors paid at the same level last time.</p>
+
+      <h2>How do you price sponsorship tiers from your main slot?</h2>
+
+      <p>Pick one price, your main slot, and set every other tier as a ratio of it. Sponsor Radar compared each newsletter's other placements with its own main slot, so the ratios below come from inside the same newsletter and not from a mix of different ones.</p>
+
+      <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Placement</th>
+            <th>Median price vs its own main slot</th>
+            <th>Middle half of newsletters</th>
+            <th>Newsletters (n)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {RATES.placements.map((p) => (
+            <tr>
+              <td>{p.name}</td>
+              <td>{p.median}</td>
+              <td>{p.middle}</td>
+              <td>{p.n}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
+
+      <p>Source: Sponsor Radar's read of {RATES.n} newsletters' <a href={SR.ratesUrl}>rate cards</a>, {RATES.read}. Each row uses only the newsletters that list that placement, so n differs by row. A newsletter with no classified slot has no classified price. Do not invent one.</p>
+
+      <ol>
+        <li>Set your main slot. Use your own price. If you do not have one, use the median for your list size from the next section, or work one out with the CPM math in <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a> or the <a href="/tools/sponsorship-rate-calculator/">sponsorship rate calculator</a>.</li>
+        <li>Bronze: classified or text ad = main slot &times; {classified.median}.</li>
+        <li>Add-on: main slot plus a second slot in the same issue = main slot + (main slot &times; {second.median}), which is {BUNDLE_PCT} of the main slot.</li>
+        <li>Gold: dedicated send = main slot &times; {F_DEDICATED}.</li>
+        <li>Platinum: {ISSUES} issues = {ISSUES} &times; main slot.</li>
+      </ol>
+
+      <p>Round each result to the nearest $5 so the card looks like a price list and not a spreadsheet. Treat the ratios as a starting point. A newsletter with an unusually strong click record can price above them, and one that has never sold a dedicated send should test one before listing it.</p>
+
+      <h2>What do sponsorship packages cost at different list sizes?</h2>
+
+      <p>In the {ex.size} subscriber bracket (median list size {ex.medianSubs.toLocaleString('en-US')}), the median main slot is {money(ex.median)}, a classified comes to {money(ex.classified)} and a dedicated send to {money(ex.dedicated)}. The table repeats that arithmetic for every list size in Sponsor Radar's data. Each cell is the bracket's median main slot times the ratio from the table above, rounded to the nearest $5.</p>
+
+      <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th>List size</th>
+            <th>Main slot, median (n)</th>
+            <th>Bronze: classified (&times; {classified.median})</th>
+            <th>Main + second slot (&times; {BUNDLE_PCT})</th>
+            <th>Gold: dedicated send (&times; {F_DEDICATED})</th>
+            <th>Platinum: {ISSUES} issues (&times; {ISSUES})</th>
+          </tr>
+        </thead>
+        <tbody>
+          {byRow.map((r) => (
+            <tr>
+              <td>{r.size}</td>
+              <td>{money(r.median)} ({r.n})</td>
+              <td>{money(r.classified)}</td>
+              <td>{money(r.bundle)}</td>
+              <td>{money(r.dedicated)}</td>
+              <td>{money(r.issues)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      </div>
+
+      <p>Worked example, {ex.size.toLowerCase()} subscribers: {money(ex.median)} &times; {classified.median} = {money(exRaw.classified)}, rounded to {money(ex.classified)}. {money(ex.median)} &times; {BUNDLE_PCT} = {money(exRaw.bundle)}, rounded to {money(ex.bundle)}. {money(ex.median)} &times; {F_DEDICATED} = {money(exRaw.dedicated)}, rounded to {money(ex.dedicated)}. {ISSUES} &times; {money(ex.median)} = {money(exRaw.issues)}.</p>
+
+      <p>These are estimates built from two medians, a median main slot per size bracket and a median ratio across all sizes. No single newsletter published them. Main slots rise slower than lists do: in Sponsor Radar's data a list twice the size lists its main slot about {RATES.doublingLift} higher. Source: Sponsor Radar's read of {RATES.n} newsletters' rate cards, {RATES.read}.</p>
+
+      <h2>Package builder: price your tiers from your list size</h2>
+
+      <p>Enter your list size and, if you have one, your main-slot price. The tiers below update as you type. With no price entered, the main slot is the median for your list size. The result starts at {EXAMPLE_SIZE.toLocaleString('en-US')} subscribers.</p>
+
+      <div id="package-builder" class="not-prose my-8 p-6 border border-gray-200 rounded-lg bg-white" data-config={JSON.stringify(CONFIG)}>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="pb-size" class="block text-sm font-medium text-gray-700">List size (subscribers)</label>
+            <input type="number" id="pb-size" value={EXAMPLE_SIZE} min="0" step="1" inputmode="numeric" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
+          </div>
+          <div>
+            <label for="pb-price" class="block text-sm font-medium text-gray-700">Main-slot price in dollars (optional)</label>
+            <input type="number" id="pb-price" min="0" step="any" inputmode="decimal" placeholder="Blank = use the median" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
+          </div>
+        </div>
+        <div id="pb-result" class="mt-6" aria-live="polite" set:html={initialResult}></div>
+        <p class="mt-4 text-xs text-gray-500">Based on Sponsor Radar's read of {RATES.n} newsletters' rate cards, {RATES.read}. Derived prices are rounded to the nearest $5. Your main slot stays as entered. A {ISSUES}-issue package has no discount because the data has none.</p>
+      </div>
+
+      <h2>What goes in a sponsorship package template?</h2>
+
+      <p>A sponsorship package template has five blocks: a one-line description of who you are, the audience numbers with a date and source, the packages, the terms, and your contact details. Copy the text below, replace every item in square brackets and fill the prices from the builder above. Keep it to one page so a sponsor can read it in a minute.</p>
+
+      <button type="button" id="copy-template" class="hidden mb-2 px-3 py-1.5 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors">Copy template</button>
+      <pre id="template-text" class="whitespace-pre-wrap text-sm">{TEMPLATE}</pre>
+
+      <p>Paste it into a document or an email, or put it on page 5 of your <a href="/blog/sponsorship-media-kit-guide/">sponsorship media kit</a>. Once the packages exist, send them with a <a href="/blog/cold-email-sponsorship-pitch/">cold email sponsorship pitch</a> and attach the kit.</p>
+
+      <h2>What mistakes make sponsorship packages fail?</h2>
+
+      <ul>
+        <li><strong>Too many tiers.</strong> Every tier needs its own deliverable and its own price, and each one is another thing for the sponsor to compare. Stay between two and four.</li>
+        <li><strong>Tiers that differ only in price.</strong> If Silver and Gold contain the same placements, nobody has a reason to buy Gold. Each step up should add a placement, more reach or exclusivity.</li>
+        <li><strong>No price.</strong> A package with "rates on request" asks the sponsor to guess whether it fits the budget. Print the number.</li>
+        <li><strong>No audience proof.</strong> A package without size, average reach and a date makes the sponsor take your word for it. Add the source of each number.</li>
+        <li><strong>Invented discounts.</strong> Our data has no multi-issue discount figure, so the examples above use none. If you offer one, put the percentage on the package so every sponsor sees the same offer.</li>
+      </ul>
+
+      <h2>Sponsorship packages FAQ</h2>
+
+      {faq.map((f) => (
+        <>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </>
+      ))}
+
+      <div class="not-prose mt-10 p-6 border border-blue-200 rounded-lg bg-blue-50">
+        <p class="text-sm font-medium text-blue-900">Packages priced? Get them in front of brands that sponsor newsletters</p>
+        <p class="mt-1 text-sm text-blue-700">
+          If you run a newsletter, Sponsor Radar finds brands that sponsored similar newsletters, sends the pitches from its own mailboxes, and introduces you when a brand replies.
+        </p>
+        <a href={SR.cta('sponsorship-packages')} class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">See sponsors for your newsletter &rarr;</a>
+      </div>
+
+    </div>
+  </article>
+
+<script is:inline>
+  (function () {
+    var box = document.getElementById('package-builder');
+    var cfg = null;
+    try { cfg = box ? JSON.parse(box.getAttribute('data-config')) : null; } catch (e) { cfg = null; }
+
+    function round5(x) { return Math.round(x / 5 + 1e-9) * 5; }
+    function plain(x) {
+      var cents = Math.round(x * 100 + 1e-6);
+      if (cents % 100 === 0) return (cents / 100).toLocaleString('en-US');
+      return (cents / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function money(x) { return '$' + plain(x); }
+    function pickRow(cfg, size) {
+      var row = cfg.rows[0];
+      for (var i = 0; i < cfg.rows.length; i++) { if (size >= cfg.rows[i].lower) row = cfg.rows[i]; }
+      return row;
+    }
+    function resultHtml(cfg, sizeRaw, priceRaw) {
+      var sizeTxt = String(sizeRaw).trim();
+      var priceTxt = String(priceRaw).trim();
+      var size = sizeTxt === '' ? NaN : Number(sizeTxt);
+      var price = priceTxt === '' ? NaN : Number(priceTxt);
+      var msg = function (t) { return '<p class="text-sm text-gray-600">' + t + '</p>'; };
+      var main, note;
+      if (priceTxt !== '') {
+        if (!(isFinite(price) && price > 0)) return msg('Enter the main-slot price as a number above zero, or leave it blank to use the median for your list size.');
+        main = price;
+        note = 'Main slot used: <strong>' + money(main) + '</strong>, the price you entered.';
+        if (isFinite(size) && size > 0 && size >= cfg.min) {
+          var cmp = pickRow(cfg, size);
+          note += ' For comparison, the median for lists of ' + cmp.size.toLowerCase() + ' subscribers is ' + money(cmp.median) + '.';
+        }
+      } else {
+        if (!(isFinite(size) && size > 0)) return msg('Enter your list size as a number to see tiers. Add a main-slot price if you already have one.');
+        if (size < cfg.min) return msg('Sponsor Radar\'s rate data starts at ' + cfg.min.toLocaleString('en-US') + ' subscribers. Enter your own main-slot price to build tiers.');
+        var row = pickRow(cfg, size);
+        main = row.median;
+        note = 'Main slot used: <strong>' + money(main) + '</strong>, the median main-slot price for lists of ' + row.size.toLowerCase() + ' subscribers (n = ' + row.n + ').';
+      }
+      var body = '';
+      for (var i = 0; i < cfg.tiers.length; i++) {
+        var t = cfg.tiers[i];
+        var raw = main * t.mult;
+        var out = t.exact ? main : round5(raw);
+        var math = t.exact ? money(main) : money(main) + ' × ' + t.label + ' = ' + money(raw) + (money(out) !== money(raw) ? ', rounded to ' + money(out) : '');
+        body += '<tr class="border-b border-gray-100">'
+          + '<td class="py-2 pr-4 font-medium text-gray-900">' + t.name + '</td>'
+          + '<td class="py-2 pr-4 text-gray-600">' + t.rule + '</td>'
+          + '<td class="py-2 pr-4 text-gray-600">' + math + '</td>'
+          + '<td class="py-2 text-right font-semibold text-gray-900">' + money(out) + '</td>'
+          + '</tr>';
+      }
+      return '<p class="text-sm text-gray-700">' + note + '</p>'
+        + '<div class="mt-3 overflow-x-auto"><table class="w-full text-sm text-left">'
+        + '<thead><tr class="border-b border-gray-200 text-gray-500">'
+        + '<th class="py-2 pr-4 font-semibold">Package</th><th class="py-2 pr-4 font-semibold">Price rule</th><th class="py-2 pr-4 font-semibold">Math</th><th class="py-2 text-right font-semibold">Price</th>'
+        + '</tr></thead><tbody>' + body + '</tbody></table></div>';
+    }
+
+    if (cfg) {
+      var sizeEl = document.getElementById('pb-size');
+      var priceEl = document.getElementById('pb-price');
+      var out = document.getElementById('pb-result');
+      var update = function () { out.innerHTML = resultHtml(cfg, sizeEl.value, priceEl.value); };
+      sizeEl.addEventListener('input', update);
+      priceEl.addEventListener('input', update);
+    }
+
+    var copyBtn = document.getElementById('copy-template');
+    var tpl = document.getElementById('template-text');
+    if (copyBtn && tpl && navigator.clipboard) {
+      copyBtn.classList.remove('hidden');
+      copyBtn.addEventListener('click', function () {
+        navigator.clipboard.writeText(tpl.textContent).then(function () {
+          copyBtn.textContent = 'Copied';
+          setTimeout(function () { copyBtn.textContent = 'Copy template'; }, 2000);
+        });
+      });
+    }
+  })();
+</script>
+</Base>

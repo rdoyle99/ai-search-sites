@@ -1,205 +1,217 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { siteConfig } from '../../config';
+import Byline from '../../components/Byline.astro';
+import { articleSchema, faqSchema } from '../../lib/article';
+import { PITCHES, SR } from '../../data/sr-stats';
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How to Cold Email Brands for Sponsorships (With Templates)",
-  "author": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "publisher": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "datePublished": "2026-01-24T00:00:00.000Z",
-  "dateModified": "2026-02-01T00:00:00.000Z",
-};
+const f = (n: number) => n.toLocaleString('en-US');
+const T = PITCHES.timing;
+const [founders, marketing] = PITCHES.titles;
+
+const title = 'Sponsorship Email Template and Subject Lines (2026)';
+const description = 'Copy-paste sponsorship email templates: a cold pitch, a CEO email with a media kit and a request email, plus subject lines and who to send them to.';
+const h1 = 'Sponsorship Email Template: How to Cold Email Brands for a Sponsorship';
+const path = '/blog/cold-email-sponsorship-pitch/';
+
+const faq = [
+  {
+    q: 'What is a good sponsorship email subject line?',
+    a: 'Name the brand and say what the email is, in plain words. For example: "[Brand] x [Channel]: sponsorship idea" or "Sponsorship idea for [Brand] (media kit attached)". Avoid vague lines like "Collaboration opportunity" that say nothing about who you are or what you want.',
+  },
+  {
+    q: 'Who should I send a sponsorship email to?',
+    a: `Send it to whoever owns the sponsorship budget at the brand, using the contact you can find rather than waiting for a perfect job title. In Sponsor Radar's pitches, founders, CEOs and owners replied at ${founders.rate} (${f(founders.replies)} of ${f(founders.sent)}) and marketing titles at ${marketing.rate} (${f(marketing.replies)} of ${f(marketing.sent)}), about the same.`,
+  },
+  {
+    q: 'How do I write an email to a CEO with a sponsorship attachment?',
+    a: 'Keep the body to a few lines. Say who you are and who reads you, make one specific offer, attach a short media kit as a PDF and say what is inside it, and ask one question: does the CEO handle sponsorships, or should you write to someone else?',
+  },
+  {
+    q: 'How do I write a sponsorship request email?',
+    a: 'State what you want sponsored, what the brand gets, what it costs and what happens next, in that order and in a few lines. The sponsorship request template on this page does exactly that.',
+  },
+  {
+    q: 'How do I reach out to companies for sponsorship?',
+    a: 'Start with brands that already pay to reach audiences like yours, find the person who owns the budget, and send a short email with one specific offer and your media kit. Follow up once or twice. For a YouTube sponsorship, make the offer a video integration and use the same structure.',
+  },
+  {
+    q: 'How fast do brands reply to a sponsorship email?',
+    a: `Fast, when they reply at all. In Sponsor Radar's automated pitches, the median reply came ${T.medianHours} hours after the send, ${T.within24h} of replies arrived within 24 hours and ${T.within7d} within 7 days (${T.n} replies).`,
+  },
+];
 ---
 
 <Base
-  title="Cold Email Sponsorship Pitch: Templates + Subject Lines"
-  description="The exact sponsorship pitch email: subject lines that get opened, a short pitch structure, follow-up cadence, and copy-paste templates that get brand replies."
-  schema={schema}
+  title={title}
+  description={description}
+  schema={[articleSchema({ headline: h1, description, path, published: '2026-01-24', modified: '2026-10-02' }), faqSchema(faq)]}
   articleDate="2026-01-24"
-  articleModified="2026-02-01"
+  articleModified="2026-10-02"
 >
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <header>
-      <time class="text-sm text-gray-400">January 24, 2026</time>
-      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How to Cold Email Brands for Sponsorships (With Templates)</h1>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
+      <div class="mt-2"><Byline published="2026-01-24" modified="2026-10-02" /></div>
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>A well-structured cold sponsorship pitch gets an 8&ndash;15% positive response rate, against 1&ndash;3% for a generic one. The difference is not talent or audience size, it is contacting the right person, leading with audience data, and following up on a schedule.</strong></p>
+      <p><strong>A sponsorship email works when it is short and specific: who you are, who reads you, one offer and one question. Send it to whoever owns the budget at the brand. In Sponsor Radar's automated outreach for newsletters, {PITCHES.replyRate} of {f(PITCHES.sent)} first pitches got a reply, so write one good email and send it to many brands.</strong></p>
 
-      <p>Those rates come from 500+ sponsorship pitch emails that creators shared with us along with their outreach results. Cold email outperforms the alternatives because marketplace platforms take 10&ndash;20% commissions and limit you to brands that happen to be browsing, while cold email lets you reach any brand directly, negotiate your own terms, and keep 100% of the deal value.</p>
+      <p>That {PITCHES.replyRate} is Sponsor Radar's read of its own pitches: {f(PITCHES.sent)} first emails to {f(PITCHES.brands)} brands for {PITCHES.newsletters} newsletters, {PITCHES.window}, read {PITCHES.read}. They were automated, not hand-written. A "yes" ({PITCHES.yeses} of them) means the brand's first answer was interested. It does not mean a signed deal.</p>
 
-      <h2>Finding the Right Contact</h2>
+      <h2>What should a sponsorship email say?</h2>
 
-      <p>Your pitch email is useless if it goes to the wrong person. Generic addresses like info@ or marketing@ have a 0.5% response rate for sponsorship pitches. The right contact is the person who manages influencer or creator partnerships at the brand.</p>
+      <p>A sponsorship email says four things: who you are and who reads you, why this brand fits, one specific offer, and one question to answer. Everything else belongs in your media kit.</p>
 
-      <p>Common titles to target:</p>
       <ul>
-        <li>Influencer Marketing Manager</li>
-        <li>Brand Partnerships Lead / Manager</li>
-        <li>Creator Relations Manager</li>
-        <li>Head of Social Media</li>
-        <li>Director of Marketing (at smaller companies)</li>
-        <li>Founder / CEO (at startups with &lt;50 employees)</li>
+        <li><strong>Who you are and who reads you.</strong> One sentence with your audience size and the type of reader, using a number you can back up from your own analytics.</li>
+        <li><strong>Why this brand.</strong> One line that shows you looked: a product, a launch or a campaign you actually saw. Skip "I love your brand."</li>
+        <li><strong>One specific offer.</strong> A placement, a format and a date, such as a sponsored slot in the [month] issue. "Let's collaborate" gives them nothing to say yes to.</li>
+        <li><strong>One question.</strong> "Would you like the media kit?" or "Who handles sponsorships?" is easier to answer than "Let me know what you think."</li>
       </ul>
 
-      <p>Use LinkedIn to find the person. Search for the company name + one of the titles above. Once you identify the right person, find their email using Hunter.io or Apollo. If the company is small and you cannot find a dedicated partnerships person, email the marketing lead or the founder directly&mdash;at startups, these people often make sponsorship decisions personally.</p>
+      <p>Put the audience data, past results and rates in the media kit and attach or link it. The <a href="/blog/sponsorship-media-kit-guide/">sponsorship media kit guide</a> covers what goes in it.</p>
 
-      <h2>The Perfect Sponsorship Pitch Email Structure</h2>
+      <h2>Sponsorship email template for a cold pitch</h2>
 
-      <p>Every high-performing sponsorship pitch email follows a five-part structure. Each part serves a specific purpose, and the total email should be 100&ndash;150 words. Shorter is better&mdash;brand managers receive dozens of pitches per week and skim aggressively.</p>
-
-      <h3>Part 1: Personalized Opening (1&ndash;2 sentences)</h3>
-
-      <p>Show that you know the brand and have a specific reason for reaching out. Reference a recent campaign, product launch, or marketing initiative. This proves you are not mass-emailing every brand in existence.</p>
-
-      <p>Good: &ldquo;I noticed [Brand] just launched the new [Product] &mdash; the positioning around [specific feature] resonates perfectly with my audience of startup CTOs.&rdquo;</p>
-
-      <p>Bad: &ldquo;I love your brand and would love to work together!&rdquo;</p>
-
-      <h3>Part 2: Your Value Proposition (2&ndash;3 sentences)</h3>
-
-      <p>State who you are, what you create, and one key metric that demonstrates your audience value. Lead with the metric that matters most to the brand: audience size, engagement rate, or conversion data.</p>
-
-      <p>Good: &ldquo;I run [Channel Name], a YouTube channel with 25K subscribers focused on SaaS tools for startups. My videos average 8,000 views with a 6.2% engagement rate, and my audience is 78% US-based startup founders and product managers.&rdquo;</p>
-
-      <h3>Part 3: The Specific Proposal (1&ndash;2 sentences)</h3>
-
-      <p>Propose a specific deliverable, not a vague &ldquo;let&rsquo;s collaborate.&rdquo; Brands need to visualize exactly what you are offering. Be concrete about format, timeline, and what the integration looks like.</p>
-
-      <p>Good: &ldquo;I&rsquo;d love to feature [Product] in a 90-second integration within my upcoming video on [topic], scheduled for [date]. I could demonstrate [specific use case] that aligns with your product positioning.&rdquo;</p>
-
-      <h3>Part 4: Social Proof (1 sentence, optional)</h3>
-
-      <p>If you have past sponsorship experience, mention it briefly. Name-dropping a recognizable brand you have worked with is powerful. If you have no past sponsors, skip this part rather than fabricating credibility.</p>
-
-      <p>Good: &ldquo;I&rsquo;ve previously partnered with [Brand A] and [Brand B], and I&rsquo;m happy to share performance data from those campaigns.&rdquo;</p>
-
-      <h3>Part 5: Clear Call to Action (1 sentence)</h3>
-
-      <p>End with a specific, low-friction ask. &ldquo;Would you be open to a quick 15-minute call this week?&rdquo; is better than &ldquo;Let me know what you think!&rdquo; because it gives the brand a concrete next step.</p>
-
-      <h2>Template 1: The Standard Sponsorship Pitch</h2>
-
-      <p>Subject: [Brand Name] &times; [Your Channel] &mdash; quick partnership idea</p>
+      <p>Use this template when you have never written to the brand before. Fill every bracket with something true, and delete any sentence you can't fill.</p>
 
       <blockquote>
-        <p>Hi [First Name],</p>
-        <p>I saw [Brand]&rsquo;s recent [campaign/product launch/content piece] &mdash; [specific observation about it]. Really well done.</p>
-        <p>I run [Channel Name], a [platform] channel covering [niche] for [audience description]. We have [X] subscribers/followers with [Y]% engagement and an audience that&rsquo;s [Z]% [key demographic].</p>
-        <p>I&rsquo;d love to feature [Brand] in a [specific deliverable] on [topic/date]. I think [specific angle] would resonate naturally with my audience.</p>
-        <p>I&rsquo;ve attached my media kit with full audience data and rates. Would you be open to a quick call this week to discuss?</p>
-        <p>Best,<br />[Your Name]</p>
+        <p><strong>Subject:</strong> [Brand] &times; [Channel]: sponsorship idea</p>
+        <p>Hi [First name],</p>
+        <p>[One specific thing you saw from the brand: a product, a launch, a campaign.]</p>
+        <p>I run [Channel], a [newsletter / channel / podcast] about [niche], read by [who they are] ([audience size]).</p>
+        <p>I'd like to feature [Product] in [specific placement and date]. [One sentence on why it fits your readers.]</p>
+        <p>My media kit has the audience data and rates: [link]. Would you like me to send details for [month]?</p>
+        <p>Thanks,<br />[Your name]</p>
       </blockquote>
 
-      <h2>Template 2: The Data-Led Pitch</h2>
+      <h2>What is a good sponsorship email subject line?</h2>
 
-      <p>Subject: 78% of my audience matches [Brand]&rsquo;s target customer</p>
-
-      <blockquote>
-        <p>Hi [First Name],</p>
-        <p>I recently surveyed my audience of [X] [platform] subscribers and found that [Y]% currently use or are evaluating [product category]. [Z]% specifically mentioned [Brand] or a direct competitor.</p>
-        <p>I run [Channel Name], where I [brief content description]. My audience is primarily [demographic] &mdash; here&rsquo;s a quick snapshot: [1-2 key stats].</p>
-        <p>I think a [specific deliverable] featuring [Brand] could drive real results. Happy to share the full survey data and my media kit.</p>
-        <p>Worth a 15-minute conversation?</p>
-        <p>Best,<br />[Your Name]</p>
-      </blockquote>
-
-      <h2>Template 3: The Existing Fan Pitch</h2>
-
-      <p>Subject: I&rsquo;ve been recommending [Brand] for 6 months &mdash; let&rsquo;s make it official</p>
-
-      <blockquote>
-        <p>Hi [First Name],</p>
-        <p>I&rsquo;ve been recommending [Product] to my audience for the past [time period] because [genuine reason]. [Specific example: &ldquo;I mentioned it in my video on X which got Y views&rdquo;].</p>
-        <p>Since I&rsquo;m already driving awareness for [Brand], I&rsquo;d love to explore a formal partnership. My channel [brief stats] reaches [audience description].</p>
-        <p>Would a sponsored integration make sense? I&rsquo;ve attached my media kit with audience data and rates.</p>
-        <p>Best,<br />[Your Name]</p>
-      </blockquote>
-
-      <h2>Subject Lines That Get Opened</h2>
-
-      <p>Your subject line determines whether the email gets opened. Data from our sample shows these patterns perform best for sponsorship pitches:</p>
+      <p>A good sponsorship email subject line names the brand or the offer and says what the email is, in plain words, so the reader knows at a glance it is a sponsorship idea and not a mass mailing. This page has no open-rate data for subject lines, so the patterns below are examples to adapt, not a ranking.</p>
 
       <table>
         <thead>
           <tr>
-            <th>Subject Line Pattern</th>
-            <th>Avg. Open Rate</th>
-            <th>Example</th>
+            <th>Pattern</th>
+            <th>Example subject line</th>
+            <th>Use it when</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>[Brand] &times; [Creator] &mdash; quick idea</td>
-            <td>62%</td>
-            <td>Notion &times; TechReview &mdash; quick partnership idea</td>
+            <td>Brand and idea</td>
+            <td>[Brand] &times; [Channel]: sponsorship idea</td>
+            <td>Any cold pitch</td>
           </tr>
           <tr>
-            <td>Data-led hook</td>
-            <td>58%</td>
-            <td>78% of my 25K subscribers use tools like [Brand]</td>
+            <td>Attachment</td>
+            <td>Sponsorship idea for [Brand] (media kit attached)</td>
+            <td>You attach the kit</td>
           </tr>
           <tr>
-            <td>Existing mention reference</td>
-            <td>71%</td>
-            <td>I featured [Brand] in my last video &mdash; 12K views</td>
+            <td>Request</td>
+            <td>Sponsorship request: [Channel] &times; [Brand]</td>
+            <td>You are asking for a specific package</td>
           </tr>
           <tr>
-            <td>Mutual connection reference</td>
-            <td>74%</td>
-            <td>[Mutual contact] suggested I reach out</td>
+            <td>Open date</td>
+            <td>A [month] slot in [Channel] for [Product]</td>
+            <td>You have a date to fill</td>
           </tr>
           <tr>
-            <td>Question format</td>
-            <td>54%</td>
-            <td>Does [Brand] work with YouTube creators?</td>
+            <td>Existing use</td>
+            <td>I already recommend [Product]. Make it official?</td>
+            <td>It is true</td>
+          </tr>
+          <tr>
+            <td>Referral</td>
+            <td>[Name] suggested I write to you</td>
+            <td>Someone really did</td>
           </tr>
         </tbody>
       </table>
 
-      <p>Avoid generic subject lines like &ldquo;Collaboration opportunity&rdquo; (31% open rate) or &ldquo;Sponsorship inquiry&rdquo; (28% open rate). These signal a mass email and get mentally categorized as spam before the recipient even opens them.</p>
+      <p>Skip subject lines that say nothing about you or the offer, such as "Collaboration opportunity" or "Quick question". Don't start with "Re:" or "Fwd:" to look like an existing thread. Write the subject after the body and check it matches: if it says "media kit attached", attach the kit.</p>
 
-      <h2>The Follow-Up Sequence</h2>
+      <h2>How do you email a CEO a sponsorship pitch with a media kit attached?</h2>
 
-      <p>Most sponsorship deals do not close on the first email. Brand managers are busy, your email may arrive at the wrong time, or it may sit in a crowded inbox. Systematic follow-up is not pushy&mdash;it is professional. 80% of sponsorship deals close after the second or third touch.</p>
+      <p>Keep the email to a few lines, say what you are offering in the first two sentences, attach the media kit as a PDF, and ask if the CEO handles sponsorships or if you should write to someone else.</p>
 
-      <p><strong>Follow-up 1 (Day 5&ndash;7):</strong> Short bump email. Add one new piece of value&mdash;a recent content performance metric, a relevant audience insight, or a timely content idea tied to the brand&rsquo;s upcoming activity. Keep it under 50 words.</p>
+      <blockquote>
+        <p><strong>Subject:</strong> Sponsorship idea for [Brand] (media kit attached)</p>
+        <p>Hi [First name],</p>
+        <p>I'm [Your name]. I run [Channel], which reaches [audience size] [who they are]. I think [Brand] fits them because [one reason].</p>
+        <p>I've attached my media kit: audience, past results and rates. The offer I'd start with is [placement] on [date] for [price, or "the price is in the kit"].</p>
+        <p>Do you handle sponsorships yourself, or should I send this to someone on your team?</p>
+        <p>Thanks,<br />[Your name]</p>
+      </blockquote>
 
-      <p><strong>Follow-up 2 (Day 12&ndash;14):</strong> Reframe the pitch slightly. If your first email proposed a video integration, the second follow-up might suggest a newsletter mention or social post instead. Offering alternatives shows flexibility and gives the brand another entry point.</p>
+      <p>Say what is in the attachment, as the template does, so a stranger knows why to open it. Add a link to the same kit under your signature in case the attachment doesn't come through.</p>
 
-      <p><strong>Follow-up 3 (Day 21&ndash;25):</strong> Final touch. Brief and direct: &ldquo;Wanted to float this one more time before I move on. I think [Brand] &times; [Channel] would be a strong fit. Happy to send over more details if the timing works better now.&rdquo; This creates gentle urgency without being aggressive.</p>
+      <h2>What does a sponsorship request email look like?</h2>
 
-      <p>After three follow-ups with no response, move the brand to a &ldquo;revisit in 3 months&rdquo; list. Timing is often the issue&mdash;a brand that ignored you in Q1 may have new budget in Q2. Patience and persistence, not desperation, win sponsorship deals.</p>
+      <p>A sponsorship request email states what you want sponsored, what the brand gets, what it costs and what happens next, in that order.</p>
 
-      <h2>What to Do When a Brand Responds</h2>
+      <blockquote>
+        <p><strong>Subject:</strong> Sponsorship request: [Channel] &times; [Brand]</p>
+        <p>Hi [First name],</p>
+        <p>I'm asking [Brand] to sponsor [what: the [month] issues, the [date] episode, a video].</p>
+        <p>What you get: [placement, format and link], in front of [audience size and who they are].</p>
+        <p>What it costs: [price] for [package]. If your budget is different, tell me and I'll adjust the package.</p>
+        <p>If this is a yes, reply with a start date and I'll hold the slot. If someone else decides, who should I write to?</p>
+        <p>Thanks,<br />[Your name]</p>
+      </blockquote>
 
-      <p>When a brand expresses interest, respond within 4 hours during business hours. Speed signals professionalism and enthusiasm. In your response:</p>
+      <p>Asking a company to sponsor an event or a project instead? Use the same four lines and swap the deliverable for what the sponsor gets, such as their name on the program or a booth. For the price line, see <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a> and <a href="/blog/sponsorship-packages/">how to build sponsorship packages</a>.</p>
 
-      <ol>
-        <li>Thank them for their interest.</li>
-        <li>Attach your media kit if you have not already.</li>
-        <li>Propose 2&ndash;3 specific times for a call within the next week.</li>
-        <li>Ask if they have specific campaign goals or timelines you should know about.</li>
-      </ol>
+      <h2>If you already use the product, say so first</h2>
 
-      <p>On the call, listen more than you talk. Ask what the brand&rsquo;s goals are for the partnership (awareness, signups, sales?), what their budget range is, and what timeline they are working with. Then tailor your proposal to match their specific needs rather than pushing a generic package. Brands work with creators who understand their business objectives, not just creators who want a paycheck.</p>
+      <p>If you already use the product and have mentioned it to your audience, lead with that. It is the strongest reason to write to that brand, and you can point to where you said it. Use this template only if it is true.</p>
 
-      <h2>Scaling Your Outreach</h2>
+      <blockquote>
+        <p><strong>Subject:</strong> I already recommend [Product]. Make it official?</p>
+        <p>Hi [First name],</p>
+        <p>I've used [Product] for [how long] and mentioned it to my audience in [where and when: link].</p>
+        <p>I run [Channel], read by [who they are] ([audience size]). I'd like to turn that into a paid, labeled sponsorship: [placement and date].</p>
+        <p>My media kit is here: [link]. Is that something [Brand] does?</p>
+        <p>Thanks,<br />[Your name]</p>
+      </blockquote>
 
-      <p>Once your pitch template is producing results (8%+ positive response rate), scale by increasing volume. The most efficient approach is to spend one day per week on sponsorship outreach: identify 10&ndash;15 new target brands, personalize and send pitches, and follow up on open conversations from previous weeks.</p>
+      <h2>Who to email for a sponsorship: the founder or the marketing team?</h2>
 
-      <p>Use a simple CRM or spreadsheet to track every outreach: brand name, contact person, email, date sent, response status, follow-up dates, and deal status. Without tracking, you will forget follow-ups, lose conversations, and leave money on the table.</p>
+      <p>Email whoever owns the sponsorship budget at the brand, using the person you can find. Job title made no real difference in Sponsor Radar's pitches: founders, CEOs and owners replied at {founders.rate} ({f(founders.replies)} of {f(founders.sent)} pitches) and marketing titles at {marketing.rate} ({f(marketing.replies)} of {f(marketing.sent)}). The rest went to other titles and are not compared here. Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}.</p>
 
-      <p>For high-volume outreach (20+ pitches per week), use a sending tool that runs the follow-ups for you while each email stays personal. If you run a newsletter, <a href={siteConfig.product.ctaUrl}>Sponsor Radar</a> handles the whole loop: it finds brands that sponsored similar newsletters, sends the pitches and follow-ups from its own mailboxes, and introduces you when a brand replies. Either way, your time goes to the newsletter instead of the inbox.</p>
+      <p>That means you should not spend an hour hunting for the perfect title. At a small brand there may be no marketing team, so write to the founder. At a larger brand, write to whoever runs partnerships or marketing. Titles worth searching for are Brand Partnerships Manager, Influencer Marketing Manager, Creator Relations Manager and Head of Marketing.</p>
 
-      <h2>Cold email beats waiting to be discovered or paying marketplace fees</h2>
+      <p>Search LinkedIn for the company name plus one of those titles, then find the address with an email finder such as Hunter or Apollo. If you can't find a name, write to the founder and ask who handles sponsorships, as the CEO template above does. A shared inbox like info@ has no owner for your pitch. To find which brands to write to in the first place, see <a href="/blog/find-brands-that-sponsor/">how to find brands that sponsor</a>.</p>
 
-      <p>Cold emailing brands for sponsorships works. It works better than waiting to be discovered, better than marketplace platforms that take commissions, and better than DM outreach that gets buried in message requests. The creators who earn consistent sponsorship income treat outreach as a weekly business activity with the same discipline they apply to content creation.</p>
+      <h2>How fast do brands reply to a sponsorship email?</h2>
 
-      <p>Start with 10 personalized pitches this week. Use the templates above, find the right contacts, attach your media kit, and follow up systematically. Even at a conservative 5% conversion rate, those 10 emails will produce one conversation&mdash;and one conversation is all it takes to land your next sponsorship deal.</p>
+      <p>Fast, when they reply at all. Across {T.n} brand replies, timed from Sponsor Radar's automated first pitch to the brand's first answer, the median reply came {T.medianHours} hours after the send. {T.within24h} of replies arrived within 24 hours, {T.within3d} within 3 days and {T.within7d} within 7 days (Sponsor Radar's {f(PITCHES.sent)} pitches, {PITCHES.window}). A brand that has not answered after about a week is unlikely to answer the first email, so that is the point to follow up. What to send is covered in <a href="/blog/sponsorship-follow-up-email/">sponsorship follow-up email templates and timing</a>.</p>
+
+      <h2>How should you follow up on a sponsorship email?</h2>
+
+      <p>Follow up once or twice, in the same thread, starting 3 to 7 days after the first email. Add one new fact or one easier question each time, and stop after the second. The timing table, five follow-up templates and the stop rule are on the <a href="/blog/sponsorship-follow-up-email/">sponsorship follow-up email page</a>.</p>
+
+      <h2>What should you do when a brand replies?</h2>
+
+      <p>Reply the same working day. Thank them, attach the media kit if you haven't already, offer two or three times for a call, and ask whether they have goals or a timeline you should know about. On the call, ask what they want the sponsorship to do (awareness, signups or sales), what budget they have and when it should run, then fit your proposal to that.</p>
+
+      <h2>How many sponsorship emails do you need to send?</h2>
+
+      <p>More than you expect. Sponsor Radar's automated pitches took about {PITCHES.pitchesPerYes} first pitches per yes ({PITCHES.yeses} yeses from {f(PITCHES.sent)} pitches), and a yes is not yet a paid deal. The full funnel and the arithmetic for your own goal are in <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a>. Keep a sheet of every pitch with the brand, contact, date sent, reply and next follow-up date.</p>
+
+      <p>If you run a newsletter, <a href={SR.cta('cold-email-sponsorship-pitch')}>Sponsor Radar</a> finds brands that sponsored similar newsletters and sends the pitches and follow-ups from its own mailboxes, so your time goes to the newsletter instead of the inbox.</p>
+
+      <h2>Sponsorship email questions</h2>
+
+      {faq.map((item) => (
+        <>
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </>
+      ))}
 
     </div>
   </article>

@@ -1,0 +1,11 @@
+---
+import { AUTHOR, longDate } from '../lib/article';
+interface Props { published: string; modified?: string }
+const { published, modified } = Astro.props;
+const showUpdated = modified && modified !== published;
+---
+<p class="text-sm text-gray-500">
+  By <a href="/about/" class="text-gray-700 hover:text-blue-600">{AUTHOR.name}</a>, {AUTHOR.title}
+  · <time datetime={published}>Published {longDate(published)}</time>
+  {showUpdated && <> · <time datetime={modified}>Updated {longDate(modified!)}</time></>}
+</p>

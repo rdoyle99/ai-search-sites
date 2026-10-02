@@ -1,170 +1,365 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { siteConfig } from '../../config';
+import Byline from '../../components/Byline.astro';
+import { articleSchema, faqSchema } from '../../lib/article';
+import { RATES, ADS, SR } from '../../data/sr-stats';
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How to Build a Sponsorship Media Kit That Lands Deals",
-  "author": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "publisher": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "datePublished": "2026-01-26T00:00:00.000Z",
-  "dateModified": "2026-02-01T00:00:00.000Z",
+const PATH = '/blog/sponsorship-media-kit-guide/';
+const PUBLISHED = '2026-01-26';
+const MODIFIED = '2026-10-02';
+const TITLE = 'Sponsorship Media Kit: Template, Examples and Rate Card';
+const H1 = 'Sponsorship Media Kit: How to Build One That Lands Deals';
+const DESCRIPTION = 'A sponsorship media kit has seven sections. Copy the template, see podcast, streamer and newsletter examples, and price your rate card from real data.';
+
+// Placement ratios are display strings in sr-stats ('59%', '40%', '2.31 times'); parse them so each number is written once.
+const classified = RATES.placements.find((p) => p.name.startsWith('Classified'))!;
+const dedicated = RATES.placements.find((p) => p.name.startsWith('Dedicated'))!;
+const F_CLASSIFIED = parseFloat(classified.median) / 100;
+const F_DEDICATED = parseFloat(dedicated.median);
+const rel = (m: string) => (m.endsWith('%') ? `${m} of` : m); // '59%' -> '59% of', '2.31 times' stays
+const round5 = (x: number) => Math.round(x / 5 + 1e-9) * 5;
+const dollars = (x: number) => '$' + x.toLocaleString('en-US');
+const cents = (x: number) => {
+  const c = Math.round(x * 100 + 1e-6);
+  return '$' + (c / 100).toLocaleString('en-US', { minimumFractionDigits: c % 100 === 0 ? 0 : 2, maximumFractionDigits: 2 });
 };
+
+// Newsletter example: the 5,000 to 19,999 bracket, whose median list is 10,000 subscribers.
+const ex = RATES.rows[1];
+const exClassified = ex.median * F_CLASSIFIED;
+const exDedicated = ex.median * F_DEDICATED;
+
+const MEDIA_KIT_TEMPLATE = `[YOUR NAME OR BRAND] MEDIA KIT, [YEAR]
+
+1. ABOUT
+[Two or three sentences: what you create, who it is for, your main platform, your audience size.]
+[Headshot or logo]
+
+2. AUDIENCE (as of [DATE], source: [your analytics])
+- Age: [brackets and shares]
+- Gender: [shares, as your platform reports them]
+- Top countries: [top five, with shares]
+- Job titles or interests: [top three or four]
+
+3. REACH AND ENGAGEMENT (period: [DATES])
+- Audience size: [subscribers, listeners, followers or viewers]
+- Average reach per piece: [opens, downloads or views]
+- Engagement rate: [interactions divided by reach or by followers, say which]
+- Click-through rate: [if you have it]
+
+4. BEST CONTENT
+- [Title, link, views or opens, one line on why it worked]
+- [Title, link, views or opens, one line on why it worked]
+- [Title, link, views or opens, one line on why it worked]
+
+5. PACKAGES AND RATES
+- [Package name]: [what is included]. $[price]
+- [Package name]: [what is included]. $[price]
+- [Package name]: [what is included]. $[price]
+Terms: [booking deadline, payment, exclusivity, reporting]
+
+6. PAST PARTNERS
+- [Brand]: [what you did and the result]
+- [Quote from a past partner, used with permission]
+
+7. CONTACT
+[Name, email, link to book a call]`;
+
+const faq = [
+  {
+    q: 'What is a sponsorship media kit?',
+    a: 'A sponsorship media kit is a short PDF or web page that shows a brand who your audience is, how many people you reach, what sponsors can buy and what it costs. It has seven sections: introduction, audience demographics, engagement metrics, content samples, packages and rates, past partnerships, and contact details.',
+  },
+  {
+    q: 'What is a sponsor kit?',
+    a: 'A sponsor kit, also called a sponsorship kit, is a media kit that leads with what a sponsor can buy: your packages, their prices and how to book. It uses the same audience proof as a media kit. Tier names and prices are covered in the sponsorship packages guide.',
+  },
+  {
+    q: 'What is the difference between a media kit and a rate card?',
+    a: 'A media kit shows who you are and who you reach. A rate card lists what each placement costs. Put the rate card inside the media kit so the price sits next to the proof, and publish it on an advertise page so a buyer can check it without emailing you.',
+  },
+  {
+    q: 'What should a podcast sponsorship media kit include?',
+    a: 'Downloads per episode over a stated period, listener demographics from your podcast host, the ad formats you sell (pre-roll, mid-roll or a full episode), a price for each, and past sponsor results if you have them. State where each number came from and the date you pulled it.',
+  },
+  {
+    q: 'How do you make a media kit for streamer sponsorships?',
+    a: "Lead with average concurrent viewers, followers, hours streamed per month and your viewers' top countries, all from your platform's analytics. Then list what a sponsor can buy, such as an overlay banner, a chat command with a discount code, a sponsored segment or a dedicated stream, with a price for each.",
+  },
+  {
+    q: 'What are typical CPMs and package options for episodic video sponsorships?',
+    a: 'Package options are usually a pre-roll mention, a mid-roll integration, a dedicated episode and a multi-episode series. CPMs vary by niche and audience, so this page does not print a typical one. Work out yours with the CPM formula on the how much to charge for a sponsorship page, then sell it as a flat price per package.',
+  },
+];
 ---
 
 <Base
-  title="Sponsorship Media Kit: What Brands Check (+ Rate Card Guide)"
-  description="Brands check four things in a media kit: audience data, engagement rate, rate card, and past results. The page-by-page structure that closes sponsorship deals."
-  schema={schema}
-  articleDate="2026-01-26"
-  articleModified="2026-02-01"
+  title={TITLE}
+  description={DESCRIPTION}
+  schema={[articleSchema({ headline: H1, description: DESCRIPTION, path: PATH, published: PUBLISHED, modified: MODIFIED }), faqSchema(faq)]}
+  articleDate={PUBLISHED}
+  articleModified={MODIFIED}
 >
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <header>
-      <time class="text-sm text-gray-400">January 26, 2026</time>
-      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How to Build a Sponsorship Media Kit That Lands Deals</h1>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{H1}</h1>
+      <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>A sponsorship media kit is a seven-section document covering who you are, your audience demographics, your reach and engagement numbers, past partnerships, your packages and rates, your content examples, and how to contact you. It is the document brand partnership managers actually decide on, ahead of your DMs, your follower count, or the enthusiasm in your pitch email.</strong></p>
+      <p><strong>A sponsorship media kit is a short PDF or web page that shows a brand who your audience is, how many people you reach, what you offer and what it costs. It has seven sections: introduction, audience, engagement, content samples, packages and rates, past partners, and contact details. Send it with your first pitch.</strong></p>
 
-      <p>62% of creators approaching brands for sponsorships do not have a media kit at all, and most who do include little beyond a screenshot of their follower count. Creators who close deals at premium rates build kits that answer every brand question before it gets asked.</p>
+      <h2>What goes in a sponsorship media kit?</h2>
 
-      <h2>What Goes in a Sponsorship Media Kit</h2>
+      <p>A complete media kit has seven sections. Each one answers a question the brand's decision-maker has before spending money, and a missing section gives them a reason to wait or pass. The copyable <a href="#media-kit-template">media kit template</a> below puts all seven in one outline.</p>
 
-      <p>A complete media kit has seven sections. Each section answers a specific question that the brand&rsquo;s decision-maker needs answered. Missing any section creates friction, and friction kills deals.</p>
+      <h3>1. Introduction and brand statement (page 1)</h3>
 
-      <h3>1. Introduction and Brand Statement (Page 1)</h3>
+      <p>Open with who you are, what you create and who your audience is, in two or three sentences. Include your name or brand name, your main platform, your niche and your audience size. Add a headshot or logo. A polished first page signals that the rest of the kit is polished too.</p>
 
-      <p>Your media kit opens with a concise summary of who you are, what you create, and who your audience is. This should be 2&ndash;3 sentences maximum. Think of it as your elevator pitch in written form. Include your name or brand name, your primary platform, your content niche, and your audience size.</p>
+      <p>For example, for a made-up creator: "This is a YouTube channel and newsletter about software for startup founders. It reaches 20,000 YouTube subscribers and 10,000 newsletter readers, mostly founders and product managers in the US and UK."</p>
 
-      <p>Example: &ldquo;TechReview Weekly is a YouTube channel and newsletter covering B2B SaaS tools for growing startups. We reach 28,000 subscribers on YouTube and 12,000 newsletter readers, primarily startup founders and product managers in the US and UK.&rdquo;</p>
+      <h3>2. Audience demographics (page 2)</h3>
 
-      <p>Include a professional headshot or brand logo. First impressions matter, and a polished opening page signals that the rest of the kit will be equally professional.</p>
-
-      <h3>2. Audience Demographics (Page 2)</h3>
-
-      <p>Audience demographics are the most important section of a sponsorship media kit. Brands sponsor creators to reach specific audiences, and they need data to confirm your audience matches their target customer. Include:</p>
+      <p>Audience demographics are the most useful section of a sponsorship media kit. Brands sponsor creators to reach specific people, and they need data to confirm your audience matches their buyer. Include:</p>
 
       <ul>
-        <li><strong>Age distribution:</strong> Break down your audience by age bracket (18&ndash;24, 25&ndash;34, 35&ndash;44, etc.) using platform analytics.</li>
-        <li><strong>Gender split:</strong> The percentage of male, female, and non-binary audience members.</li>
-        <li><strong>Geographic distribution:</strong> Top 5 countries and, if relevant, top cities. US and UK audiences command premium rates.</li>
-        <li><strong>Income/profession indicators:</strong> If available through surveys or platform data, include income brackets or job titles. A B2B audience of decision-makers is worth significantly more than a general consumer audience.</li>
-        <li><strong>Interests and affinities:</strong> What topics, brands, or activities does your audience care about? This helps brands assess alignment beyond basic demographics.</li>
+        <li><strong>Age distribution:</strong> Break your audience down by age bracket (18 to 24, 25 to 34, 35 to 44 and so on) using platform analytics.</li>
+        <li><strong>Gender split:</strong> The share of each gender, as your platform reports it.</li>
+        <li><strong>Geographic distribution:</strong> Your top five countries and, if relevant, top cities. Brands often buy for specific regions, so show where your audience is.</li>
+        <li><strong>Income or profession:</strong> If you have survey or platform data, include income brackets or job titles. For a B2B sponsor, job titles matter more than age.</li>
+        <li><strong>Interests and affinities:</strong> What topics, brands or activities your audience cares about. This shows alignment beyond basic demographics.</li>
       </ul>
 
-      <p>Present this data with clean charts and graphs, not raw numbers. Visual data is processed faster and looks more professional. Use your platform&rsquo;s built-in analytics (YouTube Studio, Instagram Insights) as the data source, and update the numbers quarterly to ensure accuracy.</p>
+      <p>Show this data as clean charts, not raw numbers. Pull it from your platform's analytics (YouTube Studio, Instagram Insights, your email platform or podcast host) and update it every quarter.</p>
 
-      <h3>3. Engagement Metrics (Page 3)</h3>
+      <h3>3. Engagement metrics (page 3)</h3>
 
-      <p>Follower count is a vanity metric. Brands care about engagement because engagement predicts campaign performance. Include the following metrics for each platform:</p>
+      <p>Brands look at engagement as well as audience size, because size alone does not show how many people see and act on your content. Include these metrics for each platform, and say how each one is calculated:</p>
 
       <table>
         <thead>
           <tr>
             <th>Metric</th>
-            <th>What It Shows</th>
-            <th>Good Benchmark</th>
+            <th>What it shows</th>
+            <th>Where to find it</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Engagement Rate</td>
+            <td>Engagement rate</td>
             <td>Audience interaction relative to size</td>
-            <td>3%+ (Instagram), 5%+ (YouTube)</td>
+            <td>Platform analytics, or interactions divided by reach or by followers (say which)</td>
           </tr>
           <tr>
-            <td>Average Views/Impressions</td>
+            <td>Average views or impressions</td>
             <td>Actual reach per piece of content</td>
-            <td>30%+ of followers (YouTube)</td>
+            <td>Platform analytics, averaged over a stated period</td>
           </tr>
           <tr>
-            <td>Comments per Post</td>
+            <td>Comments per post</td>
             <td>Depth of audience engagement</td>
-            <td>Varies by niche</td>
+            <td>Platform analytics or a manual count</td>
           </tr>
           <tr>
-            <td>Click-Through Rate</td>
+            <td>Click-through rate</td>
             <td>Ability to drive action</td>
-            <td>2%+ (newsletter), 1%+ (social)</td>
+            <td>Your email platform, or UTM-tagged links in your web analytics</td>
           </tr>
           <tr>
-            <td>Open Rate</td>
-            <td>Newsletter audience quality</td>
-            <td>40%+ (newsletter)</td>
+            <td>Open rate</td>
+            <td>How many subscribers open each send</td>
+            <td>Your email platform</td>
           </tr>
           <tr>
-            <td>Save/Share Rate</td>
+            <td>Save and share rate</td>
             <td>Content quality signal</td>
-            <td>1%+ (Instagram)</td>
+            <td>Platform analytics</td>
           </tr>
         </tbody>
       </table>
 
-      <p>Always present engagement metrics alongside audience size. &ldquo;28,000 YouTube subscribers with 8,400 average views per video (30% view rate) and 5.2% engagement rate&rdquo; is infinitely more compelling than just &ldquo;28,000 subscribers.&rdquo;</p>
+      <p>Always show engagement next to audience size. For example, for a made-up channel: "20,000 subscribers, 6,000 average views per video (30% of subscribers) and a 5% engagement rate" tells a brand more than "20,000 subscribers." We print no benchmark engagement rates here, because we have no source we can verify for them.</p>
 
-      <h3>4. Content Samples and Highlights (Page 4)</h3>
+      <h3>4. Content samples and highlights (page 4)</h3>
 
-      <p>Include 3&ndash;5 examples of your best content. For each piece, show a thumbnail or screenshot, the title, view/engagement count, and a one-line description of why it performed well. Choose content that demonstrates the type of sponsored integration you would deliver&mdash;if you are pitching video sponsorships, show your best videos; if newsletter sponsorships, show your highest-performing issues.</p>
+      <p>Include three to five examples of your best content. For each piece, show a thumbnail or screenshot, the title, the view or engagement count, and a one-line note on why it performed. Choose content that matches the sponsored format you sell: your best videos for video sponsorships, your highest-performing issues for newsletter sponsorships.</p>
 
-      <p>If you have previous sponsored content that performed well, feature it prominently. Brands want to see that you can integrate their product naturally into your content style. A case study from a past sponsor showing views, clicks, and conversions is the single most persuasive element you can include.</p>
+      <p>If you have previous sponsored content that performed well, feature it. Brands want to see that you can work a product into your style. A short case study from a past sponsor showing views, clicks and conversions is strong proof.</p>
 
-      <h3>5. Sponsorship Packages and Rate Card (Page 5)</h3>
+      <h3>5. Sponsorship packages and rate card (page 5)</h3>
 
-      <p>Define 2&ndash;4 sponsorship tiers with clear deliverables and pricing. Tiered pricing gives brands options and makes your rates feel structured rather than arbitrary. A typical structure:</p>
+      <p>Define two to four sponsorship tiers with clear deliverables and a price for each. Tiers give brands options and make your rates look structured. A typical structure:</p>
 
       <ul>
-        <li><strong>Tier 1 &ndash; Social mention:</strong> A dedicated post or story mention. Lowest price, lowest commitment.</li>
-        <li><strong>Tier 2 &ndash; Integrated content:</strong> A 60&ndash;90 second integration within a video, a dedicated newsletter section, or a podcast ad read. This is the most common sponsorship format.</li>
-        <li><strong>Tier 3 &ndash; Dedicated content:</strong> An entire video, podcast episode, or newsletter issue focused on the sponsor&rsquo;s product. Highest value, highest price.</li>
-        <li><strong>Tier 4 &ndash; Ongoing partnership:</strong> A multi-month package combining multiple content types. Offers the brand sustained visibility and gives you predictable revenue.</li>
+        <li><strong>Tier 1, social mention:</strong> A dedicated post or story mention. Lowest price, lowest commitment.</li>
+        <li><strong>Tier 2, integrated content:</strong> A short integration inside a video, a dedicated newsletter section or a podcast ad read.</li>
+        <li><strong>Tier 3, dedicated content:</strong> An entire video, podcast episode or newsletter issue focused on the sponsor's product. Highest value, highest price.</li>
+        <li><strong>Tier 4, ongoing partnership:</strong> A multi-month package that combines content types. It gives the brand sustained visibility and gives you predictable revenue.</li>
       </ul>
 
-      <p>List specific prices or price ranges for each tier. Brands expect to see numbers. Vague language like &ldquo;rates available upon request&rdquo; creates unnecessary friction and signals that you have not thought through your pricing. Use our <a href="/tools/sponsorship-rate-calculator/">sponsorship rate calculator</a> to determine appropriate rates based on your audience size and engagement. Newsletter owners can start from a filled-in page instead: Sponsor Radar's <a href="https://sponsorradar.co/sponsorship-proposal">sponsorship proposal template</a> prices its packages from what newsletters of the same size publish on their advertise pages.</p>
+      <p>List a specific price for each tier. Brands expect to see numbers, and "rates available upon request" signals that you have not decided your pricing. Tier names, price ratios and a copyable package template are in <a href="/blog/sponsorship-packages/">sponsorship packages and levels</a>. To find a starting price, use the <a href="/tools/sponsorship-rate-calculator/">sponsorship rate calculator</a> or the CPM math in <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a>. Newsletter owners can start from a filled-in page instead: Sponsor Radar's <a href={SR.proposalUrl}>sponsorship proposal template</a> prices its packages from what newsletters of the same size publish on their advertise pages.</p>
 
-      <h3>6. Past Partnerships and Testimonials (Page 6)</h3>
+      <h3>6. Past partnerships and testimonials (page 6)</h3>
 
-      <p>Social proof closes deals. If you have worked with brands before&mdash;even small ones&mdash;include logos, brief descriptions of what you delivered, and any performance metrics you can share. A testimonial quote from a past brand partner is worth more than any stat in your media kit.</p>
+      <p>Social proof helps close deals. If you have worked with brands before, even small ones, include logos, a short description of what you delivered and any performance numbers you can share. A quote from a past brand partner, used with their permission, backs up your own numbers.</p>
 
-      <p>If you have not done sponsored content before, include any relevant collaborations: guest appearances on other channels, cross-promotions with other creators, or affiliate program results. Even indirect evidence of your ability to drive results for external partners builds credibility.</p>
+      <p>If you have not done sponsored content before, include related collaborations: guest appearances on other channels, cross-promotions with other creators or affiliate results. Even indirect evidence that you can drive results for a partner builds credibility.</p>
 
-      <h3>7. Contact Information and Next Steps (Page 7)</h3>
+      <h3>7. Contact information and next steps (page 7)</h3>
 
-      <p>End with clear contact information and a specific call to action. Include your email, preferred contact method, and a line like &ldquo;Reply to this email or book a 15-minute call at [calendar link] to discuss partnership opportunities.&rdquo; Make it as easy as possible for the brand to take the next step.</p>
+      <p>End with clear contact details and one specific next step. Include your email, your preferred contact method and a line like "Reply to this email or book a call at [calendar link] to talk about a partnership." Make it easy for the brand to say yes.</p>
 
-      <h2>Design and Format Best Practices</h2>
+      <h2>What do newsletters put on their rate card?</h2>
 
-      <p>Your media kit should be a PDF, ideally 5&ndash;8 pages. Keep the design clean and professional&mdash;consistent fonts, a cohesive color scheme, and plenty of white space. Use tools like Canva (free), Figma, or Adobe InDesign for design. Canva specifically offers media kit templates that provide a professional starting point.</p>
+      <p>A rate card is a one-page price list: each placement, what it includes and what it costs. Sponsor Radar read {RATES.pagesRead} newsletter advertise pages and found {RATES.pricesListed.toLocaleString('en-US')} listed prices. The table below uses the {RATES.n} newsletters that print both a main-slot price and a list size of 500 or more. Source: Sponsor Radar's read of newsletters' <a href={SR.ratesUrl}>advertise pages</a>, {RATES.read}.</p>
 
-      <p>File size matters. Keep the PDF under 5MB so it can be emailed without issues. Compress images before inserting them. Name the file professionally: &ldquo;YourBrand-MediaKit-2026.pdf&rdquo; not &ldquo;mediakit-final-v3-FINAL.pdf.&rdquo;</p>
+      <table>
+        <thead>
+          <tr>
+            <th>List size</th>
+            <th>Newsletters (n)</th>
+            <th>Median main slot</th>
+            <th>Middle half of prices</th>
+          </tr>
+        </thead>
+        <tbody>
+          {RATES.rows.map((r) => (
+            <tr>
+              <td>{r.size}</td>
+              <td>{r.n}</td>
+              <td>{dollars(r.median)}</td>
+              <td>{dollars(r.p25)} to {dollars(r.p75)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <p>Update your media kit quarterly at minimum. Stale data undermines credibility. If your YouTube channel grew from 20K to 35K subscribers, your media kit should reflect the current number. Schedule a quarterly reminder to pull fresh analytics and update all metrics.</p>
+      <p>Newsletters that list other placements price them against the main slot. Inside the same newsletter, from the same {RATES.read} read:</p>
 
-      <h2>Media Kit Mistakes That Lose Deals</h2>
+      <ul>
+        {RATES.placements.map((p) => (
+          <li><strong>{p.name}:</strong> a median {rel(p.median)} its own main slot (middle half {p.middle}, n = {p.n}).</li>
+        ))}
+      </ul>
 
-      <p><strong>No audience data.</strong> The number one reason brands pass on creators is insufficient audience information. If you cannot tell a brand who your audience is, they cannot justify spending money to reach them. Include demographic data even if it is not perfect&mdash;imperfect data beats no data.</p>
+      <p>On the buying side, {ADS.share} of {ADS.n.toLocaleString('en-US')} newsletters that published 5 or more issues in the 90 days to {ADS.read} ran a paid ad. The share rises with list size:</p>
 
-      <p><strong>Inflated or misleading metrics.</strong> Brands verify claims. If your media kit says &ldquo;50,000 monthly views&rdquo; and your public YouTube analytics show 15,000, you lose all credibility instantly. Report accurate numbers and let the quality of your audience speak for itself.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>List size</th>
+            <th>Newsletters (n)</th>
+            <th>Ran a paid ad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ADS.bySize.map((r) => (
+            <tr>
+              <td>{r.size}</td>
+              <td>{r.n.toLocaleString('en-US')}</td>
+              <td>{r.share}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      <p><strong>No pricing.</strong> Brands reach out to dozens of creators simultaneously. The ones who provide clear pricing move forward faster because the brand can immediately assess budget fit. Hidden pricing slows the process and often means you get passed over for a creator who made the decision easier.</p>
+      <p>Source: Sponsor Radar, newsletters with 5 or more issues in the 90 days to {ADS.read}. For your kit, the takeaway is to print a main-slot price next to your list size, the way these newsletters do, so a brand can compare you without a call. To turn the main slot into tiers, see <a href="/blog/sponsorship-packages/">sponsorship packages and levels</a>.</p>
 
-      <p><strong>Poor design quality.</strong> If your media kit looks like it was made in 5 minutes using Microsoft Word, brands will question whether your content quality meets their standards. Invest 2&ndash;3 hours in making the design polished. It does not need to be perfect&mdash;it needs to be professional.</p>
+      <h2>What is the difference between a media kit and a rate card?</h2>
 
-      <p><strong>Generic positioning.</strong> &ldquo;I&rsquo;m a lifestyle creator&rdquo; tells the brand nothing about your audience. &ldquo;I review productivity tools for remote workers and startup founders, with a focus on tools under $50/month&rdquo; tells the brand exactly which products they can promote. Be specific about your niche.</p>
+      <p>A media kit shows who you are and who you reach, and a rate card lists what each placement costs. In this guide's layout the rate card is page 5 of the kit, so the price sits next to the proof. Many newsletters also publish the same prices on an advertise page, so a buyer can check them without emailing. If a brand asks only for rates, send the rate card, and attach the full kit with your first pitch.</p>
 
-      <h2>How to Deliver Your Media Kit</h2>
+      <h2>What is a sponsor kit?</h2>
 
-      <p>Attach your media kit to your initial outreach email. Do not wait for the brand to request it&mdash;proactive delivery signals professionalism and gives the brand everything they need to make a decision in a single email. In your pitch email, reference the media kit: &ldquo;I&rsquo;ve attached my media kit with audience demographics, engagement metrics, and sponsorship packages.&rdquo;</p>
+      <p>A sponsor kit, also called a sponsorship kit, is a media kit that leads with what a sponsor can buy: your packages, their prices and how to book. It uses the same seven sections as a media kit, with page 5 as the centerpiece and the audience pages as its proof. Build the packages first with <a href="/blog/sponsorship-packages/">sponsorship packages and levels</a>, then drop them into page 5.</p>
 
-      <p>Also host your media kit as a downloadable link on your website. Create a simple /sponsors or /partners page with a brief overview and a download button. This serves creators who find your content organically and want to explore sponsorship without direct outreach. Some creators use a &ldquo;link in bio&rdquo; tool to include their media kit link alongside other important URLs.</p>
+      <h2>What do sponsorship media kit examples look like?</h2>
 
-      <p>For marketplace platforms (Grin, AspireIQ, Collabstr), upload your media kit as a profile attachment. Many brands browsing these platforms download media kits before initiating contact, so having yours available gives you an advantage over creators who only have a basic profile.</p>
+      <p>Three made-up examples follow, one each for a podcast, a streamer and a newsletter. The shows, channels and numbers are invented and round, for illustration only. They are not real creators.</p>
 
-      <h2>A media kit turns a sponsorship pitch into a business proposal</h2>
+      <h3>Podcast media kit example</h3>
 
-      <p>A professional media kit is the difference between getting ignored and getting sponsored. It transforms your sponsorship pitch from a vague request into a concrete business proposal. Invest the time to build one, keep it updated, and include it in every brand interaction. The creators who close deals consistently are not necessarily the ones with the biggest audiences&mdash;they are the ones who make the brand&rsquo;s decision easy. A great media kit is how you do that.</p>
+      <ul>
+        <li><strong>About:</strong> A weekly interview show for first-time managers. A new episode every Tuesday.</li>
+        <li><strong>Audience:</strong> 10,000 downloads per episode in the first 30 days, pulled from the podcast host's stats on a stated date. Listener countries from the same dashboard.</li>
+        <li><strong>Packages:</strong> A pre-roll mention, a host-read mid-roll, a full-episode sponsorship and a four-episode run. A price beside each.</li>
+        <li><strong>Proof:</strong> Clicks on the sponsor's link or redemptions of a show-only code from past sponsors.</li>
+      </ul>
+
+      <p>Price each package from downloads: downloads &divide; 1,000 &times; your CPM. The CPM math is in <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a>. No podcast price is printed here because Sponsor Radar's rate data covers newsletters only.</p>
+
+      <h3>Streamer media kit example</h3>
+
+      <ul>
+        <li><strong>About:</strong> A variety streamer who plays strategy games, live four nights a week.</li>
+        <li><strong>Audience:</strong> 300 average concurrent viewers, 10,000 followers, 80 hours streamed a month, top countries the US and Canada. Lead with average concurrent viewers, because followers do not show how many people watch live.</li>
+        <li><strong>Packages:</strong> An overlay banner, a chat command with a discount code, a sponsored segment during a stream and a dedicated sponsored stream. A price beside each.</li>
+        <li><strong>Proof:</strong> Clicks on the code link and redemptions the brand reports back.</li>
+      </ul>
+
+      <p>For streamer outreach, add a short clip or VOD link in section 4 so the brand sees how you work a product into a stream. Put your schedule next to the packages so the brand knows when its slot would run.</p>
+
+      <h3>Newsletter media kit example</h3>
+
+      <ul>
+        <li><strong>About:</strong> A weekly newsletter for first-time managers with {ex.medianSubs.toLocaleString('en-US')} subscribers.</li>
+        <li><strong>Audience:</strong> List size, open rate and click rate from your email platform, plus the top job titles of subscribers.</li>
+        <li><strong>Packages and prices:</strong> Start from the median main slot for a list this size, {dollars(ex.median)} (the {ex.size} bracket, n = {ex.n}). A classified: {dollars(ex.median)} &times; {classified.median} = {cents(exClassified)}, rounded to {dollars(round5(exClassified))}. The main slot: {dollars(ex.median)}. A dedicated send: {dollars(ex.median)} &times; {F_DEDICATED} = {cents(exDedicated)}, rounded to {dollars(round5(exDedicated))}.</li>
+      </ul>
+
+      <p>Source: Sponsor Radar's read of {RATES.n} newsletters' rate cards, {RATES.read}. These are medians, a starting point and not a quote. Replace them with your own prices once you have sold a few placements.</p>
+
+      <h2 id="media-kit-template">Sponsorship media kit template</h2>
+
+      <p>Copy this outline into a document or a design tool, replace each item in square brackets and delete the lines that do not apply. The <a href="/tools/media-kit-builder/">media kit builder</a> turns your numbers into a copyable text summary if you would rather fill in a form.</p>
+
+      <pre class="whitespace-pre-wrap text-sm">{MEDIA_KIT_TEMPLATE}</pre>
+
+      <h2>How should you design and format a sponsorship media kit?</h2>
+
+      <p>Make the kit a clean PDF of a few pages, with consistent fonts, one color scheme and plenty of white space. Canva has <a href="https://www.canva.com/create/media-kits/" rel="noopener">media kit templates</a> and saves designs as PDF, JPG or PNG (Canva's media kit page, checked 2 October 2026). Figma and Adobe InDesign also work.</p>
+
+      <p>Keep the file small enough to email, and compress images before you insert them. Name the file professionally: "YourBrand-MediaKit-2026.pdf", not "mediakit-final-v3-FINAL.pdf".</p>
+
+      <p>Update the kit every quarter at minimum. Stale data undermines credibility. If your audience has grown or shrunk since you built the kit, pull fresh analytics and change every number.</p>
+
+      <h2>What media kit mistakes lose deals?</h2>
+
+      <p><strong>No audience data.</strong> Brands sponsor to reach a specific audience, so a kit with no audience data gives them nothing to justify the spend. Include demographic data even if it is not perfect. Imperfect data with its source beats none.</p>
+
+      <p><strong>Inflated or misleading metrics.</strong> Brands verify claims. If your kit says "50,000 monthly views" and your public analytics show far fewer, you lose credibility at once. Report accurate numbers and let the quality of your audience speak.</p>
+
+      <p><strong>No pricing.</strong> A clear price lets a brand judge budget fit without waiting for a reply. Hidden pricing slows the process and can mean you are passed over for a creator who made the decision easier.</p>
+
+      <p><strong>Poor design quality.</strong> If the kit looks like it was made in five minutes, brands may question the quality of your content. Spend an afternoon on the design. It needs to be professional, not perfect.</p>
+
+      <p><strong>Generic positioning.</strong> "I'm a lifestyle creator" tells a brand nothing about your audience. "I review productivity tools for remote workers and startup founders, with a focus on tools under $50 a month" tells the brand exactly which products fit. Be specific about your niche.</p>
+
+      <h2>How do you deliver a sponsorship media kit?</h2>
+
+      <p>Attach the kit to your first outreach email and say so in the email: "I've attached my media kit with audience demographics, engagement metrics and sponsorship packages." Do not wait for the brand to ask. Proactive delivery gives the brand everything it needs in one email. The <a href="/blog/cold-email-sponsorship-pitch/">cold email sponsorship pitch</a> guide has subject lines and templates to send it with.</p>
+
+      <p>Also host the kit as a downloadable link on your website. Create a simple /sponsors or /partners page with a short overview and a download button, so creators and brands who find you through search can explore sponsorship without outreach. Some creators add the kit link to their link-in-bio tool.</p>
+
+      <p>If you list yourself on a creator marketplace, link or attach your kit on your profile where the platform allows it. The <a href="/best-sponsorship-platforms/">best sponsorship platforms</a> page compares them. A professional kit turns a vague request into a concrete business proposal, and it is the document the brand's decision-maker reads before they reply.</p>
+
+      <h2>Sponsorship media kit FAQ</h2>
+
+      {faq.map((f) => (
+        <>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </>
+      ))}
+
+      <div class="not-prose mt-10 p-6 border border-blue-200 rounded-lg bg-blue-50">
+        <p class="text-sm font-medium text-blue-900">Kit ready? Get it in front of brands that sponsor newsletters</p>
+        <p class="mt-1 text-sm text-blue-700">
+          If you run a newsletter, Sponsor Radar finds brands that sponsored similar newsletters, sends the pitches from its own mailboxes, and introduces you when a brand replies.
+        </p>
+        <a href={SR.cta('sponsorship-media-kit-guide')} class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">See sponsors for your newsletter &rarr;</a>
+      </div>
 
     </div>
   </article>

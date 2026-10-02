@@ -1,58 +1,241 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { siteConfig } from '../../config';
+import Byline from '../../components/Byline.astro';
+import { RATES, SR } from '../../data/sr-stats';
+import { articleSchema, faqSchema } from '../../lib/article';
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How Much Should You Charge for a Sponsorship? The CPM Math",
-  "author": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "publisher": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "datePublished": "2026-06-11T00:00:00.000Z",
-  "dateModified": "2026-06-11T00:00:00.000Z",
-};
+const PATH = '/blog/how-much-to-charge-for-sponsorship/';
+const PUBLISHED = '2026-06-11';
+const MODIFIED = '2026-10-02';
+
+const usd = (n: number) => `$${n.toLocaleString('en-US')}`;
+const usd2 = (n: number) => `$${n.toFixed(2)}`;
+const [r1, r2, r3, r4, r5] = RATES.rows;
+const [second, classified, dedicated] = RATES.placements;
+
+// Worked example 1: price per 1,000 subscribers from the 5,000 to 19,999 row (arithmetic shown on the page).
+const exThousands = r2.medianSubs / 1000;
+const exCpm = Math.round(r2.median / exThousands);
+
+// Worked example 2: the other placements applied to a $310 main slot (the row median), rounded to the dollar.
+const exSecond = Math.round(r2.median * (parseFloat(second.median) / 100));
+const exClassified = Math.round(r2.median * (parseFloat(classified.median) / 100));
+const exDedicated = Math.round(r2.median * parseFloat(dedicated.median));
+
+// Worked example 3: the doubling lift applied to the same row median.
+const exDoubledList = r2.medianSubs * 2;
+const exDoubledPrice = Math.round(r2.median * (1 + parseFloat(RATES.doublingLift) / 100));
+
+// Illustrative, round, hypothetical numbers for the third-party formats (labeled "for example" on the page).
+const podDownloads = 5000;
+const podCpm = 25;
+const podSpot = (podDownloads / 1000) * podCpm;
+const ytViews = 20000;
+const ytCpm = 20;
+const ytFee = (ytViews / 1000) * ytCpm;
+const evCost = 2000;
+
+const title = `Sponsorship Pricing: What ${RATES.n} Newsletters Charge in 2026`;
+const description = `How much to charge for a sponsorship: the median newsletter main slot lists at ${usd(r2.median)} for 5,000 to 19,999 subscribers. Prices by list size, CPM and format.`;
+const h1 = 'Sponsorship Pricing: How Much to Charge for a Sponsorship';
+
+const faq = [
+  {
+    q: 'How much should I charge for a sponsorship?',
+    a: `Start at the median that similar creators list for the same placement: ${usd(r2.median)} for the main slot of a newsletter with 5,000 to 19,999 subscribers, with the middle half asking ${usd(r2.p25)} to ${usd(r2.p75)} (Sponsor Radar's read of ${RATES.n} newsletters' advertise pages, ${RATES.read}). Podcasts and videos price per 1,000 downloads or views, and events price per package.`,
+  },
+  {
+    q: 'What is the average cost of a sponsorship?',
+    a: `For one newsletter issue, the median main slot runs from ${usd(r1.median)} under 5,000 subscribers to ${usd(r5.median)} at 100,000 or more (${RATES.n} newsletters, read ${RATES.read}). Other formats price differently. Libsyn Ads lists baked-in 60-second podcast reads at $24 to $26 per 1,000 downloads, and Descript says YouTube CPMs often range from $5 to $30 per 1,000 views, as of early 2025.`,
+  },
+  {
+    q: 'How much should I charge for a sponsored post?',
+    a: `For an Instagram or TikTok post, published figures disagree. Sprout Social's 2025 Influencer Marketing Report finds half of influencers charge $250 to $1,000 per post, while impact.com's US rate cards (updated August 2025) show $500 to $2,000 for accounts under 15,000 followers. For a newsletter, a classified or text ad lists at a median ${classified.median} of the main slot and a second slot at ${second.median} (read ${RATES.read}).`,
+  },
+  {
+    q: 'What is a good CPM for a sponsorship?',
+    a: `For newsletters, the median main slot lists at ${usd2(r1.perK)} per 1,000 subscribers on lists under 5,000, falling to ${usd2(r5.perK)} on lists of 100,000 or more (${RATES.n} newsletters, read ${RATES.read}). Libsyn Ads lists baked-in 60-second podcast reads at $24 to $26 per 1,000 downloads. Subscribers, downloads and views are different counts, so compare a CPM only within one format.`,
+  },
+  {
+    q: 'Why do bigger newsletters charge less per subscriber?',
+    a: `Price rises more slowly than list size. On a line fitted through ${RATES.n} newsletters, a list twice the size lists its main slot about ${RATES.doublingLift} higher, so the median price per 1,000 subscribers falls from ${usd2(r1.perK)} on lists under 5,000 to ${usd2(r5.perK)} on lists of 100,000 or more.`,
+  },
+  {
+    q: 'How can I compare sponsorship pricing across different media?',
+    a: `Divide each price by the audience in thousands, then check what the audience count means. For example, a ${usd(r2.median)} main slot on a ${r2.medianSubs.toLocaleString('en-US')}-subscriber list is ${usd(exCpm)} per 1,000 subscribers, while a podcast read is priced per 1,000 downloads. Subscribers, downloads, views and event attendees are different counts, so use the CPM as a first check within one format.`,
+  },
+];
+
+const schema = [
+  articleSchema({ headline: title, description, path: PATH, published: PUBLISHED, modified: MODIFIED }),
+  faqSchema(faq),
+];
 ---
 
-<Base
-  title="How Much Should You Charge for a Sponsorship? The CPM Math"
-  description="Price sponsorships from CPM, not vibes: rate = (audience × expected impressions per send/episode) ÷ 1,000 × category CPM, then adjust for niche, engagement, and exclusivity. The formula, the adjusters, and the floor."
-  schema={schema}
-  articleDate="2026-06-11"
-  articleModified="2026-06-11"
->
+<Base title={title} description={description} schema={schema} articleDate={PUBLISHED} articleModified={MODIFIED}>
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <header>
-      <time class="text-sm text-gray-400">June 11, 2026</time>
-      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How Much Should You Charge for a Sponsorship? The CPM Math</h1>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
+      <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>Price from impressions, not follower counts: take the impressions a sponsor actually gets (opens for a newsletter, downloads for a podcast, views for a video), divide by 1,000, and multiply by a CPM appropriate to your format and niche — then adjust for engagement quality, audience specificity, and placement. Sponsors buying across many creators all do this math; creators who don't are negotiating blind.</strong></p>
+      <p><strong>Price a sponsorship at what similar creators list for the same placement, then adjust for your results. For newsletters, the median main slot lists at {usd(r2.median)} for 5,000 to 19,999 subscribers and {usd(r3.median)} for 20,000 to 49,999 (<a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's read of {RATES.n} newsletters' advertise pages</a>, {RATES.read}). Podcasts, video and events price differently.</strong></p>
 
-      <h2>The formula, by format</h2>
+      <h2>What do newsletter sponsorships cost by list size?</h2>
 
-      <ul>
-        <li><strong>Newsletters:</strong> price per send = (subscribers × open rate) ÷ 1,000 × CPM. A 10,000-subscriber letter with 50% opens sells 5,000 impressions per send — at format-typical CPMs running from the tens of dollars in general niches to substantially more in narrow B2B audiences, that's a per-send rate in the low hundreds before adjusters.</li>
-        <li><strong>Podcasts:</strong> downloads per episode (first 30 days) ÷ 1,000 × CPM, with host-read mid-rolls commanding the top of the range.</li>
-        <li><strong>YouTube/video:</strong> median views ÷ 1,000 × CPM for a dedicated integration; mentions price lower.</li>
-      </ul>
+      <p>The main sponsor slot in one issue lists at a median {usd(r1.median)} under 5,000 subscribers, {usd(r2.median)} at 5,000 to 19,999, {usd(r3.median)} at 20,000 to 49,999, {usd(r4.median)} at 50,000 to 99,999 and {usd(r5.median)} at 100,000 or more. The main slot is the top sponsor placement in one issue, and each newsletter counts once, at the cheapest main slot it lists.</p>
 
-      <p>Run your own numbers with the <a href="/tools/media-kit-builder/">media kit builder</a> — sponsors will ask for exactly these inputs anyway.</p>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Subscribers</th>
+              <th>Newsletters</th>
+              <th>Median subscribers</th>
+              <th>Low (25th pct)</th>
+              <th>Median</th>
+              <th>High (75th pct)</th>
+              <th>Median per 1,000 subscribers</th>
+            </tr>
+          </thead>
+          <tbody>
+            {RATES.rows.map((r) => (
+              <tr>
+                <td>{r.size}</td>
+                <td>{r.n}</td>
+                <td>{r.medianSubs.toLocaleString('en-US')}</td>
+                <td>{usd(r.p25)}</td>
+                <td><strong>{usd(r.median)}</strong></td>
+                <td>{usd(r.p75)}</td>
+                <td>{usd2(r.perK)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-      <h2>The adjusters that move the rate</h2>
+      <p class="text-sm text-gray-600">Source: Sponsor Radar's read of {RATES.n} newsletters that print a main-slot price and a list of 500 or more subscribers on their advertise page, {RATES.read}. Method and the full table are on <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's newsletter sponsorship rates page</a>. The top two rows hold only {r4.n} and {r5.n} newsletters, so read their medians as rough. {RATES.passionfroot} of the {RATES.n} prices were read from Passionfroot storefronts, and newsletters that sell by quote publish no price, so these figures lean toward storefront sellers. They are list prices on one day's pages. A deal can close above or below them.</p>
 
-      <ul>
-        <li><strong>Audience specificity beats audience size.</strong> Five thousand DevOps leads outprice fifty thousand general readers because the sponsor's alternative cost to reach them is higher. B2B niches command the largest premiums — the same logic that makes <a href="/blog/find-brands-that-sponsor/">B2B sponsors</a> the best-paying targets.</li>
-        <li><strong>Demonstrated response:</strong> if past sponsors got clicks or conversions you can show, you've moved from selling impressions to selling outcomes — price accordingly and put the proof in the <a href="/blog/sponsorship-media-kit-guide/">media kit</a>.</li>
-        <li><strong>Placement and exclusivity:</strong> top-of-newsletter, host-read, category exclusivity, and multi-send packages each justify premiums; bundles (3-send packages at a modest discount) raise deal size while smoothing your pipeline.</li>
-        <li><strong>The floor:</strong> below roughly $100 per placement, administration eats the margin — bundle until each deal clears it.</li>
-      </ul>
+      <h2>How does CPM sponsorship pricing work?</h2>
 
-      <h2>Negotiation reality</h2>
+      <p>CPM is the price per 1,000 impressions: divide the price by the audience in thousands. For example, the 5,000 to 19,999 row has a median list of {r2.medianSubs.toLocaleString('en-US')} subscribers and a median main-slot price of {usd(r2.median)}. The arithmetic is {usd(r2.median)} ÷ ({r2.medianSubs.toLocaleString('en-US')} ÷ 1,000) = {usd(exCpm)} per 1,000 subscribers.</p>
 
-      <p>Quote a rate card ~20% above your CPM math so a negotiated discount lands on target; never go below your floor for a first-time sponsor (it anchors every renewal); and treat "we'll pay in exposure" as a no. When a brand counter-offers with performance terms (affiliate/CPA), counter with hybrid: a reduced flat fee plus commission — pure performance shifts all the risk to you.</p>
+      <p>The table's last column, labeled median per 1,000 subscribers, shows {usd2(r2.perK)} for that row. It differs from {usd(exCpm)} because a median of per-newsletter ratios is not the same as a median price divided by a median list. Down the five rows the median price per 1,000 subscribers is {usd2(r1.perK)}, {usd2(r2.perK)}, {usd2(r3.perK)}, {usd2(r4.perK)} and {usd2(r5.perK)}.</p>
 
-      <p>The other half of rate leverage is pipeline: a creator with five interested brands negotiates very differently than one with a single inbound. Filling that pipeline is outbound work — finding the right sponsor contacts and <a href="/blog/cold-email-sponsorship-pitch/">pitching them cold</a> — and <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> does both halves for newsletters. Newsletter owners can also check their number against what other newsletters print: the <a href="https://sponsorradar.co/newsletter-sponsorship-rates">median main-slot price by list size</a>, from 321 newsletters' own advertise pages (read 29 September 2026).</p>
+      <p>That counts every subscriber as one impression. Fewer people open an issue than subscribe, so a CPM figured on opens comes out higher. Use the CPM to compare your price with other formats and other lists. Do not multiply your list by one flat CPM to set a price, because the price per subscriber falls as lists grow (see the section on bigger lists below).</p>
+
+      <h2>How much should each newsletter placement cost?</h2>
+
+      <p>A second slot in the same issue lists at a median {second.median} of the main slot, a classified or text ad at {classified.median}, and a dedicated send, where the whole email carries one advertiser, at {dedicated.median} the main slot.</p>
+
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Placement</th>
+              <th>Newsletters listing it and a main slot</th>
+              <th>Median, against the main slot</th>
+              <th>Middle half</th>
+            </tr>
+          </thead>
+          <tbody>
+            {RATES.placements.map((p) => (
+              <tr>
+                <td>{p.name}</td>
+                <td>{p.n}</td>
+                <td><strong>{p.median}</strong></td>
+                <td>{p.middle}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p>For example, a newsletter whose main slot is {usd(r2.median)} would price a second slot near {usd(exSecond)} ({usd(r2.median)} × {second.median}), a classified near {usd(exClassified)} ({usd(r2.median)} × {classified.median}) and a dedicated send near {usd(exDedicated)} ({usd(r2.median)} × {dedicated.median.replace(' times', '')}). These are medians, so use them as starting points. Source: <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's read of newsletters' advertise pages</a>, {RATES.read}. Only the price of one placement in one issue or send counts there, so bundles and multi-issue prices are not in these figures. For those, see <a href="/blog/sponsorship-packages/">how to price sponsorship packages and tiers</a>.</p>
+
+      <h2>Why do bigger newsletters charge less per subscriber?</h2>
+
+      <p>Price rises more slowly than list size. On a line fitted through the {RATES.n} newsletters, a list twice the size lists its main slot about {RATES.doublingLift} higher, so the median price per 1,000 subscribers falls from {usd2(r1.perK)} on lists under 5,000 to {usd2(r5.perK)} on lists of 100,000 or more.</p>
+
+      <p>For example, a newsletter at the {r2.medianSubs.toLocaleString('en-US')}-subscriber median lists at {usd(r2.median)}. At {exDoubledList.toLocaleString('en-US')} subscribers the fitted line says about {usd(r2.median)} × 1.{RATES.doublingLift.replace('%', '')} = {usd(exDoubledPrice)}, not double. If you grow your list, expect to raise your price by less than your growth.</p>
+
+      <h2>How do I set my own newsletter price?</h2>
+
+      <p>Find your row in the table and start at its median. Then adjust inside the range the data shows.</p>
+
+      <ol>
+        <li><strong>Pick your row.</strong> Match your list size to a row. At {r2.size} subscribers the median is {usd(r2.median)}.</li>
+        <li><strong>Check the range.</strong> The middle half of newsletters in that row ask {usd(r2.p25)} to {usd(r2.p75)}. Below the low end you ask less than most newsletters your size. Above the high end you need a reason.</li>
+        <li><strong>Earn the top of the range with proof.</strong> Put a click count or a past sponsor's result in your proposal. The <a href="/blog/sponsorship-media-kit-guide/">sponsorship media kit guide</a> shows where that proof goes, and the <a href="/tools/media-kit-builder/">media kit builder</a> lays it out.</li>
+        <li><strong>Price the other placements off the main slot</strong> with the percentages above.</li>
+      </ol>
+
+      <p>The prices do not show why some newsletters in a row ask more than others. No single niche has 50 newsletters with a printed price and list size, so Sponsor Radar does not split prices by niche. The <a href="/tools/sponsorship-rate-calculator/">sponsorship rate calculator</a> does this row lookup for your list size.</p>
+
+      <p>Once you have a number, send it to brands that already buy newsletter ads. <a href={SR.cta('sponsorship-pricing')} target="_blank" rel="noopener noreferrer">Sponsor Radar</a> lists the brands that sponsored newsletters like yours, finds the person who buys the ads, and emails them from its own mailboxes. For your own outreach, see the <a href="/blog/cold-email-sponsorship-pitch/">cold email sponsorship pitch guide</a>.</p>
+
+      <h2>How much should a podcast sponsorship cost?</h2>
+
+      <p>Podcast ads price per 1,000 downloads. The ad network Libsyn Ads counts the downloads a new episode gets in its first 30 days, divides by 1,000 and multiplies by a CPM (<a href="https://advertising.libsyn.com/podcast-advertising-ultimate-guide" target="_blank" rel="noopener noreferrer">Libsyn Ads' 2026 podcast advertising guide</a>, read 2 October 2026). It lists baked-in host-read ads at $24 to $26 per 1,000 downloads for a 60-second spot and $18 to $22 for a 30-second spot. By category, its baked-in host-read CPMs are $30 for business shows, $26 for technology and $22 for games.</p>
+
+      <p>The podcast ad platform Acast gives higher host-read numbers: $25 to $40 per 1,000 listens for host-read sponsorships on individual shows and $15 to $30 for pre-recorded ads, with business and finance shows often at $40 or more (<a href="https://www.acast.com/en/news-and-insights/how-much-does-podcast-advertising-cost" target="_blank" rel="noopener noreferrer">Acast's podcast advertising cost guide</a>, titled for 2026, read 2 October 2026). Acast also says a mid-roll is the most expensive slot and a post-roll the cheapest.</p>
+
+      <p>For example, an episode with {podDownloads.toLocaleString('en-US')} downloads in its first 30 days, sold at a ${podCpm} CPM, prices one spot at {podDownloads.toLocaleString('en-US')} ÷ 1,000 × ${podCpm} = ${podSpot}. The two sources differ, so quote a range and let the quality of your audience decide where in it you land.</p>
+
+      <h2>How much should a YouTube sponsorship cost?</h2>
+
+      <p>YouTube sponsorships price as your average views ÷ 1,000 × a CPM, or as a flat fee by channel size. Descript's YouTube sponsorship guide gives the formula as CPM × views ÷ 1,000 and says that as of early 2025 CPMs often range from $5 to $30 per 1,000 views, with highly specialized channels charging more (<a href="https://www.descript.com/blog/article/how-much-should-you-charge-for-youtube-sponsorship" target="_blank" rel="noopener noreferrer">Descript</a>, read 2 October 2026).</p>
+
+      <p>For example, a channel that averages {ytViews.toLocaleString('en-US')} views per video, priced at a ${ytCpm} CPM, quotes {ytViews.toLocaleString('en-US')} ÷ 1,000 × ${ytCpm} = ${ytFee} for one integration. Flat fees by channel tier are in the table in the next section. The tier fees and the CPM math give very different numbers, so check any quote against your own average views.</p>
+
+      <h2>How much should an Instagram or TikTok sponsored post cost?</h2>
+
+      <p>Published figures disagree, so treat them as ranges. In Sprout Social's 2025 Influencer Marketing Report, half of influencers charge $250 to $1,000 per post, and 71% offer discounts for longer-term partnerships (<a href="https://sproutsocial.com/insights/influencer-marketing-statistics/" target="_blank" rel="noopener noreferrer">Sprout Social's influencer marketing statistics</a>, published 29 April 2026).</p>
+
+      <p>impact.com publishes higher US averages per post, taken from rate cards its influencer programs team collected (<a href="https://impact.com/influencer/how-much-do-influencers-charge-per-post/" target="_blank" rel="noopener noreferrer">impact.com's influencer rate guide</a>, published 19 May 2025, updated 11 August 2025):</p>
+
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Tier (impact.com's labels)</th>
+              <th>Instagram post or TikTok video</th>
+              <th>YouTube sponsored video</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Nano, under 15,000 followers</td><td>$500 to $2,000</td><td>$1,000 to $2,500</td></tr>
+            <tr><td>Micro, 15,000 to 75,000</td><td>$2,000 to $8,000</td><td>$2,500 to $9,000</td></tr>
+            <tr><td>Mid-tier, 75,000 to 250,000</td><td>$8,000 to $20,000</td><td>$9,000 to $25,000</td></tr>
+            <tr><td>Macro, 250,000 to 1 million</td><td>$20,000 to $45,000</td><td>$25,000 to $49,000</td></tr>
+            <tr><td>Mega or celebrity, over 1 million</td><td>$45,000 and up</td><td>$49,000 and up</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm text-gray-600">Source: impact.com, US averages per post from its influencer programs team's rate cards, 2025. From the micro tier up, impact.com's figures sit above the survey's middle range, so do not read either source as your price. Test any quote against what your own past posts delivered.</p>
+
+      <h2>Should I charge a flat fee, a CPM or a commission?</h2>
+
+      <p>Charge a flat fee first. A flat fee is one price for one placement, and the newsletter prices above are flat fees. A CPM scales the fee with your audience, which is how podcasts price. A commission pays on sales. impact.com says brands typically offer a flat fee plus a 10 to 20 percent commission on sales across social platforms, and cites an Adweek and impact.com study in which four out of five creators wanted a combination of both payment structures (<a href="https://impact.com/influencer/how-much-do-influencers-charge-per-post/" target="_blank" rel="noopener noreferrer">impact.com</a>, updated 11 August 2025). Pure commission moves the risk to you, so ask for a flat fee first.</p>
+
+      <h2>How do you price an event sponsorship?</h2>
+
+      <p>Event sponsorships price per package, and a package price starts from what it costs you to deliver. Kim Skildum-Reid of Power Sponsorship sets a baseline fee at 3 × (cost to deliver the benefits + cost of sale + cost of servicing), and a red line fee at 2 × the same costs, below which a sponsorship may not be worth selling. She budgets at least 10% of the gross value for servicing and writes that there is no single formula for the final price (<a href="https://powersponsorship.com/sponsorship-pricing-basics/" target="_blank" rel="noopener noreferrer">Power Sponsorship</a>, published 8 December 2019, updated 5 September 2025).</p>
+
+      <p>For example, if delivering, selling and servicing a package costs you ${evCost.toLocaleString('en-US')} in total, the baseline fee is 3 × ${evCost.toLocaleString('en-US')} = ${(3 * evCost).toLocaleString('en-US')} and the red line fee is 2 × ${evCost.toLocaleString('en-US')} = ${(2 * evCost).toLocaleString('en-US')}.</p>
+
+      <p>For market prices, i4a's guide to association conferences lists typical tier ranges of $15,000 to $50,000 or more for a title sponsor, $7,500 to $20,000 for gold, $3,000 to $10,000 for silver and $1,000 to $5,000 for bronze, and separately advises a top tier of three to four times the bottom, which its own ranges exceed (<a href="https://www.i4a.com/blog/event-sponsorship-packages/" target="_blank" rel="noopener noreferrer">i4a</a>, updated 30 June 2026). Those are association-event ranges, not a rule for every event. For how to build the tiers, see <a href="/blog/sponsorship-packages/">sponsorship packages, tiers and how to price them</a>. If a media company is trading coverage for your sponsorship, <a href="/blog/media-sponsorship/">how to value a media sponsorship</a> prices that coverage in dollars.</p>
+
+      <h2>Frequently asked questions</h2>
+
+      {faq.map((f) => (
+        <>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </>
+      ))}
 
     </div>
   </article>

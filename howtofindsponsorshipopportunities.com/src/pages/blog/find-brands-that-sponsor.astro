@@ -1,56 +1,136 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { siteConfig } from '../../config';
+import Byline from '../../components/Byline.astro';
+import { SR, SPONSORS, PITCHES } from '../../data/sr-stats';
+import { articleSchema, faqSchema } from '../../lib/article';
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "How to Find Brands That Already Sponsor Creators Like You",
-  "author": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "publisher": { "@type": "Organization", "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
-  "datePublished": "2026-06-11T00:00:00.000Z",
-  "dateModified": "2026-06-11T00:00:00.000Z",
-};
+const PATH = '/blog/find-brands-that-sponsor/';
+const PUBLISHED = '2026-06-11';
+const MODIFIED = '2026-10-02';
+const THIRD_PARTY_READ = '2 October 2026';
+
+const n = (x: number) => x.toLocaleString('en-US');
+const seen = PITCHES.evidence.seen;
+const none = PITCHES.evidence.none;
+const [founder, marketing] = PITCHES.titles;
+
+const title = 'How to Find Brands That Sponsor Creators (With Data)';
+const description = `Brands with a newsletter ad on record replied ${seen.rate} of the time, against ${none.rate} for brands with none. How to find brands already sponsoring creators like you.`;
+const h1 = 'How to Find Brands That Already Sponsor Creators Like You';
+
+const faq = [
+  {
+    q: 'How do you find brands that sponsor creators?',
+    a: `Read the sponsor slots of newsletters, podcasts and channels like yours, then check ad libraries, sponsor directories and partnerships job posts. List every brand with the creator it sponsored and the format it bought. Sponsor Radar's public list shows ${n(SPONSORS.brands)} brands seen sponsoring ${n(SPONSORS.newsletters)} newsletters as of ${SPONSORS.read}, mostly read from published issues and the rest from sponsor pages and articles.`,
+  },
+  {
+    q: 'Do brands that already sponsor creators reply more to pitches?',
+    a: `Yes, in Sponsor Radar's data. From ${PITCHES.window}, brands with a newsletter ad on record replied to its automated pitches at ${seen.rate} (${n(seen.replies)} of ${n(seen.sent)}), against ${none.rate} (${n(none.replies)} of ${n(none.sent)}) for brands with none. That compares reply rates only, because the yes counts are too small to compare.`,
+  },
+  {
+    q: 'What is a sponsor discovery platform?',
+    a: `A sponsor discovery platform is a database or tool that shows which brands buy sponsorships and where. Sponsor Radar and SponsorGap cover newsletters, and sponsorradar.com, a company unrelated to Sponsor Radar, covers YouTube. Our comparison of 15 sponsorship platforms ranks them by how much selling each does for you, published fees and who can join.`,
+  },
+  {
+    q: 'How many brands should you pitch to land one sponsorship?',
+    a: `In Sponsor Radar's automated outreach, it took about ${PITCHES.pitchesPerYes} pitches per yes: ${PITCHES.yeses} positive first answers from ${n(PITCHES.sent)} first pitches to brands for ${PITCHES.newsletters} newsletters, ${PITCHES.window}. A yes is an interested first answer, not a signed deal. A pitch you target by hand may do better, and we have no data on that.`,
+  },
+];
+
+const schema = [
+  articleSchema({ headline: title, description, path: PATH, published: PUBLISHED, modified: MODIFIED }),
+  faqSchema(faq),
+];
 ---
 
-<Base
-  title="How to Find Brands That Already Sponsor Creators Like You"
-  description="The highest-converting sponsor prospect is a brand already paying creators in your niche: they have budget, a process, and proof the channel works. The reverse-prospecting workflow — mine competitor sponsors, ad libraries, and niche directories."
-  schema={schema}
-  articleDate="2026-06-11"
-  articleModified="2026-06-11"
->
+<Base title={title} description={description} schema={schema} articleDate={PUBLISHED} articleModified={MODIFIED}>
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <header>
-      <time class="text-sm text-gray-400">June 11, 2026</time>
-      <h1 class="mt-2 text-3xl md:text-4xl font-extrabold text-gray-900">How to Find Brands That Already Sponsor Creators Like You</h1>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
+      <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>The best sponsor prospect isn't a brand that <em>should</em> sponsor you — it's a brand already sponsoring creators adjacent to you. Active sponsors have allocated budget, a buying process, and internal proof the channel works; your pitch to them is a media swap, not a channel evangelism project. Reverse-prospecting them is systematic work, not luck.</strong></p>
+      <p><strong>Find brands that already sponsor creators in your niche. Read the sponsor slots of adjacent newsletters, podcasts and channels, then check ad libraries, sponsor directories and job posts. They reply more: in Sponsor Radar's pitches, brands with a newsletter ad on record replied at {seen.rate}, against {none.rate} for brands with none.</strong></p>
 
-      <h2>Mine your adjacent creators' sponsors</h2>
+      <h2>Do brands that already sponsor creators reply more?</h2>
+
+      <p>Yes, in Sponsor Radar's data. Between {PITCHES.window}, Sponsor Radar sent {n(PITCHES.sent)} first pitches to brands for {PITCHES.newsletters} newsletters. Brands that had a newsletter ad on record replied at {seen.rate}. Brands with none replied at {none.rate}.</p>
+
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Brand group</th>
+              <th>Pitches sent</th>
+              <th>Replies</th>
+              <th>Reply rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{seen.label}</td>
+              <td>{n(seen.sent)}</td>
+              <td>{n(seen.replies)}</td>
+              <td><strong>{seen.rate}</strong></td>
+            </tr>
+            <tr>
+              <td>{none.label}</td>
+              <td>{n(none.sent)}</td>
+              <td>{n(none.replies)}</td>
+              <td><strong>{none.rate}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm text-gray-600">Source: Sponsor Radar's {n(PITCHES.sent)} pitches to brands, {PITCHES.window}, read {PITCHES.read}. These are Sponsor Radar's automated outreach for newsletters, one short email per brand sent from its own mailboxes, not hand-written pitches. A reply is the brand's first answer. Reply rates only: the yes counts are too small to compare. It is two groups of brands, not a controlled test, so brands that buy newsletter ads may differ in other ways too.</p>
+
+      <p>Across all {n(PITCHES.sent)} pitches the reply rate was {PITCHES.replyRate} ({PITCHES.replies} replies). The reason to start with active sponsors is simple: the offer matches a budget that already exists, so your pitch is a request to buy a placement, not an argument for a new channel.</p>
+
+      <h2>How do you find brands that already sponsor creators in your niche?</h2>
+
+      <p>Read the sponsor slots of every newsletter, podcast and channel adjacent to yours and list each sponsor you find. That list is pre-qualified: the right niche, an active budget and a demonstrated willingness to buy placements at your size. Archives are public.</p>
 
       <ul>
-        <li><strong>Read the last 10–20 issues/episodes of every newsletter and podcast adjacent to yours</strong> and list every sponsor. That list is pre-qualified: right niche, active budget, demonstrated willingness to buy placements your size. Archives are public; the work is an afternoon per niche.</li>
-        <li><strong>Watch for repeat sponsors specifically</strong> — a brand appearing across multiple creators or multiple months is running a program, not an experiment. Programs have managers whose job is buying more placements.</li>
-        <li><strong>Note the format they buy</strong> (dedicated sends vs classified slots vs host-reads) so your offer matches their existing motion.</li>
+        <li><strong>Read recent issues, episodes and videos</strong> of each adjacent creator and write down every sponsor, the creator it sponsored and the date you saw it.</li>
+        <li><strong>Watch for repeat sponsors.</strong> A brand that appears across several creators or several months is running a program, not an experiment. Programs have managers whose job is buying more placements.</li>
+        <li><strong>Note the format they buy</strong> (dedicated send, classified slot or host read) so your offer matches their existing habit.</li>
       </ul>
 
-      <h2>Use the public paper trail</h2>
+      <p>For newsletters, you can skip some of the reading. Sponsor Radar's <a href={SR.sponsorsUrl} target="_blank" rel="noopener noreferrer">public newsletter sponsors list</a> shows {n(SPONSORS.brands)} brands seen sponsoring {n(SPONSORS.newsletters)} newsletters as of {SPONSORS.read}, mostly read from published issues and the rest from sponsor pages and articles.</p>
+
+      <h2>What public records show which brands spend on creators?</h2>
+
+      <p>Four public sources point to brands that buy creator placements.</p>
 
       <ul>
-        <li><strong>Ad libraries:</strong> Meta's and others' transparency archives show which brands in your category are spending on paid social — a strong proxy for performance-marketing budgets that also fund creator placements.</li>
-        <li><strong>Sponsor directories and marketplaces:</strong> newsletter/podcast marketplaces publicly list active buyers; even without transacting there, the buyer lists are prospecting data.</li>
-        <li><strong>Job postings:</strong> a brand hiring for "influencer marketing" or "partnerships" is announcing budget — and naming the team to pitch.</li>
-        <li><strong>Funding news:</strong> freshly funded companies in your niche spend on awareness; cross-reference our broader <a href="/blog/find-sponsorship-opportunities-guide/">opportunity-finding guide</a> for the trigger-event angles.</li>
+        <li><strong>Ad libraries.</strong> Meta's Ad Library has a searchable database of all active, public branded content on Facebook and Instagram with a paid partnership label (<a href="https://transparency.meta.com/researchtools/ad-library-tools/" target="_blank" rel="noopener noreferrer">Meta Transparency Center</a>, read {THIRD_PARTY_READ}). Use it to see which brands appear in paid partnerships in your niche.</li>
+        <li><strong>Disclosure labels.</strong> YouTube adds a paid promotion label at the start of a video when the creator selects the paid promotion button (<a href="https://support.google.com/youtube/answer/154235" target="_blank" rel="noopener noreferrer">YouTube Help</a>, read {THIRD_PARTY_READ}), so a competitor's recent videos name its sponsors.</li>
+        <li><strong>Sponsor directories and marketplaces.</strong> Newsletter and podcast marketplaces publicly list active buyers. The buyer lists are prospecting data even if you never sell there. Our <a href="/best-sponsorship-platforms/">comparison of 15 sponsorship platforms</a> shows which ones list sponsors.</li>
+        <li><strong>Job postings and funding news.</strong> A brand hiring for influencer marketing or partnerships is paying for that work, and the posting names the team to pitch. A freshly funded company in your niche may spend on awareness. Neither is proof, so check that the brand has sponsored someone recently.</li>
       </ul>
 
-      <h2>From brand list to human inbox</h2>
+      <p>For the wider set of ways to get sponsored on each channel, see <a href="/blog/find-sponsorship-opportunities-guide/">how to find sponsorship opportunities by channel</a>.</p>
 
-      <p>A target list of 50 brands is only as useful as the 50 right humans inside them — partnership, growth, or brand managers, not info@. That's a contact-finding problem (the workflows at our sibling site <a href="https://howtofindanyonesemail.com/">howtofindanyonesemail.com</a> cover it manually), then a verification problem (bounced pitches burn your sending domain — <a href="https://howtoverifyemails.com/">verify first</a>), then a pitch problem: short, specific, audience-stats-forward, per the <a href="/blog/cold-email-sponsorship-pitch/">sponsorship pitch templates</a> and your <a href="/blog/how-much-to-charge-for-sponsorship/">rate math</a>.</p>
+      <h2>How do you get from a brand list to the right person?</h2>
 
-      <p>For newsletters, <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a> does these steps in one pass: paste your newsletter's URL and it lists the brands that sponsored similar newsletters, the person at each brand who buys the ads, and a drafted pitch. Its public <a href="https://sponsorradar.co/newsletter-sponsors">newsletter sponsors list</a> shows the brands seen sponsoring newsletters, mostly read from published issues and rebuilt daily.</p>
+      <p>Pitch a person, not a company address. A list of brands is only as useful as the humans inside them: partnership, growth or brand managers, not info@. That is a contact-finding problem (<a href="https://howtofindanyonesemail.com/">howtofindanyonesemail.com</a>, a sibling site, covers the manual workflows), then a verification problem, because bounced pitches burn your sending domain (<a href="https://howtoverifyemails.com/">verify first</a>), then a pitch problem.</p>
+
+      <p>Reply rates were similar by job title in the same Sponsor Radar pitches. Pitches to founders, CEOs and owners drew a {founder.rate} reply rate ({n(founder.sent)} sent), and pitches to marketing titles drew {marketing.rate} ({n(marketing.sent)} sent). Write the pitch short and specific, with your audience numbers up front, following the <a href="/blog/cold-email-sponsorship-pitch/">sponsorship pitch templates</a> and your <a href="/blog/how-much-to-charge-for-sponsorship/">rate math</a>. When a brand stays silent, send a <a href="/blog/sponsorship-follow-up-email/">follow-up</a>.</p>
+
+      <p>Plan the volume before you start. In Sponsor Radar's automated outreach it took about {PITCHES.pitchesPerYes} pitches per yes, so <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a> sets out how to size your list.</p>
+
+      <p>For newsletters, <a href={SR.cta('find-brands-that-sponsor')}>{SR.name}</a> does these steps in one pass. Paste your newsletter's URL and it lists the brands that sponsored similar newsletters, finds the person at each brand who buys the ads and drafts a pitch. It then emails those brands for you from its own mailboxes, with $20 in free credits (200 emails), then 10¢ per email sent. It covers newsletters only.</p>
+
+      <h2>Questions about finding brands that sponsor</h2>
+
+      {faq.map((f) => (
+        <Fragment>
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </Fragment>
+      ))}
 
     </div>
   </article>

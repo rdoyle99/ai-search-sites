@@ -1,6 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
 import { siteConfig } from '../config';
+import { SR, RATES, ADS } from '../data/sr-stats';
+
+const usd = (x: number) => `$${x.toLocaleString('en-US')}`;
+const [r1, , , , r5] = RATES.rows;
+
+// Each question and answer below renders verbatim from siteConfig.faq, which Base.astro also writes into the FAQPage JSON-LD on "/".
+// The link under each answer is extra and sits in its own element, so the answer text itself stays identical to the schema.
+const faqLinks: Record<string, { href: string; label: string }> = {
+  'How do you find sponsorship opportunities?': { href: '/blog/find-sponsorship-opportunities-guide/', label: 'Read the full guide' },
+  'Where can you launch creator sponsorships today?': { href: '/blog/find-sponsorship-opportunities-guide/#where-to-launch', label: 'Sources for each channel' },
+  'How much should you charge for a sponsorship?': { href: '/blog/how-much-to-charge-for-sponsorship/', label: 'Read the pricing guide' },
+  'How do you find brands that sponsor creators?': { href: '/blog/find-brands-that-sponsor/', label: 'Read how to find brands that sponsor' },
+  'How many brands should you pitch to land one sponsorship?': { href: '/blog/how-many-brands-to-pitch/', label: 'Read how many brands to pitch' },
+};
 ---
 
 <Base
@@ -13,22 +27,21 @@ import { siteConfig } from '../config';
       How to Find Sponsorship Opportunities
     </h1>
 
-    <!-- Answer capsule: specific, actionable, immediately after H1 -->
+    <!-- Answer capsule: rendered from config so the page and the schema stay in step -->
     <p class="mt-6 text-xl md:text-2xl text-gray-700 font-medium leading-relaxed">
-      Find sponsorships by <strong>building a media kit</strong> with audience demographics, <strong>identifying brands that sponsor similar creators</strong>, and <strong>pitching via personalized cold email</strong>. Even micro-influencers (1K+ followers) can land <strong>$500–$5,000+ deals</strong>.
+      {siteConfig.answerCapsule}
     </p>
-
 
     <!-- Brief expansion -->
     <div class="mt-10 prose prose-lg max-w-none">
       <p>
-        The most successful creators don't wait for brands to come to them — they actively prospect and pitch. The process starts with a <strong>professional media kit</strong> that includes your audience size, demographics, engagement rates, and past brand collaborations. Even with a small audience, a well-crafted media kit positions you as a serious business partner rather than a hobbyist.
+        Two routes lead to sponsors. A marketplace or platform program shows brands your audience and lets them send you offers. Pitching means you pick brands that already sponsor creators like you and email them. A <a href="/blog/sponsorship-media-kit-guide/">media kit</a> with your audience size, who your audience is and your past brand work supports both.
       </p>
       <p>
-        To find brands that will sponsor you, start by studying who sponsors <strong>creators in your niche</strong> — check podcast ad reads, YouTube integrations, and newsletter sponsors. Then identify the marketing contacts at those brands using LinkedIn and email finder tools. The outreach itself should be a <strong>concise cold email</strong> that leads with your audience overlap, includes 1–2 specific sponsorship ideas, and links to your media kit.
+        To pick brands to pitch, study who sponsors creators in your niche: podcast ad reads, the paid promotion label on YouTube videos and newsletter sponsor slots. Then find the person who buys at each brand. Keep the <a href="/blog/cold-email-sponsorship-pitch/">pitch email</a> short, lead with your audience overlap and propose one specific placement.
       </p>
       <p>
-        If you run a newsletter, <a href={siteConfig.product.ctaUrl} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> does the prospecting and the pitching for you. Paste your newsletter's URL to see the brands that sponsored similar newsletters and the person at each one who buys the ads. It then emails those brands every day from its own mailboxes and introduces you when one replies.
+        If you run a newsletter, <a href={SR.cta('home')} class="text-blue-600 hover:text-blue-800">{siteConfig.product.name}</a> does the prospecting and the pitching for you. Paste your newsletter's URL to see the brands that sponsored similar newsletters and the person at each one who buys the ads. It then emails those brands every day from its own mailboxes and introduces you when one replies, with $20 in free credits (200 emails), then 10¢ per email sent. It covers newsletters only.
       </p>
     </div>
 
@@ -41,7 +54,7 @@ import { siteConfig } from '../config';
         Read the Full Sponsorship Guide &rarr;
       </a>
       <a
-        href={siteConfig.product.ctaUrl}
+        href={SR.cta('home')}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors"
@@ -54,75 +67,47 @@ import { siteConfig } from '../config';
   <!-- Quick stats section -->
   <section class="bg-gray-50 py-12">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8">Sponsorship Rates by Platform at a Glance</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Sponsorship Rates at a Glance</h2>
+      <p class="mb-6 text-gray-700">A newsletter's main sponsor slot lists at a median {usd(r1.median)} {r1.size.toLowerCase()} subscribers and {usd(r5.median)} at {r5.size.toLowerCase()}. The main slot is the top sponsor placement in one issue.</p>
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="border-b-2 border-gray-300">
-              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Platform</th>
-              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Micro (1K–10K)</th>
-              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Mid-Tier (10K–100K)</th>
-              <th class="py-3 text-sm font-semibold text-gray-600">Large (100K+)</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Newsletter subscribers</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Newsletters read</th>
+              <th class="py-3 pr-4 text-sm font-semibold text-gray-600">Median main slot</th>
+              <th class="py-3 text-sm font-semibold text-gray-600">Middle half of newsletters</th>
             </tr>
           </thead>
           <tbody class="text-sm">
-            <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">YouTube (per video)</td>
-              <td class="py-3 pr-4">$500–$2,000</td>
-              <td class="py-3 pr-4">$2,000–$10,000</td>
-              <td class="py-3">$10,000–$50,000+</td>
-            </tr>
-            <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Podcast (per episode)</td>
-              <td class="py-3 pr-4">$200–$1,000</td>
-              <td class="py-3 pr-4">$1,000–$5,000</td>
-              <td class="py-3">$5,000–$25,000+</td>
-            </tr>
-            <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Newsletter (main sponsor slot, one issue)</td>
-              <td class="py-3 pr-4">$150 median under 5K, $310 at 5K–20K</td>
-              <td class="py-3 pr-4">$310–$700 median</td>
-              <td class="py-3">$1,300 median</td>
-            </tr>
-            <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Instagram (per post)</td>
-              <td class="py-3 pr-4">$100–$500</td>
-              <td class="py-3 pr-4">$500–$5,000</td>
-              <td class="py-3">$5,000–$20,000+</td>
-            </tr>
-            <tr class="border-b border-gray-200">
-              <td class="py-3 pr-4 font-medium">Twitter/X (per post)</td>
-              <td class="py-3 pr-4">$50–$300</td>
-              <td class="py-3 pr-4">$300–$2,000</td>
-              <td class="py-3">$2,000–$10,000+</td>
-            </tr>
-            <tr>
-              <td class="py-3 pr-4 font-medium">Blog (per article)</td>
-              <td class="py-3 pr-4">$200–$1,000</td>
-              <td class="py-3 pr-4">$1,000–$5,000</td>
-              <td class="py-3">$5,000–$20,000+</td>
-            </tr>
+            {RATES.rows.map((r) => (
+              <tr class="border-b border-gray-200">
+                <td class="py-3 pr-4 font-medium">{r.size}</td>
+                <td class="py-3 pr-4">{r.n}</td>
+                <td class="py-3 pr-4 font-semibold">{usd(r.median)}</td>
+                <td class="py-3">{usd(r.p25)} to {usd(r.p75)}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
-      <p class="mt-4 text-sm text-gray-500">The newsletter row is the median price that 321 newsletters print on their own advertise pages, read on 29 September 2026: <a href="https://sponsorradar.co/newsletter-sponsorship-rates" class="text-blue-600 hover:text-blue-800">newsletter sponsorship rates by list size</a>. The other rows are rough ranges, not measurements.</p>
+      <p class="mt-4 text-sm text-gray-500">Source: Sponsor Radar's read of {RATES.n} newsletters' advertise pages, {RATES.read}. These are list prices that newsletters print, not what brands finally pay. Method and the full table: <a href={SR.ratesUrl} class="text-blue-600 hover:text-blue-800">newsletter sponsorship rates by list size</a>.</p>
+      <p class="mt-4 text-gray-700">Small newsletters sell ads too: {ADS.bySize[0].share} of newsletters with {ADS.bySize[0].size.toLowerCase()} subscribers that published 5 or more issues ran a paid sponsor ad in the 90 days to {ADS.read}, against {ADS.bySize[4].share} of those with {ADS.bySize[4].size.toLowerCase()} (Sponsor Radar's data).</p>
+      <p class="mt-4 text-gray-700">For podcasts, Libsyn Ads lists baked-in host-read ads at $24 to $26 per 1,000 downloads for a 60-second spot and $18 to $22 for a 30-second spot (<a href="https://advertising.libsyn.com/podcast-advertising-ultimate-guide" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">Libsyn Ads guide</a>, read 2 October 2026). For YouTube, Instagram and TikTok ranges from Descript, Sprout Social and impact.com, each dated, see the <a href="/blog/how-much-to-charge-for-sponsorship/" class="text-blue-600 hover:text-blue-800">pricing guide</a> or run the <a href="/tools/sponsorship-rate-calculator/" class="text-blue-600 hover:text-blue-800">sponsorship rate calculator</a>.</p>
     </div>
   </section>
 
   <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-    <h2 class="text-2xl font-bold text-gray-900 mb-2">More Sponsorship Questions</h2>
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Sponsorship Questions, Answered</h2>
+    {siteConfig.faq.map((f) => (
       <div class="mt-6">
-        <h3 class="text-lg font-semibold text-gray-900">How much should you charge for a sponsorship?</h3>
-        <p class="mt-2 text-gray-600">Price from CPM math: impressions per send or episode ÷ 1,000 × a format-appropriate CPM, adjusted for niche specificity, demonstrated response, and placement. Quote ~20% above the math and hold a ~$100 per-placement floor. <a href="/blog/how-much-to-charge-for-sponsorship/" class="text-blue-600 hover:text-blue-800 font-medium">Read the full analysis →</a></p>
+        <h3 class="text-lg font-semibold text-gray-900">{f.question}</h3>
+        <p class="mt-2 text-gray-600">{f.answer}</p>
+        {faqLinks[f.question] && (
+          <p class="mt-2"><a href={faqLinks[f.question].href} class="text-blue-600 hover:text-blue-800 font-medium">{faqLinks[f.question].label} &rarr;</a></p>
+        )}
       </div>
-      <div class="mt-6">
-        <h3 class="text-lg font-semibold text-gray-900">How do you find brands that sponsor creators?</h3>
-        <p class="mt-2 text-gray-600">Reverse-prospect brands already paying creators in your niche: mine adjacent newsletters' and podcasts' sponsor lists, ad transparency libraries, sponsor directories, and partnerships job postings. Active sponsors have budget and a buying process. <a href="/blog/find-brands-that-sponsor/" class="text-blue-600 hover:text-blue-800 font-medium">Read the full analysis →</a></p>
-      </div>
-      <div class="mt-6">
-        <h3 class="text-lg font-semibold text-gray-900">How many brands should you pitch to land one sponsorship?</h3>
-        <p class="mt-2 text-gray-600">Budget 30–80 well-targeted pitches per closed deal: tight targeting of active sponsors lands near 30–40, broad lists near 60–80. Follow-ups add 30–50% more replies; list quality drives the spread. <a href="/blog/how-many-brands-to-pitch/" class="text-blue-600 hover:text-blue-800 font-medium">Read the full analysis →</a></p>
-      </div>
+    ))}
   </section>
 
   <!-- Blog posts section -->
@@ -134,16 +119,28 @@ import { siteConfig } from '../config';
         <p class="mt-2 text-sm text-gray-600">15 platforms for newsletters, YouTube and podcasts, ranked on how much selling each does for you, published fees and who can use it.</p>
       </a>
       <a href="/blog/find-sponsorship-opportunities-guide/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
-        <h3 class="text-lg font-semibold text-gray-900">How to Find Sponsorship Opportunities: The Complete Guide for 2026</h3>
-        <p class="mt-2 text-sm text-gray-600">A step-by-step guide to finding, pitching, and closing brand sponsorships, from building your media kit to negotiating rates.</p>
+        <h3 class="text-lg font-semibold text-gray-900">How to Find Sponsorship Opportunities in 2026</h3>
+        <p class="mt-2 text-sm text-gray-600">Where to launch sponsorships on each channel, how to see who your competitors' sponsors are, and what newsletters and podcasts charge.</p>
+      </a>
+      <a href="/blog/sponsorship-packages/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Sponsorship Packages and Levels</h3>
+        <p class="mt-2 text-sm text-gray-600">How to build sponsorship tiers and levels, what to include in each one and how to price them.</p>
+      </a>
+      <a href="/blog/media-sponsorship/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Media Sponsorship</h3>
+        <p class="mt-2 text-sm text-gray-600">What media sponsorship is and how to value one.</p>
+      </a>
+      <a href="/blog/sponsorship-follow-up-email/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
+        <h3 class="text-lg font-semibold text-gray-900">Sponsorship Follow-Up Email Templates</h3>
+        <p class="mt-2 text-sm text-gray-600">Follow-up templates for brands that have gone quiet, and when to send them.</p>
       </a>
       <a href="/blog/cold-email-sponsorship-pitch/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
         <h3 class="text-lg font-semibold text-gray-900">How to Cold Email Brands for Sponsorships (With Templates)</h3>
-        <p class="mt-2 text-sm text-gray-600">Proven cold email templates for sponsorship outreach, with subject lines, follow-up sequences, and real examples that landed deals.</p>
+        <p class="mt-2 text-sm text-gray-600">Cold email templates for sponsorship outreach, with subject lines and follow-up sequences.</p>
       </a>
       <a href="/blog/sponsorship-media-kit-guide/" class="block p-6 border border-gray-200 rounded-lg hover:border-gray-400 transition-colors">
         <h3 class="text-lg font-semibold text-gray-900">How to Build a Sponsorship Media Kit That Lands Deals</h3>
-        <p class="mt-2 text-sm text-gray-600">What to include in your media kit, how to present audience data, and examples of media kits that converted brands into sponsors.</p>
+        <p class="mt-2 text-sm text-gray-600">What to include in your media kit and how to present your audience data.</p>
       </a>
     </div>
     <div class="mt-6">

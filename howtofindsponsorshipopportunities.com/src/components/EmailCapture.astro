@@ -26,16 +26,16 @@
       }).then(function (r) {
         msg.classList.remove('hidden');
         if (r.ok) {
-          msg.textContent = "You're in — thanks!";
+          msg.textContent = "You're in. Thanks!";
           msg.className = 'mt-3 text-sm text-green-600';
           form.reset();
         } else {
-          msg.textContent = 'Something went wrong — please try again.';
+          msg.textContent = 'Something went wrong. Please try again.';
           msg.className = 'mt-3 text-sm text-red-600';
         }
       }).catch(function () {
         msg.classList.remove('hidden');
-        msg.textContent = 'Something went wrong — please try again.';
+        msg.textContent = 'Something went wrong. Please try again.';
         msg.className = 'mt-3 text-sm text-red-600';
       });
     });

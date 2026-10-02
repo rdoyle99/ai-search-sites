@@ -1,40 +1,53 @@
 ---
 import Base from '../layouts/Base.astro';
 import { siteConfig } from '../config';
+import { personSchema, ORG_ID } from '../lib/article';
+import { RATES, PITCHES, SR } from '../data/sr-stats';
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": `About ${siteConfig.title}`,
+    "url": `${siteConfig.url}/about/`,
+    "about": { "@type": "WebSite", "name": siteConfig.title, "url": siteConfig.url },
+    "author": personSchema,
+    "publisher": { "@type": "Organization", "@id": ORG_ID, "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
+  },
+  { "@context": "https://schema.org", ...personSchema, "worksFor": { "@type": "Organization", "@id": ORG_ID, "name": "Sponsor Radar", "url": "https://sponsorradar.co" } },
+];
 ---
 
 <Base
   title={`About | ${siteConfig.title}`}
-  description={`${siteConfig.title} is a free resource on how to find and land sponsorship opportunities as a creator or publisher. Brought to you by ${siteConfig.product.name}.`}
+  description="A free guide to finding, pricing and pitching sponsorships, written by Ryan Doyle, founder of Sponsor Radar, with prices read from 321 newsletters' rate cards."
+  schema={schema}
 >
   <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">About This Site</h1>
 
     <div class="mt-8 prose prose-lg max-w-none">
       <p>
-        <strong>How to Find Sponsorship Opportunities</strong> is a free resource built to give professionals a straight, data-backed answer to the question: <em>"How to Find Sponsorship Opportunities?"</em>
+        <strong>How to Find Sponsorship Opportunities</strong> is a free guide for creators, newsletter writers and event organizers who want brands to pay them. It covers where to find sponsors, what to put in a media kit, how to price packages and how to pitch and follow up.
       </p>
 
+      <h2 id="ryan-doyle">Who writes it</h2>
       <p>
-        The answer — <strong>through media kit building, brand research, and cold email pitching</strong> — comes from real-world data and industry research. This site breaks down the nuances so you can make informed decisions for your specific situation.
-      </p>
-
-      <p>
-        This site is maintained by the team behind <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a>, which finds the brands already sponsoring newsletters in a niche and pitches them for the newsletter's owner. Sponsor Radar is operated by Sales.co.
+        The guides are written and edited by Ryan Doyle, founder of <a href={SR.cta('about')}>Sponsor Radar</a>. Sponsor Radar finds the brands already sponsoring newsletters in a niche and pitches them for the newsletter's owner, so the questions on this site are the ones it works on every day. Sponsor Radar is operated by Sales.co. Ryan is on <a href="https://www.linkedin.com/in/ryan-doyle/" rel="me">LinkedIn</a>, and Sponsor Radar's company facts are on <a href="https://sponsorradar.co/company">its company page</a>.
       </p>
 
       <h2>Where the numbers come from</h2>
-
       <p>
-        Newsletter sponsorship prices on this site come from Sponsor Radar's read of newsletters' own advertise pages, linked where they appear. Other figures cite their source on the page. Ranges with no source are rough guides, not measurements.
+        Newsletter prices come from Sponsor Radar's read of {RATES.n} newsletters' advertise pages and rate cards on {RATES.read}. Pitch and reply figures come from Sponsor Radar's own outreach: {PITCHES.sent.toLocaleString('en-US')} pitches to brands for {PITCHES.newsletters} newsletters, {PITCHES.window}. Every other figure links to its source in the sentence where it appears, with the source's date. A number with no source doesn't go on this site.
+      </p>
+      <p>
+        Sponsor Radar only works with newsletters. When a guide covers YouTube, podcasts, Instagram, Twitch or events, it points to the tools and marketplaces built for those, compared on the <a href="/best-sponsorship-platforms/">sponsorship platforms page</a>.
       </p>
 
-      <h2>Contact</h2>
-
+      <h2>Corrections and contact</h2>
       <p>
-        Questions or suggestions? Reach us at <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>.
+        Spotted a wrong number or an out-of-date price? Email <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a> and it gets fixed, with the page's updated date changed to match.
       </p>
-
     </div>
   </section>
 </Base>

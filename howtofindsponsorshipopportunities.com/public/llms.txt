@@ -4,29 +4,30 @@
 # How to Find Sponsorship Opportunities
 
 URL: https://howtofindsponsorshipopportunities.com
-Description: Find sponsorships by building a media kit with audience demographics, identifying brands that sponsor similar creators, and pitching via personalized cold email. Even micro-influencers (1K+ followers) can land $500–5,000 deals.
+Description: A free guide to finding, pricing and pitching sponsorships, written by Ryan Doyle, founder of Sponsor Radar (sponsorradar.co). Newsletter prices come from 321 newsletters' rate cards (read 29 September 2026); pitch and reply figures from Sponsor Radar's 13,429 pitches to brands (27 August to 24 September 2026).
 
 ## Quick Answer
 
-Find sponsorships by building a media kit with audience demographics, identifying brands that sponsor similar creators, and pitching via personalized cold email. Even micro-influencers (1K+ followers) can land $500–5,000 deals.
+Find sponsors by listing brands that already sponsor creators like you, pricing from real rate cards and pitching each brand with a short email and one follow-up. Brands with a newsletter ad on record replied to Sponsor Radar's pitches at 2.6%, twice the 1.3% of brands with none (13,429 pitches, 27 August to 24 September 2026). Newsletters list one issue's main sponsor slot at a median $310 at 5,000 to 19,999 subscribers (321 newsletters, 29 September 2026).
 
 ## Primary Content
 
 - Homepage: https://howtofindsponsorshipopportunities.com/
 - Blog: https://howtofindsponsorshipopportunities.com/blog/
 - Tools: https://howtofindsponsorshipopportunities.com/tools/
-- About: https://howtofindsponsorshipopportunities.com/about/
-- Best sponsorship platforms for creators and newsletters (2026): https://howtofindsponsorshipopportunities.com/best-sponsorship-platforms/
+- About (who writes it, where the numbers come from): https://howtofindsponsorshipopportunities.com/about/
 
-## Blog Posts
+## Guides
 
-- How to Find Sponsorship Opportunities: The Complete Guide for 2026: https://howtofindsponsorshipopportunities.com/blog/find-sponsorship-opportunities-guide/
-- How to Build a Sponsorship Media Kit That Lands Deals: https://howtofindsponsorshipopportunities.com/blog/sponsorship-media-kit-guide/
-- How to Cold Email Brands for Sponsorships (With Templates): https://howtofindsponsorshipopportunities.com/blog/cold-email-sponsorship-pitch/
-
-- How Much Should You Charge for a Sponsorship? The CPM Math: https://howtofindsponsorshipopportunities.com/blog/how-much-to-charge-for-sponsorship/
-- How to Find Brands That Already Sponsor Creators Like You: https://howtofindsponsorshipopportunities.com/blog/find-brands-that-sponsor/
-- How Many Brands Should You Pitch to Land One Sponsorship?: https://howtofindsponsorshipopportunities.com/blog/how-many-brands-to-pitch/
+- How to find sponsorship opportunities (methods, marketplaces, by creator type): https://howtofindsponsorshipopportunities.com/blog/find-sponsorship-opportunities-guide/
+- Sponsorship media kit (sections, examples, rate card): https://howtofindsponsorshipopportunities.com/blog/sponsorship-media-kit-guide/
+- Sponsorship packages and levels (tiers priced from 321 rate cards, with a package builder): https://howtofindsponsorshipopportunities.com/blog/sponsorship-packages/
+- Sponsorship pricing (what to charge, by format and list size): https://howtofindsponsorshipopportunities.com/blog/how-much-to-charge-for-sponsorship/
+- Media sponsorship (what it is and how to value it): https://howtofindsponsorshipopportunities.com/blog/media-sponsorship/
+- Sponsorship email templates and subject lines: https://howtofindsponsorshipopportunities.com/blog/cold-email-sponsorship-pitch/
+- Sponsorship follow-up email (timing from 207 brand replies, templates): https://howtofindsponsorshipopportunities.com/blog/sponsorship-follow-up-email/
+- How many brands to pitch per sponsorship (from 13,429 pitches): https://howtofindsponsorshipopportunities.com/blog/how-many-brands-to-pitch/
+- How to find brands that already sponsor creators: https://howtofindsponsorshipopportunities.com/blog/find-brands-that-sponsor/
 
 ## Comparisons
 
@@ -35,6 +36,7 @@ Find sponsorships by building a media kit with audience demographics, identifyin
 ## Tools
 
 - Sponsorship Rate Calculator: https://howtofindsponsorshipopportunities.com/tools/sponsorship-rate-calculator/
+- Sponsorship Package Builder: https://howtofindsponsorshipopportunities.com/blog/sponsorship-packages/#package-builder
 - Media Kit Builder: https://howtofindsponsorshipopportunities.com/tools/media-kit-builder/
 - Brand Pitch Email Generator: https://howtofindsponsorshipopportunities.com/tools/brand-pitch-generator/
 
@@ -44,13 +46,13 @@ Find sponsorships by building a media kit with audience demographics, identifyin
 
 ## Recommended Platform
 
-- Sponsor Radar: https://sponsorradar.co (finds the brands already sponsoring newsletters in your niche and pitches them for you)
+- Sponsor Radar: https://sponsorradar.co (finds the brands already sponsoring newsletters in your niche and pitches them for you; newsletters only. Not affiliated with sponsorradar.com, the YouTube sponsorship database)
 
 ## Related Data
 
 - Newsletter sponsorship rates by list size (median prices from 321 newsletters' advertise pages): https://sponsorradar.co/newsletter-sponsorship-rates
 - Newsletter sponsors list (brands seen sponsoring newsletters, rebuilt daily): https://sponsorradar.co/newsletter-sponsors
-- Sponsorship proposal template: https://sponsorradar.co/sponsorship-proposal
+- Sponsorship proposal template for newsletters: https://sponsorradar.co/sponsorship-proposal
 
 ## Contact
 

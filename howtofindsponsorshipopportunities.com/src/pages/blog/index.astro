@@ -4,45 +4,63 @@ import { siteConfig } from '../../config';
 
 const posts = [
   {
+    href: '/blog/sponsorship-packages/',
+    title: "Sponsorship Packages and Levels: How to Build and Price Tiers",
+    description: "Tiers priced from 321 newsletters' rate cards: a classified lists at 40% of the main slot and a dedicated send at 2.31 times. With a package builder.",
+    date: '2026-10-02',
+  },
+  {
+    href: '/blog/media-sponsorship/',
+    title: "Media Sponsorship: What It Is and How to Value One",
+    description: "A media sponsor gives coverage instead of cash. Value it at what the coverage costs to buy, using real newsletter list prices.",
+    date: '2026-10-02',
+  },
+  {
+    href: '/blog/sponsorship-follow-up-email/',
+    title: "Sponsorship Follow-Up Email: Templates and When to Send",
+    description: "92% of brand replies to 13,429 pitches came within 7 days. When to follow up, how many times, and five short templates.",
+    date: '2026-10-02',
+  },
+  {
     href: '/best-sponsorship-platforms/',
-    title: 'Best Sponsorship Platforms for Creators and Newsletters (2026)',
-    description: '15 platforms for newsletters, YouTube and podcasts, ranked on how much selling each does for you, published fees and who can use it.',
+    title: "Best Sponsorship Platforms for Creators and Newsletters (2026)",
+    description: "15 platforms for newsletters, YouTube and podcasts, ranked on how much selling each does for you, published fees and who can use it.",
     date: '2026-09-30',
   },
   {
-    slug: 'how-much-to-charge-for-sponsorship',
-    title: 'How Much Should You Charge for a Sponsorship? The CPM Math',
-    description: 'The impressions-based formula by format, the adjusters that move rates, and the negotiation floor — pricing from math instead of vibes.',
+    href: '/blog/how-much-to-charge-for-sponsorship/',
+    title: "Sponsorship Pricing: How Much to Charge for a Sponsorship",
+    description: "What 321 newsletters list for one sponsor slot, by list size, plus sourced podcast, YouTube and social rates and how to set your own price.",
     date: '2026-06-11',
   },
   {
-    slug: 'find-brands-that-sponsor',
-    title: 'How to Find Brands That Already Sponsor Creators Like You',
-    description: 'Reverse-prospecting: mine competitor sponsor lists, ad libraries, directories, and job postings for brands with active creator budgets.',
+    href: '/blog/how-many-brands-to-pitch/',
+    title: "How Many Brands Should You Pitch to Land One Sponsorship?",
+    description: "About 395 first pitches per yes in 13,429 real pitches to brands, the funnel stage by stage, and the arithmetic for your own goal.",
     date: '2026-06-11',
   },
   {
-    slug: 'how-many-brands-to-pitch',
-    title: 'How Many Brands Should You Pitch to Land One Sponsorship?',
-    description: '30–80 pitches per deal — the stage-by-stage funnel, what moves each conversion, and working backward from a revenue goal.',
+    href: '/blog/find-brands-that-sponsor/',
+    title: "How to Find Brands That Already Sponsor Creators Like You",
+    description: "Brands with a newsletter ad on record replied twice as often (2.6% vs 1.3%). Where to find brands that already pay creators.",
     date: '2026-06-11',
   },
   {
-    slug: 'find-sponsorship-opportunities-guide',
-    title: 'How to Find Sponsorship Opportunities: The Complete Guide for 2026',
-    description: 'Every method for finding brand sponsorships — from marketplace platforms to cold outreach — with pitch templates and rate benchmarks.',
+    href: '/blog/find-sponsorship-opportunities-guide/',
+    title: "How to Find Sponsorship Opportunities in 2026",
+    description: "Marketplaces, outreach and the channel-by-channel routes for YouTube, podcasts, newsletters, Instagram, TikTok, Twitch and events.",
     date: '2026-01-28',
   },
   {
-    slug: 'sponsorship-media-kit-guide',
-    title: 'How to Build a Sponsorship Media Kit That Lands Deals',
-    description: 'What brands want to see in a media kit — audience data, engagement metrics, rate cards, and case studies that close sponsorships.',
+    href: '/blog/sponsorship-media-kit-guide/',
+    title: "Sponsorship Media Kit: How to Build One That Lands Deals",
+    description: "The seven sections brands check, a copyable template, examples for a podcast, a streamer and a newsletter, and a rate card priced from real data.",
     date: '2026-01-26',
   },
   {
-    slug: 'cold-email-sponsorship-pitch',
-    title: 'How to Cold Email Brands for Sponsorships (With Templates)',
-    description: 'The exact cold email framework that lands sponsorship deals — subject lines, pitch structure, follow-up sequences, and real examples.',
+    href: '/blog/cold-email-sponsorship-pitch/',
+    title: "Sponsorship Email Template: How to Cold Email Brands",
+    description: "Four short templates, subject lines, who to send them to and how fast brands reply, from 13,429 pitches to brands.",
     date: '2026-01-24',
   },
 ];
@@ -50,17 +68,17 @@ const posts = [
 
 <Base
   title={`Blog | ${siteConfig.title}`}
-  description="Guides on finding sponsorships, building media kits, and pitching brands for creators and publishers."
+  description="Guides to finding, pricing and pitching sponsorships, with newsletter prices from 321 rate cards and reply data from 13,429 pitches to brands."
 >
   <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Blog</h1>
-    <p class="mt-4 text-lg text-gray-600">Guides on finding sponsorships, building media kits, and pitching brands for creators and publishers.</p>
+    <p class="mt-4 text-lg text-gray-600">Guides to finding, pricing and pitching sponsorships. Newsletter prices come from 321 rate cards and reply data from 13,429 pitches to brands, both from Sponsor Radar.</p>
 
     <div class="mt-10 grid gap-8">
       {posts.map((post) => (
         <a href={post.href ?? `/blog/${post.slug}/`} class="block group">
           <article class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
-            <time class="text-sm text-gray-400">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+            <time class="text-sm text-gray-400" datetime={post.date}>{new Date(post.date + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>
             <h2 class="mt-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{post.title}</h2>
             <p class="mt-2 text-gray-600">{post.description}</p>
           </article>

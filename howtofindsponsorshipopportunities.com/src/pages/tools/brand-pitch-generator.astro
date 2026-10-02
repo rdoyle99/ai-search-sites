@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { siteConfig } from '../../config';
+import { SR } from '../../data/sr-stats';
 
 const schema = {
   "@context": "https://schema.org",
@@ -20,7 +21,7 @@ const schema = {
   <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Brand Pitch Email Generator</h1>
     <p class="mt-4 text-lg text-gray-600">
-      Fill in the details about yourself and the brand you want to pitch. We&rsquo;ll generate a personalized sponsorship email you can send today.
+      Fill in the details about yourself and the brand you want to pitch. We&rsquo;ll generate a draft sponsorship email. The draft contains no statistics of its own, so fill in every [bracket] with something true before you send it.
     </p>
 
     <div class="mt-10 space-y-6">
@@ -48,7 +49,7 @@ const schema = {
           </div>
           <div>
             <label for="your-audience" class="block text-sm font-medium text-gray-700">Audience size</label>
-            <input type="text" id="your-audience" placeholder="25,000 subscribers" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+            <input type="text" id="your-audience" placeholder="Your subscriber or follower count" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
           </div>
           <div>
             <label for="your-niche" class="block text-sm font-medium text-gray-700">Your niche</label>
@@ -56,7 +57,7 @@ const schema = {
           </div>
           <div>
             <label for="your-metric" class="block text-sm font-medium text-gray-700">Best metric</label>
-            <input type="text" id="your-metric" placeholder="5.2% engagement rate" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+            <input type="text" id="your-metric" placeholder="Your best number, such as open rate or average views" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
           </div>
         </div>
       </div>
@@ -73,8 +74,8 @@ const schema = {
             <input type="text" id="contact-name" placeholder="Sarah" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
           </div>
           <div class="sm:col-span-2">
-            <label for="brand-context" class="block text-sm font-medium text-gray-700">Something specific about the brand (recent launch, campaign, feature)</label>
-            <input type="text" id="brand-context" placeholder="e.g., just launched their new AI features for teams" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+            <label for="brand-context" class="block text-sm font-medium text-gray-700">What the brand did recently (a launch, campaign or feature)</label>
+            <input type="text" id="brand-context" placeholder="e.g., launched a new feature for teams" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
           </div>
         </div>
       </div>
@@ -95,6 +96,7 @@ const schema = {
             <span class="text-sm">Existing fan pitch</span>
           </label>
         </div>
+        <p class="mt-3 text-sm text-gray-500">Use the existing fan pitch only if you have really used the product and mentioned it to your audience.</p>
       </div>
 
       <button id="generate-btn" class="w-full px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors">
@@ -112,15 +114,18 @@ const schema = {
           <p class="text-xs text-gray-500 mb-2">Email body:</p>
           <div id="email-body" class="text-sm leading-relaxed whitespace-pre-wrap"></div>
         </div>
+        <p class="mt-3 text-sm text-gray-600">
+          Every number in this draft comes from what you typed, so check each one. Replace each [bracket] before you send. The draft mentions a media kit, so attach one: <a href="/tools/media-kit-builder/" class="text-blue-600 hover:text-blue-800 underline">build a media kit</a>. If you hear nothing back, see the <a href="/blog/sponsorship-follow-up-email/" class="text-blue-600 hover:text-blue-800 underline">sponsorship follow-up email templates</a>. For more templates and subject lines, see the <a href="/blog/cold-email-sponsorship-pitch/" class="text-blue-600 hover:text-blue-800 underline">sponsorship email template guide</a>.
+        </p>
       </div>
     </div>
 
     <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
       <p class="text-sm font-medium text-blue-900">Want the pitches sent for you?</p>
       <p class="mt-1 text-sm text-blue-700">
-        For newsletters, <a href={siteConfig.product.ctaUrl} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> finds brands that sponsored similar newsletters, writes the pitch to the person who buys the ads, and sends it from its own mailboxes with follow-ups.
+        For newsletters, <a href={SR.cta('brand-pitch-generator')} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> finds brands that sponsored similar newsletters, writes the pitch to the person who buys the ads, and sends it from its own mailboxes with follow-ups.
       </p>
-      <a href={siteConfig.product.ctaUrl} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+      <a href={SR.cta('brand-pitch-generator')} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
         See sponsors for your newsletter &rarr;
       </a>
     </div>
@@ -129,61 +134,63 @@ const schema = {
 
 <script>
   document.getElementById('generate-btn')?.addEventListener('click', () => {
-    const yourName = (document.getElementById('your-name') as HTMLInputElement).value || 'Your Name';
-    const channelName = (document.getElementById('channel-name') as HTMLInputElement).value || 'Your Channel';
+    const yourName = (document.getElementById('your-name') as HTMLInputElement).value || '[Your name]';
+    const channelName = (document.getElementById('channel-name') as HTMLInputElement).value || '[Your channel]';
     const platform = (document.getElementById('your-platform') as HTMLSelectElement).value;
-    const audience = (document.getElementById('your-audience') as HTMLInputElement).value || '10,000 subscribers';
-    const niche = (document.getElementById('your-niche') as HTMLInputElement).value || 'your niche';
-    const metric = (document.getElementById('your-metric') as HTMLInputElement).value || 'strong engagement';
-    const brandName = (document.getElementById('brand-name') as HTMLInputElement).value || 'Your Brand';
+    const audience = (document.getElementById('your-audience') as HTMLInputElement).value || '[audience size]';
+    const niche = (document.getElementById('your-niche') as HTMLInputElement).value || '[your niche]';
+    const metric = (document.getElementById('your-metric') as HTMLInputElement).value || '[your best metric]';
+    const brandName = (document.getElementById('brand-name') as HTMLInputElement).value || '[Brand]';
     const contactName = (document.getElementById('contact-name') as HTMLInputElement).value || 'there';
-    const brandContext = (document.getElementById('brand-context') as HTMLInputElement).value || 'your recent marketing initiatives';
+    const brandContext = (document.getElementById('brand-context') as HTMLInputElement).value;
     const style = (document.querySelector('input[name="style"]:checked') as HTMLInputElement).value;
 
     let subject = '';
     let body = '';
 
     if (style === 'standard') {
-      subject = `${brandName} × ${channelName} — quick partnership idea`;
+      const noticed = brandContext
+        ? `I saw that ${brandName} ${brandContext}.`
+        : `[One specific thing you saw ${brandName} do recently.]`;
+      subject = `${brandName} × ${channelName}: sponsorship idea`;
       body = `Hi ${contactName},
 
-I noticed ${brandName}'s ${brandContext} — really well done. The positioning resonated with me because it aligns closely with what my audience cares about.
+${noticed}
 
-I run ${channelName}, a ${platform} covering ${niche}. We have ${audience} with ${metric}, and our audience is primarily professionals actively evaluating tools and solutions in this space.
+I run ${channelName}, a ${platform} covering ${niche}. We have ${audience} with ${metric}.
 
-I'd love to feature ${brandName} in an integrated segment within my upcoming content. I think a genuine walkthrough of how ${brandName} solves [specific problem] would resonate naturally with my audience.
+I'd like to feature ${brandName} in [the specific placement and date you're offering]. I think a straightforward walkthrough of how ${brandName} solves [specific problem] would fit my audience.
 
-I've attached my media kit with full audience data and sponsorship packages. Would you be open to a quick 15-minute call this week to discuss?
+I've attached my media kit with audience data and rates. Would you be open to a short call this week to discuss?
 
 Best,
 ${yourName}`;
     } else if (style === 'data') {
-      subject = `My audience matches ${brandName}'s target customer — quick idea`;
+      subject = `A sponsorship idea for ${brandName}, with my audience data`;
       body = `Hi ${contactName},
 
-I run ${channelName}, a ${platform} covering ${niche} with ${audience}. Here's why I think ${brandName} would resonate with my audience:
+I run ${channelName}, a ${platform} covering ${niche}. Here is why I think ${brandName} fits my audience:
 
+• ${audience}
 • ${metric}
-• Audience is primarily professionals evaluating solutions in ${brandName}'s category
-• Recent content in this space has generated strong engagement and click-through
+• [One fact about who reads you, from your own analytics: job titles, location or interests]
 
-I'd love to feature ${brandName} in a dedicated segment. My audience is actively interested in products like yours, and I can share specific audience survey data that demonstrates the fit.
+I'd like to feature ${brandName} in [the specific placement and date you're offering]. My media kit has the audience data behind this, and my rates.
 
-Happy to send over my full media kit and jump on a quick call. Worth 15 minutes?
+Would you like me to send it?
 
 Best,
 ${yourName}`;
     } else {
-      subject = `I've been recommending ${brandName} to my audience — let's make it official`;
+      const impressed = brandContext ? ` I was especially impressed that ${brandName} ${brandContext}.` : '';
+      subject = `I already recommend ${brandName}. Make it official?`;
       body = `Hi ${contactName},
 
-I've been a genuine fan of ${brandName} and have recommended it to my audience multiple times already. ${brandContext ? `I was especially impressed by ${brandContext}.` : ''}
+I've used ${brandName} for [how long] and mentioned it to my audience in [where and when].${impressed}
 
-Since I'm already driving awareness organically, I'd love to explore a formal sponsorship partnership. I run ${channelName}, a ${platform} covering ${niche} with ${audience} and ${metric}.
+I run ${channelName}, a ${platform} covering ${niche}. We have ${audience} with ${metric}. I'd like to turn that into a paid, labeled sponsorship: [the specific placement and date you're offering].
 
-A sponsored integration would let me go deeper — creating dedicated content that properly showcases ${brandName}'s value to my audience.
-
-I've attached my media kit. Would you be open to discussing a partnership?
+I've attached my media kit. Is that something ${brandName} does?
 
 Best,
 ${yourName}`;

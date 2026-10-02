@@ -4,22 +4,28 @@ import { siteConfig } from '../../config';
 
 const tools = [
   {
-    slug: 'sponsorship-rate-calculator',
+    href: '/tools/sponsorship-rate-calculator/',
     title: 'Sponsorship Rate Calculator',
-    description: 'Calculate your sponsorship rate based on audience size, engagement rate, and platform.',
-    tag: 'Popular',
+    description: 'Enter your audience size and format to get a starting price for one sponsorship. Newsletter prices come from the rate cards of 321 newsletters, read 29 September 2026; every other format shows the source of its numbers.',
+    use: 'Use it before you send a rate card or answer "what are your rates?"',
   },
   {
-    slug: 'media-kit-builder',
+    href: '/blog/sponsorship-packages/#package-builder',
+    title: 'Sponsorship Package Builder',
+    description: 'Turns one main-slot price into a full set of tiers: a classified, the main slot, a two-slot bundle, a dedicated send and a four-issue package, priced with the ratios newsletters use on their own rate cards.',
+    use: 'Use it when a brand asks for packages or levels.',
+  },
+  {
+    href: '/tools/media-kit-builder/',
     title: 'Media Kit Builder',
-    description: 'Build a professional sponsorship media kit with your audience data, rates, and past partnerships.',
-    tag: 'New',
+    description: 'Fill in your audience, reach and rates and get a one-page media kit layout with the sections brands check first.',
+    use: 'Use it before your first pitch, so every email can carry the kit.',
   },
   {
-    slug: 'brand-pitch-generator',
+    href: '/tools/brand-pitch-generator/',
     title: 'Brand Pitch Email Generator',
-    description: 'Generate personalized sponsorship pitch emails based on the brand and your creator profile.',
-    tag: null,
+    description: 'Writes a short first pitch to a brand from your niche, audience and the brand you name. Pair it with the follow-up templates for the emails that come after.',
+    use: 'Use it when you have a target list and need the first email.',
   },
 ];
 
@@ -27,36 +33,37 @@ const toolSchema = tools.map((tool) => ({
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": tool.title,
+  "url": `${siteConfig.url}${tool.href}`,
+  "description": tool.description,
   "applicationCategory": "BusinessApplication",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
 }));
 ---
 
 <Base
-  title={`Free Tools | ${siteConfig.title}`}
-  description="Free tools to find sponsorship opportunities and build pitches."
+  title="Free Sponsorship Tools: Rate Calculator, Packages, Pitch"
+  description="Four free sponsorship tools: a rate calculator and package builder priced from 321 newsletters' rate cards, a media kit builder and a pitch email generator."
   schema={toolSchema}
 >
   <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Free Tools</h1>
-    <p class="mt-4 text-lg text-gray-600">Free tools to find sponsorship opportunities and build pitches.</p>
+    <p class="mt-4 text-lg text-gray-600">Four free tools for the jobs that come before a sponsor pays you: setting a price, building packages, making a media kit and writing the first pitch. No sign-up, and each one shows where its numbers come from.</p>
 
     <div class="mt-10 grid gap-6">
       {tools.map((tool) => (
-        <a href={`/tools/${tool.slug}/`} class="block group">
+        <a href={tool.href} class="block group">
           <div class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
-            <div class="flex items-center gap-3">
-              <h2 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{tool.title}</h2>
-              {tool.tag && (
-                <span class={`text-xs font-medium px-2 py-0.5 rounded-full ${tool.tag === 'Popular' ? 'bg-blue-100 text-blue-700' : 'bg-green-100 text-green-700'}`}>
-                  {tool.tag}
-                </span>
-              )}
-            </div>
+            <h2 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{tool.title}</h2>
             <p class="mt-2 text-gray-600">{tool.description}</p>
+            <p class="mt-2 text-sm text-gray-500">{tool.use}</p>
           </div>
         </a>
       ))}
+    </div>
+
+    <h2 class="mt-12 text-2xl font-bold text-gray-900">Which tool to start with</h2>
+    <div class="mt-4 prose prose-lg max-w-none">
+      <p>Start with the rate calculator if you have never quoted a price: every other step uses that number. Then build packages from it, put both in your <a href="/blog/sponsorship-media-kit-guide/">media kit</a>, and pitch with the generator. The guides cover the parts a tool can't do for you: <a href="/blog/find-brands-that-sponsor/">finding brands that already sponsor</a>, <a href="/blog/cold-email-sponsorship-pitch/">writing the pitch</a> and <a href="/blog/sponsorship-follow-up-email/">following up</a>.</p>
     </div>
 
     <p class="mt-10 text-gray-600">Choosing a platform instead? See the <a href="/best-sponsorship-platforms/" class="text-blue-600 hover:text-blue-800 font-medium">ranked comparison of 15 sponsorship platforms</a>.</p>

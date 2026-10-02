@@ -1,178 +1,366 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { siteConfig } from '../../config';
+import { RATES, SR } from '../../data/sr-stats';
+
+const usd = (n: number) => `$${n.toLocaleString('en-US')}`;
+const usd2 = (n: number) => `$${n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+const pctOf = (s: string) => parseFloat(s) / 100;
+
+// Every constant the calculator uses, with its source. The page text and the script both read this one object.
+// Newsletter numbers come from sr-stats.ts (RATES). Everything else is a third-party figure read on 2 October 2026.
+const SOURCES_READ = '2 October 2026';
+const calcData = {
+  read: SOURCES_READ,
+  rates: {
+    read: RATES.read,
+    n: RATES.n,
+    passionfroot: RATES.passionfroot,
+    // Lower bound of each RATES row in subscribers (restates the row labels: Under 5,000 / 5,000 to 19,999 / ...).
+    floors: [0, 5000, 20000, 50000, 100000],
+    minList: 500, // RATES counts only newsletters that print a list of 500 or more
+    rows: RATES.rows,
+    placements: RATES.placements,
+  },
+  podcast: {
+    // Libsyn Ads, Podcast Advertising 2026 Ultimate Guide: baked-in host-read CPM. Cost = downloads (first 30 days) x CPM / 1000.
+    libsyn: { '60': [24, 26], '30': [18, 22] },
+    // Acast, How Much Does Podcast Advertising Cost: host-read sponsorships on individual shows.
+    acast: [25, 40],
+  },
+  youtube: {
+    // Descript, YouTube sponsorship guide: "As of early 2025, CPMs often range from $5 to $30 per thousand views".
+    cpm: [5, 30],
+  },
+  social: {
+    // impact.com, 2025 influencer rate guide (published 19 May 2025, updated 11 August 2025): US average per post.
+    // Instagram and TikTok tables are identical in the source. Tier labels are impact.com's.
+    tiers: [
+      { name: 'Nano', label: 'under 15,000 followers', from: 0, post: [500, 2000] },
+      { name: 'Micro', label: '15,000 to 75,000 followers', from: 15000, post: [2000, 8000] },
+      { name: 'Mid-tier', label: '75,000 to 250,000 followers', from: 75000, post: [8000, 20000] },
+      { name: 'Macro', label: '250,000 to 1 million followers', from: 250000, post: [20000, 45000] },
+      { name: 'Mega or celebrity', label: 'over 1 million followers', from: 1000000, post: [45000, null] },
+    ],
+    // Sprout Social 2025 Influencer Marketing Report, as cited in Sprout's statistics roundup (published 29 April 2026).
+    survey: [250, 1000],
+  },
+};
+
+const [r1, r2, r3, r4, r5] = RATES.rows;
+const [second, classified, dedicated] = RATES.placements;
+const { libsyn, acast } = calcData.podcast;
+const yt = calcData.youtube.cpm;
+const range = (lo: number, hi: number | null) => (hi === null ? `${usd(lo)} and up` : `${usd(lo)} to ${usd(hi)}`);
+
+// Prefilled example (shown without JavaScript, and what the script computes on load): a newsletter with the row-2 median list.
+const EX_SUBS = r2.medianSubs;
+const exSecond = Math.round(r2.median * pctOf(second.median));
+const exClassified = Math.round(r2.median * pctOf(classified.median));
+const exDedicated = Math.round(r2.median * parseFloat(dedicated.median));
+const exPerK = r2.median / (EX_SUBS / 1000);
+const exCards = [
+  { label: 'Main slot, median', value: usd(r2.median), note: `${r2.n} newsletters in the ${r2.size} row` },
+  { label: 'Middle half ask', value: range(r2.p25, r2.p75), note: '25th to 75th percentile' },
+  { label: 'Second slot in the same issue', value: usd(exSecond), note: `${usd(r2.median)} × ${second.median}` },
+  { label: 'Classified or text ad', value: usd(exClassified), note: `${usd(r2.median)} × ${classified.median}` },
+  { label: 'Dedicated send (whole email)', value: usd(exDedicated), note: `${usd(r2.median)} × ${dedicated.median.replace(' times', '')}` },
+  { label: 'Price per 1,000 subscribers at that median', value: usd2(exPerK), note: `${usd(r2.median)} ÷ (${EX_SUBS.toLocaleString('en-US')} ÷ 1,000)` },
+];
+const exSource = `Source: Sponsor Radar's read of ${RATES.n} newsletters' advertise pages, ${RATES.read}.`;
+const exNote = `List prices, not guaranteed deal prices. The middle half of newsletters in your row ask ${range(r2.p25, r2.p75)}. A click count or a past sponsor's result supports the top of that range.`;
+
+const title = 'Sponsorship Rate Calculator: Newsletter Prices by List Size';
+const description = `Sponsorship rate calculator: enter your list size to see the median newsletter main-slot price from ${RATES.n} newsletters, plus podcast, YouTube and social.`;
 
 const schema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Sponsorship Rate Calculator",
-  "applicationCategory": "BusinessApplication",
-  "description": "Calculate your sponsorship rate based on audience size, engagement rate, and platform.",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Sponsorship Rate Calculator',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description: `Look up what similar creators list for one sponsorship. Newsletter prices come from Sponsor Radar's read of ${RATES.n} newsletters' advertise pages (${RATES.read}); podcast, YouTube and social ranges come from named published sources.`,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 };
 ---
 
-<Base
-  title="Sponsorship Rate Calculator | Find Sponsorship Opportunities"
-  description="Free calculator: estimate your sponsorship rate based on platform, audience size, engagement rate, and niche."
-  schema={schema}
->
+<Base title={title} description={description} schema={schema}>
   <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Sponsorship Rate Calculator</h1>
     <p class="mt-4 text-lg text-gray-600">
-      Enter your platform, audience size, and engagement metrics to calculate your recommended sponsorship rate.
+      Pick a format and enter your audience size to see what similar creators list for one sponsorship. Newsletter results come from <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer" class="underline">Sponsor Radar's read of {RATES.n} newsletters' advertise pages</a> ({RATES.read}). Podcast, YouTube and social results come from the published ranges named under the calculator.
     </p>
 
     <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
       <div class="space-y-6">
         <div>
-          <label for="platform" class="block text-sm font-medium text-gray-700">Platform</label>
-          <select id="platform" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            <option value="youtube">YouTube</option>
-            <option value="instagram">Instagram</option>
-            <option value="tiktok">TikTok</option>
-            <option value="podcast">Podcast</option>
-            <option value="newsletter">Newsletter</option>
-            <option value="twitter">Twitter / X</option>
+          <label for="format" class="block text-sm font-medium text-gray-700">Format</label>
+          <select id="format" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="newsletter" selected>Newsletter (one issue)</option>
+            <option value="podcast">Podcast (one episode)</option>
+            <option value="youtube">YouTube (one video)</option>
+            <option value="instagram">Instagram (one post)</option>
+            <option value="tiktok">TikTok (one video)</option>
           </select>
         </div>
         <div>
-          <label for="audience-size" class="block text-sm font-medium text-gray-700">
+          <label for="audience" class="block text-sm font-medium text-gray-700">
             <span id="audience-label">Subscribers</span>
           </label>
-          <input type="number" id="audience-size" value="10000" min="100" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
+          <input type="number" id="audience" value={EX_SUBS} min="0" step="1" inputmode="numeric" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
         </div>
-        <div>
-          <label for="engagement-rate" class="block text-sm font-medium text-gray-700">Engagement rate (%)</label>
-          <input type="number" id="engagement-rate" value="4.0" min="0.1" max="100" step="0.1" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg" />
-        </div>
-        <div>
-          <label for="niche" class="block text-sm font-medium text-gray-700">Niche / Category</label>
-          <select id="niche" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-            <option value="tech">Tech / SaaS / B2B</option>
-            <option value="finance">Finance / Investing</option>
-            <option value="business">Business / Entrepreneurship</option>
-            <option value="health">Health / Fitness</option>
-            <option value="beauty">Beauty / Fashion</option>
-            <option value="gaming">Gaming</option>
-            <option value="education">Education</option>
-            <option value="lifestyle">Lifestyle / General</option>
-            <option value="food">Food / Cooking</option>
-            <option value="travel">Travel</option>
+        <div id="ad-length-wrap" class="hidden">
+          <label for="ad-length" class="block text-sm font-medium text-gray-700">Ad length</label>
+          <select id="ad-length" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <option value="60" selected>60-second host-read</option>
+            <option value="30">30-second host-read</option>
           </select>
         </div>
       </div>
 
-      <div id="results" class="mt-8 p-6 bg-gray-50 rounded-lg">
-        <h2 class="text-lg font-semibold text-gray-900">Your Estimated Sponsorship Rates</h2>
-        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-4 bg-white rounded-lg border border-gray-200">
-            <p class="text-sm text-gray-500">Single Post / Integration</p>
-            <p id="rate-single" class="text-3xl font-bold text-gray-900">$500</p>
-            <p class="text-xs text-gray-400 mt-1">One-time deliverable</p>
-          </div>
-          <div class="p-4 bg-white rounded-lg border border-gray-200">
-            <p class="text-sm text-gray-500">Dedicated Content</p>
-            <p id="rate-dedicated" class="text-3xl font-bold text-gray-900">$1,250</p>
-            <p class="text-xs text-gray-400 mt-1">Full video / episode / issue</p>
-          </div>
-          <div class="p-4 bg-white rounded-lg border border-gray-200">
-            <p class="text-sm text-gray-500">Monthly Package (4 posts)</p>
-            <p id="rate-monthly" class="text-3xl font-bold text-gray-900">$1,800</p>
-            <p class="text-xs text-gray-400 mt-1">10% ongoing discount applied</p>
-          </div>
-          <div class="p-4 bg-white rounded-lg border border-gray-200">
-            <p class="text-sm text-gray-500">Your CPM</p>
-            <p id="rate-cpm" class="text-3xl font-bold text-gray-900">$25</p>
-            <p class="text-xs text-gray-400 mt-1">Cost per 1,000 impressions</p>
-          </div>
+      <div id="results" class="mt-8 p-6 bg-gray-50 rounded-lg" aria-live="polite">
+        <h2 id="results-title" class="text-lg font-semibold text-gray-900">Estimated list price for one placement</h2>
+        <p id="results-subtitle" class="mt-1 text-sm text-gray-600">Newsletter, {EX_SUBS.toLocaleString('en-US')} subscribers</p>
+        <noscript>
+          <p class="mt-1 text-sm text-gray-600">JavaScript is off, so this shows an example for a {EX_SUBS.toLocaleString('en-US')}-subscriber newsletter. Turn it on to enter your own numbers.</p>
+        </noscript>
+        <div id="cards" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {exCards.map((c) => (
+            <div class="p-4 bg-white rounded-lg border border-gray-200">
+              <p class="text-sm text-gray-600">{c.label}</p>
+              <p class="text-3xl font-bold text-gray-900">{c.value}</p>
+              <p class="text-xs text-gray-500 mt-1">{c.note}</p>
+            </div>
+          ))}
         </div>
-
+        <p id="formula" class="mt-4 text-sm text-gray-700"></p>
         <div class="mt-4 p-3 bg-blue-50 rounded-lg">
-          <p id="rate-context" class="text-sm text-blue-800"></p>
+          <p id="notes" class="text-sm text-blue-800">{exNote}</p>
         </div>
+        <p id="source" class="mt-3 text-xs text-gray-500">{exSource}</p>
       </div>
     </div>
 
     <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
       <p class="text-sm font-medium text-blue-900">Ready to pitch brands?</p>
       <p class="mt-1 text-sm text-blue-700">
-        Running a newsletter? Check your number against the <a href="https://sponsorradar.co/newsletter-sponsorship-rates" target="_blank" rel="noopener noreferrer" class="font-semibold underline">median prices 321 newsletters print, by list size</a>. <a href={siteConfig.product.ctaUrl} target="_blank" rel="noopener noreferrer" class="font-semibold underline">{siteConfig.product.name}</a> then pitches the brands already sponsoring newsletters like yours.
+        Running a newsletter? See the <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer" class="font-semibold underline">full table of median prices by list size</a>. Sponsor Radar then pitches the brands already sponsoring newsletters like yours.
       </p>
-      <a href={siteConfig.product.ctaUrl} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
+      <a href={SR.cta('sponsorship-rate-calculator')} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
         See sponsors for your newsletter &rarr;
       </a>
     </div>
 
     <div class="mt-12 prose max-w-none">
-      <h2>How This Calculator Works</h2>
+      <h2>How is this calculated?</h2>
       <p>
-        The calculator estimates your sponsorship rate using three factors: <strong>audience size</strong> (reach), <strong>engagement rate</strong> (audience quality), and <strong>niche multiplier</strong> (advertiser demand for your audience segment). B2B and finance niches command 2–3x higher CPMs than lifestyle and entertainment because each viewer has higher purchasing power.
+        The calculator looks up a published price range for your format and audience size. It does not apply niche or engagement multipliers, because we have no sourced figure for them. Every constant below is named with its source. For what to do with the number, see <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a>.
+      </p>
+
+      <h3>Newsletter</h3>
+      <p>
+        Your list size picks one row of the table in <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's newsletter sponsorship rates</a>: under 5,000, 5,000 to 19,999, 20,000 to 49,999, 50,000 to 99,999, or 100,000 or more subscribers. The main-slot median and the 25th to 75th percentile range for that row are shown as printed. The other placements are the row's main-slot median times the median share of the main slot: {second.median} for a second slot, {classified.median} for a classified or text ad and {dedicated.median.replace(' times', '')} for a dedicated send. The price per 1,000 subscribers is the median price ÷ (your subscribers ÷ 1,000). Because the lookup is by row, the price steps up at each row boundary, so a list near a boundary should read both rows.
       </p>
       <p>
-        Rates are estimates based on industry benchmarks from 2026. Your actual rate may be higher or lower depending on content quality, past brand partnerships, audience demographics, and negotiation skills.
+        Source: Sponsor Radar's read of {RATES.n} newsletters that print a main-slot price and a list of 500 or more subscribers, {RATES.read}. The top two rows hold only {r4.n} and {r5.n} newsletters, so read their medians as rough. {RATES.passionfroot} of the {RATES.n} prices came from Passionfroot storefronts, and newsletters that sell by quote publish no price, so the figures lean toward storefront sellers. Lists under 500 subscribers are below the data, so the calculator uses the lowest row and says so.
+      </p>
+
+      <h3>Podcast</h3>
+      <p>
+        Price = downloads in the first 30 days of a new episode ÷ 1,000 × CPM. Libsyn Ads lists baked-in host-read ads at {usd(libsyn['60'][0])} to {usd(libsyn['60'][1])} per 1,000 downloads for a 60-second spot and {usd(libsyn['30'][0])} to {usd(libsyn['30'][1])} for a 30-second spot (<a href="https://advertising.libsyn.com/podcast-advertising-ultimate-guide" target="_blank" rel="noopener noreferrer">Libsyn Ads' 2026 podcast advertising guide</a>, read {SOURCES_READ}). Acast lists host-read sponsorships on individual shows at {usd(acast[0])} to {usd(acast[1])} per 1,000 listens (<a href="https://www.acast.com/en/news-and-insights/how-much-does-podcast-advertising-cost" target="_blank" rel="noopener noreferrer">Acast's podcast advertising cost guide</a>, titled for 2026, read {SOURCES_READ}).
+      </p>
+
+      <h3>YouTube</h3>
+      <p>
+        Price = average views ÷ 1,000 × CPM. Descript says that as of early 2025 CPMs often range from {usd(yt[0])} to {usd(yt[1])} per 1,000 views, with highly specialized channels charging more (<a href="https://www.descript.com/blog/article/how-much-should-you-charge-for-youtube-sponsorship" target="_blank" rel="noopener noreferrer">Descript's YouTube sponsorship guide</a>, read {SOURCES_READ}).
+      </p>
+
+      <h3>Instagram and TikTok</h3>
+      <p>
+        Your follower count picks a tier, and the calculator shows impact.com's US average per post for that tier, taken from rate cards its influencer programs team collected (<a href="https://impact.com/influencer/how-much-do-influencers-charge-per-post/" target="_blank" rel="noopener noreferrer">impact.com's influencer rate guide</a>, published 19 May 2025, updated 11 August 2025). impact.com lists the same ranges for Instagram posts and TikTok videos. The calculator also shows the survey figure from Sprout Social's 2025 Influencer Marketing Report, that half of influencers charge {usd(calcData.social.survey[0])} to {usd(calcData.social.survey[1])} per post (<a href="https://sproutsocial.com/insights/influencer-marketing-statistics/" target="_blank" rel="noopener noreferrer">Sprout Social's influencer marketing statistics</a>, published 29 April 2026). The two sources disagree, so read both as ranges.
+      </p>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr><th>Tier (impact.com's labels)</th><th>Instagram post or TikTok video</th></tr>
+          </thead>
+          <tbody>
+            {calcData.social.tiers.map((t) => (
+              <tr><td>{t.name}, {t.label}</td><td>{range(t.post[0], t.post[1])}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        At a tier boundary, such as exactly 15,000 followers, the calculator uses the higher tier. These are list prices and published ranges, not offers. Your actual rate depends on your past results, your audience and what you negotiate. For packages and multi-placement deals, see <a href="/blog/sponsorship-packages/">sponsorship packages and how to price them</a>.
       </p>
     </div>
+
+    <script is:inline type="application/json" id="calc-data" set:html={JSON.stringify(calcData)} />
   </section>
 </Base>
 
 <script>
-  const platformConfig: Record<string, { baseCPM: number; label: string; dedicatedMultiplier: number }> = {
-    youtube: { baseCPM: 20, label: 'Subscribers', dedicatedMultiplier: 2.5 },
-    instagram: { baseCPM: 10, label: 'Followers', dedicatedMultiplier: 2.0 },
-    tiktok: { baseCPM: 8, label: 'Followers', dedicatedMultiplier: 2.0 },
-    podcast: { baseCPM: 25, label: 'Downloads per episode', dedicatedMultiplier: 3.0 },
-    newsletter: { baseCPM: 30, label: 'Subscribers', dedicatedMultiplier: 2.0 },
-    twitter: { baseCPM: 5, label: 'Followers', dedicatedMultiplier: 2.0 },
-  };
-
-  const nicheMultipliers: Record<string, number> = {
-    tech: 2.2,
-    finance: 2.5,
-    business: 2.0,
-    health: 1.3,
-    beauty: 1.1,
-    gaming: 0.8,
-    education: 1.5,
-    lifestyle: 1.0,
-    food: 1.0,
-    travel: 1.2,
-  };
-
-  function calculate() {
-    const platform = (document.getElementById('platform') as HTMLSelectElement).value;
-    const audience = parseInt((document.getElementById('audience-size') as HTMLInputElement).value) || 10000;
-    const engagement = parseFloat((document.getElementById('engagement-rate') as HTMLInputElement).value) || 4.0;
-    const niche = (document.getElementById('niche') as HTMLSelectElement).value;
-
-    const config = platformConfig[platform];
-    const nicheMultiplier = nicheMultipliers[niche];
-
-    // Engagement multiplier: above 5% gets bonus, below 2% gets penalty
-    const engagementMultiplier = engagement >= 5 ? 1.3 : engagement >= 3 ? 1.0 : engagement >= 1 ? 0.7 : 0.5;
-
-    const effectiveCPM = config.baseCPM * nicheMultiplier * engagementMultiplier;
-    const estimatedReach = audience * (engagement / 100) * 10; // rough estimated impressions
-    const impressions = Math.max(audience * 0.3, estimatedReach); // at least 30% of audience
-
-    const singleRate = Math.round((impressions / 1000) * effectiveCPM);
-    const dedicatedRate = Math.round(singleRate * config.dedicatedMultiplier);
-    const monthlyRate = Math.round(singleRate * 4 * 0.9); // 4 posts, 10% discount
-
-    document.getElementById('rate-single')!.textContent = `$${singleRate.toLocaleString()}`;
-    document.getElementById('rate-dedicated')!.textContent = `$${dedicatedRate.toLocaleString()}`;
-    document.getElementById('rate-monthly')!.textContent = `$${monthlyRate.toLocaleString()}`;
-    document.getElementById('rate-cpm')!.textContent = `$${Math.round(effectiveCPM)}`;
-
-    const tier = singleRate < 200 ? 'nano-influencer' : singleRate < 1000 ? 'micro-influencer' : singleRate < 5000 ? 'mid-tier creator' : 'established creator';
-    document.getElementById('rate-context')!.textContent = `Based on your metrics, you're in the ${tier} range. ${engagement >= 5 ? 'Your high engagement rate commands premium rates.' : engagement >= 3 ? 'Solid engagement — focus on growing audience for higher rates.' : 'Consider improving engagement to command better rates.'}`;
-
-    document.getElementById('audience-label')!.textContent = config.label;
+  // calc:start
+  function fmt(n) {
+    return n < 10 ? '$' + n.toFixed(2) : '$' + Math.round(n).toLocaleString('en-US');
   }
+  function range(lo, hi) {
+    return hi === null || hi === undefined ? fmt(lo) + ' and up' : fmt(lo) + ' to ' + fmt(hi);
+  }
+  function count(n) {
+    return Math.round(n).toLocaleString('en-US');
+  }
+  function per1000(price, audience) {
+    return '$' + (price / (audience / 1000)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function compute(data, format, audienceInput, adLength) {
+    const a = audienceInput === '' || audienceInput === null || audienceInput === undefined ? NaN : Number(audienceInput);
+    if (!Number.isFinite(a) || a <= 0) {
+      return { ok: false, message: 'Enter your audience size to see a price.' };
+    }
+    const k = a / 1000;
 
-  document.getElementById('platform')?.addEventListener('change', calculate);
-  document.getElementById('audience-size')?.addEventListener('input', calculate);
-  document.getElementById('engagement-rate')?.addEventListener('input', calculate);
-  document.getElementById('niche')?.addEventListener('change', calculate);
-  calculate();
+    if (format === 'newsletter') {
+      const r = data.rates;
+      let i = 0;
+      for (let j = 0; j < r.floors.length; j++) if (a >= r.floors[j]) i = j;
+      const row = r.rows[i];
+      const pct = (s) => parseFloat(s) / 100;
+      const med = row.median;
+      const cards = [
+        { label: 'Main slot, median', value: fmt(med), note: row.n + ' newsletters in the ' + row.size + ' row' },
+        { label: 'Middle half ask', value: range(row.p25, row.p75), note: '25th to 75th percentile' },
+        { label: r.placements[0].name, value: fmt(Math.round(med * pct(r.placements[0].median))), note: fmt(med) + ' × ' + r.placements[0].median },
+        { label: 'Classified or text ad', value: fmt(Math.round(med * pct(r.placements[1].median))), note: fmt(med) + ' × ' + r.placements[1].median },
+        { label: 'Dedicated send (whole email)', value: fmt(Math.round(med * parseFloat(r.placements[2].median))), note: fmt(med) + ' × ' + parseFloat(r.placements[2].median) },
+      ];
+      const warnings = [];
+      if (a < r.minList) {
+        warnings.push("Sponsor Radar's prices cover newsletters with " + r.minList + ' or more subscribers, so a list of ' + count(a) + ' is below the data. This is the lowest row, shown as a rough guide.');
+      } else {
+        cards.push({ label: 'Price per 1,000 subscribers at that median', value: per1000(med, a), note: fmt(med) + ' ÷ (' + count(a) + ' ÷ 1,000)' });
+      }
+      if (i >= 3) warnings.push('This row holds only ' + row.n + ' newsletters, so read it as rough.');
+      return {
+        ok: true,
+        subtitle: 'Newsletter, ' + count(a) + ' subscribers',
+        cards: cards,
+        formula: '',
+        notes: ["List prices, not guaranteed deal prices. The middle half of newsletters in your row ask " + range(row.p25, row.p75) + ". A click count or a past sponsor's result supports the top of that range."].concat(warnings).join(' '),
+        source: "Source: Sponsor Radar's read of " + r.n + " newsletters' advertise pages, " + r.read + '.',
+      };
+    }
+
+    if (format === 'podcast') {
+      const lib = data.podcast.libsyn[adLength === '30' ? '30' : '60'];
+      const len = adLength === '30' ? '30' : '60';
+      const ac = data.podcast.acast;
+      return {
+        ok: true,
+        subtitle: 'Podcast, ' + count(a) + ' downloads per episode in the first 30 days, ' + len + '-second host-read',
+        cards: [
+          { label: 'Libsyn Ads range', value: range(k * lib[0], k * lib[1]), note: count(a) + ' ÷ 1,000 × $' + lib[0] + ' to $' + lib[1] },
+          { label: 'Acast host-read range', value: range(k * ac[0], k * ac[1]), note: count(a) + ' ÷ 1,000 × $' + ac[0] + ' to $' + ac[1] },
+        ],
+        formula: 'Price = downloads in the first 30 days ÷ 1,000 × CPM.',
+        notes: 'Both sources quote host-read ads. According to Acast, business, finance and B2B shows often price at $40 or more per 1,000, and a mid-roll slot costs more than a post-roll.',
+        source: "Sources: Libsyn Ads' 2026 podcast advertising guide and Acast's podcast advertising cost guide, read " + data.read + '.',
+      };
+    }
+
+    if (format === 'youtube') {
+      const c = data.youtube.cpm;
+      return {
+        ok: true,
+        subtitle: 'YouTube, ' + count(a) + ' average views per video',
+        cards: [
+          { label: 'At a $' + c[0] + ' CPM', value: fmt(k * c[0]), note: count(a) + ' ÷ 1,000 × $' + c[0] },
+          { label: 'At a $' + c[1] + ' CPM', value: fmt(k * c[1]), note: count(a) + ' ÷ 1,000 × $' + c[1] },
+        ],
+        formula: 'Price = average views ÷ 1,000 × CPM. Range: ' + range(k * c[0], k * c[1]) + '.',
+        notes: 'Descript says highly specialized or sought-after channels may charge more than this range. Flat fees quoted by channel tier can differ a lot from CPM math, so check any quote against your own average views.',
+        source: "Source: Descript's YouTube sponsorship guide (CPMs as of early 2025), read " + data.read + '.',
+      };
+    }
+
+    // instagram or tiktok
+    const s = data.social;
+    let t = s.tiers[0];
+    for (let j = 0; j < s.tiers.length; j++) if (a >= s.tiers[j].from) t = s.tiers[j];
+    const name = format === 'tiktok' ? 'TikTok' : 'Instagram';
+    return {
+      ok: true,
+      subtitle: name + ', ' + count(a) + ' followers',
+      cards: [
+        { label: 'Your tier (impact.com)', value: t.name, note: t.label },
+        { label: 'impact.com rate-card range per ' + (format === 'tiktok' ? 'video' : 'post'), value: range(t.post[0], t.post[1]), note: 'US average per post, 2025' },
+        { label: 'Sprout Social survey', value: range(s.survey[0], s.survey[1]), note: 'What half of influencers charge per post' },
+      ],
+      formula: '',
+      notes: 'The two sources disagree. Read both as ranges and test any quote against what your own past posts delivered.',
+      source: "Sources: impact.com's influencer rate guide (updated 11 August 2025) and Sprout Social's influencer marketing statistics (published 29 April 2026).",
+    };
+  }
+  // calc:end
+
+  const dataEl = document.getElementById('calc-data');
+  if (dataEl) {
+    const data = JSON.parse(dataEl.textContent || '{}');
+    const formatEl = document.getElementById('format') as HTMLSelectElement;
+    const audienceEl = document.getElementById('audience') as HTMLInputElement;
+    const lengthEl = document.getElementById('ad-length') as HTMLSelectElement;
+    const lengthWrap = document.getElementById('ad-length-wrap') as HTMLElement;
+    const labels: Record<string, string> = {
+      newsletter: 'Subscribers',
+      podcast: 'Downloads per episode, first 30 days',
+      youtube: 'Average views per video',
+      instagram: 'Followers',
+      tiktok: 'Followers',
+    };
+
+    const setText = (id: string, text: string) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+
+    const render = () => {
+      const format = formatEl.value;
+      lengthWrap.classList.toggle('hidden', format !== 'podcast');
+      setText('audience-label', labels[format] || 'Audience');
+      const r = compute(data, format, audienceEl.value, lengthEl.value);
+      const cards = document.getElementById('cards') as HTMLElement;
+      cards.replaceChildren();
+      if (!r.ok) {
+        setText('results-subtitle', '');
+        setText('formula', '');
+        setText('notes', r.message);
+        setText('source', '');
+        return;
+      }
+      setText('results-subtitle', r.subtitle);
+      for (const c of r.cards) {
+        const card = document.createElement('div');
+        card.className = 'p-4 bg-white rounded-lg border border-gray-200';
+        const l = document.createElement('p');
+        l.className = 'text-sm text-gray-600';
+        l.textContent = c.label;
+        const v = document.createElement('p');
+        v.className = 'text-3xl font-bold text-gray-900';
+        v.textContent = c.value;
+        const n = document.createElement('p');
+        n.className = 'text-xs text-gray-500 mt-1';
+        n.textContent = c.note;
+        card.append(l, v, n);
+        cards.append(card);
+      }
+      setText('formula', r.formula);
+      setText('notes', r.notes);
+      setText('source', r.source);
+    };
+
+    formatEl.addEventListener('change', render);
+    audienceEl.addEventListener('input', render);
+    lengthEl.addEventListener('change', render);
+    render();
+  }
 </script>

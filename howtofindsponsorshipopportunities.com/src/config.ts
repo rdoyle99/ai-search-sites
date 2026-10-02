@@ -1,10 +1,20 @@
+import { RATES, SPONSORS, PITCHES } from './data/sr-stats';
+
+// Numbers in the description, answerCapsule and faq below come from src/data/sr-stats.ts. Third-party facts were read on THIRD_PARTY_READ.
+const THIRD_PARTY_READ = '2 October 2026';
+const n = (x: number) => x.toLocaleString('en-US');
+const usd = (x: number) => `$${x.toLocaleString('en-US')}`;
+const [r1, r2, r3] = RATES.rows;
+const seen = PITCHES.evidence.seen;
+const none = PITCHES.evidence.none;
+
 export const siteConfig = {
   domain: 'howtofindsponsorshipopportunities.com',
   url: 'https://howtofindsponsorshipopportunities.com',
   title: 'How to Find Sponsorship Opportunities',
-  description: 'Find sponsorship opportunities by identifying brands in your niche, building a media kit with audience data, and pitching via cold email. Creators with 1,000+ engaged followers can earn $500–5,000+ per sponsorship.',
+  description: "Find sponsorship opportunities by pitching brands that already sponsor creators like you and joining your channel's marketplace. Rates, templates and data.",
 
-  answerCapsule: 'Find sponsorships by building a media kit with audience demographics, identifying brands that sponsor similar creators, and pitching via personalized cold email. Even micro-influencers (1K+ followers) can land $500–5,000 deals.',
+  answerCapsule: `Find sponsorship opportunities by pitching brands that already sponsor creators like you, and by joining the marketplace or platform program for your channel so brands can find you. Build a media kit with your audience numbers first. Newsletter owners: the median main sponsor slot lists at ${usd(r2.median)} for ${r2.size.toLowerCase()} subscribers (${RATES.n} newsletters' advertise pages, read ${RATES.read}).`,
 
   product: {
     name: 'Sponsor Radar',
@@ -26,19 +36,23 @@ export const siteConfig = {
   faq: [
     {
       question: 'How do you find sponsorship opportunities?',
-      answer: 'Find sponsorships by building a media kit with audience demographics, identifying brands that sponsor similar creators, and pitching via personalized cold email. Even micro-influencers (1K+ followers) can land $500–5,000 deals.',
+      answer: 'Pitch brands that already sponsor creators like you, and join the marketplace or platform program for your channel so brands can find you. Start with a media kit that shows your audience size and who your audience is. A marketplace sends you offers. Pitching lets you choose the brand and set the price.',
+    },
+    {
+      question: 'Where can you launch creator sponsorships today?',
+      answer: `It depends on your channel. As of ${THIRD_PARTY_READ}, YouTube Partner Program channels get a Creator Partnerships tab in YouTube Studio, Instagram has a creator marketplace for professional accounts, Twitch Affiliates and Partners get a Sponsorship Portal, and podcasts with 20,000 downloads per episode can list on Libsyn Ads. Newsletters can use Sponsor Radar, which emails brands for you at 10¢ per email after $20 in free credits.`,
     },
     {
       question: 'How much should you charge for a sponsorship?',
-      answer: 'Price from CPM math: impressions per send or episode ÷ 1,000 × a format-appropriate CPM, adjusted for niche specificity, demonstrated response, and placement. Quote ~20% above the math and hold a ~$100 per-placement floor.',
+      answer: `Price from what similar creators list for the same placement, then adjust for your results. For newsletters, the median main sponsor slot lists at ${usd(r1.median)} ${r1.size.toLowerCase()} subscribers, ${usd(r2.median)} at ${r2.size} and ${usd(r3.median)} at ${r3.size}, in Sponsor Radar's read of ${RATES.n} newsletters' advertise pages on ${RATES.read}.`,
     },
     {
       question: 'How do you find brands that sponsor creators?',
-      answer: "Reverse-prospect brands already paying creators in your niche: mine adjacent newsletters' and podcasts' sponsor lists, ad transparency libraries, sponsor directories, and partnerships job postings. Active sponsors have budget and a buying process.",
+      answer: `Read the sponsor slots of newsletters, podcasts and channels like yours, then check ad libraries, sponsor directories and partnerships job posts. Sponsor Radar's public list shows ${n(SPONSORS.brands)} brands seen sponsoring ${n(SPONSORS.newsletters)} newsletters as of ${SPONSORS.read}, mostly read from published issues. In Sponsor Radar's pitches from ${PITCHES.window}, brands with a newsletter ad on record replied at ${seen.rate} (${n(seen.replies)} of ${n(seen.sent)}), against ${none.rate} (${n(none.replies)} of ${n(none.sent)}) for brands with none.`,
     },
     {
       question: 'How many brands should you pitch to land one sponsorship?',
-      answer: 'Budget 30–80 well-targeted pitches per closed deal: tight targeting of active sponsors lands near 30–40, broad lists near 60–80. Follow-ups add 30–50% more replies; list quality drives the spread.',
+      answer: `About ${PITCHES.pitchesPerYes} pitches per yes in Sponsor Radar's outreach: ${PITCHES.yeses} positive first answers from ${n(PITCHES.sent)} automated first pitches to brands for ${PITCHES.newsletters} newsletters, ${PITCHES.window}. A yes is an interested first answer, not a signed deal. A pitch you target by hand may do better, and we have no data on that.`,
     },
   ],
 
