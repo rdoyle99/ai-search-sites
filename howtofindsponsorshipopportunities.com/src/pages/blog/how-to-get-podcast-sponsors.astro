@@ -1,0 +1,115 @@
+---
+import Base from '../../layouts/Base.astro';
+import Byline from '../../components/Byline.astro';
+import { PODCASTS as P, pct } from '../../data/podcast-study';
+import { SR } from '../../data/sr-stats';
+import { articleSchema, faqSchema } from '../../lib/article';
+
+const PUBLISHED = '2026-10-02';
+const PATH = '/blog/how-to-get-podcast-sponsors/';
+const n = (x: number) => x.toLocaleString('en-US');
+const LIBSYN_GUIDE = 'https://advertising.libsyn.com/podcast-advertising-ultimate-guide';
+const LIBSYN_FAQ = 'https://advertising.libsyn.com/monetize-your-podcast';
+const ACAST = 'https://www.acast.com/en/news-and-insights/how-much-does-podcast-advertising-cost';
+const SR_PROFILE = (d: string) => `https://sponsorradar.co/sponsors/${d}`;
+
+const title = 'How to Get Podcast Sponsors: Data From the Top 200 Shows';
+const description = `We read ${n(P.episodes)} recent episodes of the top 200 US podcasts: ${pct(P.namedShows, P.shows)} name sponsors in their notes, and ${P.topBrands[0].name} and ${P.topBrands[1].name} sponsor the most shows. See the list.`;
+
+const faqs = [
+  { q: 'How do I get sponsors for my podcast?', a: `Two ways. Join an ad network or marketplace that sells ads into your episodes, and pitch brands that already sponsor shows like yours, with a vanity link or code they can count. Of the ${P.shows} top-200 US podcasts we read on ${P.read}, ${P.namedShows} (${pct(P.namedShows, P.shows)}) named sponsors in their show notes.` },
+  { q: 'Which companies sponsor podcasts?', a: `${P.topBrands[0].name} appeared in the show notes of ${P.topBrands[0].shows} top-200 US podcasts on ${P.read}, ${P.topBrands[1].name} in ${P.topBrands[1].shows}, and ${P.topBrands[2].name} and ${P.topBrands[3].name} in ${P.topBrands[2].shows} each. We counted ${P.distinctBrands} sponsor brands, ${P.brands3plus} of them on 3 or more shows.` },
+  { q: 'How many downloads do you need to get a podcast sponsor?', a: `None for a direct deal: a brand can buy a read on any show. Ad networks set their own minimums. Libsyn Ads, for example, requires at least 20,000 downloads per episode, as of ${P.read}.` },
+  { q: 'How much do podcast sponsors pay?', a: `About $15 to $40 per 1,000 downloads, depending on the ad. Libsyn Ads lists host-read ads at $24 to $26 per 1,000 for 60 seconds and $18 to $22 for 30 seconds, and Acast puts host-read sponsorships at $25 to $40 (both read ${P.read}). At $25, a show with 5,000 downloads per episode would charge $125 for one 60-second read.` },
+  { q: 'Why do podcast show notes list sponsor links and codes?', a: `So the brand can count what the read sold. Most of the ${P.namedShows} shows that named sponsors gave each brand a vanity link such as brand.com/showname or a promo code with the show's name, which the brand checks before it renews.` },
+];
+
+const schema = [
+  articleSchema({ headline: title, description, path: PATH, published: PUBLISHED, modified: PUBLISHED }),
+  faqSchema(faqs),
+];
+---
+
+<Base title={title} description={description} schema={schema} articleDate={PUBLISHED} articleModified={PUBLISHED}>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+    <header>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">How to Get Podcast Sponsors: What the Top 200 Shows Do</h1>
+      <div class="mt-3"><Byline published={PUBLISHED} /></div>
+    </header>
+    <div class="mt-8 prose prose-lg max-w-none">
+
+      <p><strong>Get podcast sponsors two ways: join an ad network or marketplace that sells ads into your episodes, and pitch brands that already sponsor shows like yours, with a vanity link or code they can count. Of the {P.shows} top-200 US podcasts we could read, {pct(P.namedShows, P.shows)} named sponsors in their last 10 episodes' notes, and {P.topBrands[0].name} sponsored the most shows (read {P.read}).</strong></p>
+
+      <p>We read the show notes of {n(P.episodes)} recent episodes from {P.chart} to see who sponsors the biggest shows and how they sell the ads. The method and its limits are at the end of the page.</p>
+
+      <h2>How many top podcasts sell ads?</h2>
+      <p>About a third name their sponsors, and two thirds sit on an ad-insertion platform. {P.namedShows} of {P.shows} shows ({pct(P.namedShows, P.shows)}) named at least one sponsor brand with its link or promo code. {P.daiShows} ({pct(P.daiShows, P.shows)}) carried an ad platform's privacy or "ad choices" notice, which hosting platforms add to every episode; it shows the show sits on an ad-capable host, but not that ads ran. Together, {P.eitherShows} shows ({pct(P.eitherShows, P.shows)}) had one sign or both, and for {P.daiOnlyShows} of them the notice was the only sign.</p>
+      <table>
+        <thead><tr><th>Sign in the last 10 episodes' notes</th><th>Top 200 ({P.shows} read)</th><th>Top 50</th></tr></thead>
+        <tbody>
+          <tr><td>Named at least one sponsor with a link or code</td><td>{P.namedShows} ({pct(P.namedShows, P.shows)})</td><td>{P.top50.named} of {P.top50.shows}</td></tr>
+          <tr><td>Ad platform notice (ad-capable host)</td><td>{P.daiShows} ({pct(P.daiShows, P.shows)})</td><td>{P.top50.dai} of {P.top50.shows}</td></tr>
+          <tr><td>Either sign</td><td>{P.eitherShows} ({pct(P.eitherShows, P.shows)})</td><td>{P.top50.either} of {P.top50.shows}</td></tr>
+          <tr><td>Neither sign</td><td>{P.neitherShows} ({pct(P.neitherShows, P.shows)})</td><td>{P.top50.shows - P.top50.either} of {P.top50.shows}</td></tr>
+        </tbody>
+      </table>
+      <p>Source: our read of {P.chart} on {P.read}, the latest 10 episodes of each show. A show with neither sign may still read ads in the audio without listing them.</p>
+
+      <h2>Which brands sponsor the most podcasts?</h2>
+      <p>{P.topBrands[0].name} sponsored the most top shows, {P.topBrands[0].shows} of them, followed by {P.topBrands[1].name} on {P.topBrands[1].shows}. A show that named sponsors listed a median {P.medianBrandsPerNamedShow} different brands across its last 10 episodes, and we counted {P.distinctBrands} sponsor brands in all, {P.brands3plus} of them on 3 or more shows.</p>
+      <table>
+        <thead><tr><th>Brand</th><th>Site</th><th>Top-200 shows that named it</th></tr></thead>
+        <tbody>
+          {P.topBrands.map((b) => (<tr><td>{b.name}</td><td>{b.domain}</td><td>{b.shows}</td></tr>))}
+        </tbody>
+      </table>
+      <p>Source: show notes of {n(P.episodes)} episodes, {P.read}. Brands named on 4 or more shows.</p>
+      <p>These brands buy podcast ads at scale today, so they are the first rows of a pitch list. The better rows are the brands in your own genre: open the show notes of five shows like yours and copy their sponsor lists. That is the same method this study used, on your niche.</p>
+
+      <h2>Do podcast sponsors also buy newsletter ads?</h2>
+      <p>Yes, often. {P.newsletterJoin.withNewsletterAd} of the {P.newsletterJoin.brands} brands named on 3 or more top shows ({pct(P.newsletterJoin.withNewsletterAd, P.newsletterJoin.brands)}) also have a newsletter ad on record in Sponsor Radar's data (2 October 2026). On Sponsor Radar's public profiles, which count more loosely, <a href={SR_PROFILE(P.srProfiles[0].domain)}>{P.srProfiles[0].name}</a> has been seen sponsoring {P.srProfiles[0].newsletters} newsletters, <a href={SR_PROFILE(P.srProfiles[1].domain)}>{P.srProfiles[1].name}</a> {P.srProfiles[1].newsletters} and <a href={SR_PROFILE(P.srProfiles[2].domain)}>{P.srProfiles[2].name}</a> {P.srProfiles[2].newsletters}. A brand that pays for podcast reads already has a budget for creator audiences, so a podcast that also sends a newsletter can pitch both.</p>
+      <p>If you run a newsletter, <a href={SR.cta('podcast-sponsors')}>Sponsor Radar</a> finds the brands already sponsoring newsletters in your niche and pitches them for you. It covers newsletters only, not podcasts.</p>
+
+      <h2>Which podcast genres sell the most ads?</h2>
+      <p>Comedy shows name their sponsors most often: {P.genres[1].named} of {P.genres[1].shows}. True crime shows almost all sit on ad platforms ({P.genres[0].either} of {P.genres[0].shows} had a sign) but only {P.genres[0].named} named a sponsor in the notes, likely because most of their ads are inserted automatically and not listed.</p>
+      <table>
+        <thead><tr><th>Genre (7+ shows on the chart)</th><th>Shows</th><th>Named a sponsor</th><th>Either sign</th></tr></thead>
+        <tbody>
+          {P.genres.map((g) => (<tr><td>{g.name}</td><td>{g.shows}</td><td>{g.named}</td><td>{g.either}</td></tr>))}
+        </tbody>
+      </table>
+      <p>The samples are small, so treat each genre row as a rough direction.</p>
+
+      <h2>Which ad networks sell podcast ads?</h2>
+      <p>AdsWizz and Spotify's Megaphone host the most top shows, {P.platforms[0].shows} and {P.platforms[1].shows} of {P.shows}, judging by the notices in their show notes.</p>
+      <table>
+        <thead><tr><th>Ad platform named in show notes</th><th>Shows</th></tr></thead>
+        <tbody>
+          {P.platforms.map((x) => (<tr><td>{x.name}</td><td>{x.shows}</td></tr>))}
+        </tbody>
+      </table>
+      <p>These mostly serve large networks. A smaller show usually starts with its host's ad program or a marketplace. Libsyn Ads requires at least 20,000 downloads per episode and splits ad revenue 70/30, with the podcaster keeping 70% (<a href={LIBSYN_FAQ} target="_blank" rel="noopener noreferrer">Libsyn Ads</a>, read {P.read}). Below that size, MediaPact, Passionfroot and Sponsorships.ai also list podcasts; the <a href="/best-sponsorship-platforms/">sponsorship platforms comparison</a> has their published fees, read 29 to 30 September 2026.</p>
+
+      <h2>How do you pitch a brand to sponsor your podcast?</h2>
+      <p>Pitch a read with a vanity link or code, the format the {P.namedShows} named-sponsor shows list. Most of them gave each brand a link such as brand.com/showname or a promo code with the show's name, so the brand can count sales from the read.</p>
+      <ol>
+        <li><strong>Build the list.</strong> Start with brands from the table above that fit your audience, then add the sponsors of five shows in your genre.</li>
+        <li><strong>Find the buyer.</strong> Look for a partnerships, podcast or influencer marketing lead at the brand. At a small brand, write to the founder.</li>
+        <li><strong>Send a short pitch.</strong> Downloads per episode in the first 30 days, who listens, one proposed read (60 seconds, mid-roll) and a price. The <a href="/blog/cold-email-sponsorship-pitch/">sponsorship email templates</a> are written for this.</li>
+        <li><strong>Attach a one-page media kit</strong> with your download numbers and past sponsors. The <a href="/blog/sponsorship-media-kit-guide/">media kit guide</a> has a podcast example.</li>
+        <li><strong>Follow up once or twice</strong> in the same thread, about a week apart. See <a href="/blog/sponsorship-follow-up-email/">sponsorship follow-up emails</a>.</li>
+      </ol>
+
+      <h2>How much do podcast sponsors pay?</h2>
+      <p>Brands pay about $15 to $40 per 1,000 downloads, counted over an episode's first 30 days. Libsyn Ads lists host-read ads at $24 to $26 per 1,000 downloads for a 60-second spot and $18 to $22 for 30 seconds (<a href={LIBSYN_GUIDE} target="_blank" rel="noopener noreferrer">Libsyn Ads' podcast advertising guide</a>, read {P.read}). Acast puts host-read sponsorships at $25 to $40 per 1,000 listens and pre-recorded ads at $15 to $30 (<a href={ACAST} target="_blank" rel="noopener noreferrer">Acast's podcast advertising cost guide</a>, read {P.read}).</p>
+      <p>For example, a show with 5,000 downloads per episode at $25 per 1,000 would charge 5,000 ÷ 1,000 × $25 = $125 for one 60-second read. Sold through Libsyn Ads' 70/30 split, the show would keep $125 × 70% = $87.50. Those round numbers are hypothetical. The <a href="/blog/how-much-to-charge-for-sponsorship/">sponsorship pricing guide</a> covers every format, and <a href="/blog/sponsorship-packages/">sponsorship packages</a> shows how to sell several reads as tiers.</p>
+
+      <h2>Podcast sponsor questions</h2>
+      {faqs.map((f) => (<><h3>{f.q}</h3><p>{f.a}</p></>))}
+
+      <h2>How this study was done</h2>
+      <p>On {P.read} we took {P.chart}, looked up each show's public RSS feed and read the show notes of its latest 10 episodes: {P.shows} shows and {n(P.episodes)} episodes (three shows had no readable feed). A show counts as naming a sponsor when its notes link a commercial site in a sponsor line: "sponsored by", "brought to you by", a promo code, a vanity offer link such as brand.com/showname, or a list under a "Sponsors" heading. Platforms, publishers, ad tech, nonprofits, the show's own site and host, guest and book sites were left out, the last checked by hand. The ad platform notice is the privacy or "ad choices" line that AdsWizz, Megaphone, Omny Studio, ART19 or Acast add to notes.</p>
+      <p>Limits: show notes miss many ads. A hand check removed lines that promoted the host's own products, books or events, and a few shows that name a sponsor without a link are still missed, so treat the counts as approximate. The chart ranks popularity on one day, so these are the biggest shows. The newsletter check counts a brand when Sponsor Radar's data holds at least one newsletter ad with a tracking link or read from an issue or sponsor page. Each update of this study will carry its own date.</p>
+    </div>
+  </article>
+</Base>

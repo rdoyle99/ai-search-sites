@@ -8,6 +8,7 @@ Sponsor Radar pitches brands to sponsor newsletters only. Not affiliated with sp
 
 - Newsletter prices: Sponsor Radar's read of 321 newsletters' advertise pages and rate cards, 29 September 2026 (full table: https://sponsorradar.co/newsletter-sponsorship-rates).
 - Pitch and reply figures: Sponsor Radar's 13,429 automated first pitches to 11,079 brands for 31 newsletters, 27 August to 24 September 2026, read 2 October 2026.
+- Podcast sponsors: this site's study of Apple Podcasts' US top 200 chart, the show notes of 1,898 recent episodes, 2 October 2026.
 - Every other figure links its source on the page where it appears.
 
 ## Guides
@@ -18,6 +19,13 @@ URL: https://howtofindsponsorshipopportunities.com/blog/find-sponsorship-opportu
 Find sponsorship opportunities by joining your platform's marketplace and pitching brands that already sponsor creators like you. Steps by creator type.
 
 You find sponsorship opportunities two ways: join the marketplace or platform program for your channel so brands send you offers, and pitch brands that already sponsor creators like you. Run both. The marketplace brings offers with little work, and pitching lets you choose the brand and set the price.
+
+### How to Get Podcast Sponsors: What the Top 200 Shows Do
+URL: https://howtofindsponsorshipopportunities.com/blog/how-to-get-podcast-sponsors/
+
+We read 1,898 recent episodes of the top 200 US podcasts: 31% name sponsors in their notes, and Shopify and Quince sponsor the most shows. See the list.
+
+Get podcast sponsors two ways: join an ad network or marketplace that sells ads into your episodes, and pitch brands that already sponsor shows like yours, with a vanity link or code they can count. Of the 197 top-200 US podcasts we could read, 31% named sponsors in their last 10 episodes' notes, and Shopify sponsored the most shows (read 2 October 2026).
 
 ### Sponsorship Media Kit: How to Build One That Lands Deals
 URL: https://howtofindsponsorshipopportunities.com/blog/sponsorship-media-kit-guide/
@@ -45,7 +53,7 @@ URL: https://howtofindsponsorshipopportunities.com/blog/media-sponsorship/
 
 A media sponsor gives coverage or promotion instead of cash. Value it at what it costs to buy: 3 issues at a $520 newsletter main slot = $1,560.
 
-A media sponsor gives coverage, ad space or promotion instead of cash, usually to an event, nonprofit or creator project, and gets brand placement and access to the audience in return. Its value is what the same coverage would cost to buy. This page prices it in dollars, using the printed prices of 321 newsletters.
+A media sponsor gives coverage, ad space or promotion instead of cash, usually to an event, nonprofit or creator project, and gets brand placement and access to the audience in return. Its value is what the same coverage would cost to buy. For example, a newsletter whose main slot lists at $520, the median at 20,000 to 49,999 subscribers, gives 3 issues of coverage worth 3 × $520 = $1,560 at list price (321 newsletters' advertise pages, 29 September 2026).
 
 ### Sponsorship Email Template: How to Cold Email Brands for a Sponsorship
 URL: https://howtofindsponsorshipopportunities.com/blog/cold-email-sponsorship-pitch/
@@ -96,7 +104,7 @@ Pick a format and enter your audience size to see what similar creators list for
 ### Media Kit Builder
 URL: https://howtofindsponsorshipopportunities.com/tools/media-kit-builder/
 
-Free tool: build a professional sponsorship media kit by entering your audience data, engagement metrics, and rates.
+Build a sponsorship media kit in two minutes: audience, reach, rates and past partners in one copyable kit, with rate ranges from 321 newsletters.
 
 Fill in your details to generate a professional media kit summary you can copy, paste, and share with brands. New to media kits? The sponsorship media kit guide explains what goes in each section.
 
