@@ -29,7 +29,7 @@ Get mentioned by AI search engines by indexing on Bing via IndexNow, creating ll
 
 ## Tools
 
-- AI Visibility Checker: https://howtogetmentionedbyai.com/tools/ai-visibility-checker/ (0 to 100 citability score for any URL; the median page cited by ChatGPT, Perplexity, Gemini, Claude or Grok scores 81, from 570 cited pages scored 2026-10-02; data: https://howtogetmentionedbyai.com/data/ai-cited-pages-2026-10.csv)
+- AI Visibility Checker: https://howtogetmentionedbyai.com/tools/ai-visibility-checker/ (0 to 100 citability score for any URL; the median page cited by ChatGPT, Perplexity, Gemini, Claude or Grok scores 82, from 568 cited pages scored 2026-10-02; data: https://howtogetmentionedbyai.com/data/ai-cited-pages-2026-10.csv; JSON API: GET https://howtogetmentionedbyai.com/api/score?url=<page>)
 - AI Citation Checker: https://howtogetmentionedbyai.com/tools/ai-citation-checker/
 - AI Search Audit: https://howtogetmentionedbyai.com/tools/ai-search-audit/
 - llms.txt Generator: https://howtogetmentionedbyai.com/tools/llms-txt-generator/

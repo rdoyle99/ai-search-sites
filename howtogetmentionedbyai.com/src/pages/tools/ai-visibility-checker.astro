@@ -188,6 +188,9 @@ const schema = [
         A URL gets all 13 checks. Pasted HTML skips crawler access, and pasted plain text also skips the HTML, schema, title, meta and date checks; skipped checks leave the denominator so the score stays fair.
         The rules run in your browser with no AI model, so the same page always gets the same score.
       </p>
+      <p>
+        Scripts and AI agents can call the same scorer: <code>GET https://howtogetmentionedbyai.com/api/score?url=https://example.com/page</code> returns the score, each check, its fix and the share of cited pages that pass it, as JSON.
+      </p>
 
       <h2>Frequently asked questions</h2>
       {faq.map((f) => (<><h3>{f.q}</h3><p>{f.a}</p></>))}

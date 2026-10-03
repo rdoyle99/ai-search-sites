@@ -51,9 +51,18 @@ export function extractHtml(doc) {
   if (doc.querySelector('[itemtype*="FAQPage" i]')) schemaTypes.add('FAQPage');
 
   // body content, chrome removed
-  const body = doc.querySelector('main') || doc.querySelector('article') || doc.body || doc.documentElement;
-  const root = body.cloneNode(true);
-  for (const el of root.querySelectorAll('script,style,noscript,template,svg,nav,footer,header,form,iframe,aside')) el.remove();
+  // <main> or <article> when it holds the content; streamed pages (Next.js Suspense) ship the text in a hidden div
+  // after <main> and move it in with a script, so fall back to the whole body when the landmark is nearly empty.
+  const all = doc.body || doc.documentElement;
+  const strip = (el) => {
+    const c = el.cloneNode(true);
+    for (const x of c.querySelectorAll('script,style,noscript,template,svg,nav,footer,header,form,iframe,aside')) x.remove();
+    return c;
+  };
+  const whole = strip(all);
+  const land = doc.querySelector('main') || doc.querySelector('article');
+  const landRoot = land ? strip(land) : null;
+  const root = landRoot && words(landRoot.textContent || '') >= 0.3 * words(whole.textContent || '') ? landRoot : whole;
 
   const blocks = [];
   for (const el of root.querySelectorAll('h1,h2,h3,h4,h5,h6,p,li,table,dt,dd,blockquote,pre')) {
