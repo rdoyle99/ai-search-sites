@@ -4,6 +4,12 @@ import { siteConfig } from '../../config';
 
 const tools = [
   {
+    slug: 'ai-visibility-checker',
+    title: 'AI Visibility Checker',
+    description: 'Paste a URL and get a 0 to 100 score for how easy the page is for ChatGPT, Perplexity and Gemini to cite, compared with 570 pages they did cite.',
+    tag: 'New',
+  },
+  {
     slug: 'ai-citation-checker',
     title: 'AI Citation Checker',
     description: 'Check if your brand is being cited by ChatGPT, Perplexity, and Claude. Enter your brand and queries to generate test prompts.',
@@ -13,7 +19,7 @@ const tools = [
     slug: 'llms-txt-generator',
     title: 'llms.txt Generator',
     description: 'Generate a properly formatted llms.txt file for your website. Fill in your site details and download a ready-to-use file.',
-    tag: 'New',
+    tag: null,
   },
   {
     slug: 'ai-search-audit',
@@ -38,7 +44,7 @@ const toolSchema = tools.map((tool) => ({
 
 <Base
   title={`Free AI Search Tools | ${siteConfig.title}`}
-  description="Free tools for AI search optimization: AI citation checker, llms.txt generator, and AI search readiness audit."
+  description="Free tools for AI search optimization: AI visibility checker, AI citation checker, llms.txt generator, and AI search readiness audit."
   schema={toolSchema}
 >
   <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">

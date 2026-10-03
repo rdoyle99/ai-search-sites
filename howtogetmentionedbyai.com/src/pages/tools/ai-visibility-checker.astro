@@ -1,0 +1,332 @@
+---
+import Base from '../../layouts/Base.astro';
+import { siteConfig } from '../../config';
+import study from '../../data/cited-study.json';
+
+const UPDATED = '2026-10-03';
+const fmt = (n: number) => n.toLocaleString('en-US');
+
+const rows = [
+  ['crawlers', 'AI crawlers can reach the page', 'robots.txt lets GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot, Google-Extended and Bingbot in; no noindex'],
+  ['standalone', 'Sections that stand alone', 'Each section names its subject in the first sentence instead of "This" or "As mentioned"'],
+  ['raw', 'Content readable without JavaScript', '300+ words of body text in the HTML as served'],
+  ['answer', 'Answer-first openings', 'The first sentence under each heading answers in 28 words or fewer'],
+  ['concise', 'Short sentences and paragraphs', 'Sentences average under 20 words; few paragraphs past 120'],
+  ['schema', 'Structured data (JSON-LD)', 'Article, Product, FAQPage, HowTo, Dataset or similar'],
+  ['headings', 'Heading structure', 'One H1 and a heading every 300 words or less'],
+  ['data', 'Numbers and specifics', '2+ numbers, prices, percentages or years per 100 words'],
+  ['scan', 'Lists and tables', 'A list or table per 400 words, at least one table'],
+  ['meta', 'Title and meta description', 'Title 20 to 65 characters, description 70 to 165'],
+  ['fresh', 'Dated and recent', 'A publish or update date within the last 12 months'],
+  ['faq', 'FAQ or Q&A block', 'FAQPage schema, or 3+ question headings with short answers'],
+  ['questions', 'Headings phrased as questions', '40%+ of H2/H3 headings read as questions'],
+] as const;
+
+const faq = [
+  {
+    q: 'What does the AI Visibility Checker score?',
+    a: `It scores 13 page features that AI answer engines lift citations from, such as answer-first openings, text readable without JavaScript, tables, numbers and AI crawler access, and adds them into a 0 to 100 score. The median page that ChatGPT, Perplexity, Gemini, Claude or Grok cited in our sample scored ${study.median}.`,
+  },
+  {
+    q: 'Do I need FAQ schema to get cited by AI?',
+    a: `No. Only ${Math.round((100 * study.faqSchema) / study.scored)}% of the ${fmt(study.scored)} cited pages we scored had FAQPage or QAPage schema, and only ${study.strong.questions}% phrased most headings as questions. Features almost every cited page shared were AI crawler access (${study.strong.crawlers}%), sections that stand alone (${study.strong.standalone}%) and text readable without JavaScript (${study.strong.raw}%).`,
+  },
+  {
+    q: 'Will a score of 100 get my page cited?',
+    a: 'No score guarantees a citation. Engines also weigh whether your page ranks for the query, whether other sites mention you, and how well the page answers the exact question. The score tells you whether the page is easy to quote once an engine finds it.',
+  },
+  {
+    q: 'Is my page or URL stored?',
+    a: 'No. Pasted HTML is scored in your browser and never sent anywhere. A URL is fetched once by our server so your browser can read it, then scored in your browser. Nothing is logged or kept.',
+  },
+  {
+    q: 'Why does the checker say my content is not readable without JavaScript?',
+    a: 'It counts the words in the HTML your server sends, before any script runs. Most AI crawlers read that raw HTML and do not run JavaScript, so a page that builds its text in the browser can look empty to them. Server rendering or static generation fixes it.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'AI Visibility Checker',
+    url: `${siteConfig.url}/tools/ai-visibility-checker/`,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Any (runs in the browser)',
+    description: 'Free checker that scores how easy a web page is for ChatGPT, Perplexity, Gemini and Claude to cite, with a fix list sorted by points.',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    dateModified: UPDATED,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: 'Pages cited by AI answer engines, scored for citability (October 2026)',
+    description: `${fmt(study.scored)} pages cited by ChatGPT, Perplexity, Gemini, Claude and Grok in ${fmt(study.answers)} answers collected ${study.from} to ${study.to}, each scored on 13 page features.`,
+    url: `${siteConfig.url}/tools/ai-visibility-checker/#study`,
+    distribution: { '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: `${siteConfig.url}/data/ai-cited-pages-2026-10.csv` },
+    temporalCoverage: `${study.from}/${study.to}`,
+    creator: { '@type': 'Organization', name: siteConfig.product.name, url: siteConfig.product.url },
+    dateModified: UPDATED,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+
+<Base
+  title="AI Visibility Checker: Will ChatGPT Cite Your Page? | Free"
+  description={`Free AI visibility checker. Paste a URL and get a 0 to 100 score for how easy the page is for ChatGPT, Perplexity and Gemini to cite, compared with ${fmt(study.scored)} pages they did cite.`}
+  schema={schema}
+  articleModified={UPDATED}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight" style="text-wrap: balance">AI Visibility Checker</h1>
+    <p class="mt-4 text-lg text-gray-600">
+      Paste a URL and get a 0 to 100 score for how easy the page is for ChatGPT, Perplexity, Gemini and Claude to quote, with fixes sorted by points.
+      Every check is compared with {fmt(study.scored)} pages those engines actually cited.
+    </p>
+    <p class="mt-2 text-sm text-gray-500">Free, no signup. Updated <time datetime={UPDATED}>October 3, 2026</time>.</p>
+
+    <form id="geo-form" class="mt-8 p-5 border border-gray-200 rounded-xl bg-white" novalidate>
+      <div class="flex gap-1 text-sm" role="tablist" aria-label="Input type">
+        <button type="button" role="tab" aria-selected="true" data-mode="url" class="mode-tab px-3 py-1.5 rounded-md font-semibold">Page URL</button>
+        <button type="button" role="tab" aria-selected="false" data-mode="paste" class="mode-tab px-3 py-1.5 rounded-md font-semibold">Paste HTML or text</button>
+      </div>
+      <div id="url-wrap" class="mt-4">
+        <label for="geo-url" class="sr-only">Page URL</label>
+        <input id="geo-url" type="url" inputmode="url" autocomplete="url" placeholder="https://yoursite.com/your-best-page" class="w-full px-3 py-3 border border-gray-300 rounded-lg text-base font-mono focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div id="paste-wrap" class="mt-4 hidden">
+        <label for="geo-paste" class="sr-only">Page HTML, markdown or text</label>
+        <textarea id="geo-paste" rows="9" placeholder="Paste the page source (View Source, copy all) or the article as markdown or plain text." class="w-full px-3 py-3 border border-gray-300 rounded-lg text-base font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+      </div>
+      <div class="mt-4 flex flex-wrap items-center gap-3">
+        <button type="submit" id="geo-go" class="px-5 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-600 disabled:opacity-60">Score my page</button>
+        <button type="button" id="geo-sample" class="text-sm text-gray-600 underline underline-offset-2 hover:text-gray-900">Load a sample article</button>
+        <span id="geo-status" class="text-sm text-gray-500" role="status" aria-live="polite"></span>
+      </div>
+      <p class="mt-3 text-xs text-gray-500">Pasted text never leaves your browser. URLs are fetched once to read the HTML and robots.txt; nothing is stored.</p>
+    </form>
+
+    <div id="geo-result" class="hidden mt-8" aria-live="polite">
+      <div class="p-6 border border-gray-200 rounded-xl">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p id="r-label" class="text-xs font-mono text-gray-500 break-all"></p>
+            <p class="mt-1 flex items-baseline gap-2"><span id="r-score" class="text-6xl font-extrabold tabular-nums text-gray-900">0</span><span class="text-xl text-gray-400 font-mono">/100</span></p>
+            <p id="r-band" class="mt-1 text-lg font-bold"></p>
+          </div>
+          <div class="text-right text-sm text-gray-600">
+            <p>Median cited page: <span class="font-mono font-semibold text-gray-900">{study.median}</span></p>
+            <p>Middle half of cited pages: <span class="font-mono font-semibold text-gray-900">{study.p25} to {study.p75}</span></p>
+          </div>
+        </div>
+        <div class="mt-5 relative h-3 rounded-full bg-gray-100" aria-hidden="true">
+          <div class="absolute inset-y-0 rounded-full bg-gray-300" style={`left:${study.p25}%;width:${study.p75 - study.p25}%`}></div>
+          <div class="absolute -top-1 h-5 w-0.5 bg-gray-700" style={`left:${study.median}%`}></div>
+          <div id="r-marker" class="absolute -top-1.5 h-6 w-1.5 rounded bg-blue-600 transition-all" style="left:0%"></div>
+        </div>
+        <p class="mt-2 text-xs text-gray-500"><span class="inline-block w-2 h-2 rounded-sm bg-blue-600 align-middle"></span> your page &nbsp; <span class="inline-block w-3 h-2 rounded-sm bg-gray-300 align-middle"></span> middle half of cited pages &nbsp; <span class="inline-block w-0.5 h-3 bg-gray-700 align-middle"></span> median</p>
+        <p id="r-verdict" class="mt-4 text-gray-800"></p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <button type="button" id="r-copy" class="px-3 py-2 text-sm font-semibold border border-gray-300 rounded-lg hover:border-gray-500">Copy report (Markdown)</button>
+          <button type="button" id="r-download" class="px-3 py-2 text-sm font-semibold border border-gray-300 rounded-lg hover:border-gray-500">Download report</button>
+        </div>
+      </div>
+
+      <h2 class="mt-10 text-xl font-bold text-gray-900">Fixes, biggest gain first</h2>
+      <ol id="r-fixes" class="mt-4 space-y-3"></ol>
+
+      <div id="r-bots-wrap" class="hidden mt-10">
+        <h2 class="text-xl font-bold text-gray-900">Which AI crawlers can read this page?</h2>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead><tr class="text-left text-gray-500 border-b border-gray-200"><th class="py-2 pr-4 font-medium">Crawler</th><th class="py-2 pr-4 font-medium">Used by</th><th class="py-2 font-medium">robots.txt</th></tr></thead>
+            <tbody id="r-bots"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 p-6 border border-blue-200 rounded-lg bg-blue-50">
+      <p class="text-sm font-medium text-blue-900">Page scores well and still isn't cited?</p>
+      <p class="mt-1 text-sm text-blue-700">
+        Engines also look for your brand on other sites. <a href={siteConfig.product.ctaUrl} target="_blank" rel="noopener" class="font-semibold underline">{siteConfig.product.name}</a> places real brand mentions in Reddit threads and communities, the pages AI answers quote most.
+      </p>
+    </div>
+
+    <div class="mt-14 prose prose-gray max-w-none">
+      <h2 id="study">What {fmt(study.scored)} pages cited by AI have in common</h2>
+      <p>
+        Cited pages score a median of {study.median} out of 100 on this checker, and half of them land between {study.p25} and {study.p75}.
+        We collected {fmt(study.answers)} answers from ChatGPT, Perplexity, Gemini, Claude and Grok between {study.from} and {study.to}, pulled the {fmt(study.citedUrls)} pages they cited, sampled {fmt(study.sampled)} (at most 2 per domain), and scored the {fmt(study.scored)} that served readable HTML to a normal browser request.
+      </p>
+      <table>
+        <thead><tr><th>Check</th><th>What passes</th><th>Cited pages passing</th></tr></thead>
+        <tbody>
+          {rows.map(([id, name, rule]) => (
+            <tr><td>{name}</td><td>{rule}</td><td class="font-mono">{study.strong[id]}%</td></tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        The pattern is plain. Nearly every cited page let AI crawlers in, opened sections with the subject named, and served its text in the HTML.
+        Question-style headings ({study.strong.questions}%) and FAQ blocks ({study.strong.faq}%) were the exception, so this checker weights them least.
+        These are traits of pages that were cited, which shows what engines can work with; it is not proof that any one feature causes a citation.
+      </p>
+      <p>
+        Download the scored sample: <a href="/data/ai-cited-pages-2026-10.csv">ai-cited-pages-2026-10.csv</a> ({fmt(study.scored)} rows: URL, engines that cited it, score and every check).
+        The questions behind the answers covered pie charts, newsletter sponsorship, conference data, Reddit marketing, doctor email lists and foundation soils, so the sample leans toward software and data topics.
+      </p>
+
+      <h2>How the score is built</h2>
+      <p>
+        Each check returns a value from 0 to 1, multiplied by its weight, and the total is scaled to 100.
+        A URL gets all 13 checks. Pasted HTML skips crawler access, and pasted plain text also skips the HTML, schema, title, meta and date checks; skipped checks leave the denominator so the score stays fair.
+        The rules run in your browser with no AI model, so the same page always gets the same score.
+      </p>
+
+      <h2>Frequently asked questions</h2>
+      {faq.map((f) => (<><h3>{f.q}</h3><p>{f.a}</p></>))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mode-tab[aria-selected='true'] { background: rgb(239 246 255); color: rgb(29 78 216); }
+  .mode-tab[aria-selected='false'] { color: rgb(75 85 99); }
+  .mode-tab:focus-visible { outline: 2px solid rgb(37 99 235); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<script>
+  import { extractHtml, extractText, looksLikeHtml, score, robotsAllows, toMarkdown, AI_BOTS } from '../../lib/geo-score.js';
+  import study from '../../data/cited-study.json';
+
+  const $ = (id: string) => document.getElementById(id) as HTMLElement;
+  const esc = (s: string) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
+  let mode: 'url' | 'paste' = 'url';
+  let last: { result: any; label: string } | null = null;
+
+  const SAMPLE = `<!doctype html><html><head><title>Email Marketing Tips</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Email Marketing Tips"}<\/script></head>
+<body><main><h1>Email Marketing Tips</h1>
+<p>In today's fast-paced digital world, email marketing remains one of the most talked-about channels, and many businesses are wondering how they can make the most of it in a landscape that keeps changing every single year.</p>
+<h2>Why Email Still Matters</h2>
+<p>This is because email gives you a direct line to your audience. It is owned, it is personal, and it does not depend on an algorithm deciding who sees your message, which makes it very different from social media where reach can drop overnight for reasons you cannot control.</p>
+<h2>Subject Lines</h2>
+<p>It is important to write good subject lines. Short subject lines tend to do better. Personalization can help too. Many marketers test different versions to see what works best for their list.</p>
+<h2>How often should you send?</h2>
+<p>Most brands send one to four emails a week. Sending more than daily raises unsubscribes for most lists.</p>
+<ul><li>Clean your list every 90 days</li><li>Remove hard bounces right away</li><li>Use double opt-in</li></ul>
+<h2>Conclusion</h2>
+<p>As mentioned above, email marketing works when you put in the effort and keep testing over time.</p>
+</main></body></html>`;
+
+  function setMode(m: 'url' | 'paste') {
+    mode = m;
+    document.querySelectorAll<HTMLButtonElement>('.mode-tab').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.mode === m)));
+    $('url-wrap').classList.toggle('hidden', m !== 'url');
+    $('paste-wrap').classList.toggle('hidden', m !== 'paste');
+  }
+  document.querySelectorAll<HTMLButtonElement>('.mode-tab').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode as any)));
+
+  $('geo-sample').addEventListener('click', () => {
+    setMode('paste');
+    ($('geo-paste') as HTMLTextAreaElement).value = SAMPLE;
+    run();
+  });
+  $('geo-form').addEventListener('submit', (e) => { e.preventDefault(); run(); });
+
+  const pill = (s: string) => {
+    const c = s === 'Strong' ? 'bg-green-100 text-green-800' : s === 'Partial' ? 'bg-amber-100 text-amber-800' : 'bg-red-100 text-red-800';
+    return `<span class="shrink-0 inline-block w-16 text-center text-xs font-semibold px-2 py-0.5 rounded-full ${c}">${s}</span>`;
+  };
+  const barColor = (v: number) => (v >= 0.8 ? 'bg-green-600' : v >= 0.4 ? 'bg-amber-500' : 'bg-red-500');
+
+  async function run() {
+    const status = $('geo-status');
+    const go = $('geo-go') as HTMLButtonElement;
+    status.textContent = '';
+    let x, ctx = null, label = '';
+    try {
+      if (mode === 'url') {
+        const url = ($('geo-url') as HTMLInputElement).value.trim();
+        if (!url) { status.textContent = 'Enter a URL first.'; return; }
+        go.disabled = true; status.textContent = 'Fetching the page and its robots.txt…';
+        const r = await fetch('/api/fetch-page?url=' + encodeURIComponent(url));
+        const j = await r.json().catch(() => ({ error: 'The checker could not read that page.' }));
+        if (!r.ok || j.error) { status.textContent = j.error || 'The checker could not read that page.'; return; }
+        const doc = new DOMParser().parseFromString(j.html, 'text/html');
+        x = extractHtml(doc);
+        const path = new URL(j.url).pathname;
+        ctx = { xRobots: j.xRobots, robots: Object.fromEntries(AI_BOTS.map((b) => [b.ua, robotsAllows(j.robots, b.ua, path)])) };
+        label = j.url;
+      } else {
+        const src = ($('geo-paste') as HTMLTextAreaElement).value;
+        if (src.trim().length < 50) { status.textContent = 'Paste at least a few paragraphs.'; return; }
+        x = looksLikeHtml(src) ? extractHtml(new DOMParser().parseFromString(src, 'text/html')) : extractText(src);
+        label = x.kind === 'html' ? (x.title || 'Pasted HTML') : 'Pasted text';
+      }
+    } catch {
+      status.textContent = 'Something went wrong reading that page. Try pasting the HTML instead.';
+      return;
+    } finally { go.disabled = false; }
+    if (x.text.split(/\s+/).length < 40) { status.textContent = 'Found almost no text on that page. If it renders with JavaScript, AI crawlers see the same empty page.'; }
+    else status.textContent = '';
+    render(score(x, ctx), label);
+  }
+
+  function render(res: any, label: string) {
+    last = { result: res, label };
+    $('geo-result').classList.remove('hidden');
+    $('r-label').textContent = label;
+    $('r-score').textContent = String(res.score);
+    const band = $('r-band');
+    band.textContent = res.band;
+    band.className = 'mt-1 text-lg font-bold ' + (res.score >= 80 ? 'text-green-700' : res.score >= 60 ? 'text-gray-900' : res.score >= 40 ? 'text-amber-700' : 'text-red-700');
+    $('r-marker').style.left = `calc(${res.score}% - 3px)`;
+    const diff = res.score - study.median;
+    const top = res.fixes[0];
+    $('r-verdict').textContent = (diff >= 0 ? `This page scores ${diff} points above the median page AI engines cited.` : `This page scores ${-diff} points below the median page AI engines cited.`) +
+      (top ? ` The biggest gain is ${top.name.toLowerCase()} (+${top.gap.toFixed(1)} points).` : ' Nothing left to fix on these checks.');
+    $('r-fixes').innerHTML = res.checks.slice().sort((a: any, b: any) => b.gap - a.gap).map((c: any) => `
+      <li class="p-4 border border-gray-200 rounded-lg">
+        <div class="flex items-start gap-3">
+          ${pill(c.status)}
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <p class="font-semibold text-gray-900">${esc(c.name)}</p>
+              <p class="font-mono text-sm text-gray-600">${c.points.toFixed(1)} / ${c.weight}</p>
+            </div>
+            <div class="mt-2 h-1.5 rounded-full bg-gray-100"><div class="h-1.5 rounded-full ${barColor(c.value)}" style="width:${Math.round(c.value * 100)}%"></div></div>
+            <p class="mt-2 text-sm text-gray-700">${esc(c.found)}</p>
+            ${c.example ? `<p class="mt-1 text-xs font-mono text-gray-500 break-words">“${esc(c.example)}”</p>` : ''}
+            ${c.gap > 0.05 ? `<p class="mt-2 text-sm text-gray-900"><span class="font-semibold">Fix:</span> ${esc(c.fix)}</p>` : ''}
+            <p class="mt-1 text-xs text-gray-500">${(study.strong as any)[c.id]}% of cited pages pass this check.</p>
+          </div>
+        </div>
+      </li>`).join('');
+    const bots = res.checks.find((c: any) => c.id === 'crawlers');
+    $('r-bots-wrap').classList.toggle('hidden', !bots);
+    if (bots) $('r-bots').innerHTML = bots.bots.map((b: any) => `<tr class="border-b border-gray-100"><td class="py-2 pr-4 font-mono">${b.ua}</td><td class="py-2 pr-4 text-gray-600">${b.who}</td><td class="py-2 font-semibold ${b.ok === false ? 'text-red-700' : b.ok === null ? 'text-gray-500' : 'text-green-700'}">${b.ok === false ? 'Blocked' : b.ok === null ? 'Could not read robots.txt' : 'Allowed'}</td></tr>`).join('');
+    $('geo-result').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  $('r-copy').addEventListener('click', async () => {
+    if (!last) return;
+    await navigator.clipboard.writeText(toMarkdown(last.result, last.label));
+    $('r-copy').textContent = 'Copied';
+    setTimeout(() => ($('r-copy').textContent = 'Copy report (Markdown)'), 1800);
+  });
+  $('r-download').addEventListener('click', () => {
+    if (!last) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([toMarkdown(last.result, last.label)], { type: 'text/markdown' }));
+    a.download = 'ai-visibility-report.md';
+    a.click();
+  });
+</script>

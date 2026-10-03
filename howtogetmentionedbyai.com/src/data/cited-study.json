@@ -1,0 +1,36 @@
+{
+ "answers": 2008,
+ "citedUrls": 4836,
+ "from": "2026-09-26",
+ "to": "2026-10-02",
+ "engines": [
+  "ChatGPT",
+  "Perplexity",
+  "Gemini",
+  "Claude",
+  "Grok"
+ ],
+ "sampled": 700,
+ "scored": 570,
+ "domains": 488,
+ "median": 81.0,
+ "p25": 71,
+ "p75": 88,
+ "strong": {
+  "crawlers": 94,
+  "raw": 80,
+  "answer": 80,
+  "standalone": 86,
+  "questions": 24,
+  "faq": 27,
+  "schema": 71,
+  "scan": 55,
+  "headings": 60,
+  "concise": 77,
+  "data": 56,
+  "meta": 49,
+  "fresh": 44
+ },
+ "blockGPTBot": 32,
+ "faqSchema": 154
+}
