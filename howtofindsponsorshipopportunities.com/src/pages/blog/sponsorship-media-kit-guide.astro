@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { articleSchema, faqSchema } from '../../lib/article';
 import { RATES, ADS, SR } from '../../data/sr-stats';
 
@@ -104,6 +105,7 @@ const faq = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{H1}</h1>
       <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
@@ -198,7 +200,7 @@ const faq = [
         <li><strong>Tier 4, ongoing partnership:</strong> A multi-month package that combines content types. It gives the brand sustained visibility and gives you predictable revenue.</li>
       </ul>
 
-      <p>List a specific price for each tier. Brands expect to see numbers, and "rates available upon request" signals that you have not decided your pricing. Tier names, price ratios and a copyable package template are in <a href="/blog/sponsorship-packages/">sponsorship packages and levels</a>. To find a starting price, use the <a href="/tools/sponsorship-rate-calculator/">sponsorship rate calculator</a> or the CPM math in <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a>. Newsletter owners can start from a filled-in page instead: Sponsor Radar's <a href={SR.proposalUrl}>sponsorship proposal template</a> prices its packages from what newsletters of the same size publish on their advertise pages.</p>
+      <p>List a specific price for each tier. Brands expect to see numbers, and "rates available upon request" signals that you have not decided your pricing. Tier names, price ratios and a copyable package template are in <a href="/blog/sponsorship-packages/">sponsorship packages and levels</a>. To find a starting price, use the <a href="/tools/sponsorship-rate-calculator/">sponsorship rate calculator</a> or the CPM math in <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a>. Newsletter owners can start from a filled-in page instead: Book a Sponsor's <a href={SR.proposalUrl}>sponsorship proposal template</a> prices its packages from what newsletters of the same size publish on their advertise pages.</p>
 
       <h3>6. Past partnerships and testimonials (page 6)</h3>
 
@@ -212,7 +214,7 @@ const faq = [
 
       <h2>What do newsletters put on their rate card?</h2>
 
-      <p>A rate card is a one-page price list: each placement, what it includes and what it costs. Sponsor Radar read {RATES.pagesRead} newsletter advertise pages and found {RATES.pricesListed.toLocaleString('en-US')} listed prices. The table below uses the {RATES.n} newsletters that print both a main-slot price and a list size of 500 or more. Source: Sponsor Radar's read of newsletters' <a href={SR.ratesUrl}>advertise pages</a>, {RATES.read}.</p>
+      <p>A rate card is a one-page price list: each placement, what it includes and what it costs. Book a Sponsor read {RATES.pagesRead} newsletter advertise pages and found {RATES.pricesListed.toLocaleString('en-US')} listed prices. The table below uses the {RATES.n} newsletters that print both a main-slot price and a list size of 500 or more. Source: Book a Sponsor's read of newsletters' <a href={SR.ratesUrl}>advertise pages</a>, {RATES.read}.</p>
 
       <table>
         <thead>
@@ -264,7 +266,7 @@ const faq = [
         </tbody>
       </table>
 
-      <p>Source: Sponsor Radar, newsletters with 5 or more issues in the 90 days to {ADS.read}. For your kit, the takeaway is to print a main-slot price next to your list size, the way these newsletters do, so a brand can compare you without a call. To turn the main slot into tiers, see <a href="/blog/sponsorship-packages/">sponsorship packages and levels</a>.</p>
+      <p>Source: Book a Sponsor, newsletters with 5 or more issues in the 90 days to {ADS.read}. For your kit, the takeaway is to print a main-slot price next to your list size, the way these newsletters do, so a brand can compare you without a call. To turn the main slot into tiers, see <a href="/blog/sponsorship-packages/">sponsorship packages and levels</a>.</p>
 
       <h2>What is the difference between a media kit and a rate card?</h2>
 
@@ -287,7 +289,7 @@ const faq = [
         <li><strong>Proof:</strong> Clicks on the sponsor's link or redemptions of a show-only code from past sponsors.</li>
       </ul>
 
-      <p>Price each package from downloads: downloads &divide; 1,000 &times; your CPM. The CPM math is in <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a>. No podcast price is printed here because Sponsor Radar's rate data covers newsletters only. For the brands to send the kit to, see <a href="/blog/how-to-get-podcast-sponsors/">which brands sponsor the top 200 podcasts</a>.</p>
+      <p>Price each package from downloads: downloads &divide; 1,000 &times; your CPM. The CPM math is in <a href="/blog/how-much-to-charge-for-sponsorship/">how much to charge for a sponsorship</a>. No podcast price is printed here because Book a Sponsor's rate data covers newsletters only. For the brands to send the kit to, see <a href="/blog/how-to-get-podcast-sponsors/">which brands sponsor the top 200 podcasts</a>.</p>
 
       <h3>Streamer media kit example</h3>
 
@@ -308,7 +310,7 @@ const faq = [
         <li><strong>Packages and prices:</strong> Start from the median main slot for a list this size, {dollars(ex.median)} (the {ex.size} bracket, n = {ex.n}). A classified: {dollars(ex.median)} &times; {classified.median} = {cents(exClassified)}, rounded to {dollars(round5(exClassified))}. The main slot: {dollars(ex.median)}. A dedicated send: {dollars(ex.median)} &times; {F_DEDICATED} = {cents(exDedicated)}, rounded to {dollars(round5(exDedicated))}.</li>
       </ul>
 
-      <p>Source: Sponsor Radar's read of {RATES.n} newsletters' rate cards, {RATES.read}. These are medians, a starting point and not a quote. Replace them with your own prices once you have sold a few placements.</p>
+      <p>Source: Book a Sponsor's read of {RATES.n} newsletters' rate cards, {RATES.read}. These are medians, a starting point and not a quote. Replace them with your own prices once you have sold a few placements.</p>
 
       <h2 id="media-kit-template">Sponsorship media kit template</h2>
 
@@ -356,7 +358,7 @@ const faq = [
       <div class="not-prose mt-10 p-6 border border-blue-200 rounded-lg bg-blue-50">
         <p class="text-sm font-medium text-blue-900">Kit ready? Get it in front of brands that sponsor newsletters</p>
         <p class="mt-1 text-sm text-blue-700">
-          If you run a newsletter, Sponsor Radar finds brands that sponsored similar newsletters, sends the pitches from its own mailboxes, and introduces you when a brand replies.
+          If you run a newsletter, Book a Sponsor finds brands that sponsored similar newsletters, sends the pitches from its own mailboxes, and introduces you when a brand replies.
         </p>
         <a href={SR.cta('sponsorship-media-kit-guide')} class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">See sponsors for your newsletter &rarr;</a>
       </div>

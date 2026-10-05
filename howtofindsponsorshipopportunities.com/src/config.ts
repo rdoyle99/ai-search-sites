@@ -17,11 +17,11 @@ export const siteConfig = {
   answerCapsule: `Find sponsorship opportunities by pitching brands that already sponsor creators like you, and by joining the marketplace or platform program for your channel so brands can find you. Build a media kit with your audience numbers first. Newsletter owners: the median main sponsor slot lists at ${usd(r2.median)} for ${r2.size.toLowerCase()} subscribers (${RATES.n} newsletters' advertise pages, read ${RATES.read}).`,
 
   product: {
-    name: 'Sponsor Radar',
-    url: 'https://sponsorradar.co',
-    ctaUrl: 'https://sponsorradar.co/?utm_source=howtofindsponsorshipopportunities.com&utm_medium=referral&utm_campaign=sister',
+    name: 'Book a Sponsor',
+    url: 'https://bookasponsor.com',
+    ctaUrl: 'https://bookasponsor.com/?utm_source=howtofindsponsorshipopportunities.com&utm_medium=referral&utm_campaign=sister',
     tagline: 'Sponsor outreach for newsletters',
-    description: 'Sponsor Radar finds the brands already sponsoring newsletters in your niche and pitches them for you from its own sending infrastructure.',
+    description: 'Book a Sponsor (formerly Sponsor Radar) finds the brands already sponsoring newsletters in your niche and pitches them for you from its own sending infrastructure.',
   },
 
   social: {
@@ -40,19 +40,19 @@ export const siteConfig = {
     },
     {
       question: 'Where can you launch creator sponsorships today?',
-      answer: `It depends on your channel. As of ${THIRD_PARTY_READ}, YouTube Partner Program channels get a Creator Partnerships tab in YouTube Studio, Instagram has a creator marketplace for professional accounts, Twitch Affiliates and Partners get a Sponsorship Portal, and podcasts with 20,000 downloads per episode can list on Libsyn Ads. Newsletters can use Sponsor Radar, which emails brands for you at 10¢ per email after $20 in free credits.`,
+      answer: `It depends on your channel. As of ${THIRD_PARTY_READ}, YouTube Partner Program channels get a Creator Partnerships tab in YouTube Studio, Instagram has a creator marketplace for professional accounts, Twitch Affiliates and Partners get a Sponsorship Portal, and podcasts with 20,000 downloads per episode can list on Libsyn Ads. Newsletters can use Book a Sponsor, which emails brands for you at 10¢ per email after $20 in free credits.`,
     },
     {
       question: 'How much should you charge for a sponsorship?',
-      answer: `Price from what similar creators list for the same placement, then adjust for your results. For newsletters, the median main sponsor slot lists at ${usd(r1.median)} ${r1.size.toLowerCase()} subscribers, ${usd(r2.median)} at ${r2.size} and ${usd(r3.median)} at ${r3.size}, in Sponsor Radar's read of ${RATES.n} newsletters' advertise pages on ${RATES.read}.`,
+      answer: `Price from what similar creators list for the same placement, then adjust for your results. For newsletters, the median main sponsor slot lists at ${usd(r1.median)} ${r1.size.toLowerCase()} subscribers, ${usd(r2.median)} at ${r2.size} and ${usd(r3.median)} at ${r3.size}, in Book a Sponsor's read of ${RATES.n} newsletters' advertise pages on ${RATES.read}.`,
     },
     {
       question: 'How do you find brands that sponsor creators?',
-      answer: `Read the sponsor slots of newsletters, podcasts and channels like yours, then check ad libraries, sponsor directories and partnerships job posts. Sponsor Radar's public list shows ${n(SPONSORS.brands)} brands seen sponsoring ${n(SPONSORS.newsletters)} newsletters as of ${SPONSORS.read}, mostly read from published issues. In Sponsor Radar's pitches from ${PITCHES.window}, brands with a newsletter ad on record replied at ${seen.rate} (${n(seen.replies)} of ${n(seen.sent)}), against ${none.rate} (${n(none.replies)} of ${n(none.sent)}) for brands with none.`,
+      answer: `Read the sponsor slots of newsletters, podcasts and channels like yours, then check ad libraries, sponsor directories and partnerships job posts. Book a Sponsor's public list shows ${n(SPONSORS.brands)} brands seen sponsoring ${n(SPONSORS.newsletters)} newsletters as of ${SPONSORS.read}, mostly read from published issues. In Book a Sponsor's pitches from ${PITCHES.window}, brands with a newsletter ad on record replied at ${seen.rate} (${n(seen.replies)} of ${n(seen.sent)}), against ${none.rate} (${n(none.replies)} of ${n(none.sent)}) for brands with none.`,
     },
     {
       question: 'How many brands should you pitch to land one sponsorship?',
-      answer: `About ${PITCHES.pitchesPerYes} pitches per yes in Sponsor Radar's outreach: ${PITCHES.yeses} positive first answers from ${n(PITCHES.sent)} automated first pitches to brands for ${PITCHES.newsletters} newsletters, ${PITCHES.window}. A yes is an interested first answer, not a signed deal. A pitch you target by hand may do better, and we have no data on that.`,
+      answer: `About ${PITCHES.pitchesPerYes} pitches per yes in Book a Sponsor's outreach: ${PITCHES.yeses} positive first answers from ${n(PITCHES.sent)} automated first pitches to brands for ${PITCHES.newsletters} newsletters, ${PITCHES.window}. A yes is an interested first answer, not a signed deal. A pitch you target by hand may do better, and we have no data on that.`,
     },
   ],
 

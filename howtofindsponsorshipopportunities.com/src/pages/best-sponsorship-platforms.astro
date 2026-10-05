@@ -9,20 +9,20 @@ const DATE_ISO = '2026-09-30';
 
 // Scores: sell = how much of the selling it does for you, price = price and fees as published, access = who can use it.
 // Each is 0 to 3 and every score is explained in the rubric table below. Facts come from the vendor's own pages
-// (Sponsor Radar's from sponsorradar.co/company and /llms.txt), read on the date shown on each card.
+// (Book a Sponsor's from bookasponsor.com/company and /llms.txt), read on the date shown on each card.
 const options = [
   {
-    id: 'sponsor-radar', name: 'Sponsor Radar', url: siteConfig.product.ctaUrl, schemaUrl: siteConfig.product.url,
+    id: 'sponsor-radar', name: 'Book a Sponsor', url: siteConfig.product.ctaUrl, schemaUrl: siteConfig.product.url,
     channels: 'Newsletters', read: '30 September 2026',
     sell: 'Emails brands for you every day from its own mailboxes. You close the deal.', sellScore: 3,
     price: '$20 in free credits (200 emails), then 10¢ per email sent. No commission or rev-share.', priceScore: 3,
     access: 'Newsletters on any platform, no subscriber minimum. Adult newsletters are refused.', accessScore: 3,
-    summary: 'Paste a newsletter URL and Sponsor Radar lists the brands that sponsored similar newsletters, finds the person who buys the ads and drafts the pitch. After checkout it emails those brands every day, 50 new brands a day by default (you set 25 to 100), and introduces you when one replies.',
+    summary: 'Book a Sponsor (formerly Sponsor Radar, renamed in October 2026; sponsorradar.co now redirects to it). Paste a newsletter URL and it lists the brands that sponsored similar newsletters, finds the person who buys the ads and drafts the pitch. After checkout it emails those brands every day, 50 new brands a day by default (you set 25 to 100), and introduces you when one replies.',
     priceNote: 'Initial emails and follow-ups both count. It invoices daily for your first few days, then weekly, never more than $50 at a time. The credit is the only free part, because there is no trial.',
     limit: 'It covers newsletters only, so it does nothing for YouTube or podcasts. It charges per email sent, its guarantee covers a first sponsor reply inside 30 days and does not cover a closed deal, and you close every deal yourself.',
     sources: [
-      ['https://sponsorradar.co/company', 'Sponsor Radar company facts'],
-      ['https://sponsorradar.co/llms.txt', 'Sponsor Radar llms.txt'],
+      ['https://bookasponsor.com/company', 'Book a Sponsor company facts'],
+      ['https://bookasponsor.com/llms.txt', 'Book a Sponsor llms.txt'],
     ],
   },
   {
@@ -193,11 +193,11 @@ const options = [
     sell: 'You pitch. It suggests brands that pay channels like yours and drafts the pitch, sent from your own Gmail.', sellScore: 1,
     price: 'Free plan for one channel. Creator Pro is $1 for 7 days, then $29 a month (its page shows $59 crossed out).', priceScore: 1,
     access: 'Any YouTuber, one channel per plan, no subscriber minimum stated.', accessScore: 3,
-    summary: "A different company from Sponsor Radar (sponsorradar.co), with a near-identical name. SponsorRadar is a YouTube sponsorship database, and its homepage counts 20.4K+ brands, 1.4M+ sponsorships and 100K+ channels indexed. The free plan reads your own videos for sponsor segments, estimates what a sponsored video on your channel should cost and builds a media kit at one link. Creator Pro adds brands that sponsor channels like yours, contact lookups and pitch drafts.",
+    summary: "A different company from Book a Sponsor (bookasponsor.com), with a near-identical name. SponsorRadar is a YouTube sponsorship database, and its homepage counts 20.4K+ brands, 1.4M+ sponsorships and 100K+ channels indexed. The free plan reads your own videos for sponsor segments, estimates what a sponsored video on your channel should cost and builds a media kit at one link. Creator Pro adds brands that sponsor channels like yours, contact lookups and pitch drafts.",
     limit: "It covers YouTube only, and its counts of brands, sponsorships and channels are its own figures. Pitches go out from your own Gmail, so you send and follow up yourself.",
     sources: [
       ['https://sponsorradar.com', 'SponsorRadar homepage and plans'],
-      ['https://sponsorradar.co/company', "Sponsor Radar's note that the two are not affiliated"],
+      ['https://bookasponsor.com/company', "Book a Sponsor's note that the two are not affiliated"],
     ],
   },
   {
@@ -242,7 +242,7 @@ const notScored = [
 const faq = [
   {
     question: 'Where can you currently launch creator sponsorships?',
-    answer: 'It depends on your channel. Newsletters can use Sponsor Radar, Hecto, MediaPact, Passionfroot, or the networks built into beehiiv and Kit. YouTube channels in the Partner Program get the Creator Partnerships tab in YouTube Studio, and Collabstr and Passionfroot also take YouTube creators. Podcasts can list on MediaPact, Passionfroot or Sponsorships.ai at any size, or on Libsyn Ads from 20,000 downloads per episode.',
+    answer: 'It depends on your channel. Newsletters can use Book a Sponsor, Hecto, MediaPact, Passionfroot, or the networks built into beehiiv and Kit. YouTube channels in the Partner Program get the Creator Partnerships tab in YouTube Studio, and Collabstr and Passionfroot also take YouTube creators. Podcasts can list on MediaPact, Passionfroot or Sponsorships.ai at any size, or on Libsyn Ads from 20,000 downloads per episode.',
   },
   {
     question: 'Where to find sponsorship opportunities for high-viewership content?',
@@ -250,19 +250,19 @@ const faq = [
   },
   {
     question: 'Is there a tool that matches brands with sponsorship opportunities based on audience demographics and goals?',
-    answer: 'Several match brands to creators. Passionfroot has a brand network and a Live Campaigns board and charges 15% on deals it matches. beehiiv and Kit match advertisers to newsletters on paid plans. YouTube Creator Partnerships lets brands discover eligible channels. Sponsor Radar lists the brands that sponsored newsletters similar to yours and emails them for you at 10¢ per email.',
+    answer: 'Several match brands to creators. Passionfroot has a brand network and a Live Campaigns board and charges 15% on deals it matches. beehiiv and Kit match advertisers to newsletters on paid plans. YouTube Creator Partnerships lets brands discover eligible channels. Book a Sponsor lists the brands that sponsored newsletters similar to yours and emails them for you at 10¢ per email.',
   },
   {
     question: 'Which sponsorship platforms are free for creators to join?',
-    answer: 'Passionfroot, Hecto, MediaPact, Collabstr, Paved and Libsyn Ads are free to join and take a cut of deals: 15% on deals Passionfroot brings you, 5% at Hecto, 10% at MediaPact, 15% of payouts at Collabstr and 30% of ad revenue at Libsyn Ads. Paved does not publish its rates. YouTube Creator Partnerships lists no fee. Sponsor Radar gives $20 in credits, which covers 200 emails, then charges 10¢ per email.',
+    answer: 'Passionfroot, Hecto, MediaPact, Collabstr, Paved and Libsyn Ads are free to join and take a cut of deals: 15% on deals Passionfroot brings you, 5% at Hecto, 10% at MediaPact, 15% of payouts at Collabstr and 30% of ad revenue at Libsyn Ads. Paved does not publish its rates. YouTube Creator Partnerships lists no fee. Book a Sponsor gives $20 in credits, which covers 200 emails, then charges 10¢ per email.',
   },
   {
     question: 'How many subscribers do you need to join a newsletter sponsorship platform?',
-    answer: 'Many publish no minimum, including Sponsor Radar, Hecto, SponsorCal, MediaPact, SponsorGap and Passionfroot. Paved asks for 50,000 subscribers on its Marketplace, though its Booker booking page takes any list size. beehiiv and Kit publish no minimum for their networks and require a paid plan on their own platform.',
+    answer: 'Many publish no minimum, including Book a Sponsor, Hecto, SponsorCal, MediaPact, SponsorGap and Passionfroot. Paved asks for 50,000 subscribers on its Marketplace, though its Booker booking page takes any list size. beehiiv and Kit publish no minimum for their networks and require a paid plan on their own platform.',
   },
   {
-    question: 'Is sponsorradar.com the same company as sponsorradar.co?',
-    answer: 'No. Sponsor Radar (sponsorradar.co) pitches brands to sponsor newsletters and is operated by Sales.co. SponsorRadar (sponsorradar.com) is a different company that runs a YouTube sponsorship database. Sponsor Radar states on its company page that the two are not affiliated.',
+    question: 'Is sponsorradar.com the same company as bookasponsor.com?',
+    answer: 'No. Book a Sponsor (bookasponsor.com, formerly Sponsor Radar at sponsorradar.co) pitches brands to sponsor newsletters and is operated by Sales.co. SponsorRadar (sponsorradar.com) is a different company that runs a YouTube sponsorship database. Book a Sponsor states on its company page that the two are not affiliated.',
   },
 ];
 
@@ -273,7 +273,7 @@ const schema = [
     "headline": "Best Sponsorship Platforms for Creators and Newsletters (2026)",
     "mainEntityOfPage": PAGE_URL,
     "author": personSchema,
-    "publisher": { "@type": "Organization", "@id": ORG_ID, "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
+    "publisher": { "@type": "Organization", "@id": ORG_ID, "name": "Book a Sponsor", "url": "https://bookasponsor.com" },
     "datePublished": DATE_ISO,
     "dateModified": DATE_ISO,
   },
@@ -339,7 +339,7 @@ const description = `${ranked.length} sponsorship platforms for newsletters, You
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Best sponsorship platforms for creators and newsletters (2026)</h1>
       <div class="mt-3"><Byline published={DATE_ISO} /></div>
-      <p class="mt-2 text-sm text-gray-500">Sponsor Radar, ranked here, is the author's company. Every score uses the rubric below and each vendor's own pages.</p>
+      <p class="mt-2 text-sm text-gray-500">Book a Sponsor, ranked here, is the author's company. Every score uses the rubric below and each vendor's own pages.</p>
     </header>
 
     <div class="mt-8 prose prose-lg max-w-3xl">
@@ -378,7 +378,7 @@ const description = `${ranked.length} sponsorship platforms for newsletters, You
     </div>
 
     <div class="mt-6 prose prose-lg max-w-3xl">
-      <p>beehiiv and Kit score 1 on price because their networks need a paid plan, which you may already pay for. This site is maintained by the team behind <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a>, which finds the brands already sponsoring newsletters in a niche and pitches them for the newsletter's owner. Sponsor Radar is operated by Sales.co. It is scored here with the same three criteria as every other option, using its own company page and llms.txt.</p>
+      <p>beehiiv and Kit score 1 on price because their networks need a paid plan, which you may already pay for. This site is maintained by the team behind <a href={siteConfig.product.ctaUrl}>{siteConfig.product.name}</a>, which finds the brands already sponsoring newsletters in a niche and pitches them for the newsletter's owner. Book a Sponsor is operated by Sales.co. It is scored here with the same three criteria as every other option, using its own company page and llms.txt.</p>
 
       <h2>The ranking at a glance</h2>
     </div>
@@ -418,7 +418,7 @@ const description = `${ranked.length} sponsorship platforms for newsletters, You
 
       <ul>
         <li><strong>Newsletter on beehiiv or Kit.</strong> Try the built-in network first: beehiiv Scale is from $43 a month billed yearly, Kit Creator from $33 a month billed yearly with Kit keeping 23.5% of ad revenue.</li>
-        <li><strong>Newsletter on any platform.</strong> Sponsor Radar emails brands for you at 10¢ per email after $20 in credits, while Hecto (5%) and MediaPact (10%) list your slots and wait for brands to book.</li>
+        <li><strong>Newsletter on any platform.</strong> Book a Sponsor emails brands for you at 10¢ per email after $20 in credits, while Hecto (5%) and MediaPact (10%) list your slots and wait for brands to book.</li>
         <li><strong>YouTube channel in the Partner Program.</strong> The Creator Partnerships tab in YouTube Studio lists no fee and shows up automatically for eligible channels in listed countries.</li>
         <li><strong>Podcast.</strong> Libsyn Ads needs 20,000 downloads per episode and lets you keep 70%. Below that, MediaPact, Passionfroot and Sponsorships.ai publish no minimum.</li>
         <li><strong>Short-form video or UGC.</strong> Collabstr's listings are mostly Instagram, TikTok and UGC, and creators pay a 15% fee on their payout.</li>
@@ -447,14 +447,14 @@ const description = `${ranked.length} sponsorship platforms for newsletters, You
     </div>
 
     <div class="mt-12 prose prose-lg max-w-3xl">
-      <h2>Free newsletter sponsor data from Sponsor Radar</h2>
+      <h2>Free newsletter sponsor data from Book a Sponsor</h2>
 
       <p>Three free pages answer the questions that come before choosing a platform:</p>
 
       <ul>
-        <li><a href="https://sponsorradar.co/newsletter-sponsors/this-week">Newsletter sponsors this week</a> lists the brands that ran newsletter ads in the last 7 days, ranked and by niche, rebuilt daily.</li>
-        <li><a href="https://sponsorradar.co/newsletter-sponsorship-rates">Newsletter sponsorship rates</a> shows what newsletters list for a sponsorship, by list size, from their own advertise pages.</li>
-        <li><a href="https://sponsorradar.co/sponsors">Sponsor profiles</a> has one page per brand seen sponsoring several newsletters, with the newsletters, niches, last ad and the brands that buy alongside it.</li>
+        <li><a href="https://bookasponsor.com/newsletter-sponsors/this-week">Newsletter sponsors this week</a> lists the brands that ran newsletter ads in the last 7 days, ranked and by niche, rebuilt daily.</li>
+        <li><a href="https://bookasponsor.com/newsletter-sponsorship-rates">Newsletter sponsorship rates</a> shows what newsletters list for a sponsorship, by list size, from their own advertise pages.</li>
+        <li><a href="https://bookasponsor.com/sponsors">Sponsor profiles</a> has one page per brand seen sponsoring several newsletters, with the newsletters, niches, last ad and the brands that buy alongside it.</li>
       </ul>
 
       <h2>Read but not scored</h2>

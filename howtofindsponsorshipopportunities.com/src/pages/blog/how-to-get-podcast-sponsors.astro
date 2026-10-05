@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { PODCASTS as P, pct } from '../../data/podcast-study';
 import { SR } from '../../data/sr-stats';
 import { articleSchema, faqSchema } from '../../lib/article';
@@ -11,7 +12,7 @@ const n = (x: number) => x.toLocaleString('en-US');
 const LIBSYN_GUIDE = 'https://advertising.libsyn.com/podcast-advertising-ultimate-guide';
 const LIBSYN_FAQ = 'https://advertising.libsyn.com/monetize-your-podcast';
 const ACAST = 'https://www.acast.com/en/news-and-insights/how-much-does-podcast-advertising-cost';
-const SR_PROFILE = (d: string) => `https://sponsorradar.co/sponsors/${d}`;
+const SR_PROFILE = (d: string) => `https://bookasponsor.com/sponsors/${d}`;
 
 const title = 'How to Get Podcast Sponsors: Data From the Top 200 Shows';
 const description = `We read ${n(P.episodes)} recent episodes of the top 200 US podcasts: ${pct(P.namedShows, P.shows)} name sponsors in their notes, and ${P.topBrands[0].name} and ${P.topBrands[1].name} sponsor the most shows. See the list.`;
@@ -35,6 +36,7 @@ const schema = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">How to Get Podcast Sponsors: What the Top 200 Shows Do</h1>
       <div class="mt-3"><Byline published={PUBLISHED} /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
@@ -67,8 +69,8 @@ const schema = [
       <p>These brands buy podcast ads at scale today, so they are the first rows of a pitch list. The better rows are the brands in your own genre: open the show notes of five shows like yours and copy their sponsor lists. That is the same method this study used, on your niche.</p>
 
       <h2>Do podcast sponsors also buy newsletter ads?</h2>
-      <p>Yes, often. {P.newsletterJoin.withNewsletterAd} of the {P.newsletterJoin.brands} brands named on 3 or more top shows ({pct(P.newsletterJoin.withNewsletterAd, P.newsletterJoin.brands)}) also have a newsletter ad on record in Sponsor Radar's data (2 October 2026). On Sponsor Radar's public profiles, which count more loosely, <a href={SR_PROFILE(P.srProfiles[0].domain)}>{P.srProfiles[0].name}</a> has been seen sponsoring {P.srProfiles[0].newsletters} newsletters, <a href={SR_PROFILE(P.srProfiles[1].domain)}>{P.srProfiles[1].name}</a> {P.srProfiles[1].newsletters} and <a href={SR_PROFILE(P.srProfiles[2].domain)}>{P.srProfiles[2].name}</a> {P.srProfiles[2].newsletters}. A brand that pays for podcast reads already has a budget for creator audiences, so a podcast that also sends a newsletter can pitch both.</p>
-      <p>If you run a newsletter, <a href={SR.cta('podcast-sponsors')}>Sponsor Radar</a> finds the brands already sponsoring newsletters in your niche and pitches them for you. It covers newsletters only, not podcasts.</p>
+      <p>Yes, often. {P.newsletterJoin.withNewsletterAd} of the {P.newsletterJoin.brands} brands named on 3 or more top shows ({pct(P.newsletterJoin.withNewsletterAd, P.newsletterJoin.brands)}) also have a newsletter ad on record in Book a Sponsor's data (2 October 2026). On Book a Sponsor's public profiles, which count more loosely, <a href={SR_PROFILE(P.srProfiles[0].domain)}>{P.srProfiles[0].name}</a> has been seen sponsoring {P.srProfiles[0].newsletters} newsletters, <a href={SR_PROFILE(P.srProfiles[1].domain)}>{P.srProfiles[1].name}</a> {P.srProfiles[1].newsletters} and <a href={SR_PROFILE(P.srProfiles[2].domain)}>{P.srProfiles[2].name}</a> {P.srProfiles[2].newsletters}. A brand that pays for podcast reads already has a budget for creator audiences, so a podcast that also sends a newsletter can pitch both.</p>
+      <p>If you run a newsletter, <a href={SR.cta('podcast-sponsors')}>Book a Sponsor</a> finds the brands already sponsoring newsletters in your niche and pitches them for you. It covers newsletters only, not podcasts.</p>
 
       <h2>Which podcast genres sell the most ads?</h2>
       <p>Comedy shows name their sponsors most often: {P.genres[1].named} of {P.genres[1].shows}. True crime shows almost all sit on ad platforms ({P.genres[0].either} of {P.genres[0].shows} had a sign) but only {P.genres[0].named} named a sponsor in the notes, likely because most of their ads are inserted automatically and not listed.</p>
@@ -109,7 +111,7 @@ const schema = [
 
       <h2>How this study was done</h2>
       <p>On {P.read} we took {P.chart}, looked up each show's public RSS feed and read the show notes of its latest 10 episodes: {P.shows} shows and {n(P.episodes)} episodes (three shows had no readable feed). A show counts as naming a sponsor when its notes link a commercial site in a sponsor line: "sponsored by", "brought to you by", a promo code, a vanity offer link such as brand.com/showname, or a list under a "Sponsors" heading. Platforms, publishers, ad tech, nonprofits, the show's own site and host, guest and book sites were left out, the last checked by hand. The ad platform notice is the privacy or "ad choices" line that AdsWizz, Megaphone, Omny Studio, ART19 or Acast add to notes.</p>
-      <p>Limits: show notes miss many ads. A hand check removed lines that promoted the host's own products, books or events, and a few shows that name a sponsor without a link are still missed, so treat the counts as approximate. The chart ranks popularity on one day, so these are the biggest shows. The newsletter check counts a brand when Sponsor Radar's data holds at least one newsletter ad with a tracking link or read from an issue or sponsor page. Each update of this study will carry its own date.</p>
+      <p>Limits: show notes miss many ads. A hand check removed lines that promoted the host's own products, books or events, and a few shows that name a sponsor without a link are still missed, so treat the counts as approximate. The chart ranks popularity on one day, so these are the biggest shows. The newsletter check counts a brand when Book a Sponsor's data holds at least one newsletter ad with a tracking link or read from an issue or sponsor page. Each update of this study will carry its own date.</p>
     </div>
   </article>
 </Base>

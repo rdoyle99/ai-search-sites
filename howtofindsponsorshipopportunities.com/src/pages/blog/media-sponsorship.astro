@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { RATES, SR } from '../../data/sr-stats';
 import { articleSchema, faqSchema } from '../../lib/article';
 
@@ -40,7 +41,7 @@ const faq = [
   },
   {
     q: 'How do you value a media sponsorship?',
-    a: `Price the coverage at what it would cost to buy. A newsletter of 20,000 to 49,999 subscribers lists its main slot at a median ${usd(r3.median)}, so ${ISSUES} issues of coverage are worth ${ISSUES} × ${usd(r3.median)} = ${usd(exThree)} at list price (Sponsor Radar's read of ${RATES.n} newsletters' advertise pages, ${RATES.read}). Use the median for the partner's list size, multiply by the number of placements, and treat the total as a list-price estimate.`,
+    a: `Price the coverage at what it would cost to buy. A newsletter of 20,000 to 49,999 subscribers lists its main slot at a median ${usd(r3.median)}, so ${ISSUES} issues of coverage are worth ${ISSUES} × ${usd(r3.median)} = ${usd(exThree)} at list price (Book a Sponsor's read of ${RATES.n} newsletters' advertise pages, ${RATES.read}). Use the median for the partner's list size, multiply by the number of placements, and treat the total as a list-price estimate.`,
   },
   {
     q: 'How do you find a media sponsor?',
@@ -59,6 +60,7 @@ const schema = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
       <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
@@ -151,7 +153,7 @@ const schema = [
 
       <h2 id="value">How do you value a media sponsorship in dollars?</h2>
 
-      <p>Price the coverage at what it would cost to buy. If the media partner is a newsletter, that is its own list price for the same placement. A newsletter of 20,000 to 49,999 subscribers lists its main slot at a median {usd(r3.median)}, so {ISSUES} issues of coverage are worth {ISSUES} × {usd(r3.median)} = {usd(exThree)} at list price (<a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's read of {RATES.n} newsletters' advertise pages</a>, {RATES.read}).</p>
+      <p>Price the coverage at what it would cost to buy. If the media partner is a newsletter, that is its own list price for the same placement. A newsletter of 20,000 to 49,999 subscribers lists its main slot at a median {usd(r3.median)}, so {ISSUES} issues of coverage are worth {ISSUES} × {usd(r3.median)} = {usd(exThree)} at list price (<a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Book a Sponsor's read of {RATES.n} newsletters' advertise pages</a>, {RATES.read}).</p>
 
       <p>Do the same for any list size. Find the row that matches the partner's list, multiply the median main-slot price by the number of placements, and use the low and high columns for a range.</p>
 
@@ -178,7 +180,7 @@ const schema = [
         </table>
       </div>
 
-      <p class="text-sm text-gray-600">Source: Sponsor Radar's read of {RATES.n} newsletters that print a main-slot price and a list of 500 or more subscribers on their advertise page, {RATES.read}. The top two rows hold only {r4.n} and {r5.n} newsletters, so read their medians as rough. These are list prices on one day's pages, and a deal can close above or below them. Full table: <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's newsletter sponsorship rates</a>.</p>
+      <p class="text-sm text-gray-600">Source: Book a Sponsor's read of {RATES.n} newsletters that print a main-slot price and a list of 500 or more subscribers on their advertise page, {RATES.read}. The top two rows hold only {r4.n} and {r5.n} newsletters, so read their medians as rough. These are list prices on one day's pages, and a deal can close above or below them. Full table: <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Book a Sponsor's newsletter sponsorship rates</a>.</p>
 
       <p>Other placements scale off the main slot. If the partner sends a dedicated email about your event, the median is {dedicated.median} its main slot. At the 20,000 to 49,999 median, that is {dedicated.median.replace(' times', '')} × {usd(r3.median)} = {usd(exDedicated)}. For the second slot and classified percentages, see <a href="/blog/how-much-to-charge-for-sponsorship/">the sponsorship pricing guide</a>, which also covers podcast and video prices.</p>
 
@@ -192,7 +194,7 @@ const schema = [
 
       <p>Start with media companies, newsletters and podcasts whose audience matches the people you want to reach, and offer a specific trade. The Sponsorship Collective says asking for free exposure leaves you without control over placement timing and story, while a paid media partnership gives you that control and can be sold inside a sponsorship package (last updated 7 June 2022). For the wider search, see the <a href="/blog/find-sponsorship-opportunities-guide/">guide to finding sponsorship opportunities</a>.</p>
 
-      <p>If you run a newsletter and want paying sponsors rather than media trades, <a href={SR.cta('media-sponsorship')} target="_blank" rel="noopener noreferrer">Sponsor Radar</a> lists the brands that sponsored newsletters like yours and emails them from its own mailboxes.</p>
+      <p>If you run a newsletter and want paying sponsors rather than media trades, <a href={SR.cta('media-sponsorship')} target="_blank" rel="noopener noreferrer">Book a Sponsor</a> lists the brands that sponsored newsletters like yours and emails them from its own mailboxes.</p>
 
       <h2>Frequently asked questions</h2>
 

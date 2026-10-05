@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { articleSchema, faqSchema } from '../../lib/article';
 import { PITCHES, SR } from '../../data/sr-stats';
 
@@ -20,7 +21,7 @@ const faq = [
   },
   {
     q: 'Who should I send a sponsorship email to?',
-    a: `Send it to whoever owns the sponsorship budget at the brand, using the contact you can find rather than waiting for a perfect job title. In Sponsor Radar's pitches, founders, CEOs and owners replied at ${founders.rate} (${f(founders.replies)} of ${f(founders.sent)}) and marketing titles at ${marketing.rate} (${f(marketing.replies)} of ${f(marketing.sent)}), about the same.`,
+    a: `Send it to whoever owns the sponsorship budget at the brand, using the contact you can find rather than waiting for a perfect job title. In Book a Sponsor's pitches, founders, CEOs and owners replied at ${founders.rate} (${f(founders.replies)} of ${f(founders.sent)}) and marketing titles at ${marketing.rate} (${f(marketing.replies)} of ${f(marketing.sent)}), about the same.`,
   },
   {
     q: 'How do I write an email to a CEO with a sponsorship attachment?',
@@ -36,7 +37,7 @@ const faq = [
   },
   {
     q: 'How fast do brands reply to a sponsorship email?',
-    a: `Fast, when they reply at all. In Sponsor Radar's automated pitches, the median reply came ${T.medianHours} hours after the send, ${T.within24h} of replies arrived within 24 hours and ${T.within7d} within 7 days (${T.n} replies).`,
+    a: `Fast, when they reply at all. In Book a Sponsor's automated pitches, the median reply came ${T.medianHours} hours after the send, ${T.within24h} of replies arrived within 24 hours and ${T.within7d} within 7 days (${T.n} replies).`,
   },
 ];
 ---
@@ -52,12 +53,13 @@ const faq = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
       <div class="mt-2"><Byline published="2026-01-24" modified="2026-10-02" /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>A sponsorship email works when it is short and specific: who you are, who reads you, one offer and one question. Send it to whoever owns the budget at the brand. In Sponsor Radar's automated outreach for newsletters, {PITCHES.replyRate} of {f(PITCHES.sent)} first pitches got a reply, so write one good email and send it to many brands.</strong></p>
+      <p><strong>A sponsorship email works when it is short and specific: who you are, who reads you, one offer and one question. Send it to whoever owns the budget at the brand. In Book a Sponsor's automated outreach for newsletters, {PITCHES.replyRate} of {f(PITCHES.sent)} first pitches got a reply, so write one good email and send it to many brands.</strong></p>
 
-      <p>That {PITCHES.replyRate} is Sponsor Radar's read of its own pitches: {f(PITCHES.sent)} first emails to {f(PITCHES.brands)} brands for {PITCHES.newsletters} newsletters, {PITCHES.window}, read {PITCHES.read}. They were automated, not hand-written. A "yes" ({PITCHES.yeses} of them) means the brand's first answer was interested. It does not mean a signed deal.</p>
+      <p>That {PITCHES.replyRate} is Book a Sponsor's read of its own pitches: {f(PITCHES.sent)} first emails to {f(PITCHES.brands)} brands for {PITCHES.newsletters} newsletters, {PITCHES.window}, read {PITCHES.read}. They were automated, not hand-written. A "yes" ({PITCHES.yeses} of them) means the brand's first answer was interested. It does not mean a signed deal.</p>
 
       <h2>What should a sponsorship email say?</h2>
 
@@ -180,7 +182,7 @@ const faq = [
 
       <h2>Who to email for a sponsorship: the founder or the marketing team?</h2>
 
-      <p>Email whoever owns the sponsorship budget at the brand, using the person you can find. Job title made no real difference in Sponsor Radar's pitches: founders, CEOs and owners replied at {founders.rate} ({f(founders.replies)} of {f(founders.sent)} pitches) and marketing titles at {marketing.rate} ({f(marketing.replies)} of {f(marketing.sent)}). The rest went to other titles and are not compared here. Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}.</p>
+      <p>Email whoever owns the sponsorship budget at the brand, using the person you can find. Job title made no real difference in Book a Sponsor's pitches: founders, CEOs and owners replied at {founders.rate} ({f(founders.replies)} of {f(founders.sent)} pitches) and marketing titles at {marketing.rate} ({f(marketing.replies)} of {f(marketing.sent)}). The rest went to other titles and are not compared here. Source: Book a Sponsor's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}.</p>
 
       <p>That means you should not spend an hour hunting for the perfect title. At a small brand there may be no marketing team, so write to the founder. At a larger brand, write to whoever runs partnerships or marketing. Titles worth searching for are Brand Partnerships Manager, Influencer Marketing Manager, Creator Relations Manager and Head of Marketing.</p>
 
@@ -188,7 +190,7 @@ const faq = [
 
       <h2>How fast do brands reply to a sponsorship email?</h2>
 
-      <p>Fast, when they reply at all. Across {T.n} brand replies, timed from Sponsor Radar's automated first pitch to the brand's first answer, the median reply came {T.medianHours} hours after the send. {T.within24h} of replies arrived within 24 hours, {T.within3d} within 3 days and {T.within7d} within 7 days (Sponsor Radar's {f(PITCHES.sent)} pitches, {PITCHES.window}). A brand that has not answered after about a week is unlikely to answer the first email, so that is the point to follow up. What to send is covered in <a href="/blog/sponsorship-follow-up-email/">sponsorship follow-up email templates and timing</a>.</p>
+      <p>Fast, when they reply at all. Across {T.n} brand replies, timed from Book a Sponsor's automated first pitch to the brand's first answer, the median reply came {T.medianHours} hours after the send. {T.within24h} of replies arrived within 24 hours, {T.within3d} within 3 days and {T.within7d} within 7 days (Book a Sponsor's {f(PITCHES.sent)} pitches, {PITCHES.window}). A brand that has not answered after about a week is unlikely to answer the first email, so that is the point to follow up. What to send is covered in <a href="/blog/sponsorship-follow-up-email/">sponsorship follow-up email templates and timing</a>.</p>
 
       <h2>How should you follow up on a sponsorship email?</h2>
 
@@ -200,9 +202,9 @@ const faq = [
 
       <h2>How many sponsorship emails do you need to send?</h2>
 
-      <p>More than you expect. Sponsor Radar's automated pitches took about {PITCHES.pitchesPerYes} first pitches per yes ({PITCHES.yeses} yeses from {f(PITCHES.sent)} pitches), and a yes is not yet a paid deal. The full funnel and the arithmetic for your own goal are in <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a>. Keep a sheet of every pitch with the brand, contact, date sent, reply and next follow-up date.</p>
+      <p>More than you expect. Book a Sponsor's automated pitches took about {PITCHES.pitchesPerYes} first pitches per yes ({PITCHES.yeses} yeses from {f(PITCHES.sent)} pitches), and a yes is not yet a paid deal. The full funnel and the arithmetic for your own goal are in <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a>. Keep a sheet of every pitch with the brand, contact, date sent, reply and next follow-up date.</p>
 
-      <p>If you run a newsletter, <a href={SR.cta('cold-email-sponsorship-pitch')}>Sponsor Radar</a> finds brands that sponsored similar newsletters and sends the pitches and follow-ups from its own mailboxes, so your time goes to the newsletter instead of the inbox.</p>
+      <p>If you run a newsletter, <a href={SR.cta('cold-email-sponsorship-pitch')}>Book a Sponsor</a> finds brands that sponsored similar newsletters and sends the pitches and follow-ups from its own mailboxes, so your time goes to the newsletter instead of the inbox.</p>
 
       <h2>Sponsorship email questions</h2>
 

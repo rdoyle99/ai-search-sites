@@ -66,7 +66,7 @@ const exCards = [
   { label: 'Dedicated send (whole email)', value: usd(exDedicated), note: `${usd(r2.median)} × ${dedicated.median.replace(' times', '')}` },
   { label: 'Price per 1,000 subscribers at that median', value: usd2(exPerK), note: `${usd(r2.median)} ÷ (${EX_SUBS.toLocaleString('en-US')} ÷ 1,000)` },
 ];
-const exSource = `Source: Sponsor Radar's read of ${RATES.n} newsletters' advertise pages, ${RATES.read}.`;
+const exSource = `Source: Book a Sponsor's read of ${RATES.n} newsletters' advertise pages, ${RATES.read}.`;
 const exNote = `List prices, not guaranteed deal prices. The middle half of newsletters in your row ask ${range(r2.p25, r2.p75)}. A click count or a past sponsor's result supports the top of that range.`;
 
 const title = 'Sponsorship Rate Calculator: Newsletter Prices by List Size';
@@ -78,7 +78,7 @@ const schema = {
   name: 'Sponsorship Rate Calculator',
   applicationCategory: 'BusinessApplication',
   operatingSystem: 'Web',
-  description: `Look up what similar creators list for one sponsorship. Newsletter prices come from Sponsor Radar's read of ${RATES.n} newsletters' advertise pages (${RATES.read}); podcast, YouTube and social ranges come from named published sources.`,
+  description: `Look up what similar creators list for one sponsorship. Newsletter prices come from Book a Sponsor's read of ${RATES.n} newsletters' advertise pages (${RATES.read}); podcast, YouTube and social ranges come from named published sources.`,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 };
 ---
@@ -87,7 +87,7 @@ const schema = {
   <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">Sponsorship Rate Calculator</h1>
     <p class="mt-4 text-lg text-gray-600">
-      Pick a format and enter your audience size to see what similar creators list for one sponsorship. Newsletter results come from <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer" class="underline">Sponsor Radar's read of {RATES.n} newsletters' advertise pages</a> ({RATES.read}). Podcast, YouTube and social results come from the published ranges named under the calculator.
+      Pick a format and enter your audience size to see what similar creators list for one sponsorship. Newsletter results come from <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer" class="underline">Book a Sponsor's read of {RATES.n} newsletters' advertise pages</a> ({RATES.read}). Podcast, YouTube and social results come from the published ranges named under the calculator.
     </p>
 
     <div class="mt-10 p-6 border border-gray-200 rounded-lg bg-white">
@@ -143,7 +143,7 @@ const schema = {
     <div class="mt-8 p-6 border border-blue-200 rounded-lg bg-blue-50">
       <p class="text-sm font-medium text-blue-900">Ready to pitch brands?</p>
       <p class="mt-1 text-sm text-blue-700">
-        Running a newsletter? See the <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer" class="font-semibold underline">full table of median prices by list size</a>. Sponsor Radar then pitches the brands already sponsoring newsletters like yours.
+        Running a newsletter? See the <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer" class="font-semibold underline">full table of median prices by list size</a>. Book a Sponsor then pitches the brands already sponsoring newsletters like yours.
       </p>
       <a href={SR.cta('sponsorship-rate-calculator')} target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors">
         See sponsors for your newsletter &rarr;
@@ -158,10 +158,10 @@ const schema = {
 
       <h3>Newsletter</h3>
       <p>
-        Your list size picks one row of the table in <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's newsletter sponsorship rates</a>: under 5,000, 5,000 to 19,999, 20,000 to 49,999, 50,000 to 99,999, or 100,000 or more subscribers. The main-slot median and the 25th to 75th percentile range for that row are shown as printed. The other placements are the row's main-slot median times the median share of the main slot: {second.median} for a second slot, {classified.median} for a classified or text ad and {dedicated.median.replace(' times', '')} for a dedicated send. The price per 1,000 subscribers is the median price ÷ (your subscribers ÷ 1,000). Because the lookup is by row, the price steps up at each row boundary, so a list near a boundary should read both rows.
+        Your list size picks one row of the table in <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Book a Sponsor's newsletter sponsorship rates</a>: under 5,000, 5,000 to 19,999, 20,000 to 49,999, 50,000 to 99,999, or 100,000 or more subscribers. The main-slot median and the 25th to 75th percentile range for that row are shown as printed. The other placements are the row's main-slot median times the median share of the main slot: {second.median} for a second slot, {classified.median} for a classified or text ad and {dedicated.median.replace(' times', '')} for a dedicated send. The price per 1,000 subscribers is the median price ÷ (your subscribers ÷ 1,000). Because the lookup is by row, the price steps up at each row boundary, so a list near a boundary should read both rows.
       </p>
       <p>
-        Source: Sponsor Radar's read of {RATES.n} newsletters that print a main-slot price and a list of 500 or more subscribers, {RATES.read}. The top two rows hold only {r4.n} and {r5.n} newsletters, so read their medians as rough. {RATES.passionfroot} of the {RATES.n} prices came from Passionfroot storefronts, and newsletters that sell by quote publish no price, so the figures lean toward storefront sellers. Lists under 500 subscribers are below the data, so the calculator uses the lowest row and says so.
+        Source: Book a Sponsor's read of {RATES.n} newsletters that print a main-slot price and a list of 500 or more subscribers, {RATES.read}. The top two rows hold only {r4.n} and {r5.n} newsletters, so read their medians as rough. {RATES.passionfroot} of the {RATES.n} prices came from Passionfroot storefronts, and newsletters that sell by quote publish no price, so the figures lean toward storefront sellers. Lists under 500 subscribers are below the data, so the calculator uses the lowest row and says so.
       </p>
 
       <h3>Podcast</h3>
@@ -236,7 +236,7 @@ const schema = {
       ];
       const warnings = [];
       if (a < r.minList) {
-        warnings.push("Sponsor Radar's prices cover newsletters with " + r.minList + ' or more subscribers, so a list of ' + count(a) + ' is below the data. This is the lowest row, shown as a rough guide.');
+        warnings.push("Book a Sponsor's prices cover newsletters with " + r.minList + ' or more subscribers, so a list of ' + count(a) + ' is below the data. This is the lowest row, shown as a rough guide.');
       } else {
         cards.push({ label: 'Price per 1,000 subscribers at that median', value: per1000(med, a), note: fmt(med) + ' ÷ (' + count(a) + ' ÷ 1,000)' });
       }
@@ -247,7 +247,7 @@ const schema = {
         cards: cards,
         formula: '',
         notes: ["List prices, not guaranteed deal prices. The middle half of newsletters in your row ask " + range(row.p25, row.p75) + ". A click count or a past sponsor's result supports the top of that range."].concat(warnings).join(' '),
-        source: "Source: Sponsor Radar's read of " + r.n + " newsletters' advertise pages, " + r.read + '.',
+        source: "Source: Book a Sponsor's read of " + r.n + " newsletters' advertise pages, " + r.read + '.',
       };
     }
 

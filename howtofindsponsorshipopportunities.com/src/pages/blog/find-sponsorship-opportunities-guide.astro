@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { SR, RATES, ADS, SPONSORS, PITCHES } from '../../data/sr-stats';
 import { articleSchema, faqSchema } from '../../lib/article';
 
@@ -23,15 +24,15 @@ const h1 = 'How to Find Sponsorship Opportunities in 2026';
 const faq = [
   {
     q: 'Where to find sponsorship opportunities for high-viewership content?',
-    a: `Larger audiences qualify for more programs. As of ${THIRD_PARTY_READ}, TikTok One asks for 10,000 followers, Libsyn Ads takes podcasts with 20,000 downloads per episode, and YouTube Creator Partnerships shows eligible Partner Program channels to brands. For newsletters, a list twice the size lists its main sponsor slot about ${RATES.doublingLift} higher, in Sponsor Radar's read of ${RATES.n} newsletters on ${RATES.read}.`,
+    a: `Larger audiences qualify for more programs. As of ${THIRD_PARTY_READ}, TikTok One asks for 10,000 followers, Libsyn Ads takes podcasts with 20,000 downloads per episode, and YouTube Creator Partnerships shows eligible Partner Program channels to brands. For newsletters, a list twice the size lists its main sponsor slot about ${RATES.doublingLift} higher, in Book a Sponsor's read of ${RATES.n} newsletters on ${RATES.read}.`,
   },
   {
     q: 'How do I find sponsorship opportunities that fit my brand values and target audience?',
-    a: `Start from your audience, then pick brands that already sponsor creators they follow. Read the sponsor slots of channels, podcasts and newsletters like yours, and keep the brands whose product you would use. Brands with a newsletter ad on record replied to Sponsor Radar's pitches at ${seen.rate} (${n(seen.replies)} of ${n(seen.sent)}), against ${none.rate} (${n(none.replies)} of ${n(none.sent)}) for brands with none, from ${PITCHES.window}.`,
+    a: `Start from your audience, then pick brands that already sponsor creators they follow. Read the sponsor slots of channels, podcasts and newsletters like yours, and keep the brands whose product you would use. Brands with a newsletter ad on record replied to Book a Sponsor's pitches at ${seen.rate} (${n(seen.replies)} of ${n(seen.sent)}), against ${none.rate} (${n(none.replies)} of ${n(none.sent)}) for brands with none, from ${PITCHES.window}.`,
   },
   {
     q: 'Is there a tool that matches brands with sponsorship opportunities based on audience demographics and goals?',
-    a: `Yes, each channel has its own. YouTube builds a media kit from your channel insights and says sharing them helps brands pick creators for their campaign goals. Instagram's creator marketplace lets brands see your content and insights such as average reach and followers. Passionfroot's ad network sends sponsorship requests to creators. Sponsor Radar matches a newsletter to brands that sponsored similar newsletters, not by reader demographics.`,
+    a: `Yes, each channel has its own. YouTube builds a media kit from your channel insights and says sharing them helps brands pick creators for their campaign goals. Instagram's creator marketplace lets brands see your content and insights such as average reach and followers. Passionfroot's ad network sends sponsorship requests to creators. Book a Sponsor matches a newsletter to brands that sponsored similar newsletters, not by reader demographics.`,
   },
   {
     q: 'What kinds of marketplaces let creators receive and accept sponsored offers without doing outreach?',
@@ -39,11 +40,11 @@ const faq = [
   },
   {
     q: 'Which platforms show which creators competitors sponsor across social media?',
-    a: `Meta's Ad Library has a searchable database of active public branded content on Facebook and Instagram with a paid partnership label. YouTube adds a paid promotion label to sponsored videos, and sponsorradar.com, a YouTube sponsorship database unrelated to Sponsor Radar, lists channels with their sponsors. For newsletters, Sponsor Radar's free sponsors list and SponsorGap show who sponsors which newsletter. Read ${THIRD_PARTY_READ}.`,
+    a: `Meta's Ad Library has a searchable database of active public branded content on Facebook and Instagram with a paid partnership label. YouTube adds a paid promotion label to sponsored videos, and sponsorradar.com, a YouTube sponsorship database unrelated to Book a Sponsor, lists channels with their sponsors. For newsletters, Book a Sponsor's free sponsors list and SponsorGap show who sponsors which newsletter. Read ${THIRD_PARTY_READ}.`,
   },
   {
     q: 'How many followers or subscribers do you need to get sponsored?',
-    a: `There is no single number. As of ${THIRD_PARTY_READ}, TikTok One asks for 10,000 followers, Libsyn Ads for 20,000 podcast downloads per episode, and YouTube Creator Partnerships for Partner Program membership. Small newsletters sell ads too: ${ADS.bySize[0].share} of those ${ADS.bySize[0].size.toLowerCase()} subscribers ran a paid sponsor ad in the 90 days to ${ADS.read}, in Sponsor Radar's data.`,
+    a: `There is no single number. As of ${THIRD_PARTY_READ}, TikTok One asks for 10,000 followers, Libsyn Ads for 20,000 podcast downloads per episode, and YouTube Creator Partnerships for Partner Program membership. Small newsletters sell ads too: ${ADS.bySize[0].share} of those ${ADS.bySize[0].size.toLowerCase()} subscribers ran a paid sponsor ad in the 90 days to ${ADS.read}, in Book a Sponsor's data.`,
   },
 ];
 
@@ -58,12 +59,13 @@ const schema = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
       <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
       <p><strong>You find sponsorship opportunities two ways: join the marketplace or platform program for your channel so brands send you offers, and pitch brands that already sponsor creators like you. Run both. The marketplace brings offers with little work, and pitching lets you choose the brand and set the price.</strong></p>
 
-      <p>This guide covers where to launch on each channel, how to see who your competitors' sponsors are, what to do for YouTube, podcasts, newsletters, Instagram, TikTok, Twitch and events, and what sponsorships pay. Every number names its source, starting with this one: {ADS.share} of {ADS.n.toLocaleString('en-US')} newsletters that published 5 or more issues ran a paid sponsor ad in the 90 days to {ADS.read} (Sponsor Radar's data), so most newsletters run no paid ads at all. Facts about other companies' programs were read on {THIRD_PARTY_READ} and can change.</p>
+      <p>This guide covers where to launch on each channel, how to see who your competitors' sponsors are, what to do for YouTube, podcasts, newsletters, Instagram, TikTok, Twitch and events, and what sponsorships pay. Every number names its source, starting with this one: {ADS.share} of {ADS.n.toLocaleString('en-US')} newsletters that published 5 or more issues ran a paid sponsor ad in the 90 days to {ADS.read} (Book a Sponsor's data), so most newsletters run no paid ads at all. Facts about other companies' programs were read on {THIRD_PARTY_READ} and can change.</p>
 
       <h2 id="where-to-launch">Where can you launch creator sponsorships today?</h2>
 
@@ -71,7 +73,7 @@ const schema = [
 
       <ul>
         <li><strong>Marketplace:</strong> brands come to you, and offers arrive in your inbox or a platform tab. Some platforms keep a cut. Libsyn Ads keeps 30% of podcast ad revenue and pays the podcaster 70% (<a href="https://advertising.libsyn.com/monetize-your-podcast" target="_blank" rel="noopener noreferrer">Libsyn Ads</a>, read {THIRD_PARTY_READ}).</li>
-        <li><strong>Outreach:</strong> you choose the brand, the offer and the price, and no platform takes a cut. It is slower. Sponsor Radar's automated outreach sent {n(PITCHES.sent)} first pitches to brands for {PITCHES.newsletters} newsletters, {PITCHES.window}, and drew {PITCHES.yeses} positive first answers, about {PITCHES.pitchesPerYes} pitches per yes. Those are one short email per brand, not hand-written pitches, so a pitch you target yourself may do better or worse.</li>
+        <li><strong>Outreach:</strong> you choose the brand, the offer and the price, and no platform takes a cut. It is slower. Book a Sponsor's automated outreach sent {n(PITCHES.sent)} first pitches to brands for {PITCHES.newsletters} newsletters, {PITCHES.window}, and drew {PITCHES.yeses} positive first answers, about {PITCHES.pitchesPerYes} pitches per yes. Those are one short email per brand, not hand-written pitches, so a pitch you target yourself may do better or worse.</li>
       </ul>
 
       <p>Our <a href="/best-sponsorship-platforms/">comparison of 15 sponsorship platforms</a> ranks each one on how much of the selling it does for you, its published fees and who can join. The next sections show where offers arrive on each channel and how to run the outreach side.</p>
@@ -137,7 +139,7 @@ const schema = [
 
       <p>Each channel has its own matcher, and most of them work from the audience data you share. YouTube builds a media kit from your channel insights, and its help page says turning on insights sharing improves your visibility in creator search and helps brands pick creators for their campaign goals. On Instagram, brands that find you in the creator marketplace can see your content and insights such as average reach and follower count. Passionfroot's ad network sends sponsorship requests to creators, and its Live Campaigns board lets you apply to brands looking for your profile.</p>
 
-      <p>For newsletters, Sponsor Radar matches on the niche, not on demographics. It lists the brands that sponsored newsletters similar to yours ({n(SPONSORS.brands)} brands seen sponsoring {n(SPONSORS.newsletters)} newsletters, {SPONSORS.read}) and emails them for you. Any matcher is only as good as the numbers you give it, so build a <a href="/blog/sponsorship-media-kit-guide/">media kit with accurate audience data</a> first, or start with the <a href="/tools/media-kit-builder/">media kit builder</a>.</p>
+      <p>For newsletters, Book a Sponsor matches on the niche, not on demographics. It lists the brands that sponsored newsletters similar to yours ({n(SPONSORS.brands)} brands seen sponsoring {n(SPONSORS.newsletters)} newsletters, {SPONSORS.read}) and emails them for you. Any matcher is only as good as the numbers you give it, so build a <a href="/blog/sponsorship-media-kit-guide/">media kit with accurate audience data</a> first, or start with the <a href="/tools/media-kit-builder/">media kit builder</a>.</p>
 
       <h2>How do you see which creators a competitor sponsors?</h2>
 
@@ -145,8 +147,8 @@ const schema = [
 
       <ul>
         <li><strong>Facebook and Instagram:</strong> Meta's Ad Library has a searchable database of all active, public branded content with a paid partnership label (<a href="https://transparency.meta.com/researchtools/ad-library-tools/" target="_blank" rel="noopener noreferrer">Meta Transparency Center</a>, read {THIRD_PARTY_READ}).</li>
-        <li><strong>YouTube:</strong> creators who feature a sponsor select the paid promotion button, which adds a disclosure label at the start of the video (<a href="https://support.google.com/youtube/answer/154235" target="_blank" rel="noopener noreferrer">YouTube Help</a>, read {THIRD_PARTY_READ}), so a competitor's recent videos show its sponsors. <a href="https://sponsorradar.com" target="_blank" rel="noopener noreferrer">sponsorradar.com</a>, a different company from Sponsor Radar, is a YouTube sponsorship database that lists channels with their sponsors and has a free plan (its homepage, read {THIRD_PARTY_READ}).</li>
-        <li><strong>Newsletters:</strong> Sponsor Radar's <a href={SR.sponsorsUrl} target="_blank" rel="noopener noreferrer">public newsletter sponsors list</a> shows the brands seen sponsoring newsletters, and <a href="https://sponsorgap.com/" target="_blank" rel="noopener noreferrer">SponsorGap</a> lists competitor alerts on its $89 a month plan (its homepage, read {THIRD_PARTY_READ}).</li>
+        <li><strong>YouTube:</strong> creators who feature a sponsor select the paid promotion button, which adds a disclosure label at the start of the video (<a href="https://support.google.com/youtube/answer/154235" target="_blank" rel="noopener noreferrer">YouTube Help</a>, read {THIRD_PARTY_READ}), so a competitor's recent videos show its sponsors. <a href="https://sponsorradar.com" target="_blank" rel="noopener noreferrer">sponsorradar.com</a>, a different company from Book a Sponsor, is a YouTube sponsorship database that lists channels with their sponsors and has a free plan (its homepage, read {THIRD_PARTY_READ}).</li>
+        <li><strong>Newsletters:</strong> Book a Sponsor's <a href={SR.sponsorsUrl} target="_blank" rel="noopener noreferrer">public newsletter sponsors list</a> shows the brands seen sponsoring newsletters, and <a href="https://sponsorgap.com/" target="_blank" rel="noopener noreferrer">SponsorGap</a> lists competitor alerts on its $89 a month plan (its homepage, read {THIRD_PARTY_READ}).</li>
         <li><strong>Podcasts:</strong> listen to the ad reads in recent episodes of shows like yours and write down every brand.</li>
       </ul>
 
@@ -166,7 +168,7 @@ const schema = [
 
       <h3>Newsletters</h3>
 
-      <p>Newsletter sponsors are the easiest to research because the ads are printed in the issues. Sponsor Radar's data covers {n(ADS.n)} newsletters with five or more issues in the 90 days to {ADS.read}. {ADS.share} of them ran a paid sponsor ad, from {ADS.bySize[0].share} of those with {ADS.bySize[0].size.toLowerCase()} subscribers to {ADS.bySize[4].share} of those with {ADS.bySize[4].size.toLowerCase()}. Sponsor Radar's <a href={SR.sponsorsUrl} target="_blank" rel="noopener noreferrer">public sponsors list</a> shows {n(SPONSORS.brands)} brands seen sponsoring {n(SPONSORS.newsletters)} newsletters as of {SPONSORS.read}, mostly read from published issues and the rest from sponsor pages and articles. Sponsor Radar publishes this site. It emails brands for newsletter owners, with $20 in free credits (200 emails), then 10¢ per email sent.</p>
+      <p>Newsletter sponsors are the easiest to research because the ads are printed in the issues. Book a Sponsor's data covers {n(ADS.n)} newsletters with five or more issues in the 90 days to {ADS.read}. {ADS.share} of them ran a paid sponsor ad, from {ADS.bySize[0].share} of those with {ADS.bySize[0].size.toLowerCase()} subscribers to {ADS.bySize[4].share} of those with {ADS.bySize[4].size.toLowerCase()}. Book a Sponsor's <a href={SR.sponsorsUrl} target="_blank" rel="noopener noreferrer">public sponsors list</a> shows {n(SPONSORS.brands)} brands seen sponsoring {n(SPONSORS.newsletters)} newsletters as of {SPONSORS.read}, mostly read from published issues and the rest from sponsor pages and articles. Book a Sponsor publishes this site. It emails brands for newsletter owners, with $20 in free credits (200 emails), then 10¢ per email sent.</p>
 
       <h3>Instagram and TikTok</h3>
 
@@ -182,14 +184,14 @@ const schema = [
 
       <h2>How do you pitch brands directly?</h2>
 
-      <p>Pitch brands that already sponsor creators like you, with a short email that names one audience number and one specific offer. They reply more. In Sponsor Radar's pitches from {PITCHES.window}, brands with a newsletter ad on record replied at {seen.rate} ({n(seen.replies)} of {n(seen.sent)}), against {none.rate} ({n(none.replies)} of {n(none.sent)}) for brands with none. That compares reply rates only, because the yes counts are too small to compare, and it is two groups of brands, not a controlled test. The pitches were Sponsor Radar's automated outreach for newsletters, read {PITCHES.read}.</p>
+      <p>Pitch brands that already sponsor creators like you, with a short email that names one audience number and one specific offer. They reply more. In Book a Sponsor's pitches from {PITCHES.window}, brands with a newsletter ad on record replied at {seen.rate} ({n(seen.replies)} of {n(seen.sent)}), against {none.rate} ({n(none.replies)} of {n(none.sent)}) for brands with none. That compares reply rates only, because the yes counts are too small to compare, and it is two groups of brands, not a controlled test. The pitches were Book a Sponsor's automated outreach for newsletters, read {PITCHES.read}.</p>
 
       <ol>
         <li><strong>Build the brand list.</strong> Use the competitor sheet above and the methods in <a href="/blog/find-brands-that-sponsor/">how to find brands that sponsor creators</a>.</li>
         <li><strong>Find the person who buys.</strong> Look for a partnerships, creator or growth lead, not a generic info@ address. Verify the email before you send.</li>
         <li><strong>Send a short pitch.</strong> Name one audience number, reference the brand's current marketing and propose one placement. Templates are in the <a href="/blog/cold-email-sponsorship-pitch/">sponsorship pitch email guide</a>.</li>
         <li><strong>Follow up.</strong> A brand that stays silent may answer a second email. See <a href="/blog/sponsorship-follow-up-email/">sponsorship follow-up email templates</a> for wording and timing.</li>
-        <li><strong>Count your pitches.</strong> <a href="/blog/how-many-brands-to-pitch/">How many brands to pitch</a> shows the numbers from Sponsor Radar's outreach and how to plan your own.</li>
+        <li><strong>Count your pitches.</strong> <a href="/blog/how-many-brands-to-pitch/">How many brands to pitch</a> shows the numbers from Book a Sponsor's outreach and how to plan your own.</li>
       </ol>
 
       <h2>What do sponsorships pay?</h2>
@@ -219,7 +221,7 @@ const schema = [
         </table>
       </div>
 
-      <p class="text-sm text-gray-600">Source: Sponsor Radar's read of {RATES.n} newsletters' advertise pages, {RATES.read}. These are list prices that newsletters print, not what brands finally pay. Method and the full table: <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">newsletter sponsorship rates by list size</a>.</p>
+      <p class="text-sm text-gray-600">Source: Book a Sponsor's read of {RATES.n} newsletters' advertise pages, {RATES.read}. These are list prices that newsletters print, not what brands finally pay. Method and the full table: <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">newsletter sponsorship rates by list size</a>.</p>
 
       <p>A list twice the size lists its main slot about {RATES.doublingLift} higher, so bigger newsletters charge less per subscriber. For podcasts, Libsyn Ads lists baked-in host-read ads at $24 to $26 per 1,000 downloads for a 60-second spot and $18 to $22 for a 30-second spot (<a href="https://advertising.libsyn.com/podcast-advertising-ultimate-guide" target="_blank" rel="noopener noreferrer">Libsyn Ads guide</a>, read {THIRD_PARTY_READ}). For example, at $25 CPM, a show with 10,000 downloads per episode would list a 60-second spot at 10,000 ÷ 1,000 × $25 = $250. Those round numbers are hypothetical.</p>
 
@@ -245,7 +247,7 @@ const schema = [
 
       <h2>Where should you start this week?</h2>
 
-      <p>Join the marketplace for your channel from the table above, then build a list of brands that already sponsor creators like you and send the first pitches. If you send a newsletter, <a href={SR.cta('find-sponsorship-opportunities-guide')}>Sponsor Radar</a> shows the brands that sponsored similar newsletters and the person at each one who buys the ads. It covers newsletters only, not YouTube, podcasts or events.</p>
+      <p>Join the marketplace for your channel from the table above, then build a list of brands that already sponsor creators like you and send the first pitches. If you send a newsletter, <a href={SR.cta('find-sponsorship-opportunities-guide')}>Book a Sponsor</a> shows the brands that sponsored similar newsletters and the person at each one who buys the ads. It covers newsletters only, not YouTube, podcasts or events.</p>
 
     </div>
   </article>

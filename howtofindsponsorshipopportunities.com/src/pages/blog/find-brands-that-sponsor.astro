@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { SR, SPONSORS, PITCHES } from '../../data/sr-stats';
 import { articleSchema, faqSchema } from '../../lib/article';
 
@@ -21,19 +22,19 @@ const h1 = 'How to Find Brands That Already Sponsor Creators Like You';
 const faq = [
   {
     q: 'How do you find brands that sponsor creators?',
-    a: `Read the sponsor slots of newsletters, podcasts and channels like yours, then check ad libraries, sponsor directories and partnerships job posts. List every brand with the creator it sponsored and the format it bought. Sponsor Radar's public list shows ${n(SPONSORS.brands)} brands seen sponsoring ${n(SPONSORS.newsletters)} newsletters as of ${SPONSORS.read}, mostly read from published issues and the rest from sponsor pages and articles.`,
+    a: `Read the sponsor slots of newsletters, podcasts and channels like yours, then check ad libraries, sponsor directories and partnerships job posts. List every brand with the creator it sponsored and the format it bought. Book a Sponsor's public list shows ${n(SPONSORS.brands)} brands seen sponsoring ${n(SPONSORS.newsletters)} newsletters as of ${SPONSORS.read}, mostly read from published issues and the rest from sponsor pages and articles.`,
   },
   {
     q: 'Do brands that already sponsor creators reply more to pitches?',
-    a: `Yes, in Sponsor Radar's data. From ${PITCHES.window}, brands with a newsletter ad on record replied to its automated pitches at ${seen.rate} (${n(seen.replies)} of ${n(seen.sent)}), against ${none.rate} (${n(none.replies)} of ${n(none.sent)}) for brands with none. That compares reply rates only, because the yes counts are too small to compare.`,
+    a: `Yes, in Book a Sponsor's data. From ${PITCHES.window}, brands with a newsletter ad on record replied to its automated pitches at ${seen.rate} (${n(seen.replies)} of ${n(seen.sent)}), against ${none.rate} (${n(none.replies)} of ${n(none.sent)}) for brands with none. That compares reply rates only, because the yes counts are too small to compare.`,
   },
   {
     q: 'What is a sponsor discovery platform?',
-    a: `A sponsor discovery platform is a database or tool that shows which brands buy sponsorships and where. Sponsor Radar and SponsorGap cover newsletters, and sponsorradar.com, a company unrelated to Sponsor Radar, covers YouTube. Our comparison of 15 sponsorship platforms ranks them by how much selling each does for you, published fees and who can join.`,
+    a: `A sponsor discovery platform is a database or tool that shows which brands buy sponsorships and where. Book a Sponsor and SponsorGap cover newsletters, and sponsorradar.com, a company unrelated to Book a Sponsor, covers YouTube. Our comparison of 15 sponsorship platforms ranks them by how much selling each does for you, published fees and who can join.`,
   },
   {
     q: 'How many brands should you pitch to land one sponsorship?',
-    a: `In Sponsor Radar's automated outreach, it took about ${PITCHES.pitchesPerYes} pitches per yes: ${PITCHES.yeses} positive first answers from ${n(PITCHES.sent)} first pitches to brands for ${PITCHES.newsletters} newsletters, ${PITCHES.window}. A yes is an interested first answer, not a signed deal. A pitch you target by hand may do better, and we have no data on that.`,
+    a: `In Book a Sponsor's automated outreach, it took about ${PITCHES.pitchesPerYes} pitches per yes: ${PITCHES.yeses} positive first answers from ${n(PITCHES.sent)} first pitches to brands for ${PITCHES.newsletters} newsletters, ${PITCHES.window}. A yes is an interested first answer, not a signed deal. A pitch you target by hand may do better, and we have no data on that.`,
   },
 ];
 
@@ -48,14 +49,15 @@ const schema = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
       <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>Find brands that already sponsor creators in your niche. Read the sponsor slots of adjacent newsletters, podcasts and channels, then check ad libraries, sponsor directories and job posts. They reply more: in Sponsor Radar's pitches, brands with a newsletter ad on record replied at {seen.rate}, against {none.rate} for brands with none.</strong></p>
+      <p><strong>Find brands that already sponsor creators in your niche. Read the sponsor slots of adjacent newsletters, podcasts and channels, then check ad libraries, sponsor directories and job posts. They reply more: in Book a Sponsor's pitches, brands with a newsletter ad on record replied at {seen.rate}, against {none.rate} for brands with none.</strong></p>
 
       <h2>Do brands that already sponsor creators reply more?</h2>
 
-      <p>Yes, in Sponsor Radar's data. Between {PITCHES.window}, Sponsor Radar sent {n(PITCHES.sent)} first pitches to brands for {PITCHES.newsletters} newsletters. Brands that had a newsletter ad on record replied at {seen.rate}. Brands with none replied at {none.rate}.</p>
+      <p>Yes, in Book a Sponsor's data. Between {PITCHES.window}, Book a Sponsor sent {n(PITCHES.sent)} first pitches to brands for {PITCHES.newsletters} newsletters. Brands that had a newsletter ad on record replied at {seen.rate}. Brands with none replied at {none.rate}.</p>
 
       <div class="overflow-x-auto">
         <table>
@@ -84,7 +86,7 @@ const schema = [
         </table>
       </div>
 
-      <p class="text-sm text-gray-600">Source: Sponsor Radar's {n(PITCHES.sent)} pitches to brands, {PITCHES.window}, read {PITCHES.read}. These are Sponsor Radar's automated outreach for newsletters, one short email per brand sent from its own mailboxes, not hand-written pitches. A reply is the brand's first answer. Reply rates only: the yes counts are too small to compare. It is two groups of brands, not a controlled test, so brands that buy newsletter ads may differ in other ways too.</p>
+      <p class="text-sm text-gray-600">Source: Book a Sponsor's {n(PITCHES.sent)} pitches to brands, {PITCHES.window}, read {PITCHES.read}. These are Book a Sponsor's automated outreach for newsletters, one short email per brand sent from its own mailboxes, not hand-written pitches. A reply is the brand's first answer. Reply rates only: the yes counts are too small to compare. It is two groups of brands, not a controlled test, so brands that buy newsletter ads may differ in other ways too.</p>
 
       <p>Across all {n(PITCHES.sent)} pitches the reply rate was {PITCHES.replyRate} ({PITCHES.replies} replies). The reason to start with active sponsors is simple: the offer matches a budget that already exists, so your pitch is a request to buy a placement, not an argument for a new channel.</p>
 
@@ -98,7 +100,7 @@ const schema = [
         <li><strong>Note the format they buy</strong> (dedicated send, classified slot or host read) so your offer matches their existing habit.</li>
       </ul>
 
-      <p>For newsletters, you can skip some of the reading. Sponsor Radar's <a href={SR.sponsorsUrl} target="_blank" rel="noopener noreferrer">public newsletter sponsors list</a> shows {n(SPONSORS.brands)} brands seen sponsoring {n(SPONSORS.newsletters)} newsletters as of {SPONSORS.read}, mostly read from published issues and the rest from sponsor pages and articles.</p>
+      <p>For newsletters, you can skip some of the reading. Book a Sponsor's <a href={SR.sponsorsUrl} target="_blank" rel="noopener noreferrer">public newsletter sponsors list</a> shows {n(SPONSORS.brands)} brands seen sponsoring {n(SPONSORS.newsletters)} newsletters as of {SPONSORS.read}, mostly read from published issues and the rest from sponsor pages and articles.</p>
 
       <h2>What public records show which brands spend on creators?</h2>
 
@@ -117,9 +119,9 @@ const schema = [
 
       <p>Pitch a person, not a company address. A list of brands is only as useful as the humans inside them: partnership, growth or brand managers, not info@. That is a contact-finding problem (<a href="https://howtofindanyonesemail.com/">howtofindanyonesemail.com</a>, a sibling site, covers the manual workflows), then a verification problem, because bounced pitches burn your sending domain (<a href="https://howtoverifyemails.com/">verify first</a>), then a pitch problem.</p>
 
-      <p>Reply rates were similar by job title in the same Sponsor Radar pitches. Pitches to founders, CEOs and owners drew a {founder.rate} reply rate ({n(founder.sent)} sent), and pitches to marketing titles drew {marketing.rate} ({n(marketing.sent)} sent). Write the pitch short and specific, with your audience numbers up front, following the <a href="/blog/cold-email-sponsorship-pitch/">sponsorship pitch templates</a> and your <a href="/blog/how-much-to-charge-for-sponsorship/">rate math</a>. When a brand stays silent, send a <a href="/blog/sponsorship-follow-up-email/">follow-up</a>.</p>
+      <p>Reply rates were similar by job title in the same Book a Sponsor pitches. Pitches to founders, CEOs and owners drew a {founder.rate} reply rate ({n(founder.sent)} sent), and pitches to marketing titles drew {marketing.rate} ({n(marketing.sent)} sent). Write the pitch short and specific, with your audience numbers up front, following the <a href="/blog/cold-email-sponsorship-pitch/">sponsorship pitch templates</a> and your <a href="/blog/how-much-to-charge-for-sponsorship/">rate math</a>. When a brand stays silent, send a <a href="/blog/sponsorship-follow-up-email/">follow-up</a>.</p>
 
-      <p>Plan the volume before you start. In Sponsor Radar's automated outreach it took about {PITCHES.pitchesPerYes} pitches per yes, so <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a> sets out how to size your list.</p>
+      <p>Plan the volume before you start. In Book a Sponsor's automated outreach it took about {PITCHES.pitchesPerYes} pitches per yes, so <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a> sets out how to size your list.</p>
 
       <p>For newsletters, <a href={SR.cta('find-brands-that-sponsor')}>{SR.name}</a> does these steps in one pass. Paste your newsletter's URL and it lists the brands that sponsored similar newsletters, finds the person at each brand who buys the ads and drafts a pitch. It then emails those brands for you from its own mailboxes, with $20 in free credits (200 emails), then 10¢ per email sent. It covers newsletters only.</p>
 

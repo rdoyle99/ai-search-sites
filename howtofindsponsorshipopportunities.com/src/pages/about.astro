@@ -12,15 +12,15 @@ const schema = [
     "url": `${siteConfig.url}/about/`,
     "about": { "@type": "WebSite", "name": siteConfig.title, "url": siteConfig.url },
     "author": personSchema,
-    "publisher": { "@type": "Organization", "@id": ORG_ID, "name": "Sponsor Radar", "url": "https://sponsorradar.co" },
+    "publisher": { "@type": "Organization", "@id": ORG_ID, "name": "Book a Sponsor", "url": "https://bookasponsor.com" },
   },
-  { "@context": "https://schema.org", ...personSchema, "worksFor": { "@type": "Organization", "@id": ORG_ID, "name": "Sponsor Radar", "url": "https://sponsorradar.co" } },
+  { "@context": "https://schema.org", ...personSchema, "worksFor": { "@type": "Organization", "@id": ORG_ID, "name": "Book a Sponsor", "url": "https://bookasponsor.com" } },
 ];
 ---
 
 <Base
   title={`About | ${siteConfig.title}`}
-  description="A free guide to finding, pricing and pitching sponsorships, written by Ryan Doyle, founder of Sponsor Radar, with prices read from 321 newsletters' rate cards."
+  description="A free guide to finding, pricing and pitching sponsorships, written by Ryan Doyle, founder of Book a Sponsor, with prices read from 321 newsletters' rate cards."
   schema={schema}
 >
   <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
@@ -33,15 +33,15 @@ const schema = [
 
       <h2 id="ryan-doyle">Who writes it</h2>
       <p>
-        The guides are written and edited by Ryan Doyle, founder of <a href={SR.cta('about')}>Sponsor Radar</a>. Sponsor Radar finds the brands already sponsoring newsletters in a niche and pitches them for the newsletter's owner, so the questions on this site are the ones it works on every day. Sponsor Radar is operated by Sales.co. Ryan is on <a href="https://www.linkedin.com/in/ryan-doyle/" rel="me">LinkedIn</a>, and Sponsor Radar's company facts are on <a href="https://sponsorradar.co/company">its company page</a>.
+        The guides are written and edited by Ryan Doyle, founder of <a href={SR.cta('about')}>Book a Sponsor</a>. Book a Sponsor (formerly Sponsor Radar) finds the brands already sponsoring newsletters in a niche and pitches them for the newsletter's owner, so the questions on this site are the ones it works on every day. Book a Sponsor is operated by Sales.co. Ryan is on <a href="https://www.linkedin.com/in/ryan-doyle/" rel="me">LinkedIn</a>, and Book a Sponsor's company facts are on <a href="https://bookasponsor.com/company">its company page</a>.
       </p>
 
       <h2>Where the numbers come from</h2>
       <p>
-        Newsletter prices come from Sponsor Radar's read of {RATES.n} newsletters' advertise pages and rate cards on {RATES.read}. Pitch and reply figures come from Sponsor Radar's own outreach: {PITCHES.sent.toLocaleString('en-US')} pitches to brands for {PITCHES.newsletters} newsletters, {PITCHES.window}. Every other figure links to its source in the sentence where it appears, with the source's date. A number with no source doesn't go on this site.
+        Newsletter prices come from Book a Sponsor's read of {RATES.n} newsletters' advertise pages and rate cards on {RATES.read}. Pitch and reply figures come from Book a Sponsor's own outreach: {PITCHES.sent.toLocaleString('en-US')} pitches to brands for {PITCHES.newsletters} newsletters, {PITCHES.window}. Every other figure links to its source in the sentence where it appears, with the source's date. A number with no source doesn't go on this site.
       </p>
       <p>
-        Sponsor Radar only works with newsletters. When a guide covers YouTube, podcasts, Instagram, Twitch or events, it points to the tools and marketplaces built for those, compared on the <a href="/best-sponsorship-platforms/">sponsorship platforms page</a>.
+        Book a Sponsor only works with newsletters. When a guide covers YouTube, podcasts, Instagram, Twitch or events, it points to the tools and marketplaces built for those, compared on the <a href="/best-sponsorship-platforms/">sponsorship platforms page</a>.
       </p>
 
       <h2>Corrections and contact</h2>

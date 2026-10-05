@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { articleSchema, faqSchema } from '../../lib/article';
 import { PITCHES, SR } from '../../data/sr-stats';
 
@@ -14,26 +15,26 @@ const goals = [1, 2, 4].map((n) => {
 });
 
 const title = `How Many Brands to Pitch: ${PITCHES.pitchesPerYes} First Pitches Per Yes`;
-const description = `In Sponsor Radar's outreach for ${PITCHES.newsletters} newsletters, ${PITCHES.yeses} yeses took ${f(PITCHES.sent)} first pitches: about ${PITCHES.pitchesPerYes} per yes. The funnel, the targeting gap and the math.`;
+const description = `In Book a Sponsor's outreach for ${PITCHES.newsletters} newsletters, ${PITCHES.yeses} yeses took ${f(PITCHES.sent)} first pitches: about ${PITCHES.pitchesPerYes} per yes. The funnel, the targeting gap and the math.`;
 const h1 = 'How Many Brands Should You Pitch to Land One Sponsorship?';
 const path = '/blog/how-many-brands-to-pitch/';
 
 const faq = [
   {
     q: 'How many brands should I pitch to get one sponsorship?',
-    a: `In Sponsor Radar's automated outreach for ${PITCHES.newsletters} newsletters, it took about ${PITCHES.pitchesPerYes} first pitches per brand that said yes (${PITCHES.yeses} yeses from ${f(PITCHES.sent)} pitches, ${PITCHES.window}). A yes is an interested first answer, not a signed deal, and a hand-written, well-targeted pitch may need fewer.`,
+    a: `In Book a Sponsor's automated outreach for ${PITCHES.newsletters} newsletters, it took about ${PITCHES.pitchesPerYes} first pitches per brand that said yes (${PITCHES.yeses} yeses from ${f(PITCHES.sent)} pitches, ${PITCHES.window}). A yes is an interested first answer, not a signed deal, and a hand-written, well-targeted pitch may need fewer.`,
   },
   {
     q: 'What is a good reply rate for sponsorship pitches?',
-    a: `Sponsor Radar's automated pitches got a ${PITCHES.replyRate} reply rate (${PITCHES.replies} of ${f(PITCHES.sent)}). Brands with a newsletter ad on record replied at ${seen.rate} and brands with none at ${none.rate}. There is no benchmark here for hand-written pitches.`,
+    a: `Book a Sponsor's automated pitches got a ${PITCHES.replyRate} reply rate (${PITCHES.replies} of ${f(PITCHES.sent)}). Brands with a newsletter ad on record replied at ${seen.rate} and brands with none at ${none.rate}. There is no benchmark here for hand-written pitches.`,
   },
   {
     q: 'How many sponsorship pitches should I send per day?',
-    a: `To expect about one yes a month at ${PITCHES.pitchesPerYes} pitches per yes, send about ${perDay} a day (${PITCHES.pitchesPerYes} divided by 30 days). That is arithmetic from Sponsor Radar's rates, not a promise, and your rate may differ.`,
+    a: `To expect about one yes a month at ${PITCHES.pitchesPerYes} pitches per yes, send about ${perDay} a day (${PITCHES.pitchesPerYes} divided by 30 days). That is arithmetic from Book a Sponsor's rates, not a promise, and your rate may differ.`,
   },
   {
     q: 'How long should I wait before judging a batch of sponsorship pitches?',
-    a: `About 7 days. In Sponsor Radar's pitches, ${T.within7d} of replies arrived within 7 days (${T.n} of the ${PITCHES.replies} replies, those with a reply time after the send), and the median reply came after ${T.medianHours} hours.`,
+    a: `About 7 days. In Book a Sponsor's pitches, ${T.within7d} of replies arrived within 7 days (${T.n} of the ${PITCHES.replies} replies, those with a reply time after the send), and the median reply came after ${T.medianHours} hours.`,
   },
 ];
 ---
@@ -49,12 +50,13 @@ const faq = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
       <div class="mt-2"><Byline published="2026-06-11" modified="2026-10-02" /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>In Sponsor Radar's outreach for {PITCHES.newsletters} newsletters, it took about {PITCHES.pitchesPerYes} first pitches per brand that said yes: {PITCHES.yeses} yeses from {f(PITCHES.sent)} pitches, {PITCHES.window}. A yes is an interested first answer, not a signed deal, so your count per paid sponsorship is likely higher.</strong></p>
+      <p><strong>In Book a Sponsor's outreach for {PITCHES.newsletters} newsletters, it took about {PITCHES.pitchesPerYes} first pitches per brand that said yes: {PITCHES.yeses} yeses from {f(PITCHES.sent)} pitches, {PITCHES.window}. A yes is an interested first answer, not a signed deal, so your count per paid sponsorship is likely higher.</strong></p>
 
-      <p>Each of those pitches was one short, automated email to one brand, sent from Sponsor Radar's mailboxes for a newsletter. The numbers were read on {PITCHES.read} from each brand's first answer. They are not hand-written pitches, and they are not a promise for yours.</p>
+      <p>Each of those pitches was one short, automated email to one brand, sent from Book a Sponsor's mailboxes for a newsletter. The numbers were read on {PITCHES.read} from each brand's first answer. They are not hand-written pitches, and they are not a promise for yours.</p>
 
       <h2>What does the sponsorship outreach funnel look like?</h2>
 
@@ -87,7 +89,7 @@ const faq = [
         </tbody>
       </table>
 
-      <p>Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}. Sponsor Radar does not have close data on these yeses, so the funnel stops at the yes.</p>
+      <p>Source: Book a Sponsor's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}. Book a Sponsor does not have close data on these yeses, so the funnel stops at the yes.</p>
 
       <h2>Why does pitching brands with a newsletter ad on record get about twice the replies?</h2>
 
@@ -121,7 +123,7 @@ const faq = [
         </tbody>
       </table>
 
-      <p>Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}. Compare the reply rates. The yes counts ({seen.yeses} and {none.yeses}) are too small to compare as rates. This is a comparison, not an experiment: brands that already buy newsletter ads may also differ in size or activity, so targeting may not be the whole gap. To build a list of brands that already sponsor, see <a href="/blog/find-brands-that-sponsor/">how to find brands that sponsor</a>.</p>
+      <p>Source: Book a Sponsor's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}. Compare the reply rates. The yes counts ({seen.yeses} and {none.yeses}) are too small to compare as rates. This is a comparison, not an experiment: brands that already buy newsletter ads may also differ in size or activity, so targeting may not be the whole gap. To build a list of brands that already sponsor, see <a href="/blog/find-brands-that-sponsor/">how to find brands that sponsor</a>.</p>
 
       <h2>How many pitches do you need to send for your sponsorship goal?</h2>
 
@@ -146,27 +148,27 @@ const faq = [
         </tbody>
       </table>
 
-      <p>This is arithmetic from Sponsor Radar's rates, not a promise. Your list, your pitch and your niche will move it. If you send on weekdays only, the daily number goes up.</p>
+      <p>This is arithmetic from Book a Sponsor's rates, not a promise. Your list, your pitch and your niche will move it. If you send on weekdays only, the daily number goes up.</p>
 
       <h2>What does a "yes" mean, and how many yeses become paid sponsorships?</h2>
 
-      <p>A yes means the brand's first answer was interested. It is not a signed deal. A paid sponsorship still needs a price and a date both sides agree on, and Sponsor Radar does not have data on how many of the {PITCHES.yeses} yeses turned into one. So {PITCHES.pitchesPerYes} is pitches per yes, not pitches per paid sponsorship, and the per-deal number is likely higher by an amount we have not measured.</p>
+      <p>A yes means the brand's first answer was interested. It is not a signed deal. A paid sponsorship still needs a price and a date both sides agree on, and Book a Sponsor does not have data on how many of the {PITCHES.yeses} yeses turned into one. So {PITCHES.pitchesPerYes} is pitches per yes, not pitches per paid sponsorship, and the per-deal number is likely higher by an amount we have not measured.</p>
 
       <p>A yes still has to agree on a price. Check your number against <a href="/blog/how-much-to-charge-for-sponsorship/">what to charge for a sponsorship</a> before you reply to one, and have a <a href="/blog/sponsorship-media-kit-guide/">media kit</a> ready to send.</p>
 
       <h2>Will a hand-written pitch need fewer than {PITCHES.pitchesPerYes} pitches per yes?</h2>
 
-      <p>It may. Sponsor Radar's pitches were one short automated email each. A pitch that names the brand's own product, offers one dated placement and goes to the person who owns the budget could do better, and the reply gap above is one reason to think targeting matters. There are no numbers here for hand-written pitches, so use {PITCHES.pitchesPerYes} as a baseline for automated outreach, not as a forecast.</p>
+      <p>It may. Book a Sponsor's pitches were one short automated email each. A pitch that names the brand's own product, offers one dated placement and goes to the person who owns the budget could do better, and the reply gap above is one reason to think targeting matters. There are no numbers here for hand-written pitches, so use {PITCHES.pitchesPerYes} as a baseline for automated outreach, not as a forecast.</p>
 
       <p>Log every pitch with its date and outcome so you can replace this baseline with your own ratio. Send a first batch of 100 targeted pitches, wait 7 days, then divide the replies by 100, and set your daily volume from that rate. The <a href="/blog/cold-email-sponsorship-pitch/">sponsorship email templates</a> are written to be short, and the <a href="/blog/sponsorship-follow-up-email/">follow-up templates</a> cover the second email.</p>
 
       <h2>How long should you wait before judging a batch of pitches?</h2>
 
-      <p>Wait about 7 days. {T.within7d} of replies to Sponsor Radar's pitches arrived within 7 days ({T.n} of the {PITCHES.replies} replies, those with a reply time after the send), and the median reply came after {T.medianHours} hours, so a batch is readable after a week and not after a day. Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}.</p>
+      <p>Wait about 7 days. {T.within7d} of replies to Book a Sponsor's pitches arrived within 7 days ({T.n} of the {PITCHES.replies} replies, those with a reply time after the send), and the median reply came after {T.medianHours} hours, so a batch is readable after a week and not after a day. Source: Book a Sponsor's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}.</p>
 
       <h2>Can you send this many pitches without writing each one?</h2>
 
-      <p>For newsletters, yes. <a href={SR.cta('how-many-brands')}>Sponsor Radar</a> sends pitches to 50 new brands a day by default, from its own mailboxes, so your volume does not depend on how many emails you have time to write.</p>
+      <p>For newsletters, yes. <a href={SR.cta('how-many-brands')}>Book a Sponsor</a> sends pitches to 50 new brands a day by default, from its own mailboxes, so your volume does not depend on how many emails you have time to write.</p>
 
       <h2>Questions about how many brands to pitch</h2>
 

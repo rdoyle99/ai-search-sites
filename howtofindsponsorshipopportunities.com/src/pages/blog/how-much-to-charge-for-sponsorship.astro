@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { RATES, SR } from '../../data/sr-stats';
 import { articleSchema, faqSchema } from '../../lib/article';
 
@@ -42,7 +43,7 @@ const h1 = 'Sponsorship Pricing: How Much to Charge for a Sponsorship';
 const faq = [
   {
     q: 'How much should I charge for a sponsorship?',
-    a: `Start at the median that similar creators list for the same placement: ${usd(r2.median)} for the main slot of a newsletter with 5,000 to 19,999 subscribers, with the middle half asking ${usd(r2.p25)} to ${usd(r2.p75)} (Sponsor Radar's read of ${RATES.n} newsletters' advertise pages, ${RATES.read}). Podcasts and videos price per 1,000 downloads or views, and events price per package.`,
+    a: `Start at the median that similar creators list for the same placement: ${usd(r2.median)} for the main slot of a newsletter with 5,000 to 19,999 subscribers, with the middle half asking ${usd(r2.p25)} to ${usd(r2.p75)} (Book a Sponsor's read of ${RATES.n} newsletters' advertise pages, ${RATES.read}). Podcasts and videos price per 1,000 downloads or views, and events price per package.`,
   },
   {
     q: 'What is the average cost of a sponsorship?',
@@ -77,10 +78,11 @@ const schema = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
       <div class="mt-3"><Byline published={PUBLISHED} modified={MODIFIED} /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>Price a sponsorship at what similar creators list for the same placement, then adjust for your results. For newsletters, the median main slot lists at {usd(r2.median)} for 5,000 to 19,999 subscribers and {usd(r3.median)} for 20,000 to 49,999 (<a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's read of {RATES.n} newsletters' advertise pages</a>, {RATES.read}). Podcasts, video and events price differently.</strong></p>
+      <p><strong>Price a sponsorship at what similar creators list for the same placement, then adjust for your results. For newsletters, the median main slot lists at {usd(r2.median)} for 5,000 to 19,999 subscribers and {usd(r3.median)} for 20,000 to 49,999 (<a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Book a Sponsor's read of {RATES.n} newsletters' advertise pages</a>, {RATES.read}). Podcasts, video and events price differently.</strong></p>
 
       <h2>What do newsletter sponsorships cost by list size?</h2>
 
@@ -115,7 +117,7 @@ const schema = [
         </table>
       </div>
 
-      <p class="text-sm text-gray-600">Source: Sponsor Radar's read of {RATES.n} newsletters that print a main-slot price and a list of 500 or more subscribers on their advertise page, {RATES.read}. Method and the full table are on <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's newsletter sponsorship rates page</a>. The top two rows hold only {r4.n} and {r5.n} newsletters, so read their medians as rough. {RATES.passionfroot} of the {RATES.n} prices were read from Passionfroot storefronts, and newsletters that sell by quote publish no price, so these figures lean toward storefront sellers. They are list prices on one day's pages. A deal can close above or below them.</p>
+      <p class="text-sm text-gray-600">Source: Book a Sponsor's read of {RATES.n} newsletters that print a main-slot price and a list of 500 or more subscribers on their advertise page, {RATES.read}. Method and the full table are on <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Book a Sponsor's newsletter sponsorship rates page</a>. The top two rows hold only {r4.n} and {r5.n} newsletters, so read their medians as rough. {RATES.passionfroot} of the {RATES.n} prices were read from Passionfroot storefronts, and newsletters that sell by quote publish no price, so these figures lean toward storefront sellers. They are list prices on one day's pages. A deal can close above or below them.</p>
 
       <h2>How does CPM sponsorship pricing work?</h2>
 
@@ -152,7 +154,7 @@ const schema = [
         </table>
       </div>
 
-      <p>For example, a newsletter whose main slot is {usd(r2.median)} would price a second slot near {usd(exSecond)} ({usd(r2.median)} × {second.median}), a classified near {usd(exClassified)} ({usd(r2.median)} × {classified.median}) and a dedicated send near {usd(exDedicated)} ({usd(r2.median)} × {dedicated.median.replace(' times', '')}). These are medians, so use them as starting points. Source: <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Sponsor Radar's read of newsletters' advertise pages</a>, {RATES.read}. Only the price of one placement in one issue or send counts there, so bundles and multi-issue prices are not in these figures. For those, see <a href="/blog/sponsorship-packages/">how to price sponsorship packages and tiers</a>.</p>
+      <p>For example, a newsletter whose main slot is {usd(r2.median)} would price a second slot near {usd(exSecond)} ({usd(r2.median)} × {second.median}), a classified near {usd(exClassified)} ({usd(r2.median)} × {classified.median}) and a dedicated send near {usd(exDedicated)} ({usd(r2.median)} × {dedicated.median.replace(' times', '')}). These are medians, so use them as starting points. Source: <a href={SR.ratesUrl} target="_blank" rel="noopener noreferrer">Book a Sponsor's read of newsletters' advertise pages</a>, {RATES.read}. Only the price of one placement in one issue or send counts there, so bundles and multi-issue prices are not in these figures. For those, see <a href="/blog/sponsorship-packages/">how to price sponsorship packages and tiers</a>.</p>
 
       <h2>Why do bigger newsletters charge less per subscriber?</h2>
 
@@ -171,9 +173,9 @@ const schema = [
         <li><strong>Price the other placements off the main slot</strong> with the percentages above.</li>
       </ol>
 
-      <p>The prices do not show why some newsletters in a row ask more than others. No single niche has 50 newsletters with a printed price and list size, so Sponsor Radar does not split prices by niche. The <a href="/tools/sponsorship-rate-calculator/">sponsorship rate calculator</a> does this row lookup for your list size.</p>
+      <p>The prices do not show why some newsletters in a row ask more than others. No single niche has 50 newsletters with a printed price and list size, so Book a Sponsor does not split prices by niche. The <a href="/tools/sponsorship-rate-calculator/">sponsorship rate calculator</a> does this row lookup for your list size.</p>
 
-      <p>Once you have a number, send it to brands that already buy newsletter ads. <a href={SR.cta('sponsorship-pricing')} target="_blank" rel="noopener noreferrer">Sponsor Radar</a> lists the brands that sponsored newsletters like yours, finds the person who buys the ads, and emails them from its own mailboxes. For your own outreach, see the <a href="/blog/cold-email-sponsorship-pitch/">cold email sponsorship pitch guide</a>.</p>
+      <p>Once you have a number, send it to brands that already buy newsletter ads. <a href={SR.cta('sponsorship-pricing')} target="_blank" rel="noopener noreferrer">Book a Sponsor</a> lists the brands that sponsored newsletters like yours, finds the person who buys the ads, and emails them from its own mailboxes. For your own outreach, see the <a href="/blog/cold-email-sponsorship-pitch/">cold email sponsorship pitch guide</a>.</p>
 
       <h2>How much should a podcast sponsorship cost?</h2>
 

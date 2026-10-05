@@ -1,0 +1,7 @@
+---
+import { SR } from '../data/sr-stats';
+const slug = Astro.url.pathname.split('/').filter(Boolean).pop() || 'home';
+---
+<aside class="mt-5 rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-gray-800" data-newsletter-callout>
+  <strong>Run a newsletter?</strong> Paste its URL at <a href={SR.cta(`${slug}-top`)} class="font-semibold text-blue-700 underline hover:text-blue-900">Book a Sponsor</a> to see which brands already sponsor newsletters like yours. Free, no card, about a minute.
+</aside>

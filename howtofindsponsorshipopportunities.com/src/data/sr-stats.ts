@@ -1,19 +1,19 @@
-// Sponsor Radar's own numbers, the one place this site reads them from. Each block names its source and read date.
+// Book a Sponsor's own numbers, the one place this site reads them from. Each block names its source and read date.
 // Truth ledger: ~/codingprojects/seo-ops/sites/htfso/facts.json (owned_proof_numbers). Change a number here, never inline.
 
 export const SR = {
-  name: 'Sponsor Radar',
-  url: 'https://sponsorradar.co',
+  name: 'Book a Sponsor',
+  url: 'https://bookasponsor.com',
   cta: (content: string) =>
-    `https://sponsorradar.co/?utm_source=howtofindsponsorshipopportunities.com&utm_medium=referral&utm_campaign=sister&utm_content=${encodeURIComponent(content)}`,
-  ratesUrl: 'https://sponsorradar.co/newsletter-sponsorship-rates',
-  proposalUrl: 'https://sponsorradar.co/sponsorship-proposal',
-  sponsorsUrl: 'https://sponsorradar.co/newsletter-sponsors',
-  monetizeUrl: 'https://sponsorradar.co/how-to-monetize-a-newsletter',
+    `https://bookasponsor.com/?utm_source=howtofindsponsorshipopportunities.com&utm_medium=referral&utm_campaign=sister&utm_content=${encodeURIComponent(content)}`,
+  ratesUrl: 'https://bookasponsor.com/newsletter-sponsorship-rates',
+  proposalUrl: 'https://bookasponsor.com/sponsorship-proposal',
+  sponsorsUrl: 'https://bookasponsor.com/newsletter-sponsors',
+  monetizeUrl: 'https://bookasponsor.com/how-to-monetize-a-newsletter',
 };
 
 // Newsletter list prices: 321 newsletters that print a main-slot price and a list size of 500+ on their advertise page,
-// read 29 September 2026 (sponsorradar.co/newsletter-sponsorship-rates; SR facts C09).
+// read 29 September 2026 (bookasponsor.com/newsletter-sponsorship-rates; SR facts C09).
 export const RATES = {
   read: '29 September 2026',
   n: 321,
@@ -55,7 +55,7 @@ export const ADS = {
 // Sponsors seen (SR facts C10, 2 October 2026).
 export const SPONSORS = { brands: 5866, newsletters: 3238, read: '2 October 2026' };
 
-// Sponsor Radar's own pitching: first pitches sent for 31 newsletters to brands, 27 August to 24 September 2026
+// Book a Sponsor's own pitching: first pitches sent for 31 newsletters to brands, 27 August to 24 September 2026
 // (every send at least 7 days old when read, test sends and the operator's address left out), read 2 October 2026
 // from ns_pitches by each brand's first answer. Query: seo-ops/sites/htfso/research/2026-10-02.md.
 export const PITCHES = {

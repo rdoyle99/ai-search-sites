@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Byline from '../../components/Byline.astro';
+import NewsletterCallout from '../../components/NewsletterCallout.astro';
 import { articleSchema, faqSchema } from '../../lib/article';
 import { PITCHES, SR } from '../../data/sr-stats';
 
@@ -9,18 +10,18 @@ const T = PITCHES.timing;
 const left = (share: string) => `${100 - parseInt(share, 10)}%`;
 
 const title = 'Sponsorship Follow-Up Email Templates: Wait 3 to 7 Days';
-const description = `Sponsorship follow-up email templates and timing: ${T.within7d} of brand replies to Sponsor Radar's pitches came within 7 days. When to send, how many, what to say.`;
+const description = `Sponsorship follow-up email templates and timing: ${T.within7d} of brand replies to Book a Sponsor's pitches came within 7 days. When to send, how many, what to say.`;
 const h1 = 'Sponsorship Follow-Up Email: Templates and When to Send';
 const path = '/blog/sponsorship-follow-up-email/';
 
 const faq = [
   {
     q: 'How long should you wait before following up on a sponsorship email?',
-    a: `Wait 3 to 7 days. In Sponsor Radar's automated first pitches, ${T.within24h} of brand replies arrived within 24 hours, ${T.within3d} within 3 days and ${T.within7d} within 7 days (${T.n} of ${PITCHES.replies} replies with a reply time, ${PITCHES.window}). By day 3, most of the replies that were coming had come.`,
+    a: `Wait 3 to 7 days. In Book a Sponsor's automated first pitches, ${T.within24h} of brand replies arrived within 24 hours, ${T.within3d} within 3 days and ${T.within7d} within 7 days (${T.n} of ${PITCHES.replies} replies with a reply time, ${PITCHES.window}). By day 3, most of the replies that were coming had come.`,
   },
   {
     q: 'How many times should you follow up on a sponsorship email?',
-    a: 'One or two times, in the same thread, then stop. Sponsor Radar\'s data covers first pitches only, so the limit of two is a judgment call, not a measured result. After the second follow-up, note when the brand plans its next sponsorship budget and write once more then.',
+    a: 'One or two times, in the same thread, then stop. Book a Sponsor\'s data covers first pitches only, so the limit of two is a judgment call, not a measured result. After the second follow-up, note when the brand plans its next sponsorship budget and write once more then.',
   },
   {
     q: 'What are the best practices for a sponsorship follow-up email?',
@@ -48,12 +49,13 @@ const faq = [
     <header>
       <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900">{h1}</h1>
       <div class="mt-2"><Byline published="2026-10-02" modified="2026-10-02" /></div>
+      <NewsletterCallout />
     </header>
     <div class="mt-8 prose prose-lg max-w-none">
 
-      <p><strong>Follow up 3 to 7 days after your first sponsorship email, in the same thread, and stop after two follow-ups. In Sponsor Radar's automated pitches to brands, {T.within24h} of replies came within 24 hours and {T.within7d} within 7 days, so a brand that is silent after a week is unlikely to answer the first email.</strong></p>
+      <p><strong>Follow up 3 to 7 days after your first sponsorship email, in the same thread, and stop after two follow-ups. In Book a Sponsor's automated pitches to brands, {T.within24h} of replies came within 24 hours and {T.within7d} within 7 days, so a brand that is silent after a week is unlikely to answer the first email.</strong></p>
 
-      <p>Those timings run from Sponsor Radar's automated first pitch to each brand's first answer, for newsletters: {f(PITCHES.sent)} pitches to {f(PITCHES.brands)} brands for {PITCHES.newsletters} newsletters, {PITCHES.window}, read {PITCHES.read}. They are not a creator's hand-written pitches, and your list and niche will shift the numbers. The page below turns them into a send date and five templates. For the first email itself, see the <a href="/blog/cold-email-sponsorship-pitch/">sponsorship email template</a>.</p>
+      <p>Those timings run from Book a Sponsor's automated first pitch to each brand's first answer, for newsletters: {f(PITCHES.sent)} pitches to {f(PITCHES.brands)} brands for {PITCHES.newsletters} newsletters, {PITCHES.window}, read {PITCHES.read}. They are not a creator's hand-written pitches, and your list and niche will shift the numbers. The page below turns them into a send date and five templates. For the first email itself, see the <a href="/blog/cold-email-sponsorship-pitch/">sponsorship email template</a>.</p>
 
       <h2>When should you follow up on a sponsorship email?</h2>
 
@@ -86,13 +88,13 @@ const faq = [
         </tbody>
       </table>
 
-      <p>Source: Sponsor Radar's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}, {T.n} of the {PITCHES.replies} replies (those with a reply time after the send). The median reply arrived {T.medianHours} hours after the send.</p>
+      <p>Source: Book a Sponsor's {f(PITCHES.sent)} pitches to brands, {PITCHES.window}, {T.n} of the {PITCHES.replies} replies (those with a reply time after the send). The median reply arrived {T.medianHours} hours after the send.</p>
 
       <p>Read the table like this. At 24 hours, {left(T.within24h)} of the replies were still to come, so a day-one follow-up lands on a brand that may be about to answer. At 3 days, {left(T.within3d)} were still to come. At 7 days, {left(T.within7d)}. Follow up on day 3 if your offer is tied to a date that is filling up. Follow up on day 7 if it is not. If your email went out late on a Friday, start counting on Monday.</p>
 
       <h2>How many times should you follow up on a sponsorship email?</h2>
 
-      <p>Follow up one or two times, then stop. Sponsor Radar's data covers first pitches only, so it does not show how much a follow-up adds. The limit of two is a judgment call, not a measured result.</p>
+      <p>Follow up one or two times, then stop. Book a Sponsor's data covers first pitches only, so it does not show how much a follow-up adds. The limit of two is a judgment call, not a measured result.</p>
 
       <p>The reasoning: the first follow-up reaches a busy reader who meant to answer. The second gives them an easy way to say no or point you to someone else. After that, more emails read as pressure, and you want the door open for the next budget cycle. Space the second follow-up about a week after the first. After the second, put the brand on a calendar for their next budget cycle and write once more then (template 5 below).</p>
 
@@ -180,7 +182,7 @@ const faq = [
 
       <h2>Can someone else send the sponsorship follow-ups for you?</h2>
 
-      <p>Yes, if you run a newsletter. <a href={SR.cta('follow-up-email')}>Sponsor Radar</a> finds brands that sponsored similar newsletters and sends the pitches and follow-ups from its own mailboxes, so you are not tracking send dates by hand. For how many brands to write to in the first place, see <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a>.</p>
+      <p>Yes, if you run a newsletter. <a href={SR.cta('follow-up-email')}>Book a Sponsor</a> finds brands that sponsored similar newsletters and sends the pitches and follow-ups from its own mailboxes, so you are not tracking send dates by hand. For how many brands to write to in the first place, see <a href="/blog/how-many-brands-to-pitch/">how many brands to pitch</a>.</p>
 
       <h2>Sponsorship follow-up email questions</h2>
 

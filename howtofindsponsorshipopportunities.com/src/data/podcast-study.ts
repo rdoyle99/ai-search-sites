@@ -50,9 +50,9 @@ export const PODCASTS = {
     { name: 'Technology', shows: 7, named: 1, either: 4 },
     { name: 'Sports', shows: 7, named: 2, either: 6 },
   ],
-  // the 37 brands on 3+ shows, checked against Sponsor Radar's newsletter sponsor data on 2 October 2026
+  // the 37 brands on 3+ shows, checked against Book a Sponsor's newsletter sponsor data on 2 October 2026
   newsletterJoin: { brands: 37, withNewsletterAd: 16 },
-  // Sponsor Radar's public profile counts (its full filter, so higher than the join's stricter lower bound, e.g. Shopify 10 there) for the top brands that have one (sponsorradar.co/sponsors/<domain>, 2 October 2026)
+  // Book a Sponsor's public profile counts (its full filter, so higher than the join's stricter lower bound, e.g. Shopify 10 there) for the top brands that have one (bookasponsor.com/sponsors/<domain>, 2 October 2026)
   srProfiles: [
     { name: 'Shopify', domain: 'shopify.com', newsletters: 16 },
     { name: 'BetterHelp', domain: 'betterhelp.com', newsletters: 16 },
