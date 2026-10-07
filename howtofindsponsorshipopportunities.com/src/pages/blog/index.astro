@@ -38,36 +38,42 @@ const posts = [
     title: "Sponsorship Pricing: How Much to Charge for a Sponsorship",
     description: "What 321 newsletters list for one sponsor slot, by list size, plus sourced podcast, YouTube and social rates and how to set your own price.",
     date: '2026-06-11',
+    updated: '2026-10-02',
   },
   {
     href: '/blog/how-many-brands-to-pitch/',
     title: "How Many Brands Should You Pitch to Land One Sponsorship?",
     description: "About 395 first pitches per yes in 13,429 real pitches to brands, the funnel stage by stage, and the arithmetic for your own goal.",
     date: '2026-06-11',
+    updated: '2026-10-02',
   },
   {
     href: '/blog/find-brands-that-sponsor/',
     title: "How to Find Brands That Already Sponsor Creators Like You",
     description: "Brands with a newsletter ad on record replied twice as often (2.6% vs 1.3%). Where to find brands that already pay creators.",
     date: '2026-06-11',
+    updated: '2026-10-02',
   },
   {
     href: '/blog/find-sponsorship-opportunities-guide/',
     title: "How to Find Sponsorship Opportunities in 2026",
     description: "Marketplaces, outreach and the channel-by-channel routes for YouTube, podcasts, newsletters, Instagram, TikTok, Twitch and events.",
     date: '2026-01-28',
+    updated: '2026-10-02',
   },
   {
     href: '/blog/sponsorship-media-kit-guide/',
     title: "Sponsorship Media Kit: How to Build One That Lands Deals",
     description: "The seven sections brands check, a copyable template, examples for a podcast, a streamer and a newsletter, and a rate card priced from real data.",
     date: '2026-01-26',
+    updated: '2026-10-02',
   },
   {
     href: '/blog/cold-email-sponsorship-pitch/',
     title: "Sponsorship Email Template: How to Cold Email Brands",
     description: "Four short templates, subject lines, who to send them to and how fast brands reply, from 13,429 pitches to brands.",
     date: '2026-01-24',
+    updated: '2026-10-02',
   },
 ];
 ---
@@ -84,7 +90,7 @@ const posts = [
       {posts.map((post) => (
         <a href={post.href ?? `/blog/${post.slug}/`} class="block group">
           <article class="p-6 border border-gray-200 rounded-lg group-hover:border-gray-400 transition-colors">
-            <time class="text-sm text-gray-400" datetime={post.date}>{new Date(post.date + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>
+            <time class="text-sm text-gray-400" datetime={post.updated ?? post.date}>{post.updated ? 'Updated ' : ''}{new Date((post.updated ?? post.date) + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>
             <h2 class="mt-2 text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{post.title}</h2>
             <p class="mt-2 text-gray-600">{post.description}</p>
           </article>

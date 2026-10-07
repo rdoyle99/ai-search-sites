@@ -56,6 +56,16 @@ export const siteConfig = {
     },
   ],
 
+  // The five newest pages. The footer links them from every page until Google has indexed them, so each page it
+  // crawls leads to them (seo-operator, links check F3). Replace the list when newer pages ship; keep the five newest.
+  newestPages: [
+    { title: 'Podcast sponsors: the top 200 shows', href: '/blog/how-to-get-podcast-sponsors/' },
+    { title: 'Sponsorship packages and levels', href: '/blog/sponsorship-packages/' },
+    { title: 'Media sponsorship', href: '/blog/media-sponsorship/' },
+    { title: 'Sponsorship follow-up emails', href: '/blog/sponsorship-follow-up-email/' },
+    { title: 'Best sponsorship platforms', href: '/best-sponsorship-platforms/' },
+  ],
+
   relatedSites: [
     { title: "How to Find Anyone's Email Address", url: 'https://howtofindanyonesemail.com/' },
     { title: 'How Long Should a Cold Email Be?', url: 'https://howlongshouldacoldemailbe.com/' },
